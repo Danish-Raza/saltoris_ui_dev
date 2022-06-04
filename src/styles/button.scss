@@ -1,0 +1,24 @@
+button {
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 15px 8px 15px;
+    cursor: pointer;
+    position: relative;
+}
+button:active {
+    top: 1px;
+}
+button[button-type="primary"] {
+    background-color: #3B6BFD;
+    border: 1px solid #3B6BFD;
+}
+button[button-type="primary"]:active {  
+    background-color: #5377e7;
+    border: 1px solid #5377e7;
+}
+button[button-type="danger"] {
+    background-color: red;
+    border: 1px solid red;
+}

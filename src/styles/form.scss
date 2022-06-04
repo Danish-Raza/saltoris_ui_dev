@@ -1,0 +1,62 @@
+@mixin default-template() {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px -6px #dcd6d6;
+
+    .form-title {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        div{
+            color: #BEBFC6;
+            font-size: 13px;
+        }
+        div:last-child {
+            color: black;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    }
+    .field {
+        margin-top: 10px;
+    }
+    .field {
+        >input  {
+            padding: 10px 0px 10px 0px;
+        }
+        .ant-input-affix-wrapper {
+            .ant-input-prefix  {
+                margin-right: 10px;
+            }
+            input  {
+                padding: 7px 0px 7px 0px;
+            }
+        }
+    }
+    .field[type="button"] {
+        margin-top: 30px;
+    }
+    .field[data-validated="false"] {
+        >input, .ant-input-affix-wrapper {
+            border-color: red;
+        } 
+    }
+    
+}
+.form-component {
+    &[data-template="default-template"] {
+        @include default-template()
+    }
+    &[data-template="login-form"] {
+        @include default-template();
+        top: -10vw !important;
+    }
+}
