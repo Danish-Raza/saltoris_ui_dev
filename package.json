@@ -2,7 +2,7 @@
   "name": "saltoris",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://danishraza.github.io/saltoris_ui",
+  "homepage": "https://saltoris.github.io/saltoris_ui",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
