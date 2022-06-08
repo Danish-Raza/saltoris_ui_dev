@@ -1,5 +1,5 @@
 import Utils from "../Utils";
-import _ from "underscore"
+import _ from "underscore";
 
 let initialState = {
   appLoading: false,
@@ -71,7 +71,6 @@ export default function appReducer(state=initialState, action) {
           let sortedOrder = _.keys(Utils.sortOrder(action.data[curPage]._order))
           curView = sortedOrder[0]
         }
-        window.history.replaceState(null, "", `/?cur_page=${curPage}&cur_view=${curView}`)
         return {
           ...state,
           appParams: {curPage: curPage, curView: curView},

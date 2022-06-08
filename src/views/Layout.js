@@ -5,13 +5,12 @@ import { getUserConfig, logout } from "../actions/appActions";
 import Navigation from "../components/Navigation";
 import SideBar from "../components/SideBar";
 import Widgets from "../components/Widgets";
+import { useNavigate } from "react-router-dom";
 
 function Layout(props={}) {
     const dispatch = useDispatch();
     let appData = useSelector(state => state.appData)
-    const submitHandler = () => {
-        dispatch(logout())
-      }
+    const navigate = useNavigate()
 
     useEffect(() => {
       const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -21,7 +20,16 @@ function Layout(props={}) {
       let curView = params ? params.cur_view : null;
       dispatch(getUserConfig(appData.userDetail.config_name, curPage, curView))
     },[])
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let curPage = params ? params.cur_page : null;
+    let curView = params ? params.cur_view : null;
+    if(!curPage && !curView && appData && appData.appParams) {
+      navigate(`/?cur_page=${appData.appParams.curPage}&cur_view=${appData.appParams.curView}`)
+    }
     console.log(appData)
+    //navigate(`/?cur_page=${curPage}&cur_view=${curView}`)
   return (
     <div className="App">
         {appData.userConfig ? 
