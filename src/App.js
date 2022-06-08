@@ -4,9 +4,9 @@ import 'antd/dist/antd.css';
 import './styles/main.scss';
 import { useSelector } from 'react-redux'
 function App() {
-  const authUser = useSelector(state => state.authUser)
+  const appData = useSelector(state => state.appData)
   return (
-    <AppRoutes authUser={authUser}/>
+    <AppRoutes appData={appData}/>
   );
 }
 

@@ -7,7 +7,7 @@ import Icon from "../Icon";
 
 
 function Login(props={}) {
-  let {authLoading, error, errorMessage } = props.authUser
+  let {authLoading, error, errorMessage } = props.appData
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("login")
   const loginHandler = (data) => {

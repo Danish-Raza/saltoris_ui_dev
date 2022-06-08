@@ -48,5 +48,6 @@ const WebUtils = {
           return axios.put(url,data)
           .then(success => Promise.resolve(success) , error =>  Promise.reject(error))
         }
-      },
+    },
 }
+export default WebUtils

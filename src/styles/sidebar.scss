@@ -1,0 +1,33 @@
+.sidebar {
+    width: 270px;
+    min-width: 270px;
+    border-right: 1px solid #e1dede !important;
+    padding: 18px 33px 0 33px;
+    .view-tab-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 8px 20px 8px 20px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        .view-tab {
+            margin-left: 10px;
+        }
+    }
+    .view-tab-wrapper[data-view-status="true"] {
+       // color: #3963E8;
+        background-color: #3963E8;
+        border-radius: 30px;
+        color: white;
+        svg {
+            path {
+                fill: white;
+            }
+        }
+        svg[data-stroke-present="true"] {
+            path {
+                fill: grey;
+                stroke: white;
+            }
+        }
+    }
+}

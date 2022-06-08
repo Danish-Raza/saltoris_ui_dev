@@ -4,12 +4,12 @@ import Layout from "../views/Layout";
 import NoPage from "../pages/NoPage";
 
 export default function AppRoutes(props) {
-    let loggedIn = props.authUser ? props.authUser.loggedIn : false
+    let loggedIn = props.appData ? props.appData.loggedIn : false
     let element = null
     if(loggedIn) {
         element = <Layout />
     } else if(!loggedIn) {
-        element = <Login authUser={props.authUser}/>
+        element = <Login appData={props.appData}/>
     }
     return (
         <Routes>

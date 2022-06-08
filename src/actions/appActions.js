@@ -1,3 +1,4 @@
+import mockConfig from "./mockConfig";
 export function login(data) {
     return function (dispatch, getState) {
         // WebUtils.loadUserDetails(data).then((response) => {
@@ -9,7 +10,7 @@ export function login(data) {
         dispatch({ type: 'APP_LOADER', data: true});
         setTimeout(() => {
             let mockUserData = {
-                username:"Admin",
+                username:"John Doe",
                 email:"admin@mail.com",
                 user_role: "admin",
                 account_type: "supplier",
@@ -27,5 +28,22 @@ export function login(data) {
 export function logout() {
     return function (dispatch, getState) {
         dispatch({ type: 'LOGOUT'});
+    }
+}
+export function getUserConfig(configName, curPage, curView) {
+    return function (dispatch, getState) {
+        // WebUtils.fetchUserConfig(configName).then((response) => {
+        //     if(response && response.status == 200) {
+        //         dispatch({ type: 'USER_CONFIG', data: response.data.data});
+        //     }
+        // })
+        if(configName == "default_supplier") {
+            dispatch({ type: 'USER_CONFIG', data: mockConfig, curPage, curView});
+        }   
+    }
+}
+export function changePageView(curPage, curView) {
+    return function (dispatch, getState) {
+        dispatch({ type: 'CHANGE_PAGE_VIEW', curPage, curView});
     }
 }

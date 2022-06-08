@@ -1,0 +1,58 @@
+.user-profile-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .profile-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        .user-photo {
+            color: white;
+            background-color: grey;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .username-wrapper {
+            line-height: 1.2;
+            margin-right: 18px;
+
+        }
+        .username {
+            font-size: 14px;
+            font-weight: 600;
+            color: black;  
+        }
+        .user-role {
+            text-transform: capitalize;
+            font-size: 12px;
+            color: grey; 
+
+        }
+    }
+    .profile-dropdown {
+        position: absolute;
+        top: 99%;
+        background-color: white;
+        box-shadow: 0 2px 10px 0 rgb(0 0 0 / 15%);
+        .option {
+            padding: 5px 10px 5px 10px;
+        }
+        .logout-option {
+            cursor: pointer;
+            color: red;
+        }
+        .logout-option:hover {
+            background-color: rgb(230, 227, 227);
+           
+        }
+        
+    }
+}

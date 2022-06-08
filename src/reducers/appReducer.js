@@ -1,8 +1,12 @@
+import Utils from "../Utils";
+import _ from "underscore"
+
 let initialState = {
   appLoading: false,
   authLoading: false,
   loggedIn: localStorage.getItem("saltoris-userD") ? true : false,
   userDetail: localStorage.getItem("saltoris-userD") ?  JSON.parse(localStorage.getItem("saltoris-userD")) : {},
+  appParams: {},
   error: false,
   errorMessage: null
 }
@@ -14,6 +18,7 @@ export default function appReducer(state=initialState, action) {
           authLoading: action.data,
           loggedIn: false,
           userDetail: {},
+          appParams: {},
           error: false,
           errorMessage: null
         };
@@ -24,6 +29,7 @@ export default function appReducer(state=initialState, action) {
           loggedIn: true,
           authLoading: false,
           userDetail: action.data,
+          appParams: {},
           error: false,
           errorMessage: null
         };
@@ -31,7 +37,8 @@ export default function appReducer(state=initialState, action) {
         return {
           appLoading: false,
           loggedIn: false,
-          userDetail:{},
+          userDetail: null,
+          appParams: {},
           error: true,
           authLoading: false,
           errorMessage: action.message
@@ -42,10 +49,40 @@ export default function appReducer(state=initialState, action) {
             appLoading: false,
             authLoading: false,
             loggedIn:  false,
-            userDetail: {},
+            userDetail: null,
+            appParams: {},
             error: false,
             errorMessage: null
           };
+      case "USER_CONFIG":
+        let curPage;
+        let curView;
+        if(action.curPage) {
+          curPage = action.curPage
+        } else {
+          let sortedOrder = _.keys(Utils.sortOrder(action.data._order))
+          curPage = sortedOrder[0]
+
+        }
+
+        if(action.curView) {
+          curView = action.curView
+        } else {
+          let sortedOrder = _.keys(Utils.sortOrder(action.data[curPage]._order))
+          curView = sortedOrder[0]
+        }
+        window.history.replaceState(null, "", `/?cur_page=${curPage}&cur_view=${curView}`)
+        return {
+          ...state,
+          appParams: {curPage: curPage, curView: curView},
+          userConfig: action.data
+        };
+      case "CHANGE_PAGE_VIEW":
+       // window.history.replaceState(null, "", `/?cur_page=${action.curPage}&cur_view=${action.curView}`)
+        return {
+          ...state,
+          appParams: {...state.appParams, curPage: action.curPage, curView: action.curView},
+        };
       default:
         return state;
     }

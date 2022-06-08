@@ -1,0 +1,55 @@
+.navigation-bar { 
+    display: flex;
+    width: 100%;
+    .nav-bar-right-section {
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid #e1dede !important;
+        border-left: 1px solid #e1dede !important;
+        justify-content: space-between;
+        padding-right: 23px;
+    }
+    .saltoris-logo-wrapper {
+        width: 331px;
+       // padding-bottom: 15px;
+        .saltoris-logo {
+        //    border-bottom: 1px solid #e1dede !important;
+            margin: 0 auto;
+        }
+        .border-bottom {
+            display: block;
+            width: 215px;
+            height: 1px;
+            background-color: #e1dede;
+            margin-top: 10px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+       // border-bottom: 1px solid #e1dede !important;
+
+    }
+    .nav-tab-wrapper {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        padding: 0 10px 0 10px;
+        .nav-tab {
+            margin-left: 10px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .nav-tab:not(:first-child) {
+            margin-left: 23px;
+        }
+
+        .nav-tab[data-tab-status="true"] {
+            color: #3963E8;
+        }
+    }
+}
+.sidebar-widgets-panel-wrapper {
+    display: flex;
+    width: 100%;
+    height: 93.2vh;
+    overflow: hidden;
+}
