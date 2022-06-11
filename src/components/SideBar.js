@@ -18,6 +18,10 @@ const SideBar = (props) => {
 
     return (
         <div className="sidebar">
+            <div className="saltoris-logo-wrapper">
+                <div className="saltoris-logo"></div>
+                <span className="border-bottom"></span>
+            </div>
            {
                 _.map(sortedOrder, view => 
                     config[view] && ( 

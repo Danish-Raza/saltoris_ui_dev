@@ -1,29 +1,30 @@
 const supplierDashboard = {
     "chart_1": [
         {
-            "month": "jan",
-            "key_1": "2122",
-            "key_2": "23412",
-            "key_3": "2343"
+            "date": "2022-01-10",
+            "Old Invoices": "2122",
+            "New Invoices": "23412",
+            "New Parameter": "2343"
+        },
+        
+        {
+            "date": "2022-03-10",
+            "Old Invoices": "54657",
+            "New Invoices": "2334",
+            "New Parameter": "45657"
         },
         {
-            "month": "feb",
-            "key_1": "1234",
-            "key_2": "54231",
-            "key_3": "2234"
+            "date": "2022-04-10",
+            "Old Invoices": "3522",
+            "New Invoices": "43567",
+            "New Parameter": "764324"
         },
         {
-            "month": "mar",
-            "key_1": "54657",
-            "key_2": "2334",
-            "key_3": "45657"
+            "date": "2022-02-10",
+            "Old Invoices": "1234",
+            "New Invoices": "54231",
+            "New Parameter": "2234"
         },
-        {
-            "month": "apr",
-            "key_1": "3522",
-            "key_2": "43567",
-            "key_3": "764324"
-        }
 
     ]
 

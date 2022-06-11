@@ -1,13 +1,19 @@
 .navigation-bar { 
-    display: flex;
+    display: block;
     width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 2;
     .nav-bar-right-section {
         display: flex;
         width: 100%;
         border-bottom: 1px solid #e1dede !important;
-        border-left: 1px solid #e1dede !important;
+        //border-left: 1px solid #e1dede !important;
         justify-content: space-between;
         padding-right: 23px;
+        height: 55px;
+       
     }
     .saltoris-logo-wrapper {
         width: 331px;

@@ -22,7 +22,7 @@ export function login(data) {
             } else {
                 dispatch({ type: 'LOGIN_FAILED', message: "User not found"});
             }
-        }, 2000);
+        }, 1000);
     }
 }
 export function logout() {

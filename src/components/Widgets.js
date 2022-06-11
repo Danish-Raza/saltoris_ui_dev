@@ -1,6 +1,9 @@
 import  _ from "underscore";
 import Utils from "../Utils";
+import Cards from "./Cards";
 import Charts from "./Charts/Index";
+import Overview from "./Overview";
+import Table from "./Table/Index";
 
 function Widgets(props) {
     const { config } = props;
@@ -11,10 +14,14 @@ function Widgets(props) {
                 _.map(components, component => {
                     let type = config[component].type
                     switch (type) {
+                        case "overview":
+                            return <Overview config={config[component]}/>
+                        case "card":
+                            return <Cards config={config[component]}/>
                         case "chart":
                             return <Charts config={config[component]}/>
-                        case "chart":
-                            return <div>Table Component</div>
+                        case "table":
+                            return <Table config={config[component]}/>
                         default:
                             break;
                     }

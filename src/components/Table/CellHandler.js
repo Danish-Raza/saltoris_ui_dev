@@ -1,0 +1,46 @@
+import Utils from "../../Utils";
+import _ from "underscore"
+import { Space, Table, Tag } from 'antd';
+import moment from "moment";
+
+
+function cellHandler(config) {
+    // const { config } = props;
+    let columns = []
+    let sortedOrder = _.keys(Utils.sortOrder(config._order))
+    _.map(sortedOrder, order => {
+        let column = config[order];
+        let color = column.color;
+        let colorMapping = column.color_mapping|| {};
+        let isCurrency = column.is_currency;
+        let isPercent = column.is_percent;
+        
+        let obj = {
+            title: column.display,
+            dataIndex: order,
+            key: order,
+            align: column.align,
+            color:  color
+        }
+
+        if(column.type == "string") {
+            obj.render = text => <div className="cell" style={{color: color}}>{text}</div>
+            columns.push(obj)
+        } else if(column.type == "date") {
+            obj.render = text =>  <div className="cell" style={{color: color}}>{moment(text).format(column.format)}</div>
+            columns.push(obj)
+        } else if(column.type == "tag") {
+            obj.render = (text) => (
+                <Tag color={colorMapping[text]} key={text}>
+                    <div className="cell" style={{color: color}}> {text}</div>
+                </Tag>
+            )
+            columns.push(obj)
+        } else if(column.type == "link") {
+            obj.render = (text) => <a>{text}</a>
+            columns.push(obj)
+        }
+    })
+    return columns
+}
+export default cellHandler;

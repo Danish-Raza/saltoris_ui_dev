@@ -5,6 +5,7 @@ import supplierDashboard from "../../mockData/supplierDashboard";
 import WebUtils from "../../WebUtils";
 import Line from "./Line";
 import DropDown from "./DropDown";
+import Header from "../Header";
 
 function Charts(props) {
     const { config } = props;
@@ -46,10 +47,8 @@ function Charts(props) {
     }
 
     return (
-        <div className="chart-wrapper" style={{width: width || "100%"}}>
-            {
-                dropdown &&  <DropDown config={dropdown}/>
-            }
+        <div className="chart-wrapper widget" style={{width: width || "100%", height:"380px"}}>
+            <Header config={config} />
             {
                 chart_type == "line" && <Line config={config} data={data}/>
             }

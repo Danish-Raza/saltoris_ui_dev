@@ -6,6 +6,7 @@ import Navigation from "../components/Navigation";
 import SideBar from "../components/SideBar";
 import Widgets from "../components/Widgets";
 import { useNavigate } from "react-router-dom";
+import { Spin } from "antd";
 
 function Layout(props={}) {
     const dispatch = useDispatch();
@@ -28,31 +29,29 @@ function Layout(props={}) {
     if(!curPage && !curView && appData && appData.appParams) {
       navigate(`/?cur_page=${appData.appParams.curPage}&cur_view=${appData.appParams.curView}`)
     }
-    console.log(appData)
-    //navigate(`/?cur_page=${curPage}&cur_view=${curView}`)
   return (
     <div className="App">
-        {appData.userConfig ? 
-          // JSON.stringify(appData.appParams)
+        {appData.userConfig ?
           <Fragment>
-            <Navigation 
-              config={appData.userConfig} 
-              curPage={appData.appParams.curPage} 
-              userDetail={appData.userDetail}
-            /> 
-            <div className="sidebar-widgets-panel-wrapper">
+           <div style={{display:"flex"}}>
               <SideBar 
                 curPage={appData.appParams.curPage}  
                 curView={appData.appParams.curView} 
                 config={appData.userConfig[appData.appParams.curPage]}
                 userDetail={appData.userDetail}
               />
-              {/* <Widgets config={appData.userConfig[appData.appParams.curPage][appData.appParams.curView].widgets}/> */}
-            </div>
-            
+              <div style={{width:"100%", height: "100vh", overflowY: "auto"}}>
+                <Navigation 
+                  config={appData.userConfig} 
+                  curPage={appData.appParams.curPage} 
+                  userDetail={appData.userDetail}
+                /> 
+                <Widgets config={appData.userConfig[appData.appParams.curPage][appData.appParams.curView].widgets}/>
+              </div>
+           </div>
           </Fragment>
           : 
-        "loader"}
+        <div style={{width: "100%", height:"100vh", display:"flex", alignItems:"center", justifyContent:"center"}}><Spin size="large" /></div>}
     </div>
   );
 }

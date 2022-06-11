@@ -2,7 +2,18 @@
     width: 270px;
     min-width: 270px;
     border-right: 1px solid #e1dede !important;
-    padding: 18px 33px 0 33px;
+    padding: 0px 33px 0 33px;
+    .saltoris-logo-wrapper{ 
+        margin-bottom: 25px;
+        padding-top: 5px;
+        .border-bottom {
+            width: 100%;
+            display: block;
+            height: 1px;
+            background-color: #e1dede;
+            margin-top: 10px;
+        }
+    }
     .view-tab-wrapper {
         display: flex;
         align-items: center;

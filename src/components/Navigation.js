@@ -19,10 +19,10 @@ const Navigation = (props) => {
 
     return (
         <div className="navigation-bar">
-            <div className="saltoris-logo-wrapper">
+            {/* <div className="saltoris-logo-wrapper">
                 <div className="saltoris-logo"></div>
                 <span className="border-bottom"></span>
-            </div>
+            </div> */}
             <div className="nav-bar-right-section">
                 <div className="nav-tab-wrapper">
                     {
