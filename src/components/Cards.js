@@ -1,8 +1,9 @@
 import _ from "underscore";
 import Utils from "../Utils";
+import Header from "./Header";
 
 function Cards(props) {
-    const {  config } = props;
+    const {  config, handleDrop, handleDrag, isEditable, removeHandler } = props;
     const {display, width, template} = config;
     const data = [
         {
@@ -40,8 +41,26 @@ function Cards(props) {
     let imageElemIndex = _.findIndex(sortOrder, order => config[order].type == "image");
     let imagePosition = imageElemIndex != -1 ? config[sortOrder[imageElemIndex]].position: null;
     return (
-        <div className="card-wrapper" style={{width: width || "100%"}} data-template={template||"default_template"}>
-            <div className="card-wrapper-title">{display}</div>
+        <div 
+            className="card-wrapper" 
+            style={{width: width || "100%"}} 
+            data-template={template||"default_template"} 
+            draggable={isEditable} 
+            id={config.id}
+            onDrop={handleDrop} 
+            onDragStart={handleDrag}
+            onDragOver={(event) => {
+                // let event = e as Event;
+                event.stopPropagation();
+                event.preventDefault();
+            }}
+        >
+            {/* <Header isEditable={isEditable} config={config} /> */}
+            <div className="card-wrapper-title">
+                {display}
+                {isEditable?<div className="remove-button" onClick={()=>removeHandler(config.id)}>x</div>:""}
+            </div>
+            <div style={{height: 310, overflowY:"auto"}}>
             {
                 _.map(data, rec => {
                     return (
@@ -69,6 +88,7 @@ function Cards(props) {
                     )
                 })
             }
+            </div>
             
             
         </div>

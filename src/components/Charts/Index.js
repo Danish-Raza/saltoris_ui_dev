@@ -8,7 +8,7 @@ import DropDown from "./DropDown";
 import Header from "../Header";
 
 function Charts(props) {
-    const { config } = props;
+    const { config, handleDrag, handleDrop, isEditable,removeHandler } = props;
     const { chart_type, dropdown, title, api, params, width, id } = config;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -33,7 +33,7 @@ function Charts(props) {
     }
 
     const updateChart = async(params) => {
-        let resData = supplierDashboard[id]
+        let resData = supplierDashboard["chart_1"]
         await WebUtils.httpOperations(api, params, "GET")
         .then(response =>  {
             setData(resData)
@@ -47,8 +47,20 @@ function Charts(props) {
     }
 
     return (
-        <div className="chart-wrapper widget" style={{width: width || "100%", height:"380px"}}>
-            <Header config={config} />
+        <div 
+            className="chart-wrapper widget" 
+            style={{width: width || "100%", 
+            height:"auto"}}
+            id={config.id}
+            draggable={isEditable}
+            onDrop={handleDrop} 
+            onDragStart={handleDrag}
+            onDragOver={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+            }}
+        >
+            <Header config={config} isEditable={isEditable} removeHandler={removeHandler}/>
             {
                 chart_type == "line" && <Line config={config} data={data}/>
             }

@@ -22,3 +22,16 @@ button[button-type="danger"] {
     background-color: red;
     border: 1px solid red;
 }
+button[button-type="ghost"] {
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #44444F;
+    background: white;
+    color: #44444F;
+    border-radius: 8.327px;
+    font-weight: normal;
+    font-size: 14px;
+}

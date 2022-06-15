@@ -3,6 +3,9 @@
     min-width: 270px;
     border-right: 1px solid #e1dede !important;
     padding: 0px 33px 0 33px;
+    position: relative;
+    left: 0;
+    transition: all 0.3s;
     .saltoris-logo-wrapper{ 
         margin-bottom: 25px;
         padding-top: 5px;
@@ -13,6 +16,19 @@
             background-color: #e1dede;
             margin-top: 10px;
         }
+        svg {
+            position: relative;
+            background: #3963E8;
+            border-radius: 50%;
+            left: 226px;
+            top: -11px;
+            z-index: 3;
+            transition: all 0.3s;
+            path {
+                stroke: white;
+                fill: white;
+            }
+        }
     }
     .view-tab-wrapper {
         display: flex;
@@ -20,8 +36,13 @@
         padding: 8px 20px 8px 20px;
         margin-bottom: 10px;
         cursor: pointer;
+        svg {
+            min-width: 20px;
+            min-height: 20px;
+        }
         .view-tab {
             margin-left: 10px;
+            font-weight: 500;
         }
     }
     .view-tab-wrapper[data-view-status="true"] {
@@ -40,5 +61,31 @@
                 stroke: white;
             }
         }
+    }
+}
+.sidebar[data-status="inactive"]{
+    width: 20px;
+    min-width: 72px;
+    max-width: 74px;
+    padding: 0px 7px 0 7px;
+    transition: all 0.3s;
+   .saltoris-logo-wrapper{
+       .saltoris-logo {
+            width: 40px;
+       }
+       svg {
+        left: 54px;
+        transition: all 0.3s;
+       }
+   }
+    .view-tab-wrapper {
+        svg{ 
+            min-width: 20px;
+            min-height: 20px;
+        }
+        .view-tab {
+            display: none;
+        }
+
     }
 }

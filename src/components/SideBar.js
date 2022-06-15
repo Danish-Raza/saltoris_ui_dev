@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { changePageView } from "../actions/appActions";
 import Icon from "../Icon";
+import { useState } from "react";
 
 const SideBar = (props) => {
     let { config, curPage, curView } = props;
     const dispatch = useDispatch();
+    const [collapsed, setCollapsed] = useState(true)
     let sortedOrder = _.keys(Utils.sortOrder(config._order))
     const navigate = useNavigate();
 
@@ -17,10 +19,12 @@ const SideBar = (props) => {
     }
 
     return (
-        <div className="sidebar">
+        <div className="sidebar"  data-status={ collapsed ? "active" : "inactive"}>
             <div className="saltoris-logo-wrapper">
                 <div className="saltoris-logo"></div>
                 <span className="border-bottom"></span>
+                <Icon type={collapsed ? "arrow-left" : "arrow-right"} width={20} height={20} onClick={() => setCollapsed(!collapsed)}/>
+                {/* <div className="expand-icon" data-status={ collapsed ? "active" : "inactive"} onClick={() => setCollapsed(!collapsed)}>arrow</div> */}
             </div>
            {
                 _.map(sortedOrder, view => 

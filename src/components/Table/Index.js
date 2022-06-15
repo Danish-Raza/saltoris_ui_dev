@@ -5,7 +5,7 @@ import { Space, Table, Tag } from 'antd';
 import cellHandler from "./CellHandler";
 
 function TableComponent(props) {
-    const { config } = props;
+    const { config, handleDrop, handleDrag, isEditable, removeHandler } = props;
     const { columns, width }  = config
    // let sortedOrder = _.keys(Utils.sortOrder(columns._order))
     const sortHandler = () => {
@@ -57,60 +57,21 @@ function TableComponent(props) {
             invoice_no: "#126"
           }
     ];
-    //   const columns = [
-    //     {
-    //       title: 'Name',
-    //       dataIndex: 'name',
-    //       key: 'name',
-    //       render: (text) => <a>{text}</a>,
-    //     },
-    //     {
-    //       title: 'Age',
-    //       dataIndex: 'age',
-    //       key: 'age',
-    //     },
-    //     {
-    //       title: 'Address',
-    //       dataIndex: 'address',
-    //       key: 'address',
-    //     },
-    //     {
-    //       title: 'Tags',
-    //       key: 'tags',
-    //       dataIndex: 'tags',
-    //       render: (_, { tags }) => (
-    //         <>
-    //           {tags.map((tag) => {
-    //             let color = tag.length > 5 ? 'geekblue' : 'green';
-      
-    //             if (tag === 'loser') {
-    //               color = 'volcano';
-    //             }
-      
-    //             return (
-    //               <Tag color={color} key={tag}>
-    //                 {tag.toUpperCase()}
-    //               </Tag>
-    //             );
-    //           })}
-    //         </>
-    //       ),
-    //     },
-    //     {
-    //       title: 'Action',
-    //       key: 'action',
-    //       render: (_, record) => (
-    //         <Space size="middle">
-    //           <a>Invite {record.name}</a>
-    //           <a>Delete</a>
-    //         </Space>
-    //       ),
-    //     },
-    //   ];
     const columnConfig = cellHandler(columns)
     return (
-        <div className="widget table-wrapper" style={{width: width}}>
-            <Header config={config}/>
+        <div 
+            className="widget table-wrapper" 
+            style={{width: width}} id={config.id}
+            draggable={isEditable}
+            onDrop={handleDrop} 
+            onDragStart={handleDrag}
+            onDragOver={(event) => {
+                // let event = e as Event;
+                event.stopPropagation();
+                event.preventDefault();
+            }}
+            >
+            <Header config={config} isEditable={isEditable} removeHandler={removeHandler}/>
             <Table dataSource={data} columns={columnConfig} />
             {/* {
                 <table>

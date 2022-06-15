@@ -46,7 +46,12 @@ function Layout(props={}) {
                   curPage={appData.appParams.curPage} 
                   userDetail={appData.userDetail}
                 /> 
-                <Widgets config={appData.userConfig[appData.appParams.curPage][appData.appParams.curView].widgets}/>
+                <Widgets
+                  key={`${appData.appParams.curPage}-${appData.appParams.curView}-widgets`}
+                  curPage={appData.appParams.curPage}  
+                  curView={appData.appParams.curView} 
+                  config={appData.userConfig[appData.appParams.curPage][appData.appParams.curView].widgets}
+                />
               </div>
            </div>
           </Fragment>

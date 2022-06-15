@@ -7,7 +7,6 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 20px -6px #dcd6d6;
-
     .form-title {
         display: flex;
         width: 100%;
@@ -26,11 +25,12 @@
         }
     }
     .field {
-        margin-top: 10px;
+        margin-top: 20px;
     }
     .field {
         >input  {
-            padding: 10px 0px 10px 0px;
+            padding: 10px 10px 10px 10px;
+            border-radius: 10px;
         }
         .ant-input-affix-wrapper {
             .ant-input-prefix  {
@@ -44,10 +44,48 @@
     .field[type="button"] {
         margin-top: 30px;
     }
+    .field[type="file"] {
+        .selected-file-name {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+            max-width: 400px;
+        }
+        .ant-checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-right: 14px;
+            width: 200px;
+            .ant-checkbox-inner {
+                width: 25px;
+                height: 25px;
+            }
+            .ant-checkbox-inner::after {
+                width: 7.714286px;
+                height: 12.142857px;
+            }
+            .ant-checkbox {
+                top: 0;
+            }
+        }
+        // >span {
+        //     display: flex;
+        //     .ant-upload-list {
+        //         margin-left: 10px;
+        //     }
+        // }
+    }
     .field[data-validated="false"] {
         >input, .ant-input-affix-wrapper {
             border-color: red;
         } 
+    }
+    .field-lable {
+        min-width: 150px;
+        max-width: 150px;
+        align-items: center;
+        display: flex;
+        color: #44444F
     }
     
 }
@@ -59,4 +97,7 @@
         @include default-template();
         top: -10vw !important;
     }
+}
+.ant-modal-body {
+    height: 680px !important;
 }
