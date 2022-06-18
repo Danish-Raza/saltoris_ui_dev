@@ -56,12 +56,12 @@ const data = {
                         "mode":"selec"
                     },
                     "_order":{
-                        "invoive": 1,
+                        "Invoice": 1,
                         "Opportunities": 2,
                         "Bid": 3,
                         "Payments": 4
                     },
-                    "invoive": {
+                    "Invoice": {
                         "_order":{
                             "title": 1,
                             "gain_difference": 2,
