@@ -46,10 +46,17 @@ function Charts(props) {
         })
     }
 
-    const dropDownHandler = () => {
-
+    const dropDownHandler = (key,value) => {
+        updateChart({[key]: value})
     }
-
+    let headerConfig = config.header_config;
+    let chartTitle = config.title;
+    if(headerConfig) {
+        if(headerConfig.template == "dropdown-title" && selectedOption) {
+            chartTitle=''
+            _.map(selectedOption[dropdown.key], (o, i) => chartTitle += (i != 0 ? " - " : "") + o)
+        }
+    }
     return (
         <div 
             className="chart-wrapper widget" 
@@ -67,7 +74,7 @@ function Charts(props) {
             <Header 
                 replicateHandler={replicateHandler} 
                 componentIndex={componentIndex} 
-                config={config}
+                config={{...config, display: chartTitle }}
                 isEditable={isEditable} 
                 removeHandler={removeHandler}
                 onChange={dropDownHandler}

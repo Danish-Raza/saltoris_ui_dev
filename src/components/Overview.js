@@ -127,15 +127,24 @@ function Overview(props) {
                                                             </div>
                                                         )
                                                     } else {
-                                                        return (
-                                                            <div>{Utils.injectData(config[tab][order].multiple[mOrder].display, rec)}</div>
-                                                        )
+                                                        if(config[tab][order].multiple[mOrder].is_percent) {
+                                                            return (
+                                                                <div>{Utils.injectData(config[tab][order].multiple[mOrder].display, rec)}%</div>
+                                                            )
+                                                        } else if(config[tab][order].multiple[mOrder].is_currency) {
+                                                            return (
+                                                                <div>{config[tab][order].multiple[mOrder].is_currency}{Utils.injectData(config[tab][order].multiple[mOrder].display, rec)}</div>
+                                                            )
+                                                        } else {
+                                                            return (
+                                                                <div>{Utils.injectData(config[tab][order].multiple[mOrder].display, rec)}</div>
+                                                            )
+                                                        }
                                                     }
                                                 })
                                             }
                                         </div>
                                     )
-             
                                 } else {
                                  return (
                                         <div className="cell" data-point={order}>

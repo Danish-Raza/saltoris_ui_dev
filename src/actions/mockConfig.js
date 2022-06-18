@@ -38,12 +38,12 @@ const data = {
                         "key": "date_range",
                         "api": "",
                         "id": "overview_date_range",
-                        "_order": {"30 Days":1 , "60 Days": 2, "90 Days": 3},
+                        "_order": {"7 Days":1 , "30 Days": 2, "90 Days": 3},
+                        "7 Days": {
+                            "display":"7 Days"
+                        },
                         "30 Days": {
                             "display":"30 Days"
-                        },
-                        "60 Days": {
-                            "display":"60 Days"
                         },
                         "90 Days": {
                             "display":"90 Days"
@@ -193,6 +193,9 @@ const data = {
                     "width": "31%",
                     "id": "chart_1",
                     "api":"",
+                    "header_config":{
+                        "template":"dropdown-title"
+                    },
                     //"title":"Chart 1",
                     "xy_value": "analysis",
                     "data_template": "convertToList",
