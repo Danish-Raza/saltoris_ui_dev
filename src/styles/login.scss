@@ -86,4 +86,28 @@
             width: 100%;
         }
     }
+    .join-network-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        span {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        span:nth-child(1) {
+            color: black;
+        }
+        .seperator {
+            color: grey;
+            margin: 0 5px 0 5px;
+            position: relative;
+            top: -2px;
+        }
+        span:nth-child(3) {
+            color: #3B6BFD;
+            cursor: pointer;
+        }
+    }
 }

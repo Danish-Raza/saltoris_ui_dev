@@ -1,18 +1,60 @@
 const data = {
     "_order": { "business_analytics": 1, "company_profile": 2},
     "business_analytics": {
-        "display": "Business Profile",
+        "display": "Business",
         "_order":{ "dashboard": 1, "order": 2, "invoice": 3, "opportunities": 4, "trade_relation": 5 , "quality": 6 },
         "dashboard": {
             "display":"Dashboard",
             "icon": "vector",
             "widgets": {
-                "_order": {"overview": 1, "chart_1": 2, "chart_2": 3, "user_feedback": 4, "opportunities_table": 5, "invoice_table": 6},
+                "_order": {"overview": 1, "chart_1": 2, "user_feedback": 4, "opportunities_table": 5, "invoice_table": 6},
                 "overview":{
                     "type":"overview",
                     "api": "/asd/asda?",
                     "display":"Overview",
                     "id": "overview",
+                    "dropdown":{
+                        "key": "customer",
+                        "api": "",
+                        "id": "chart_1_dropdown",
+                        "_order": {"Customer 1":1 , "Customer 2": 2, "Customer 3": 3},
+                        "Customer 1":{
+                            "display":"Customer 1"
+                        },
+                        "Customer 2":{
+                            "display":"Customer 2"
+                        },
+                        "Customer 3":{
+                            "display":"Customer 3"
+                        },
+                        "search": true,
+                        // "default": {
+                        //     "_order": { "key_1": 1},
+                        // },
+                        "placeholder": "Select Customer",
+                        "mode":"selec"
+                    },
+                    "date_range":{
+                        "key": "date_range",
+                        "api": "",
+                        "id": "overview_date_range",
+                        "_order": {"30 Days":1 , "60 Days": 2, "90 Days": 3},
+                        "30 Days": {
+                            "display":"30 Days"
+                        },
+                        "60 Days": {
+                            "display":"60 Days"
+                        },
+                        "90 Days": {
+                            "display":"90 Days"
+                        },
+                        "search": true,
+                        "default": {
+                            "_order": { "90 Days": 1},
+                        },
+                        "placeholder": "Select date range",
+                        "mode":"selec"
+                    },
                     "_order":{
                         "invoive": 1,
                         "Opportunities": 2,
@@ -146,11 +188,12 @@ const data = {
                 },
                 "chart_1":{
                     "type": "chart",
+                    "replicate": true,
                     "chart_type": "line",
-                    "width": "33%",
+                    "width": "31%",
                     "id": "chart_1",
                     "api":"",
-                    "title":"Chart 1",
+                    //"title":"Chart 1",
                     "xy_value": "analysis",
                     "data_template": "convertToList",
                     "x_axis_settings":{
@@ -165,18 +208,21 @@ const data = {
                         "key": "compared_against",
                         "api": "",
                         "id": "chart_1_dropdown",
-                        "_order": {"New Invoice":2 , "Old Invoice": 1, "New Parameter": 3},
-                        "New Invoice":{
-                            "display":"New Invoice"
+                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "invoive": 4},
+                        "Payments":{
+                            "display":"Payments"
                         },
-                        "Old Invoice":{
-                            "display":"Old Invoice"
+                        "Bid":{
+                            "display":"Bid"
                         },
-                        "New Parameter":{
-                            "display":"New Parameter"
+                        "Opportunities":{
+                            "display":"Opportunities"
+                        },
+                        "invoive":{
+                            "display":"invoive"
                         },
                         "default": {
-                            "_order": { "key_1": 1},
+                            "_order": { "Bid": 1, "Payments": 2},
                         }
                     }
                 },
@@ -216,10 +262,46 @@ const data = {
                         }
                     }
                 },
+                "chart_3":{
+                    "type": "chart",
+                    "chart_type": "line",
+                    "width": "33%",
+                    "id": "chart_2",
+                    "api":"",
+                    "title":"Chart 3",
+                    "xy_value": "analysis",
+                    "data_template": "convertToList",
+                    "x_axis_settings":{
+                        "x_axis": "date",
+                        "format": "MMMM"
+                    },
+                    "y_axis_settings":{
+                        "y_axis": "score",
+                        "is_currency":"$",
+                    },
+                    "dropdown":{
+                        "key": "compared_against",
+                        "api": "",
+                        "id": "chart_1_dropdown",
+                        "_order": {"New Invoice":2 , "Old Invoice": 1, "New Parameter": 3},
+                        "New Invoice":{
+                            "display":"New Invoice"
+                        },
+                        "Old Invoice":{
+                            "display":"Old Invoice"
+                        },
+                        "New Parameter":{
+                            "display":"New Parameter"
+                        },
+                        "default": {
+                            "_order": { "key_1": 1},
+                        }
+                    }
+                },
                 "user_feedback": {
                     "type": "card",
                     "api": "",
-                    "width": "28%",
+                    "width": "30%",
                     "id":"user_feedback",
                     "display": "Activity Feed",
                     "_order": {
@@ -806,15 +888,500 @@ const data = {
         },
         "contact": {
             "display":"Contact",
-            "icon": "contact"
+            "icon": "contact",
+            "widgets": {
+                "_order": {"form_group": 1},
+                "form_group":{
+                    "type":"form-group",
+                    "width":"100%",
+                    "_order": {"form_3": 2,"form_2":1},
+                    "api": "/asd/asda?",
+                    "form_2":{
+                        "title":"Social Networking",
+                        "initial_disabled": true,
+                        "_order": {"Linkedin": 1, "Twitter": 2,"Facebook": 3,"External Link": 4},
+                        "Linkedin":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Linkedin",
+                            "label": "Linkedin",
+                            "flex": true,
+                            "label_icon":"linkedin",
+                            "required": false
+                        },
+                        "Twitter":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Twitter",
+                            "label_icon":"twitter",
+                            "label": "Twitter",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Facebook":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Facebook",
+                            "label_icon":"facebook",
+                            "label": "Facebook",
+                            "flex": true,
+                            "required": true
+                        },
+                        "External Link":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "External Link",
+                            "label": "External Link",
+                            "label_icon":"link",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Global Location Number (GLN Code)":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"100%",
+                            "key": "Global Location Number (GLN Code)",
+                            "label": "Global Location Number (GLN Code)",
+                            "flex": true,
+                            "required": true
+                        }
+                    },
+                    "form_3": {
+                        "title":"Showcase",
+                        "initial_disabled": true,
+                        "_order": {"company_logo": 1, "company_description": 2, "self": 3, "wall_of_frame": 9},
+                        "company_logo": {
+                            "type": "file",
+                            "placeholder": "Upload New Logo",
+                            "file_format": "image",
+                            "file_type":"image",
+                            "file_size": "500",
+                            "file_aspect_ratio":  "1.1",
+                            "no_view_document": false,
+                           // "checkbox_label":"PAN Registered",
+                            "width":"100%",
+                            "key": "company_logo",
+                            "label": "Company Logo",
+                            "flex": true,
+                            "required": true
+                        },
+                        "self":{
+                            "type": "file",
+                            "placeholder": "Upload Documents",
+                            // "checkbox_label":"Self",
+                            "width":"100%",
+                            "key": "tin_no",
+                            "label": "Self",
+                            "flex": true,
+                            "required": true,
+                            "add_more":true
+                        },
+                        "company_description": {
+                            "type": "text-area",
+                            "placeholder": "Type here",
+                            "width":"100%",
+                            "key": "company_description",
+                            "label": "Company Description",
+                            "flex": true,
+                            "required": false
+                        },
+                        "wall_of_frame":{
+                            "type": "file",
+                            "placeholder": "Upload Documents",
+                            // "checkbox_label":"Self",
+                            "width":"100%",
+                            "key": "wall_of_frame",
+                            "label": "Wall of Frame",
+                            "flex": true,
+                            "required": true,
+                            "add_more":true
+                        },
+                        "vat_no":{
+                            "type": "file",
+                            "placeholder": "Upload Documents",
+                            "checkbox_label":"VAT Registered",
+                            "width":"100%",
+                            "key": "vat_no",
+                            "label": "VAT No.",
+                            "flex": true,
+                            "required": true
+                        }
+                    },
+                    "submit": {
+                        "api": "",
+                        "display": "Save"
+                    }
+                }
+            }
         },
         "certificate": {
             "display":"Certificate",
-            "icon": "certificate"
+            "icon": "certificate",
+            "widgets": {
+                "_order": {"form_group": 1, "uploaded_certificate": 2},
+                "form_group":{
+                    "type":"form-group",
+                    "width":"100%",
+                    "_order": {"form_2":1},
+                    "api": "/asd/asda?",
+                    "form_2":{
+                        "title":"Certificate",
+                        "initial_disabled": false,
+                        "_order": {"Cerificate Title": 1, "Certifying Body": 2,"Cerificate Type": 3,"Category": 4, "Valid From": 5, "Valid To": 6, "submit": 7},
+                        "Cerificate Title":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Cerificate Title",
+                            "label": "Cerificate Title",
+                            "flex": true,
+                            "required": false
+                        },
+                        "Certifying Body":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Certifying Body",
+                            "label": "Certifying Body",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Cerificate Type":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Cerificate Type",
+                            "label": "Cerificate Type",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Category":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Category",
+                            "label": "Category",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Valid From":{
+                            "type": "date",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Valid From",
+                            "label": "Valid From",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Valid To":{
+                            "type": "date",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Valid To",
+                            "label": "Valid To",
+                            "flex": true,
+                            "required": true
+                        },
+                        "submit": {
+                            "type":"button",
+                            "button_type":"primary",
+                            "display":"Validate",
+                            "api":""
+                        }
+                    },
+                    "submit": {
+                        "api": "",
+                        "display": "Save"
+                    }
+                },
+                "uploaded_certificate":{
+                    "id": "opportunities_table",
+                    "type": "table",
+                    "width": "100%",
+                    "display": "All Certificate",
+                    "api":  "",
+                    "columns":{
+                        "_order":{
+                            "title": 1,
+                            "requirement": 3,
+                            "certifying_body": 2,
+                            "category": 4,
+                            "valid_from": 5,
+                            "due_date": 6
+                        },
+                        "title": {
+                            "display": "Title",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "requirement": {
+                            "display": "Type",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "certifying_body": {
+                            "display": "Certifying Body",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "category": {
+                            "display": "Category",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "valid_from": {
+                            "display": "Valid from (date)",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width": "",
+                            "align": "left"
+                        },
+                        "due_date": {
+                            "display": "Due Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width": "",
+                            "color":"#FC5A5A",
+                            "align": "left"
+                        },
+                        
+                    }
+                },
+            }
         },
         "document": {
             "display":"Documents",
-            "icon": "document"
+            "icon": "document",
+            "widgets": {
+                "_order": {"form_group": 1, "uploaded_document": 2},
+                "form_group":{
+                    "type":"form-group",
+                    "width":"100%",
+                    "_order": {"form_2":1},
+                    "api": "/asd/asda?",
+                    "form_2":{
+                        "title":"Documents",
+                        "initial_disabled": false,
+                        "_order": {"Title": 1, "Type": 2,"Category": 3,"Edition": 4,"Version": 5, "Date of issue": 5, "Publish Date": 6, "ISBN": 7,"In-house Publication": 8, "Impact Factor": 9,"Author": 10, "submit": 11},
+                        "Title":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Title",
+                            "label": "Title",
+                            "flex": true,
+                            "required": false
+                        },
+                        "Type":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Type",
+                            "label": "Type",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Edition":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Edition",
+                            "label": "Edition",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Version":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Version",
+                            "label": "Version",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Category":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Category",
+                            "label": "Category",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Date of issue":{
+                            "type": "date",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Date of issue",
+                            "label": "Date of issue",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Publish Date":{
+                            "type": "date",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Publish Date",
+                            "label": "Publish Date",
+                            "flex": true,
+                            "required": true
+                        },
+                        "submit": {
+                            "type":"button",
+                            "button_type":"primary",
+                            "display":"Upload",
+                            "api":""
+                        },
+                        "ISBN":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "ISBN",
+                            "label": "ISBN",
+                            "flex": true,
+                            "required": true
+                        },
+                        "In-house Publication": {
+                            "type": "radio",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "In-house Publication",
+                            "label": "In-house Publication",
+                            "flex": true,
+                            "required": true,
+                            "option": {
+                                "_order":{
+                                    "yes":1,
+                                    "no": 2
+                                },
+                                "yes":{
+                                    "display":"Yes"
+                                },
+                                "no":{
+                                    "display":"No"
+                                }
+                            }
+                        },
+                        "Impact Factor":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Impact Factor",
+                            "label": "Impact Factor",
+                            "flex": true,
+                            "required": true
+                        },
+                        "Author":{
+                            "type": "text",
+                            "placeholder": "Type here",
+                            "width":"49%",
+                            "key": "Author",
+                            "label": "Author",
+                            "flex": true,
+                            "required": true
+                        },
+                    },
+                    "submit": {
+                        "api": "",
+                        "display": "Save"
+                    }
+                },
+                "uploaded_document":{
+                    "id": "opportunities_table",
+                    "type": "table",
+                    "width": "100%",
+                    "display": "All Documents",
+                    "api":  "",
+                    "columns":{
+                        "_order":{
+                            "title": 1,
+                            "requirement": 2,
+                            "category": 3,
+                            "editor": 4,
+                            "version": 5,
+                            "dol": 6,
+                            "dop": 7,
+                            "isbn":8,
+                            "in_house_publication": 9,
+                            "name": 10,
+                        },
+                        "title": {
+                            "display": "Title",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "name": {
+                            "display": "Author",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "requirement": {
+                            "display": "Type",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "certifying_body": {
+                            "display": "Certifying Body",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "category": {
+                            "display": "Category",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "editor": {
+                            "display": "Editor",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "version": {
+                            "display": "Version",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "dol": {
+                            "display": "DOL",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "dop": {
+                            "display": "DOP",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "isbn": {
+                            "display": "ISBN",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "in_house_publication": {
+                            "display": "In-house Publication",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        }
+                    }
+                },
+            }
         },
         "miscellaneous": {
             "display":"Miscellaneous",

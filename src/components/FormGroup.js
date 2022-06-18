@@ -38,7 +38,9 @@ function FormGroup(props) {
             "service_category":"Service category",
             "industry_type":"Industry type",
             "industry_vertical":"Industry vertical",
-            "Keyword":"Keyword"
+            "Keyword":"Keyword",
+            // "tin_no": "https://www.clickdimensions.com/links/TestPDFfile.pdf",
+            // "company_logo": "https://www.gstatic.com/webp/gallery/1.jpg"
        }
     }
 

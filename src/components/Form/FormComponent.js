@@ -8,7 +8,7 @@ import Icon from "../../Icon"
 import { message as messageF } from 'antd';
 
 function FormComponent(props) {
-    const { config, reset, title, recaptcha, template, width, message, preFilledData, disabled, id } = props;
+    const { config, reset, title, recaptcha, template, width, message, preFilledData, disabled, id, footer } = props;
     const [components, setComponents] = useState([])
     const [formTitle, setTitle] = useState(title)
 
@@ -56,8 +56,19 @@ function FormComponent(props) {
         
     }
 
-    const onSelect = () => {
-
+    const onSelect = (key, value) => {
+        const { on_change } = config;
+        const { onChange, id } = props
+        let fieldIndex = _.findIndex(components, r => r.key === key)
+        if(fieldIndex !== -1) {
+            let modComponent = [...components]
+            modComponent[fieldIndex].value = value
+            modComponent[fieldIndex].validated = true
+           setComponents(modComponent)
+           if(on_change && onChange) {
+                onChange({key: key, value: modComponent[fieldIndex].value, id: id})
+           }
+        }
     }
 
     const onMultiSelect = () => {
@@ -134,37 +145,67 @@ function FormComponent(props) {
         window.alert("checked")
     }
 
-    const fileHandler = (key, info) => {
-        console.log(info.current.files[0])
-        messageF.success(`${info.current.files[0].name} file uploaded successfully`);
-        // if (info.current.files[0].status !== 'uploading') {
-        //     console.log(info.current.files[0], info.current.files[0].List);
-        // }
-        // if (info.current.files[0].status === 'done') {
-        //     messageF.success(`${info.current.files[0].name} file uploaded successfully`);
-        // } else if (info.current.files[0].status === 'error') {
-        //     messageF.error(`${info.current.files[0].name} file upload failed.`);
-        // }
-        var fileToLoad = info.current.files[0];
-        var fileReader = new FileReader();
-        var base64;
-        fileReader.onload = function(fileLoadedEvent) {
-            base64 = fileLoadedEvent.target.result;
-            console.log(base64);
-        };
-        // Convert data to base64
-        ///fileReader.readAsDataURL(fileToLoad);
+    const getFileSize = (file) => {
+        let fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+        let sizeinbytes = file.size; 
+        let fSize = sizeinbytes
+        let counter=0;
+        while(fSize > 900) {
+            fSize/=1024;counter++;
+        }
+        return (Math.round(fSize*100)/100) + ' ' + fSExt[counter]
+    }
+
+    const fileHandler = (key, info, multiple) => {
+        let fileSize = getFileSize(info.current.files[0])
         const { on_change } = config;
         const { onChange, id } = props
         let fieldIndex = _.findIndex(components, r => r.key === key)
         if(fieldIndex !== -1) {
             let modComponent = [...components]
-            modComponent[fieldIndex].value = info.current.files[0]
-            modComponent[fieldIndex].validated = true
-           setComponents(modComponent)
-           if(on_change && onChange) {
-                onChange({key: key, value: modComponent[fieldIndex].value, id: id})
-           }
+            if(!modComponent[fieldIndex].file_size || (modComponent[fieldIndex].file_size  && (info.current.files[0].size/1024) < modComponent[fieldIndex].file_size)) {
+                if(multiple) {
+                    if(modComponent[fieldIndex].value) {
+                        if(typeof modComponent[fieldIndex].value == "string") {
+                            modComponent[fieldIndex].value = [modComponent[fieldIndex].value]
+                            modComponent[fieldIndex].value.push(info.current.files[0]);
+                        } else {
+                            modComponent[fieldIndex].value = [...modComponent[fieldIndex].value, ...info.current.files];
+                        }
+                    } else {
+                        modComponent[fieldIndex].value = info.current.files;
+                    }
+                } else {
+                    modComponent[fieldIndex].value = info.current.files;
+                }
+                modComponent[fieldIndex].fileSize = fileSize;
+                modComponent[fieldIndex].validated = true;
+                setComponents(modComponent)
+                if(on_change && onChange) {
+                    onChange({key: key, value: modComponent[fieldIndex].value, id: id});
+                }
+                messageF.success(`${info.current.files[0].name} file uploaded successfully`);
+            } else {
+                messageF.error(`${info.current.files[0].name} file size is more than 500kb`);
+            }
+        }
+    }
+
+    const removeValueHander = (key, index) => {
+        let fieldIndex = _.findIndex(components, r => r.key === key)
+        if(fieldIndex !== -1) {
+            let modComponent = [...components]
+            if(typeof modComponent[fieldIndex].value =="object" &&  modComponent[fieldIndex].value.length) {
+                let val = [...modComponent[fieldIndex].value]
+                val.splice(index,1)
+                if(val.length==0) {
+                    val = null
+                }
+                modComponent[fieldIndex].value=val
+            } else {
+                modComponent[fieldIndex].value = null;
+            }
+            setComponents(modComponent)
         }
     }
 
@@ -177,17 +218,13 @@ function FormComponent(props) {
                     {
                         _.map(formTitle, text => <div>{text}</div>)
                     }
-                   
-                    <div>
-
-                    </div>
                     </div>
                 )
             }
             {
                 _.map(components, component => {
                     return (
-                        <Fields 
+                        <Fields
                             onChange={onChange}
                             onSelect={onSelect}
                             onMultiSelect={onMultiSelect}
@@ -198,12 +235,14 @@ function FormComponent(props) {
                             validated={component.validated}
                             onFocus={onFocus}
                             fileHandler={fileHandler}
+                            removeValueHander={removeValueHander}
                         />
                     )
                 })
             }
             {reset && <button onClick={onReset}>Reset</button>}
             {message}
+            {footer}
             {/* {
                   <ReCAPTCHA
                   size= {recaptcha ? "normal": "compact"}

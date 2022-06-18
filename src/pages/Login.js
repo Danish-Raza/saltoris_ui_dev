@@ -39,7 +39,8 @@ function Login(props={}) {
       icon: <Icon type="password" height={16} width={16}/>,
       width:"100%",
       key: "password",
-      required: true
+      required: true,
+      fieldFooter: <div style={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop: 15, fontSize:13 }}><span style={{color:"red"}}>Forgot Username</span> <span style={{margin:"0 5px 0 5px"}}>or</span> <span style={{color:"red"}}>Forgot Passowrd</span></div>
     },
     {
       type: "button",
@@ -208,6 +209,13 @@ function Login(props={}) {
             width={"40%"}
             message={message}
             template={"login-form"}
+            footer = {(
+              <div className="join-network-wrapper">
+                <span>Join the ELIT Network</span> 
+                <span className="seperator">|</span> 
+                <span onClick={() => tabHandler("register-1")}>Register Here</span>
+              </div>
+            )}
           />
         )
       }

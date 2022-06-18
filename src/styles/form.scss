@@ -28,7 +28,7 @@
         margin-top: 20px;
     }
     .field {
-        >input  {
+        >input , >textarea {
             padding: 10px 10px 10px 10px;
             border-radius: 10px;
         }
@@ -41,15 +41,29 @@
             }
         }
     }
+    .field[type="text-area"]{
+        align-items: baseline;
+    }
     .field[type="button"] {
+        margin: 0 auto;
         margin-top: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
     .field[type="file"] {
         .selected-file-name {
-            display: flex;
-            align-items: center;
             margin-left: 15px;
             max-width: 400px;
+            line-height: 1.5;
+            >div{
+                display: flex;
+                align-items: center;
+            }
+        }
+        .selected-file-name[disabled] {
+            color: lightgray;
+
         }
         .ant-checkbox-wrapper {
             display: flex;
@@ -68,6 +82,20 @@
                 top: 0;
             }
         }
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #3B6BFD;
+            border-radius: 50%;
+            background-repeat: no-repeat !important;
+            background-size: contain !important;
+            background-position: center !important;
+            margin-right: 14px;
+        }
+        .image-preview[disabled] {
+            border: 3px solid lightgray;
+            filter: grayscale(100%);
+        }
         // >span {
         //     display: flex;
         //     .ant-upload-list {
@@ -76,16 +104,38 @@
         // }
     }
     .field[data-validated="false"] {
-        >input, .ant-input-affix-wrapper {
+        >input, textarea, .ant-input-affix-wrapper, .ant-picker {
             border-color: red;
         } 
     }
-    .field-lable {
+    .field-label {
         min-width: 150px;
         max-width: 150px;
         align-items: center;
         display: flex;
-        color: #44444F
+        color: #44444F;
+        span, svg{
+            margin-right: 10px;
+            cursor: default;
+        }
+    }
+    .ant-picker {
+        width: 100%;
+        height: 44px;
+        border-radius: 10px;
+    }
+    .ant-radio-group {
+        display: flex;
+        align-items: center;
+    }
+    .field-extra-detail {
+        font-size: 12px;
+        margin-top: 3px;
+        color: grey;
+        font-style: italic;
+        span {
+            margin: 0 4px 0 4px
+        }
     }
     
 }
@@ -99,5 +149,24 @@
     }
 }
 .ant-modal-body {
-    height: 680px !important;
+    height: 680px !important; 
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    .modal-image {
+        width: 100%;
+        height: inherit;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+        margin-top: 20px !important;
+        span {
+            font-size: 14px;
+            position: relative;
+            top: -27px;
+        }
+    }
+     .ant-modal-content {
+        overflow-y: auto;
+    }
 }

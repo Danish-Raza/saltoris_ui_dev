@@ -8,17 +8,12 @@ import Overview from "./Overview";
 import Table from "./Table/Index";
 
 function Widgets(props) {
-    const { config, curPage, curValue } = props;
+    const { curPage, curValue } = props;
     const [components, setComponents] = useState([])
+    const [config, setConfig] = useState(props.config)
     const [isEditable, setIsEditable] = useState(false)
     let [draggedItem,setDraggedItem] = useState(null)
     const widgetsWrapper = useRef();
-
-    let _components = config && config._order ? _.keys(Utils.sortOrder(config._order)) : []
-    // if(_components  && components.length==0) {
-    //     setComponents(_components)
-    // }
-    
 
     useEffect(()  => {
         let _components = config && config._order ? _.keys(Utils.sortOrder(config._order)) : []
@@ -70,6 +65,21 @@ function Widgets(props) {
     const toggleIsEditable = () => {
         setIsEditable(!isEditable)
     }
+
+    const replicateHandler = (component, index) => {
+        let i = index + 0.1
+        let key = `${component.id}-index_${i}`;
+
+        let modOrder =  [...components]
+        modOrder.splice(index+1, 0, key)
+
+        let modConfig = {...config};
+        modConfig[key] = {...component, id: key};
+        modConfig[component.id] = {...component, replicate: false};
+
+        setConfig(modConfig)
+        setComponents(modOrder)
+    }
     return (
         <div
             className="widgets-wrapper"  
@@ -78,9 +88,10 @@ function Widgets(props) {
                 event.stopPropagation();
                 event.preventDefault();
             }}
+           // style={{backgroundColor: isEditable? "black" : "#FAFAFB"}}
         >
             {
-                _.map(components, component => {
+                _.map(components, (component, componentIndex) => {
                     let type = config[component].type
                     switch (type) {
                         case "overview":
@@ -89,28 +100,36 @@ function Widgets(props) {
                             isEditable={isEditable} 
                             config={config[component]} 
                             handleDrop={handleDrop} 
-                            handleDrag={handleDrag} />
+                            handleDrag={handleDrag}
+                            replicateHandler={replicateHandler}
+                            componentIndex={componentIndex} />
                         case "card":
                             return <Cards
                             removeHandler={removeHandler} 
                             isEditable={isEditable} 
                             config={config[component]} 
                             handleDrop={handleDrop} 
-                            handleDrag={handleDrag}/>
+                            handleDrag={handleDrag}
+                            replicateHandler={replicateHandler}
+                            componentIndex={componentIndex} />
                         case "chart":
                             return <Charts 
                             removeHandler={removeHandler} 
                             isEditable={isEditable} 
                             config={config[component]} 
                             handleDrop={handleDrop} 
-                            handleDrag={handleDrag}/>
+                            handleDrag={handleDrag}
+                            replicateHandler={replicateHandler}
+                            componentIndex={componentIndex}/>
                         case "table":
                             return <Table  
                             removeHandler={removeHandler} 
                             isEditable={isEditable} 
                             config={config[component]} 
                             handleDrop={handleDrop} 
-                            handleDrag={handleDrag}/>
+                            handleDrag={handleDrag}
+                            replicateHandler={replicateHandler}
+                            componentIndex={componentIndex} />
                         case "form-group":
                             return <FormGroup
                             isEditable={isEditable} 
@@ -118,7 +137,8 @@ function Widgets(props) {
                             handleDrop={handleDrop} 
                             handleDrag={handleDrag}
                             removeHandler={removeHandler} 
-                            />
+                            replicateHandler={replicateHandler}
+                            componentIndex={componentIndex} />
                         default:
                             break;
                     }

@@ -2,6 +2,7 @@ import Utils from "../Utils";
 import _ from "underscore";
 import Icon from "../Icon";
 import { Fragment, useEffect, useRef, useState } from "react";
+import DropDown from "./Charts/DropDown";
 function Overview(props) {
     const { config={}, toggleIsEditable, isEditable } = props;
     const [sortedTabOrder, setSortedTabOrder] = useState([])
@@ -75,13 +76,19 @@ function Overview(props) {
             setSortedTabOrder(modOrder)
         }
     }
+
+    const changeHandler = (obj) => {
+
+    }
    
     return (
         <div className="overview" >
+            {config.dropdown ? <DropDown config={config.dropdown} onChange={changeHandler}/> : null}
             <div className="overview-wrapper-title">
                 {display}
-                <div className="edit-icon" data-isEditable={isEditable}>
-                    <Icon type="edit" onClick={toggleIsEditable} width={15} height={15}/>
+                {config.date_range ? <DropDown config={config.date_range}  onChange={changeHandler}/> : null}
+                <div className="edit-icon" data-isEditable={isEditable} onClick={toggleIsEditable}>
+                    <Icon type="overview"  width={12} height={12}/>
                 </div>
             </div>
             <div ref={overviewWrapper} style={{display:"flex"}} >

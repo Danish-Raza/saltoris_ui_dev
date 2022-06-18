@@ -8,7 +8,7 @@ import DropDown from "./DropDown";
 import Header from "../Header";
 
 function Charts(props) {
-    const { config, handleDrag, handleDrop, isEditable,removeHandler } = props;
+    const { config, handleDrag, handleDrop, isEditable,removeHandler, replicateHandler, componentIndex } = props;
     const { chart_type, dropdown, title, api, params, width, id } = config;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -46,6 +46,10 @@ function Charts(props) {
         })
     }
 
+    const dropDownHandler = () => {
+
+    }
+
     return (
         <div 
             className="chart-wrapper widget" 
@@ -60,7 +64,14 @@ function Charts(props) {
                 event.preventDefault();
             }}
         >
-            <Header config={config} isEditable={isEditable} removeHandler={removeHandler}/>
+            <Header 
+                replicateHandler={replicateHandler} 
+                componentIndex={componentIndex} 
+                config={config}
+                isEditable={isEditable} 
+                removeHandler={removeHandler}
+                onChange={dropDownHandler}
+            />
             {
                 chart_type == "line" && <Line config={config} data={data}/>
             }

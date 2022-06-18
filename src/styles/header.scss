@@ -21,11 +21,29 @@
         justify-content: center;
         cursor: pointer;
     }
+    .replicate-button {
+        position: absolute;
+        top: -23px;
+        right: -23px;    
+        width: 20px;
+        height: 20px;
+        background-color: #0062FF;
+        color: white;
+        border-radius: 50%;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .replicate-button:active {
+        top: -22px;
+    }
     .ant-select {
         width: auto;
         min-width: 80px;
         height: auto;
-        max-width: 200px;
+        max-width: 239px;
         .ant-select-selector {
             background: #FAFAFB;
             border-radius: 20px;
