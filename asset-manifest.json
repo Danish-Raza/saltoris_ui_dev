@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/saltoris_ui_dev/static/css/main.3fe05733.css",
-    "main.js": "/saltoris_ui_dev/static/js/main.e984dec7.js",
+    "main.js": "/saltoris_ui_dev/static/js/main.cb23a1ea.js",
     "static/js/787.c4c76647.chunk.js": "/saltoris_ui_dev/static/js/787.c4c76647.chunk.js",
     "static/media/saltoris.png": "/saltoris_ui_dev/static/media/saltoris.85ee1f2ddaea2b827b67.png",
     "index.html": "/saltoris_ui_dev/index.html",
     "main.3fe05733.css.map": "/saltoris_ui_dev/static/css/main.3fe05733.css.map",
-    "main.e984dec7.js.map": "/saltoris_ui_dev/static/js/main.e984dec7.js.map",
+    "main.cb23a1ea.js.map": "/saltoris_ui_dev/static/js/main.cb23a1ea.js.map",
     "787.c4c76647.chunk.js.map": "/saltoris_ui_dev/static/js/787.c4c76647.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3fe05733.css",
-    "static/js/main.e984dec7.js"
+    "static/js/main.cb23a1ea.js"
   ]
 }
