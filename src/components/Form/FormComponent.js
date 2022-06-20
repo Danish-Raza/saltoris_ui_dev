@@ -231,7 +231,7 @@ function FormComponent(props) {
 
     return (
 
-        <div className="form-component" data-template={template||"default-template"} style={{width: width || "100%"}}>
+        <form className="form-component" onSubmit={onSubmit} data-template={template||"default-template"} style={{width: width || "100%"}}>
             {
                 formTitle != undefined && (
                     <div className="form-title"> 
@@ -272,7 +272,7 @@ function FormComponent(props) {
             />
             } */}
 
-        </div>
+        </form>
     )
 }
 export default FormComponent;

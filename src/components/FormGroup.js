@@ -80,7 +80,7 @@ function FormGroup(props) {
     }
 
     return (
-        <div className="form-group-wrapper" style={{width: width || "100%"}}>
+        <form className="form-group-wrapper" style={{width: width || "100%"}}>
             {
                 _.map(sortOrder, order => {
                     return (
@@ -107,7 +107,7 @@ function FormGroup(props) {
                 })
             }
             {submit && <button type="submit" button-type={"primary"} onClick={submitHandler}>{submit.display}</button>}
-        </div>
+        </form>
     )
 }
 export default FormGroup
