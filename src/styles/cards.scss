@@ -1,12 +1,10 @@
-.card-wrapper {
+.card-component-wrapper {
     background-color: white;
     box-shadow:0 1px 3px 0 rgb(0 0 0 / 5%);
     border-radius: 10px;
     padding: 15px;
     padding-top: 0;
-    // height: 380px;
-   // overflow-y: auto;
-   margin-bottom: 20px;
+    margin-bottom: 20px;
     margin-right: 20px;
     .card-wrapper-title {
         font-size: 14px;
@@ -46,7 +44,9 @@
         padding: 10px;
         margin-bottom: 10px;
         font-size: 12px;
-        display: flex;
+        display: flex;  
+        width: 100%;
+        transition: 0.3s all; 
         .image {
             background-color: gray;
             min-width: 38px;
@@ -55,6 +55,7 @@
             margin-right: 10px;
         }
         .card-content {
+            min-width: 230px;
             div:first-child {
                 color: #0062FF;
             }
@@ -68,7 +69,59 @@
             }
         }
     }
-    .card:hover {
-        background-color:  #F2F7FF;
+    .card-wrapper {
+        width: 100%;
+        overflow-x: hidden;
+        transition: 0.3s all;
+        display: flex;
+        .mark-option {
+            width: 0%;
+            //display: none;
+            background-color: grey;
+            transition: 0.3s all;
+            margin-bottom: 10px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            right: -61px;
+            .ant-space-vertical {
+                gap:3px !important;
+            }
+            .ant-radio-input:focus + .ant-radio-inner{
+                box-shadow: none !important;
+            }
+            .ant-radio-wrapper {
+                color: white;
+                font-size: 12px;
+                .ant-radio-inner{
+                    width: 13px;
+                    height: 13px;
+                }
+                .ant-radio-inner::after {
+                    width: 13px;
+                    height: 13px;
+                    margin-top: -6.5px;
+                    margin-left: -6.5px;
+                }
+            }
+        }
+    }
+    .card-wrapper:hover {
+        transition: 0.3s all;
+        .card {
+            width: 70%;
+            background-color: #F2F7FF;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .mark-option {
+            width: 30%;
+            right:0;
+            background-color: grey;
+            transition: 0.3s all;
+        }
     }
 }
