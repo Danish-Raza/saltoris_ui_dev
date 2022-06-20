@@ -3,10 +3,12 @@ import Utils from "../../Utils";
 import Header from "../Header";
 import { Space, Table, Tag } from 'antd';
 import cellHandler from "./CellHandler";
+import { useEffect, useState } from "react";
 
 function TableComponent(props) {
-    const { config, handleDrop, handleDrag, isEditable, removeHandler } = props;
+    const { config, handleDrop, handleDrag, isEditable, componentIndex } = props;
     const { columns, width }  = config
+    const [selectedOption, setSelectedOption] = useState({})
    // let sortedOrder = _.keys(Utils.sortOrder(columns._order))
     const sortHandler = () => {
 
@@ -14,21 +16,27 @@ function TableComponent(props) {
     const paginationHandler = () => {
         
     }
-    // "title": 1,
-    // "requirement": 2,
-    // "category": 3,
-    // "editor": 4,
-    // "version": 5,
-    // "dol": 6,
-    // "dop": 7,
-    // "isbn":8,
-    // "in_house_publication": 9,
-    // "name": 5,
+
+   useEffect(() => {
+    let defaultDropdown = config.dropdown ? config.dropdown.default: null;
+    let params = {}
+    if(defaultDropdown) {
+        let sortedOrder = _.keys(Utils.sortOrder(defaultDropdown._order))
+        let dropdownKey = config.dropdown.key
+        let mode = defaultDropdown.mode
+        params = {
+            [dropdownKey]: mode == "select" ? sortedOrder[0]: sortedOrder
+        }
+        setSelectedOption(params)
+    }
+   },[])
     const data = [
         {
           key: '1',
           name: 'John Brown',
+          buyer: 'John Brown',
           value: 32,
+          order_ammount: 32,
           requirement:"Type I",
           due_date: "2022-10-09",
           address: 'New York No. 1 Lake Park',
@@ -47,7 +55,9 @@ function TableComponent(props) {
         {
           key: '2',
           name: 'Jim Green',
+          buyer: 'Jim Green',
           value: 42,
+          order_ammount: 42,
           requirement:"Type I",
           due_date: "2022-10-09",
           address: 'London No. 1 Lake Park',
@@ -66,7 +76,9 @@ function TableComponent(props) {
         {
           key: '3',
           name: 'Joe Black',
+          buyer: 'Joe Black',
           value: 32,
+          order_ammount: 32,
           requirement:"Type I",
           due_date: "2022-10-09",
           address: 'Sidney No. 1 Lake Park',
@@ -85,7 +97,9 @@ function TableComponent(props) {
         {
             key: '4',
             name: 'Joe',
+            buyer:"Joe",
             value: 32,
+            order_ammount: 32,
             requirement:"Type I",
             due_date: "2022-10-09",
             address: 'Sidney No. 1 Lake Park',
@@ -102,10 +116,13 @@ function TableComponent(props) {
             in_house_publication: "Publication 4"
           }
     ];
-    const columnConfig = cellHandler(columns)
+    const columnConfig = cellHandler(columns, selectedOption)
     
-    const dropDownHandler = () => {
+    // const dropDownHandler = () => {
 
+    // }
+    const dropDownHandler = (key,value) => {
+        setSelectedOption({[key]: value})
     }
     return (
         <div 
@@ -121,10 +138,11 @@ function TableComponent(props) {
             }}
             >
             <Header 
-                config={config} i
-                sEditable={isEditable} 
-                removeHandler={removeHandler}
+                config={config}
+                isEditable={isEditable} 
                 onChange={dropDownHandler}
+                componentIndex={componentIndex}
+                selectedOption={selectedOption}
                 
                 />
             <Table dataSource={data} columns={columnConfig} />

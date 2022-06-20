@@ -6,7 +6,7 @@ let initialState = {
   authLoading: false,
   loggedIn: localStorage.getItem("saltoris-userD") ? true : false,
   userDetail: localStorage.getItem("saltoris-userD") ?  JSON.parse(localStorage.getItem("saltoris-userD")) : {},
-  appParams: {},
+  appParams: {appliedFilters: {}},
   error: false,
   errorMessage: null
 }
@@ -73,14 +73,65 @@ export default function appReducer(state=initialState, action) {
         }
         return {
           ...state,
-          appParams: {curPage: curPage, curView: curView},
+          appParams: {curPage: curPage, curView: curView, appliedFilters: action.appliedFilters || {}},
           userConfig: action.data
         };
       case "CHANGE_PAGE_VIEW":
        // window.history.replaceState(null, "", `/?cur_page=${action.curPage}&cur_view=${action.curView}`)
         return {
           ...state,
-          appParams: {...state.appParams, curPage: action.curPage, curView: action.curView},
+          appParams: {...state.appParams, curPage: action.curPage, curView: action.curView, appliedFilters: {}},
+        };
+      case "APPLY_GLOBAL_FILTERS":
+        let modFilters = { ...state.appParams.appliedFilters, ...action.appliedFilters}
+        let obj = {}
+        _.map(modFilters, (value,key) => {
+          if(value !== null && value !== undefined && value !== "") {
+            obj={...obj,[key]: value}
+          }
+        })
+        return {
+          ...state,
+          appParams: {...state.appParams,  appliedFilters: { ...obj}},
+        };
+      case "REPLICATE_WIDGET":
+        let modConfig = {...state.userConfig};
+        let modOrder = _.keys(Utils.sortOrder(modConfig[state.appParams.curPage][state.appParams.curView].widgets._order));
+        let _index = _.findIndex(modOrder, o => o == action.component.id)
+        let key = '';
+        if(_index !== -1) {
+          key = `${action.component.id}-index_${_index + 1}`;
+          modOrder.splice(_index+1, 0, key);
+          let _obj = {};
+          _.map(modOrder, (o,_i) => {
+            _obj={..._obj, [o]: _i}
+          })
+          modOrder=_obj;
+        }
+        modConfig[state.appParams.curPage][state.appParams.curView].widgets._order=modOrder;
+        modConfig[state.appParams.curPage][state.appParams.curView].widgets[key] = { ...action.component, id: key, replicate: true};
+        modConfig[state.appParams.curPage][state.appParams.curView].widgets[action.component.id].replicate = false;
+        return {
+          ...state,
+          userConfig:  modConfig
+        };
+      case "REMOVE_WIDGET":
+        let _modConfig = {...state.userConfig};
+        let _modOrder = _.keys(Utils.sortOrder(_modConfig[state.appParams.curPage][state.appParams.curView].widgets._order));
+        let _i = _.findIndex(_modOrder, o => o == action.id)
+        if(_i !== -1) {
+          _modOrder.splice(_i, 1);
+          let _obj = {};
+          _.map(_modOrder, (o,_i) => {
+            _obj={..._obj, [o]: _i}
+          })
+          _modOrder=_obj;
+        }
+        _modConfig[state.appParams.curPage][state.appParams.curView].widgets._order=_modOrder;
+        
+        return {
+          ...state,
+          userConfig:  _modConfig
         };
       default:
         return state;

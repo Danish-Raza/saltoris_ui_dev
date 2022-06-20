@@ -4,10 +4,17 @@ import { Space, Table, Tag } from 'antd';
 import moment from "moment";
 
 
-function cellHandler(config) {
+function cellHandler(config, data) {
     // const { config } = props;
     let columns = []
-    let sortedOrder = _.keys(Utils.sortOrder(config._order))
+    let columnsOrder = config._order
+    if(config.check_conditions && data) {
+        let result = Utils.returnSuccessfullObject(config.check_conditions, data)
+        if(result && result._order) {
+            columnsOrder = result._order
+        }
+    }
+    let sortedOrder = _.keys(Utils.sortOrder(columnsOrder))
     _.map(sortedOrder, order => {
         let column = config[order];
         let color = column.color;
@@ -20,11 +27,19 @@ function cellHandler(config) {
             dataIndex: order,
             key: order,
             align: column.align,
-            color:  color
+            color:  color,
+            sorter: column.sort ? (a, b) => a.name.length - b.name.length : false,
+            filters: column.filters || null,
+            onFilter: (value, record) => record[order].indexOf(value) === 0
         }
 
         if(column.type == "string") {
-            obj.render = text => <div className="cell" style={{color: color}}>{text}</div>
+            obj.render = text => 
+            <div className="cell" style={{color: color}}>
+                {isCurrency ? isCurrency : ""}
+                {isPercent ? isPercent : ""}
+                {text}
+            </div>
             columns.push(obj)
         } else if(column.type == "date") {
             obj.render = text =>  <div className="cell" style={{color: color}}>{moment(text).format(column.format)}</div>

@@ -21,6 +21,7 @@
         font-size: 15px;
         font-weight: bold;
         align-items: center;
+        position: relative;
         .edit-icon {
             display: flex;
             align-items: center;
@@ -67,6 +68,10 @@
             border: 0 !important;
            // margin-bottom: 20px;
         }
+        .generate-report-button {
+            position: absolute;
+            right: 0;
+        }
     }
     .overview-block {
         background-color: white;
@@ -104,7 +109,7 @@
     .remove-button {
         position: absolute;
         top: -7px;
-        right: -7px;
+        left: -7px;
         width: 20px;
         height: 20px;
         background-color:  red;

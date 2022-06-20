@@ -148,25 +148,8 @@
         top: -10vw !important;
     }
 }
-.ant-modal-body {
-    height: 680px !important; 
-    overflow-y: auto;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-x: auto;
-    .modal-image {
-        width: 100%;
-        height: inherit;
-        background-size: contain !important;
-        background-repeat: no-repeat !important;
-        margin-top: 20px !important;
-        span {
-            font-size: 14px;
-            position: relative;
-            top: -27px;
-        }
-    }
-     .ant-modal-content {
-        overflow-y: auto;
+.ant-dropdown-menu-title-content {
+    >div[data-active="true"] {
+        font-weight: bold;
     }
 }

@@ -7,7 +7,7 @@ const data = {
             "display":"Dashboard",
             "icon": "vector",
             "widgets": {
-                "_order": {"overview": 1, "chart_1": 2, "user_feedback": 4, "opportunities_table": 5, "invoice_table": 6},
+                "_order": {"overview": 1, "chart_1": 2, "user_feedback": 4, "opportunities_table": 5},
                 "overview":{
                     "type":"overview",
                     "api": "/asd/asda?",
@@ -54,6 +54,101 @@ const data = {
                         },
                         "placeholder": "Select date range",
                         "mode":"selec"
+                    },
+                    "generate_report": {
+                        "display"  : "Generate Report",
+                        "form":{
+                            "_order": {"from": 1, "to": 2, "against": 3,  "format": 4 },
+                            "from":{
+                                "type": "date",
+                                "placeholder": "From",
+                                "width":"49%",
+                                "key": "from",
+                                "label": "From",
+                                "flex": true,
+                                "required": true
+                            },
+                            "to": {
+                                "type": "date",
+                                "placeholder": "From",
+                                "width":"49%",
+                                "key": "to",
+                                "label": "To",
+                                "flex": true,
+                                "required": true
+                            },
+                            "format":{
+                                "type": "radio",
+                                "placeholder": "Type here",
+                                "width":"100%",
+                                "key": "Format",
+                                "label": "Format",
+                                "option":{
+                                    "_order": {
+                                        "pdf":1,
+                                        "csv": 2
+                                    },
+                                    "pdf": {
+                                        "display":"PDF"
+                                    },
+                                    "csv": {
+                                        "display":"CSV"
+                                    }
+                                },
+                                "default":{
+                                    "_order": {
+                                        "pdf":1
+                                    }
+                                },
+                                "flex": true,
+                                "required": true
+                            },
+                            "against":{
+                                "type": "dropdown",
+                                "mode":"select",
+                                "placeholder": "Select",
+                                "width":"49%",
+                                "key": "against",
+                                "label": "Download",
+                                "_order": {
+                                    "Invoice":1,
+                                    "Opportunities": 2,
+                                    "Bid":3,
+                                    "Payments": 4
+                                },
+                                "Invoice": {
+                                    "display":"Invoice"
+                                },
+                                "Opportunities": {
+                                    "display":"Opportunities"
+                                },
+                                "Bid": {
+                                    "display":"Bid"
+                                },
+                                "Payments": {
+                                    "display":"Payments"
+                                },
+                                "option":{
+                                    "_order": {
+                                        "pdf":1,
+                                        "csv": 2
+                                    },
+                                    "pdf": {
+                                        "display":"PDF"
+                                    },
+                                    "csv": {
+                                        "display":"CSV"
+                                    }
+                                },
+                                "default":{
+                                    "_order": {
+                                        "Invoice":1
+                                    }
+                                },
+                                "flex": true,
+                                "required": true
+                            }
+                        }
                     },
                     "_order":{
                         "Invoice": 1,
@@ -211,7 +306,7 @@ const data = {
                         "key": "compared_against",
                         "api": "",
                         "id": "chart_1_dropdown",
-                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "invoive": 4},
+                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "Invoice": 4},
                         "Payments":{
                             "display":"Payments"
                         },
@@ -221,8 +316,8 @@ const data = {
                         "Opportunities":{
                             "display":"Opportunities"
                         },
-                        "invoive":{
-                            "display":"invoive"
+                        "Invoice":{
+                            "display":"Invoice"
                         },
                         "default": {
                             "_order": { "Bid": 1, "Payments": 2},
@@ -333,7 +428,34 @@ const data = {
                     "type": "table",
                     "width": "48.2%",
                     "display": "Opportunities",
+                    "replicate": true,
                     "api":  "",
+                    "header_config": {
+                        "template":"dropdown-title"
+                    },
+                    "dropdown":{
+                        "key": "compared_against",
+                        "template": "filter",
+                        "api": "",
+                        "mode": "select",
+                        "id": "chart_1_dropdown",
+                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "Invoice": 4},
+                        "Payments":{
+                            "display":"Payments"
+                        },
+                        "Bid":{
+                            "display":"Bid"
+                        },
+                        "Opportunities":{
+                            "display":"Opportunities"
+                        },
+                        "Invoice":{
+                            "display":"Invoice"
+                        },
+                        "default": {
+                            "_order": { "Opportunities":1},
+                        }
+                    },
                     "columns":{
                         "_order":{
                             "name": 1,
@@ -351,7 +473,8 @@ const data = {
                             "display": "Requirement",
                             "type":"string",
                             "width": "",
-                            "align": "center"
+                            "align": "center",
+                            "sort": true
                         },
                         "due_date": {
                             "display": "Due Date",
@@ -359,31 +482,122 @@ const data = {
                             "format": 'MMM Do YYYY, h:mm a',
                             "width": "",
                             "color":"#FC5A5A",
-                            "align": "left"
+                            "align": "left",
+                            "sort": true
                         },
                         "value": {
                             "display": "Value",
                             "type":"string",
                             "width": "",
+                            "align": "center",
+                            "sort": true
+                        },
+                        "check_conditions":{
+                            "_order":{
+                                "condition_1": 1
+                            },
+                            "condition_1": {
+                                "condition": "'{compared_against}' == 'Invoice'",
+                                "_order": {
+                                    "buyer": 1,
+                                    "invoice_no": 2,
+                                    "due_date": 3,
+                                    "order_ammount": 4,
+                                    "status": 5
+                                }
+                            }
+                        },
+                        "buyer": {
+                            "display": "Buyer",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "order_ammount": {
+                            "display": "Order Amount",
+                            "type":"string",
+                            "width": "",
+                            "align": "center",
+                            "is_currency": "$",
+                            "sort": true
+                        },
+                        "status": {
+                            "display": "Status",
+                            "type": "tag",
+                            "width": "",
+                            "align": "left",
+                            "color_mapping":{
+                                "Send":"green",
+                                "Rejected":"red",
+                                "Approved": "blue",
+                                "Payments":"#40a9ff"
+                            },
+                            "filters": [
+                                {
+                                    "text": 'Send',
+                                    "value": 'Send',
+                                },
+                                {
+                                    "text": 'Payments',
+                                    "value": 'Payments',
+                                },
+                                {
+                                    "text": 'Approved',
+                                    "value": 'Approved',
+                                },
+                                {
+                                    "text": 'Rejected',
+                                    "value": 'Rejected',
+                                }
+                              ],
+                            "sort": true
+                        },
+                        "invoice_no": {
+                            "display": "Invoice No.",
+                            "type":"string",
+                            "width": "",
                             "align": "center"
-                        }
+                        },
                     }
                 },
                 "invoice_table":{
                     "id": "invoice_table",
                     "type": "table",
+                    "replicate": true,
                     "width": "48.2%",
                     "display": "Invoice Details",
                     "api":  "",
+                    "dropdown":{
+                        "template": "filter",
+                        "key": "compared_against",
+                        "api": "",
+                        "id": "chart_1_dropdown",
+                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "Invoice": 4},
+                        "Payments":{
+                            "display":"Payments"
+                        },
+                        "Bid":{
+                            "display":"Bid"
+                        },
+                        "Opportunities":{
+                            "display":"Opportunities"
+                        },
+                        "Invoice":{
+                            "display":"Invoice"
+                        },
+                        "default": {
+                            "_order": { "Bid": 1, "Payments": 2},
+                        }
+                    },
                     "columns":{
                         "_order":{
-                            "name": 1,
+                            "buyer": 1,
                             "invoice_no": 2,
                             "due_date": 3,
-                            "value": 4,
+                            "order_ammount": 4,
                             "status": 5
                         },
-                        "name": {
+                        "buyer": {
                             "display": "Buyer",
                             "type":"string",
                             "width": "",
@@ -403,7 +617,7 @@ const data = {
                             "color":"#FC5A5A",
                             "align": "left"
                         },
-                        "value": {
+                        "order_ammount": {
                             "display": "Order Amount",
                             "type":"string",
                             "width": "",
@@ -411,7 +625,7 @@ const data = {
                             "is_currency": "$"
                         },
                         "status": {
-                            "display": "Order Amount",
+                            "display": "Status",
                             "type": "tag",
                             "width": "",
                             "align": "left",

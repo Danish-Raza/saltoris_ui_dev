@@ -1,10 +1,13 @@
+import { useDispatch } from "react-redux";
 import _ from "underscore";
+import { changeConfig } from "../actions/appActions";
 import Utils from "../Utils";
 import Header from "./Header";
 
 function Cards(props) {
-    const {  config, handleDrop, handleDrag, isEditable, removeHandler } = props;
+    const {  config, handleDrop, handleDrag, isEditable } = props;
     const {display, width, template} = config;
+    const dispatch = useDispatch()
     const data = [
         {
             name: "Artem Sazonov",
@@ -58,7 +61,7 @@ function Cards(props) {
             {/* <Header isEditable={isEditable} config={config} /> */}
             <div className="card-wrapper-title">
                 {display}
-                {isEditable?<div className="remove-button" onClick={()=>removeHandler(config.id)}>x</div>:""}
+                {isEditable?<div className="remove-button" onClick={()=>dispatch(changeConfig({action:"REMOVE_WIDGET", id: config.id }))}>x</div>:""}
             </div>
             <div style={{height: 310, overflowY:"auto"}}>
             {

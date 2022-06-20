@@ -19,11 +19,20 @@ function FormComponent(props) {
             let sortOrder = _.keys(Utils.sortOrder(config._order))
             let componentList = [];
             _.map(sortOrder, order => {
+                let value = null
+                if(preFilledData && preFilledData[order]) {
+                    value = preFilledData[order]
+                } else if(config[order].default) {
+                    let defaultOrder = _.keys(Utils.sortOrder(config[order].default._order))
+                    if(defaultOrder){
+                        value = defaultOrder[0]
+                    }
+                }
                 componentList.push({
                     id: order,
                    ...config[order],
                    disabled: disabled,
-                   value: preFilledData ? preFilledData[order]: null
+                   value: value
                 })
             })
             if(config.title) {

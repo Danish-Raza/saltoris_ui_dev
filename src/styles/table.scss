@@ -2,5 +2,11 @@
    // margin-top: 20px;
     .ant-table {
         font-size: 12px;
+        .ant-table-cell {
+            vertical-align: baseline;
+            .ant-table-column-sorters  {
+                align-items: baseline;
+            }
+        }
     }
 }

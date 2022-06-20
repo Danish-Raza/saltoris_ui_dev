@@ -4,6 +4,7 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import Icon from '../../Icon';
 import _ from "underscore"
 import Utils from '../../Utils';
+import DropDown from '../Charts/DropDown';
 const { TextArea } = Input;
 
 
@@ -207,6 +208,18 @@ function Fields(props) {
                     <button button-type={config.button_type} onClick={() => onSubmit(config)}>{config.display}</button>
                 </div>
             ) 
+            break;
+        case "dropdown":
+            fieldToRender =  (
+                <div className='field' data-validated={validated} type={config.type} style={{display: config.flex ? "flex" : "block", width: config.width || "100%"}}>
+                    <div className='field-label'>
+                        {config.label_icon && <Icon type={config.label_icon} width={15} height={15}/>}
+                        {config.label}
+                    </div>
+                    <DropDown config={config} />
+                    {config.fieldFooter}
+                </div>
+            )
             break;
         default:
             break;

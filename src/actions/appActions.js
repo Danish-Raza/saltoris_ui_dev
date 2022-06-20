@@ -30,7 +30,7 @@ export function logout() {
         dispatch({ type: 'LOGOUT'});
     }
 }
-export function getUserConfig(configName, curPage, curView) {
+export function getUserConfig(configName, curPage, curView, appliedFilters) {
     return function (dispatch, getState) {
         // WebUtils.fetchUserConfig(configName).then((response) => {
         //     if(response && response.status == 200) {
@@ -38,12 +38,24 @@ export function getUserConfig(configName, curPage, curView) {
         //     }
         // })
         if(configName == "default_supplier") {
-            dispatch({ type: 'USER_CONFIG', data: mockConfig, curPage, curView});
+            dispatch({ type: 'USER_CONFIG', data: mockConfig, curPage, curView, appliedFilters});
         }   
+    }
+}
+
+export function applyFilters(appliedFilters) {
+    return function (dispatch, getState) {
+        dispatch({ type: 'APPLY_GLOBAL_FILTERS', appliedFilters: appliedFilters});
     }
 }
 export function changePageView(curPage, curView) {
     return function (dispatch, getState) {
         dispatch({ type: 'CHANGE_PAGE_VIEW', curPage, curView});
+    }
+}
+
+export function changeConfig(params) {
+     return function (dispatch, getState) {
+        dispatch({ type: params.action, ...params});
     }
 }

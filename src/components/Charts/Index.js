@@ -8,7 +8,7 @@ import DropDown from "./DropDown";
 import Header from "../Header";
 
 function Charts(props) {
-    const { config, handleDrag, handleDrop, isEditable,removeHandler, replicateHandler, componentIndex } = props;
+    const { config, handleDrag, handleDrop, isEditable, componentIndex } = props;
     const { chart_type, dropdown, title, api, params, width, id } = config;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -20,8 +20,9 @@ function Charts(props) {
         if(defaultDropdown) {
             let sortedOrder = _.keys(Utils.sortOrder(defaultDropdown._order))
             let dropdownKey = dropdown.key
+            let mode = dropdown.mode
             params = {
-                [dropdownKey]: sortedOrder
+                [dropdownKey]: mode == "select" ? sortedOrder[0]: sortedOrder
             }
         }
         setLoading(true)
@@ -49,14 +50,6 @@ function Charts(props) {
     const dropDownHandler = (key,value) => {
         updateChart({[key]: value})
     }
-    let headerConfig = config.header_config;
-    let chartTitle = config.title;
-    if(headerConfig) {
-        if(headerConfig.template == "dropdown-title" && selectedOption) {
-            chartTitle=''
-            _.map(selectedOption[dropdown.key], (o, i) => chartTitle += (i != 0 ? " - " : "") + o)
-        }
-    }
     return (
         <div 
             className="chart-wrapper widget" 
@@ -71,13 +64,12 @@ function Charts(props) {
                 event.preventDefault();
             }}
         >
-            <Header 
-                replicateHandler={replicateHandler} 
+            <Header  
                 componentIndex={componentIndex} 
-                config={{...config, display: chartTitle }}
+                config={{...config }}
                 isEditable={isEditable} 
-                removeHandler={removeHandler}
                 onChange={dropDownHandler}
+                selectedOption={selectedOption}
             />
             {
                 chart_type == "line" && <Line config={config} data={data}/>

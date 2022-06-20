@@ -7,6 +7,7 @@ import SideBar from "../components/SideBar";
 import Widgets from "../components/Widgets";
 import { useNavigate } from "react-router-dom";
 import { Spin } from "antd";
+import _ from "underscore";
 
 function Layout(props={}) {
     const dispatch = useDispatch();
@@ -14,21 +15,50 @@ function Layout(props={}) {
     const navigate = useNavigate()
 
     useEffect(() => {
-      const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-      });
-      let curPage = params ? params.cur_page : null;
-      let curView = params ? params.cur_view : null;
-      dispatch(getUserConfig(appData.userDetail.config_name, curPage, curView))
+      const params = new URLSearchParams(window.location.search)
+      let curPage = params ? params.get("cur_page") : null;
+      let curView = params ? params.get("cur_view") : null;
+      let appliedFilters = {}
+      for (const param of params) {
+        if(param[0]!=="cur_page" && param[0]!=="cur_view") {
+          appliedFilters = {
+            ...appliedFilters,
+            [param[0]]: param[1]
+          }
+        }
+      }
+      dispatch(getUserConfig(appData.userDetail.config_name, curPage, curView, appliedFilters))
     },[])
+
+    useEffect(() => {
+     
+      if(appData.appParams.curPage && appData.appParams.curView){
+        let url = `/?cur_page=${appData.appParams.curPage}&cur_view=${appData.appParams.curView}`
+        if(appData.appParams.appliedFilters && !_.isEmpty(appData.appParams.appliedFilters)) {
+          _.map(appData.appParams.appliedFilters, (value,key) => {
+            url += `&${key}=${value}`
+          })
+        }  
+        navigate(url)
+      }
+    },[appData.appParams])
+
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
     });
     let curPage = params ? params.cur_page : null;
     let curView = params ? params.cur_view : null;
+    
     if(!curPage && !curView && appData && appData.appParams) {
-      navigate(`/?cur_page=${appData.appParams.curPage}&cur_view=${appData.appParams.curView}`)
+      let url = `/?cur_page=${appData.appParams.curPage}&cur_view=${appData.appParams.curView}`
+      if(appData.appParams.appliedFilters && !_.isEmpty(appData.appParams.appliedFilters)) {
+        _.map(appData.appParams.appliedFilters, (value,key) => {
+          url += `&${key}=${value}`
+        })
+      }
+      navigate(url)
     }
+    console.log(appData.appParams)
   return (
     <div className="App">
         {appData.userConfig ?
@@ -49,7 +79,8 @@ function Layout(props={}) {
                 <Widgets
                   key={`${appData.appParams.curPage}-${appData.appParams.curView}-widgets`}
                   curPage={appData.appParams.curPage}  
-                  curView={appData.appParams.curView} 
+                  curView={appData.appParams.curView}
+                  appData={appData}
                   config={appData.userConfig[appData.appParams.curPage][appData.appParams.curView].widgets}
                 />
               </div>

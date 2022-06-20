@@ -3,15 +3,38 @@ import _ from "underscore";
 import Icon from "../Icon";
 import { Fragment, useEffect, useRef, useState } from "react";
 import DropDown from "./Charts/DropDown";
+import { Modal } from "antd";
+import GenerateReport from "./GenerateReport";
+import { applyFilters } from "../actions/appActions";
+import { useDispatch, useSelector } from "react-redux";
 function Overview(props) {
     const { config={}, toggleIsEditable, isEditable } = props;
-    const [sortedTabOrder, setSortedTabOrder] = useState([])
-    const [draggedItem, setDraggedItem] = useState(null)
-    const overviewWrapper = useRef(null)
+    const [sortedTabOrder, setSortedTabOrder] = useState([]);
+    let appData = useSelector(state => state.appData)
+    const dispatch = useDispatch();
+    const [draggedItem, setDraggedItem] = useState(null);
+    const overviewWrapper = useRef(null);
     const { display } = config;
     useEffect(() => {
         let _sortedTabOrder = _.keys(Utils.sortOrder(config._order))
         setSortedTabOrder(_sortedTabOrder)
+        let appliedFilters = {}
+        if(config.dropdown && config.dropdown.default && !appData.appParams.appliedFilters[config.dropdown.dropdown.key]) {
+            let _dropdownDefault = _.keys(Utils.sortOrder(config.dropdown.default._order))
+            appliedFilters= {
+               [config.dropdown.key]: _dropdownDefault[0]
+            }
+        }
+        if(config.date_range && config.date_range.default && !appData.appParams.appliedFilters["date_range"]) {
+            let _dateRangeDefault = _.keys(Utils.sortOrder(config.date_range.default._order))
+            appliedFilters= {
+                ...appliedFilters,
+                "date_range": _dateRangeDefault[0]
+            }
+        }
+        if(!_.isEmpty(appliedFilters)) {
+            dispatch(applyFilters(appliedFilters))
+        }
     },[])
     const data = {
         "Invoices": {
@@ -77,19 +100,24 @@ function Overview(props) {
         }
     }
 
-    const changeHandler = (obj) => {
-
+    const changeHandler = (key, value) => {
+        dispatch(applyFilters({[key]: value}))
     }
+
+    
    
     return (
         <div className="overview" >
-            {config.dropdown ? <DropDown config={config.dropdown} onChange={changeHandler}/> : null}
+            {config.dropdown ? <DropDown value={appData && appData.appParams ? appData.appParams.appliedFilters[config.dropdown.key] : null} config={config.dropdown} onChange={changeHandler}/> : null}
             <div className="overview-wrapper-title">
                 {display}
-                {config.date_range ? <DropDown config={config.date_range}  onChange={changeHandler}/> : null}
+                {config.date_range ? <DropDown value={appData && appData.appParams ? appData.appParams.appliedFilters["date_range"] : null} config={config.date_range}  onChange={changeHandler}/> : null}
                 <div className="edit-icon" data-isEditable={isEditable} onClick={toggleIsEditable}>
                     <Icon type="overview"  width={12} height={12}/>
                 </div>
+                {config.generate_report ? (
+                     <GenerateReport config={config.generate_report}/>
+                ) : ""}
             </div>
             <div ref={overviewWrapper} style={{display:"flex"}} >
             {
@@ -161,7 +189,7 @@ function Overview(props) {
            }
 
             </div>
-         
+           
         </div>
     ) 
 }

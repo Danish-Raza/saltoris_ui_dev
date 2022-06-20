@@ -59,10 +59,57 @@ const injectData = (str , data) => {
     }
 //    return stateItem;
 }
+
+const returnSuccessfullObject= (checkConditions, data, sendAll=null) => {
+  let object = null;
+  let checks = checkConditions;
+  let information = data;
+  try {
+    let sorted = _.keys(sortOrder(checks._order));
+    for(let i = 0; i < sorted.length; i++) {
+      let sortedData = sorted[i];
+      let condition = checks[sortedData].condition;
+      let key = checks[sortedData].key
+      let modData = {...data}
+      if(key) {
+        if(typeof data[key] == "object" && data[key].length === undefined) {
+          if(checks[sortedData].key_to_pick) {
+            modData={...modData, ...data[key][checks[sortedData].key_to_pick]}
+          } else {
+            modData={...modData, ...data[key]}
+          }
+        } else if(typeof data[key] == "object" && data[key].length !== undefined){
+          let keyToPick = checks[sortedData].key_to_pick
+          let valueToPick = checks[sortedData].value_to_pick
+          let ob = _.find(data[key], rec => rec[keyToPick] == valueToPick)
+          if(ob) {
+            modData = { ...modData, ...ob}
+          }
+        }
+      }
+      let conditionString = injectData(condition, modData)
+      let boolean = new Function('return ' + conditionString)();
+      if(boolean) {
+        if(sendAll == "all") {
+          object = !object ? [] : object ;
+          object.push(checks[sortedData]);
+        } else {
+          object = {};
+          object = checks[sortedData];
+          break;
+        }
+      }
+    }
+  } catch (e) {
+
+  }
+  return object;
+}
   
 export default {
     sortOrder,
     convertToList,
     nFormatter,
-    injectData
+    injectData,
+    returnSuccessfullObject
 }
