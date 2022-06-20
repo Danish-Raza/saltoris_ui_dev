@@ -84,8 +84,19 @@ function FormComponent(props) {
 
     }
 
-    const onDateSelect = () => {
-
+    const onDateSelect = (key,value) => {
+        const { on_change } = config;
+        const { onChange, id } = props
+        let fieldIndex = _.findIndex(components, r => r.key === key)
+        if(fieldIndex !== -1) {
+            let modComponent = [...components]
+            modComponent[fieldIndex].value = value
+            modComponent[fieldIndex].validated = true
+           setComponents(modComponent)
+           if(on_change && onChange) {
+                onChange({key: key, value: modComponent[fieldIndex].value, id: id})
+           }
+        }
     }
 
     const getData = () => {

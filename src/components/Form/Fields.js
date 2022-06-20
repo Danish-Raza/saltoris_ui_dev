@@ -99,7 +99,7 @@ function Fields(props) {
                             {config.label_icon && <Icon type={config.label_icon} width={15} height={15}/>}
                             {config.label}
                         </div>
-                        <DatePicker disabled={config.disabled} key={config.key} value={config.value}/>
+                        <DatePicker disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onDateSelect(config.key, value) }/>
                         {/* <Input.Password  key={config.key} value={config.value} placeholder={config.placeholder} prefix={config.icon} onChange={(e) => onChange(config.key, e)} iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/> */}
                         {config.fieldFooter}
                     </div>
@@ -216,7 +216,7 @@ function Fields(props) {
                         {config.label_icon && <Icon type={config.label_icon} width={15} height={15}/>}
                         {config.label}
                     </div>
-                    <DropDown config={config} />
+                    <DropDown value={config.value} config={config} onChange={onSelect} />
                     {config.fieldFooter}
                 </div>
             )
