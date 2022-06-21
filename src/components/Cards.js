@@ -5,6 +5,7 @@ import Utils from "../Utils";
 import Header from "./Header";
 import { Radio, Space } from 'antd';
 import { useState } from "react";
+import moment from "moment";
 
 function Cards(props) {
     const {  config, handleDrop, handleDrag, isEditable } = props;
@@ -16,31 +17,36 @@ function Cards(props) {
             name: "Artem Sazonov",
             short_text: "Codedellaroute Project",
             long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
-            image: ""
+            image: "",
+            time: moment().format("MMM Do, h:mm a")
         },
         {
             name: "Jaroslav Brabec",
             short_text: "Website Redesign",
             long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
-            image: ""
+            image: "",
+            time: moment().format("MMM Do, h:mm a")
         },
         {
             name: "Ren Xue",
             short_text: "Fone Dynamics Website",
             long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
-            image: ""
+            image: "",
+            time: moment().format("MMM Do, h:mm a")
         },
         {
             name: "Jaroslav Brabec",
             short_text: "Website Redesign",
             long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
-            image: ""
+            image: "",
+            time: moment().format("MMM Do, h:mm a")
         },
         {
             name: "Ren Xue",
             short_text: "Fone Dynamics Website",
             long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
-            image: ""
+            image: "",
+            time: moment().format("MMM Do, h:mm a")
         },
     ]
     let sortOrder = _.keys(Utils.sortOrder(config._order));
@@ -80,6 +86,9 @@ function Cards(props) {
                                 }
                                 {
                                         <div className="card-content">
+                                        {
+                                          rec.time && <div>{rec.time}</div>  
+                                        }
                                         {
                                             _.map(sortOrder, order => {
                                                 if(config[order].type !== "image") {
