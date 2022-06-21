@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/saltoris_ui_dev/static/css/main.b606beb0.css",
-    "main.js": "/saltoris_ui_dev/static/js/main.3a1defcd.js",
+    "main.css": "/saltoris_ui_dev/static/css/main.f6a9ad14.css",
+    "main.js": "/saltoris_ui_dev/static/js/main.ed10f3ba.js",
     "static/js/787.c4c76647.chunk.js": "/saltoris_ui_dev/static/js/787.c4c76647.chunk.js",
     "static/media/saltoris.png": "/saltoris_ui_dev/static/media/saltoris.85ee1f2ddaea2b827b67.png",
     "index.html": "/saltoris_ui_dev/index.html",
-    "main.b606beb0.css.map": "/saltoris_ui_dev/static/css/main.b606beb0.css.map",
-    "main.3a1defcd.js.map": "/saltoris_ui_dev/static/js/main.3a1defcd.js.map",
+    "main.f6a9ad14.css.map": "/saltoris_ui_dev/static/css/main.f6a9ad14.css.map",
+    "main.ed10f3ba.js.map": "/saltoris_ui_dev/static/js/main.ed10f3ba.js.map",
     "787.c4c76647.chunk.js.map": "/saltoris_ui_dev/static/js/787.c4c76647.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b606beb0.css",
-    "static/js/main.3a1defcd.js"
+    "static/css/main.f6a9ad14.css",
+    "static/js/main.ed10f3ba.js"
   ]
 }
