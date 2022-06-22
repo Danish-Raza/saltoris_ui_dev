@@ -168,6 +168,11 @@
             color: #3B6BFD;
             font-weight: normal !important;
             text-decoration: underline;
+            &[data-status="false"] {
+                cursor: not-allowed;
+                color: lightgray;
+                text-decoration: unset;
+            }
         }
     }
    

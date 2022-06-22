@@ -95,7 +95,7 @@ function Cards(props) {
             <p data-status={selectedFilter == "read"} onClick={()=> filterData("status", "read")}>Read</p>
             <p data-status={selectedFilter == "unread"} onClick={()=> filterData("status", "unread")}>Unread</p>
             <p data-status={selectedFilter == "archive"} onClick={()=> filterData("status", "archive")}>Archive</p>
-            <p className="reset-option" onClick={()=> filterData("status", null)}>Reset</p>
+            <p className="reset-option" data-status={selectedFilter !== undefined && selectedFilter !== null ? true:    false} onClick={()=> filterData("status", null)}>Reset</p>
         </div>
     );
     return (
