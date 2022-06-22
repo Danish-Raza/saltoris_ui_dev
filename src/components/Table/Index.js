@@ -4,12 +4,17 @@ import Header from "../Header";
 import { Space, Table, Tag } from 'antd';
 import cellHandler from "./CellHandler";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setOverlay } from "../../actions/appActions";
 
 function TableComponent(props) {
-    const { config, handleDrop, handleDrag, isEditable, componentIndex } = props;
-    const { columns, width }  = config
-    const [selectedOption, setSelectedOption] = useState({})
-   // let sortedOrder = _.keys(Utils.sortOrder(columns._order))
+    const { config, handleDrop, handleDrag, isEditable, componentIndex, dependentData } = props;
+    const { columns, width }  = config;
+    const [selectedOption, setSelectedOption] = useState({});
+    const [data, setData] = useState([]);
+    const [originalData, setOriginalData] = useState([]);
+    const dispatch = useDispatch()
+
     const sortHandler = () => {
 
     }
@@ -29,13 +34,16 @@ function TableComponent(props) {
         }
         setSelectedOption(params)
     }
-   },[])
-    const data = [
+    const _mockData = [
         {
           key: '1',
           name: 'John Brown',
           buyer: 'John Brown',
           value: 32,
+          customer_id: "c1",
+          customer_name: "John Brown",
+          po_id: "p1",
+          material: "material 1",
           order_ammount: 32,
           requirement:"Type I",
           due_date: "2022-10-09",
@@ -60,6 +68,10 @@ function TableComponent(props) {
           order_ammount: 42,
           requirement:"Type I",
           due_date: "2022-10-09",
+          customer_id: "c2",
+          customer_name: "Jim Green",
+          po_id: "p2",
+          material: "material 2",
           address: 'London No. 1 Lake Park',
           status: 'Payments',
           invoice_no: "#124",
@@ -80,6 +92,10 @@ function TableComponent(props) {
           value: 32,
           order_ammount: 32,
           requirement:"Type I",
+          customer_id: "c3",
+          customer_name: "Joe Black",
+          po_id: "p3",
+          material: "material 3",
           due_date: "2022-10-09",
           address: 'Sidney No. 1 Lake Park',
           status: 'Approved',
@@ -98,6 +114,10 @@ function TableComponent(props) {
             key: '4',
             name: 'Joe',
             buyer:"Joe",
+            customer_id: "c4",
+            customer_name: "Joe",
+            po_id: "p4",
+            material: "material 4",
             value: 32,
             order_ammount: 32,
             requirement:"Type I",
@@ -116,7 +136,28 @@ function TableComponent(props) {
             in_house_publication: "Publication 4"
           }
     ];
-    const columnConfig = cellHandler(columns, selectedOption)
+    setData(_mockData)
+    setOriginalData(_mockData)
+   },[])
+
+   useEffect(() => {
+        if(dependentData.po_id) {
+            let filteredData = originalData.filter(rec => dependentData.po_id.includes(rec.po_id))
+            if(filteredData && filteredData.length>0) {
+                setData(filteredData)
+            } else {
+                setData(originalData)
+            }
+           
+        }
+   },[dependentData])
+   let helperFuntion = {
+        setOverlay: (params) => {
+           return dispatch(setOverlay({...params}))
+        }
+   }
+   
+    const columnConfig = cellHandler(columns, selectedOption, helperFuntion)
     
     // const dropDownHandler = () => {
 

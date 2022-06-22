@@ -401,6 +401,7 @@ const data = {
                     "api": "",
                     "width": "30%",
                     "id":"user_feedback",
+                    "replicate": true,
                     "display": "Activity Feed",
                     "_order": {
                         "image": 1,
@@ -549,7 +550,7 @@ const data = {
                                     "text": 'Rejected',
                                     "value": 'Rejected',
                                 }
-                              ],
+                            ],
                             "sort": true
                         },
                         "invoice_no": {
@@ -642,8 +643,169 @@ const data = {
         },
         "order": {
             "display": "Order",
-            "icon": "orders"
+            "icon": "orders",
+            "widgets": {
+                "_order": {"form_group": 1, "uploaded_certificate": 2},
+                "form_group": {
+                    "type":"form-group",
+                    "width":"100%",
+                    "pass_data_on_change": true,
+                    "_order": {"form_2":1},
+                    "api": "/asd/asda?",
+                    "form_2": {
+                       // "title":"Certificate",
+                        "initial_disabled": false,
+                        "template": "less-padding",
+                        "_order": {"po_id": 1, "document": 2},
+                        "po_id":{
+                            "type": "dropdown",
+                            "placeholder": "search",
+                            "width":"49%",
+                            "key": "po_id",
+                            "label": "PO ID",
+                            "flex": true,
+                            "required": true,
+                            "on_change": true,
+                            "icon":"search",
+                            "_order": {
+                                "p1":1,
+                                "p2":2,
+                                "p3":3,
+                                "p4":4
+                            },
+                            "p1": {
+                                "display":"P1"
+                            },
+                            "p2": {
+                                "display":"P2"
+                            },
+                            "p3": {
+                                "display":"P3"
+                            },
+                            "p4": {
+                                "display":"P4"
+                            }
+                        },
+                        "document": {
+                            "type": "text",
+                            "placeholder": "search",
+                            "width":"49%",
+                            "key": "document",
+                            "label": "Document",
+                            "flex": true,
+                            "required": false,
+                            "icon":"search"
+                        },
+                    },
+                    // "submit": {
+                    //     "api": "",
+                    //     "display": "Search"
+                    // }
+                },
+                "uploaded_certificate": {
+                    "render_initial": true,
+                    "id": "opportunities_table",
+                    "type": "table",
+                    "width": "100%",
+                    "display": "All Purchase Orders",
+                    "api":  "",
+                    "property_depends_on": "form_group",
+                    "columns":{
+                        "_order":{
+                            "customer_id":1,
+                            "customer_name": 1,
+                            "po_id": 3,
+                            "valid_from": 4,
+                            "due_date": 5,
+                            "status": 7,
+                            "material": 6,
+                            "view_detail": 8
+                        },
+                        "customer_id":{
+                            "display": "Customer ID",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "material":{
+                            "display": " Material",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "status":{
+                            "display": "Status",
+                            "type": "tag",
+                            "width": "",
+                            "align": "left",
+                            "color_mapping":{
+                                "Send":"green",
+                                "Rejected":"red",
+                                "Approved": "blue",
+                                "Payments":"#40a9ff"
+                            },
+                            "filters": [
+                                {
+                                    "text": 'Send',
+                                    "value": 'Send',
+                                },
+                                {
+                                    "text": 'Payments',
+                                    "value": 'Payments',
+                                },
+                                {
+                                    "text": 'Approved',
+                                    "value": 'Approved',
+                                },
+                                {
+                                    "text": 'Rejected',
+                                    "value": 'Rejected',
+                                }
+                            ],
+                        },
+                        "customer_name": {
+                            "display": "Customer Name",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "po_id": {
+                            "display": "PO ID ",
+                            "type":"string",
+                            "width": "",
+                            "align": "center"
+                        },
+                        "valid_from": {
+                            "display": "Creation Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width": "",
+                            "align": "left"
+                        },
+                        "due_date": {
+                            "display": "Delivery Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width": "",
+                            "color":"#FC5A5A",
+                            "align": "left"
+                        },
+                        "view_detail": {
+                            "display": "",
+                            "type": "action",
+                            "width": "",
+                            "align": "center",
+                            "on_click": "overlay",
+                            "overlay": {},
+                            "template": "button",
+                            "button_label": "View Detail"
+                        },
+                        
+                    }
+                },
+            }
         },
+
         "invoice": {
             "display": "Invoice",
             "icon": "invoice"
@@ -672,6 +834,7 @@ const data = {
                 "form_group":{
                     "type":"form-group",
                     "width":"100%",
+                    "pass_data_on_submit":true,
                     "_order": {"form_1": 1, "form_2": 2, "form_3": 3},
                     "api": "/asd/asda?",
                     "form_1":{

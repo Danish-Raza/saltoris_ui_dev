@@ -7,6 +7,30 @@
             .ant-table-column-sorters  {
                 align-items: baseline;
             }
+            >div[data-template="button"] {
+                border-radius: 5px;
+                color: white;
+                font-size: 12px;
+                font-weight: normal;
+                padding: 3px 5px 3px 5px;
+                cursor: pointer;
+                position: relative;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #3B6BFD;
+                border: 1px solid #3B6BFD;
+                svg {
+                    margin: 0 10px 0 5px;
+                    path {
+                        fill: white;
+                    }
+                }
+
+            }
+            >div[data-template="button"]:active {
+                top: 1px;
+            }
         }
     }
 }

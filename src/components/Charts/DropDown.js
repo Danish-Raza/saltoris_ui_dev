@@ -72,6 +72,7 @@ function DropDown(props) {
         onChange={(value) => { props.onChange(config.key,value); setValue(value)}}
         showArrow={true}
         showSearch={true}
+        suffixIcon={typeof config.icon == "string" ? <Icon type={config.icon} width={15} height={15} /> : config.icon }
         value={value}
     >
       {children}

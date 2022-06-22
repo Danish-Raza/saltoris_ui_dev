@@ -1,0 +1,23 @@
+.overlay-wrapper{
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    .dark-background {
+        background-color: grey;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0.6;
+        z-index: -1;
+    }
+    .overlay-content {
+        width: 70% !important;
+        background-color: white;
+        height: 100%;
+        z-index: 1;
+        right: 0;
+        position: absolute;
+    }
+}

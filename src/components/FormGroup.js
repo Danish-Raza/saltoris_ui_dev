@@ -5,14 +5,63 @@ import Icon from "../Icon";
 import { useEffect, useState } from "react";
 
 function FormGroup(props) {
-    const { config } = props;
-    const {submit, width} = config
-    const [isDisabled, setIsDisabled] = useState({})
-    const [formData, setFormData] = useState({})
-    const sortOrder = _.keys(Utils.sortOrder(config._order))
+    const [config, setConfig] = useState(props.config);
+    const {submit, width} = config;
+    const [isDisabled, setIsDisabled] = useState({});
+    const [formData, setFormData] = useState({});
+    const sortOrder = _.keys(Utils.sortOrder(config._order));
+
+    const validateForm = () => {
+        let result = true;
+        let modConfig = { ...config }
+        _.map(sortOrder, wrapperOrder => {
+            let components = _.keys(Utils.sortOrder(config[wrapperOrder]._order));
+            _.map(components, rec => {
+                let r = config[wrapperOrder][rec]
+                if(r.type !== "button") {
+                    modConfig = {
+                        ...modConfig,
+                        [wrapperOrder]: {
+                            ...modConfig[wrapperOrder],
+                            [rec]: {
+                                ...modConfig[wrapperOrder][rec],
+                                validated:(r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
+                            }
+                        }
+                    }
+                 if(result) {
+                     result =  (r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
+                 }
+                } else if(r.type  ===  "button") {
+                    modConfig = {
+                        ...modConfig,
+                        [wrapperOrder]: {
+                            ...modConfig[wrapperOrder],
+                            [rec]: {
+                                ...modConfig[wrapperOrder][rec],
+                                validated: true
+                            }
+                        }
+                    }
+                }
+            })
+        })
+        setConfig(modConfig) 
+        return result;
+    }
+
 
     const submitHandler = () => {
-        console.log(formData)
+        if(validateForm()) {
+            let combinedData = {}
+            let temObj = getFormData()
+            _.map(temObj, (valObj, key) => {
+                combinedData = { ...combinedData, ...valObj}
+            })
+            if(config.pass_data_on_submit) {
+                props.onSubmit({[props.id]: combinedData})
+            }
+        }
     }
 
     const mockData = {
@@ -44,33 +93,78 @@ function FormGroup(props) {
        }
     }
 
-    const getData = () => {
-
+    const getFormData = (_config=config) => {
+        let data = {}
+        _.map(sortOrder, order => {
+            data[order]={}
+            let components = _.keys(Utils.sortOrder(_config[order]._order));
+            _.map(components, rec => {
+                if(_config[order][rec].type !== "button" && _config[order][rec].value !== undefined && _config[order][rec].value !== null && _config[order][rec].value !== ""  ) { 
+                    data[order] = { ...data[order],  [rec]: _config[order][rec].value }
+                }
+             })
+        })
+        return data
     }
 
     useEffect(() => {
         let isDisabled = {};
-        let defaultData = {}
+        let modConfig = { ...config }
         _.map(sortOrder, order => {
-            if(mockData) {
-                defaultData = {
-                    ...defaultData,
-                    ...mockData[order]
+            let components = _.keys(Utils.sortOrder(config[order]._order));
+            _.map(components, rec => {
+                let r = config[order][rec]
+                if(r.type !== "button") {
+                    modConfig = {
+                        ...modConfig,
+                        [order]: {
+                            ...modConfig[order],
+                            [rec]: {
+                                ...modConfig[order][rec],
+                                value: mockData[order][rec]
+                            }
+                        }
+                    }
                 }
-            }
+             })
             isDisabled = {
                 ...isDisabled,
                 [order]: config[order].initial_disabled
             }
         })
-        setFormData(defaultData)
+        setConfig(modConfig)
         setIsDisabled(isDisabled)
     },[])
 
     const changeHandler = (params) => {
         const { key, value, id } = params;
-        let obj = {...formData, [key]: value}
-        setFormData(obj)
+        let modConfig = { ...config }
+        let components = _.keys(Utils.sortOrder(config[id]._order));
+        _.map(components, rec => {
+            if(rec == key) {
+                modConfig = {
+                    ...modConfig,
+                    [id]: {
+                        ...modConfig[id],
+                        [rec]: {
+                            ...modConfig[id][rec],
+                            value: value,
+                            validated: true
+                        }
+                    }
+                }
+            }
+        })
+        setConfig(modConfig)
+       
+        if(config.pass_data_on_change) {
+            let combinedData = {}
+            let temObj = getFormData(modConfig)
+            _.map(temObj, (valObj, key) => {
+                combinedData = { ...combinedData, ...valObj}
+            })
+            props.onSubmit({[props.id]: combinedData})
+        }
     }
 
     const handleIsDisabled = (id) => {
@@ -80,21 +174,23 @@ function FormGroup(props) {
     }
 
     return (
-        <form className="form-group-wrapper" style={{width: width || "100%"}}>
+        <form className="form-group-wrapper"  onSubmit={submitHandler} style={{width: width || "100%"}}>
             {
                 _.map(sortOrder, order => {
                     return (
                         <div className="form-wrapper">
-                            <div className="form-wrapper-title">
-                                {config[order].title}
-                                {
-                                    config[order].initial_disabled && (
-                                        <div data-button-type="edit" onClick={() => handleIsDisabled(order)}>
-                                            <Icon type="edit" width={17} height={17}/> Edit
-                                        </div>
-                                    )
-                                }
-                            </div>
+                            {config[order].title !== undefined &&
+                                <div className="form-wrapper-title">
+                                    {config[order].title}
+                                    {
+                                        config[order].initial_disabled && (
+                                            <div data-button-type="edit" onClick={() => handleIsDisabled(order)}>
+                                                <Icon type="edit" width={17} height={17}/> Edit
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                            }
                             <FormComponent
                                 config={{...config[order], title: null, on_change:true}}
                                 preFilledData={mockData[order]}
@@ -106,7 +202,7 @@ function FormGroup(props) {
                     )
                 })
             }
-            {submit && <button type="submit" button-type={"primary"} onClick={submitHandler}>{submit.display}</button>}
+            {submit && <button type="submit" button-type={"primary"} onClick={(e) => {e.preventDefault(); submitHandler()}}>{submit.display}</button>}
         </form>
     )
 }

@@ -11,7 +11,6 @@
         color: black;
         font-weight: bold;
         // margin-bottom: 20px;
-        display: block;
         position: sticky;
         top: 0;
         z-index: 1;
@@ -20,15 +19,40 @@
         padding-top: 10px;
         position: sticky;
         top: 0;
-        display: block;
-
+        display: flex;
+        justify-content: space-between;
+        .ant-btn{
+            border: 0;
+            outline: none;
+            box-shadow: none;
+            padding-bottom: 0;
+            padding-top: 0;
+            height: 20px;
+           
+        }
         .remove-button {
             position: absolute;
-            top: -7px;
-            left: -23px;  
+            top: -8px;
+            right: -1px;
+            z-index:1;  
             width: 20px;
             height: 20px;
             background-color:  red;
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .replicate-button {
+            position: absolute;
+            top: -8px;
+            right: -23px;    
+            width: 20px;
+            height: 20px;
+            background-color: #0062FF;
             color: white;
             border-radius: 50%;
             font-weight: 600;
@@ -131,4 +155,20 @@
             transition: 0.3s all;
         }
     }
+}
+
+.ant-popover-inner-content {
+    .card-misc-option {
+        width: 75px;
+        p:hover, p[data-status="true"] {
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .reset-option {
+            color: #3B6BFD;
+            font-weight: normal !important;
+            text-decoration: underline;
+        }
+    }
+   
 }

@@ -3,8 +3,7 @@ import _ from "underscore"
 import { Space, Table, Tag } from 'antd';
 import moment from "moment";
 
-
-function cellHandler(config, data) {
+function cellHandler(config, data, helperFuntion) {
     // const { config } = props;
     let columns = []
     let columnsOrder = config._order
@@ -53,6 +52,23 @@ function cellHandler(config, data) {
             columns.push(obj)
         } else if(column.type == "link") {
             obj.render = (text) => <a>{text}</a>
+            columns.push(obj)
+        } else if(column.type == "action") {
+            obj.render = (text) => {
+                if(column.on_click == "overlay") {
+                    return  (
+                        <div 
+                            data-action={column.on_click}
+                            data-template={column.template||"default_template"}
+                            onClick={()=> helperFuntion.setOverlay({show: true, overlay: column.overlay})}
+                         >
+                            {column.button_label}
+                         </div>
+                    )
+                } else {
+                    return text
+                }
+            }
             columns.push(obj)
         }
     })

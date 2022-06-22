@@ -8,6 +8,7 @@ import Widgets from "../components/Widgets";
 import { useNavigate } from "react-router-dom";
 import { Spin } from "antd";
 import _ from "underscore";
+import Overlay from "../components/Overlay";
 
 function Layout(props={}) {
     const dispatch = useDispatch();
@@ -88,6 +89,7 @@ function Layout(props={}) {
           </Fragment>
           : 
         <div style={{width: "100%", height:"100vh", display:"flex", alignItems:"center", justifyContent:"center"}}><Spin size="large" /></div>}
+        <Overlay config={appData ? appData.overlay : {}} />
     </div>
   );
 }

@@ -137,7 +137,7 @@ function Overview(props) {
                          }}
                          id={tab}
                      >
-                        {isEditable ? <div className="remove-button" onClick={() => removeHandler(tab)}>x</div> : ""}
+                        {isEditable ? <div className="remove-button" onClick={() => removeHandler(tab)}>-</div> : ""}
                         {
                              _.map(sortOrder, order => {
                                 if(config[tab][order].multiple) {

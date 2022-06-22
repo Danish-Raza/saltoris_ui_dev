@@ -55,7 +55,7 @@ function Fields(props) {
         case "text":
             fieldToRender =  (
                 <FieldWrapper config={config} validated={validated}>
-                    <Input disabled={config.disabled} key={config.key} value={config.value} placeholder={config.placeholder} prefix={config.icon} onChange={(e) => onChange(config.key, e)}/>
+                    <Input disabled={config.disabled} key={config.key} value={config.value} placeholder={config.placeholder} prefix={typeof config.icon == "string" ? <Icon type={config.icon} width={15} height={15} /> : config.icon } onChange={(e) => onChange(config.key, e)}/>
                 </FieldWrapper>
             )
             break;

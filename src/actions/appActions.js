@@ -59,3 +59,9 @@ export function changeConfig(params) {
         dispatch({ type: params.action, ...params});
     }
 }
+
+export function setOverlay(params) {
+       return function (dispatch, getState) {
+        dispatch({ type: "SET_OVERLAY", ...params});
+    }
+}

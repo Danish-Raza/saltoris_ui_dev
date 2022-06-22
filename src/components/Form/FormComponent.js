@@ -8,9 +8,10 @@ import Icon from "../../Icon"
 import { message as messageF } from 'antd';
 
 function FormComponent(props) {
-    const { config, reset, title, recaptcha, template, width, message, preFilledData, disabled, id, footer } = props;
+    const { config, reset, title, recaptcha, width, message, preFilledData, disabled, id, footer } = props;
     const [components, setComponents] = useState([])
     const [formTitle, setTitle] = useState(title)
+    const { template } = config;
 
     useEffect(() => {
         if(config && config.length){
@@ -19,7 +20,7 @@ function FormComponent(props) {
             let sortOrder = _.keys(Utils.sortOrder(config._order))
             let componentList = [];
             _.map(sortOrder, order => {
-                let value = null
+                let value = config[order].value
                 if(preFilledData && preFilledData[order]) {
                     value = preFilledData[order]
                 } else if(config[order].default) {
@@ -44,7 +45,7 @@ function FormComponent(props) {
             } 
             setComponents(componentList)
         }
-    },[disabled])
+    },[disabled, config])
 
     const onChange = (key, e) => {
         const { on_change } = config;
@@ -212,6 +213,8 @@ function FormComponent(props) {
     }
 
     const removeValueHander = (key, index) => {
+        const { on_change } = config;
+        const { onChange, id } = props
         let fieldIndex = _.findIndex(components, r => r.key === key)
         if(fieldIndex !== -1) {
             let modComponent = [...components]
@@ -226,6 +229,9 @@ function FormComponent(props) {
                 modComponent[fieldIndex].value = null;
             }
             setComponents(modComponent)
+            if(on_change && onChange) {
+                onChange({key: key, value: modComponent[fieldIndex].value, id: id})
+           }
         }
     }
 

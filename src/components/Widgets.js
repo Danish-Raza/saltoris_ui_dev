@@ -1,5 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 import  _ from "underscore";
+import { changeConfig } from "../actions/appActions";
 import Utils from "../Utils";
 import Cards from "./Cards";
 import Charts from "./Charts/Index";
@@ -8,41 +10,23 @@ import Overview from "./Overview";
 import Table from "./Table/Index";
 
 function Widgets(props) {
-    const { curPage, curValue, appData } = props;
-    const [components, setComponents] = useState([])
-    const [config, setConfig] = useState(props.config)
-    const [isEditable, setIsEditable] = useState(false)
-    let [draggedItem,setDraggedItem] = useState(null)
+    const { curPage, curValue, appData, config } = props;
     const widgetsWrapper = useRef();
+    const dispatch = useDispatch()
+    const [formData, setFormData] = useState({})
+    const [isEditable, setIsEditable] = useState(false)
+    const [draggedItem, setDraggedItem] = useState(null)
 
-    let _components = config && config._order ? _.keys(Utils.sortOrder(config._order)) : []
-    const handleDrop = (ev) => {
-        let dragBoxIndex = null
-        let dropBoxIndex = null
-        let dragBox = null
-        let dropBox =  null
-        let field = null
-        let detailPanelChildren = widgetsWrapper.current.children;
-        for (let i = 0; i < detailPanelChildren.length; i++) {
-            field = detailPanelChildren[i].getAttribute("data-field")
-            if (detailPanelChildren[i].id === draggedItem) {
-                let _componentsIndex =  _.findIndex(components, r => config[r].id==draggedItem)
-                dragBoxIndex = _componentsIndex
-                dragBox = _componentsIndex!=-1 ?  components[_componentsIndex]: null
-            }
-            if (detailPanelChildren[i].id === ev.currentTarget.id) {
-                let _componentsIndex =  _.findIndex(components, r => config[r].id==ev.currentTarget.id)
-                dropBoxIndex = _componentsIndex
-                dropBox = _componentsIndex!=-1 ?  components[_componentsIndex]: null
-            }
-        }
-        let modOrder =  [...components]
-        if(dragBoxIndex != -1 && dropBoxIndex != -1 && dragBox) {
-            modOrder.splice(dragBoxIndex, 1)
-            modOrder.splice(dropBoxIndex, 0, dragBox )
-            setComponents(modOrder)
-            setDraggedItem(null)
-        }
+    let components = config && config._order ? _.keys(Utils.sortOrder(config._order)) : []
+
+    const handleDrop = ev => {
+        dispatch(changeConfig({action:"CHANGE_WIDGET_ORDER", widgetsWrapper, ev, draggedItem }));
+        setDraggedItem(null);
+    }
+
+    const dataFromForm = data => {
+        let modData = {...formData, ...data}
+        setFormData(modData)
     }
 
     const handleDrag = (ev) => {
@@ -63,49 +47,52 @@ function Widgets(props) {
             }}
         >
             {
-                _.map(_components, (component, componentIndex) => {
-                    let type = config[component].type
+                _.map(components, (component, componentIndex) => {
+                    let type = config[component].type;
+                    let propertyDependsOn = config[component].property_depends_on;
+                    let showComponent = true
+                    let componentKey = config[component].id + "-" + JSON.stringify(appData.appParams)
+                    let dependentData = {}
+
+                    if(propertyDependsOn) {
+                        if(formData[propertyDependsOn]) {
+                            showComponent=true;
+                           // componentKey = componentKey + "-" + JSON.stringify(formData[propertyDependsOn]);
+                            dependentData = {...formData[propertyDependsOn]}
+                        } else {
+                            if(config[component].render_initial) {
+                                showComponent = true;
+                            } else {
+                                showComponent = false;
+                            }
+                        }
+                    }
+
+                    let commonProps = {
+                        key: componentKey,
+                        id: component.id || component,
+                        isEditable: isEditable,
+                        config: config[component],
+                        handleDrop: handleDrop,
+                        handleDrag: handleDrag,
+                        componentIndex: componentIndex,
+                        dependentData: dependentData,
+                    }
+
                     switch (type) {
                         case "overview":
-                            return <Overview
-                            toggleIsEditable={toggleIsEditable} 
-                            isEditable={isEditable} 
-                            config={config[component]} 
-                            handleDrop={handleDrop} 
-                            handleDrag={handleDrag}
-                            componentIndex={componentIndex} />
+                            delete commonProps.key
+                            return showComponent && <Overview {...commonProps} toggleIsEditable={toggleIsEditable} />
                         case "card":
-                            return <Cards
-                            key={config[component].id + "-" + JSON.stringify(appData.appParams)}
-                            isEditable={isEditable} 
-                            config={config[component]} 
-                            handleDrop={handleDrop} 
-                            handleDrag={handleDrag}
-                            componentIndex={componentIndex} />
+                            return showComponent && <Cards {...commonProps} />
                         case "chart":
-                            return <Charts 
-                            key={ config[component].id + "-" + JSON.stringify(appData.appParams)}
-                            isEditable={isEditable} 
-                            config={config[component]} 
-                            handleDrop={handleDrop} 
-                            handleDrag={handleDrag}
-                            componentIndex={componentIndex}/>
+                            return showComponent && <Charts {...commonProps} />
                         case "table":
-                            return <Table  
-                            key={ config[component].id + "-" + JSON.stringify(appData.appParams)}
-                            isEditable={isEditable} 
-                            config={config[component]} 
-                            handleDrop={handleDrop} 
-                            handleDrag={handleDrag}
-                            componentIndex={componentIndex} />
+                            return showComponent && <Table {...commonProps} />
                         case "form-group":
-                            return <FormGroup
-                            key={ config[component].id + " " + JSON.stringify(appData.appParams)}
-                            isEditable={isEditable} 
-                            config={config[component]} 
-                            handleDrop={handleDrop} 
-                            handleDrag={handleDrag}
-                            componentIndex={componentIndex} />
+                            return showComponent && <FormGroup {...commonProps} onSubmit={dataFromForm} />
+                        case "tab":
+                            return showComponent && <FormGroup {...commonProps} onSubmit={dataFromForm} />
                         default:
                             break;
                     }

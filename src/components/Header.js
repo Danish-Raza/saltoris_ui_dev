@@ -25,7 +25,7 @@ function Header(props) {
         <div className="widget-header">
             <div className="widget-title">{widgetTitle}</div>
             {dropdown !== undefined && <DropDown config={dropdown} onChange={onChange} />}
-            {isEditable && !config.replicate ? <div className="remove-button" onClick={()=> dispatch(changeConfig({action:"REMOVE_WIDGET", id:config.id}))}>x</div>:""}
+            {isEditable  ? <div className="remove-button" onClick={()=> dispatch(changeConfig({action:"REMOVE_WIDGET", id:config.id}))}>-</div>:""}
             {isEditable && config.replicate && <div className="replicate-button" onClick={()=> dispatch(changeConfig({action:"REPLICATE_WIDGET",component: config, index: componentIndex})) }>+</div>}
         </div>
     )
