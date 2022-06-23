@@ -167,7 +167,7 @@
 .card-component-wrapper[data-componentdontexist="true"]{
     opacity: 0.3;
     pointer-events: none;
-    border: 1px solid grey;
+    border: 2px dotted grey;
 }
 
 .ant-popover-inner-content {
