@@ -134,7 +134,7 @@ function Cards(props) {
                     </Button>
                 </Popover>
             </div>
-            <div style={{height: 320, overflowY:"auto"}}>
+            <div className="card-wrapper-body" style={{height: 320, overflowY:"auto"}}>
             {
                 _.map(data, (rec, _index) => {
                     return (

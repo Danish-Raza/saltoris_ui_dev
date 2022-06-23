@@ -22,6 +22,11 @@ function Widgets(props) {
    
 
     const handleDrop = ev => {
+       let cardWrapper  = document.getElementById(`${draggedItem}`) ? document.getElementById(`${draggedItem}`).querySelector('.card-wrapper-body') : null
+        if(cardWrapper) {
+           cardWrapper.style["overflow-y"]="auto"
+           cardWrapper.style["height"]="320px"
+        }
         dispatch(changeConfig({action:"CHANGE_WIDGET_ORDER", widgetsWrapper, ev, draggedItem }));
         setDraggedItem(null);
     }
@@ -32,6 +37,14 @@ function Widgets(props) {
     }
 
     const handleDrag = (ev) => {
+        let cardWrapper  = ev.currentTarget.querySelector('.card-component-wrapper')
+        if(cardWrapper) {
+           ev.currentTarget.querySelector(".card-wrapper-body").style["overflow-y"]="visible"
+           ev.currentTarget.querySelector(".card-wrapper-body").style["height"]="auto"
+            console.log( ev.currentTarget.style)
+          //  ev.currentTarget =  ev.currentTarget.querySelector('.card-component-wrapper')
+            console.log(ev.currentTarget)
+        }
         setDraggedItem(ev.currentTarget.id);
     }
 
