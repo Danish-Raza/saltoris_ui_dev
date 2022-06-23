@@ -136,20 +136,28 @@ function TableComponent(props) {
             in_house_publication: "Publication 4"
           }
     ];
-    setData(_mockData)
+    if(dependentData.po_id) {
+        let filteredData = _mockData.filter(rec => dependentData.po_id.includes(rec.po_id))
+        if(filteredData && filteredData.length>0) {
+            setData(filteredData)
+        } else {
+            setData(data)
+        }  
+    } else {
+        setData(_mockData)
+    }
     setOriginalData(_mockData)
    },[])
 
    useEffect(() => {
-        if(dependentData.po_id) {
-            let filteredData = originalData.filter(rec => dependentData.po_id.includes(rec.po_id))
-            if(filteredData && filteredData.length>0) {
-                setData(filteredData)
-            } else {
-                setData(originalData)
-            }
-           
-        }
+        // if(dependentData.po_id) {
+        //     let filteredData = originalData.filter(rec => dependentData.po_id.includes(rec.po_id))
+        //     if(filteredData && filteredData.length>0) {
+        //         setData(filteredData)
+        //     } else {
+        //         setData(data)
+        //     }  
+        // }
    },[dependentData])
    let helperFuntion = {
         setOverlay: (params) => {
@@ -178,7 +186,7 @@ function TableComponent(props) {
                 selectedOption={selectedOption}
                 
                 />
-            <Table dataSource={data} columns={columnConfig} />
+            <Table dataSource={data} columns={columnConfig} pagination={config.pagination === false ? false : null} />
         </div>
     )
 }

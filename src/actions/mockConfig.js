@@ -655,7 +655,532 @@ const data = {
             "display": "Order",
             "icon": "orders",
             "widgets": {
-                "_order": {"form_group": 1, "uploaded_certificate": 2},
+                "_order": {"overlay_tab":1, "form_group":2, "uploaded_certificate": 3},
+                "overlay_tab": {
+                    "type": "tab",
+                    "property_depends_on": "form_group",
+                    "_order": {"create_asn": 1, "create_invoice": 2},
+                    "create_asn": {
+                        "display":"Create Shiping Notification",
+                        "icon": "plus",
+                        "id": "create_asn_overlay",
+                        "widgets": {
+                            "_order": {"form_group": 2, "selected_po_table": 1, "first_section":1},
+                            "first_section": {
+                                "type" : "info",
+                                "_order": {
+                                    "title": 1
+                                },
+                                "title": {
+                                    "display": "Shipping Order Details"
+                                }
+                            },
+                            "form_group":{
+                                "type":"form-group",
+                                "width":"100%",
+                                "_order": {"form_2": 2, "form_3": 2},
+                                "api": "/asd/asda?",
+                                "form_2": {
+                                   // "title":"Shipping Order Details",
+                                    "group_style": {
+                                        "marginTop": 0,
+                                        "marginLeft": 0,
+                                        "boxShadow":"unset"
+                                    },
+                                    "style": {
+                                        "marginTop": 0,
+                                        "marginLeft": 0,
+                                        "boxShadow":"unset",
+                                        "borderRadius":"unset"
+                                    },
+                                    "initial_disabled": false,
+                                    "width":"20%",
+                                    "_order": { "product_image": 1},
+                                    "product_image": {
+                                        "type": "file",
+                                        "placeholder": "Upload Product Image",
+                                        "file_format": "image",
+                                        "file_type":"image",
+                                        "template":"box-preview",
+                                        "no_view_document": false,
+                                        "width":"100%",
+                                        "key": "product_image",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "product_title": {
+                                        "type": "text",
+                                        "placeholder": "Product Title",
+                                        "width":"100%",
+                                        "key": "product_title",
+                                        "label": "Product Title",
+                                        "flex": true,
+                                        "template":"no-border",
+                                        //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                    "product_price":{
+                                        "type": "text",
+                                        "placeholder": "Product Price",
+                                        "width":"100%",
+                                        "key": "product_price",
+                                        "label": "Price",
+                                        "template":"no-border",
+                                        "flex": true,
+                                      //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                    "product_date":{
+                                        "type": "date",
+                                        "placeholder": "Date",
+                                        "width":"100%", 
+                                        "template":"no-border",
+                                        "key": "product_date",
+                                        "label": "Date",
+                                        "flex": true,
+                                      //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                },
+                                "form_3": {
+                                    "template":"template-1",
+                                    "group_style": {
+                                        "marginTop": 0,
+                                        "marginLeft": 0,
+                                        "background":"white"
+                                    },
+                                    "style": {
+                                        "marginTop": 0,
+                                        "marginLeft": 0,
+                                        "boxShadow":"unset",
+                                        "borderRadius":"unset"
+                                    },
+                                    "initial_disabled": false,
+                                    "width":"80%",
+                                    "_order": { "product_title": 2,"product_price": 3, "product_date": 4},
+                                    "product_title": {
+                                        "type": "text",
+                                        "placeholder": "Product Title",
+                                        "width":"100%",
+                                        "key": "product_title",
+                                        "template":"no-border no-padding",
+                                        "default": {
+                                            "_order": {
+                                                "Product Title":1
+                                            }
+                                        },
+                                      //  "label": "Product Title",
+                                        "flex": true,
+                                      //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                    "product_price": {
+                                        "type": "text",
+                                        "placeholder": "Product Price",
+                                        "template":"no-border no-padding",
+                                        "width":"100%",
+                                        "key": "product_price",
+                                        "label": "Price:",
+                                        "flex": true,
+                                      //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                    "product_date":{
+                                        "type": "date",
+                                        "placeholder": "Date",
+                                        "template":"no-border  no-padding",
+                                        "width":"100%", 
+                                        "key": "product_date",
+                                        "label": "Date:",
+                                        "flex": true,
+                                      //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                },
+                                "form_4": {
+                                    "title":"Shipping Order Details",
+                                    "initial_disabled": false,
+                                    "_order": { "product_title": 2,"product_price": 3, "product_date": 4},
+                                    "product_image": {
+                                        "type": "file",
+                                        "placeholder": "Upload Product Image",
+                                        "file_format": "image",
+                                        "file_type":"image",
+                                        // "file_size": "500",
+                                        // "file_aspect_ratio":  "1.1",
+                                        "no_view_document": false,
+                                       // "checkbox_label":"PAN Registered",
+                                        "width":"100%",
+                                        "key": "company_logo",
+                                        "label": "Product Image",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "product_title":{
+                                        "type": "text",
+                                        "placeholder": "Product Title",
+                                        "width":"49%",
+                                        "key": "product_title",
+                                        "label": "Product Title",
+                                        "flex": true,
+                                      //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                    "product_price":{
+                                        "type": "text",
+                                        "placeholder": "Product Price",
+                                        "width":"49%",
+                                        "key": "product_price",
+                                        "label": "Price",
+                                        "flex": true,
+                                      //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                    "product_date":{
+                                        "type": "date",
+                                        "placeholder": "Date",
+                                        "width":"49%",
+                                        "key": "product_date",
+                                        "label": "Date",
+                                        "flex": true,
+                                      //  "label_icon":"linkedin",
+                                        "required": false
+                                    },
+                                },
+                                "submit": {
+                                    "api": "",
+                                    "display": "Save"
+                                }
+                            },
+                            "selected_po_table": {
+                                "id": "selected_po_table",
+                                "type": "table",
+                                "width": "100%",
+                                "display": "Selected Purchase Order",
+                                "api":  "",
+                                "pagination": false,
+                                "columns":{
+                                    "_order":{
+                                        "customer_id":1,
+                                        "customer_name": 1,
+                                        "po_id": 3,
+                                        "valid_from": 4,
+                                        "due_date": 5,
+                                        "status": 7,
+                                        "material": 6
+                                    },
+                                    "customer_id":{
+                                        "display": "Customer ID",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "left"
+                                    },
+                                    "material":{
+                                        "display": " Material",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "left"
+                                    },
+                                    "status":{
+                                        "display": "Status",
+                                        "type": "tag",
+                                        "width": "",
+                                        "align": "left",
+                                        "color_mapping":{
+                                            "Send":"green",
+                                            "Rejected":"red",
+                                            "Approved": "blue",
+                                            "Payments":"#40a9ff"
+                                        },
+                                        "filters": [
+                                            {
+                                                "text": 'Send',
+                                                "value": 'Send',
+                                            },
+                                            {
+                                                "text": 'Payments',
+                                                "value": 'Payments',
+                                            },
+                                            {
+                                                "text": 'Approved',
+                                                "value": 'Approved',
+                                            },
+                                            {
+                                                "text": 'Rejected',
+                                                "value": 'Rejected',
+                                            }
+                                        ],
+                                    },
+                                    "customer_name": {
+                                        "display": "Customer Name",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "left"
+                                    },
+                                    "po_id": {
+                                        "display": "PO ID ",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "valid_from": {
+                                        "display": "Creation Date",
+                                        "type":"date",
+                                        "format": 'MMM Do YYYY, h:mm a',
+                                        "width": "",
+                                        "align": "left"
+                                    },
+                                    "due_date": {
+                                        "display": "Delivery Date",
+                                        "type":"date",
+                                        "format": 'MMM Do YYYY, h:mm a',
+                                        "width": "",
+                                        "color":"#FC5A5A",
+                                        "align": "left"
+                                    },
+                                    "view_detail": {
+                                        "display": "",
+                                        "type": "action",
+                                        "width": "",
+                                        "align": "center",
+                                        "on_click": "overlay",
+                                        "overlay": {},
+                                        "template": "button",
+                                        "button_label": "View Detail"
+                                    },
+                                    
+                                }
+                            },
+                        }
+                    },
+                    "create_invoice": {
+                        "display":"Create Invoice",
+                        "icon": "plus",
+                        "id": "create_invoice_overlay",
+                        "widgets": {
+                            "_order": {"form_group": 1, "uploaded_document": 2},
+                            "form_group":{
+                                "type":"form-group",
+                                "width":"100%",
+                                "_order": {"form_2":1},
+                                "api": "/asd/asda?",
+                                "form_2":{
+                                    "title":"Documents",
+                                    "initial_disabled": false,
+                                    "_order": {"Title": 1, "Type": 2,"Category": 3,"Edition": 4,"Version": 5, "Date of issue": 5, "Publish Date": 6, "ISBN": 7,"In-house Publication": 8, "Impact Factor": 9,"Author": 10, "submit": 11},
+                                    "Title":{
+                                        "type": "text",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Title",
+                                        "label": "Title",
+                                        "flex": true,
+                                        "required": false
+                                    },
+                                    "Type":{
+                                        "type": "text",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Type",
+                                        "label": "Type",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "Edition":{
+                                        "type": "text",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Edition",
+                                        "label": "Edition",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "Version":{
+                                        "type": "text",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Version",
+                                        "label": "Version",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "Category":{
+                                        "type": "text",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Category",
+                                        "label": "Category",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "Date of issue":{
+                                        "type": "date",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Date of issue",
+                                        "label": "Date of issue",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "Publish Date":{
+                                        "type": "date",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Publish Date",
+                                        "label": "Publish Date",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "submit": {
+                                        "type":"button",
+                                        "button_type":"primary",
+                                        "display":"Upload",
+                                        "api":""
+                                    },
+                                    "ISBN":{
+                                        "type": "text",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "ISBN",
+                                        "label": "ISBN",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "In-house Publication": {
+                                        "type": "radio",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "In-house Publication",
+                                        "label": "In-house Publication",
+                                        "flex": true,
+                                        "required": true,
+                                        "option": {
+                                            "_order":{
+                                                "yes":1,
+                                                "no": 2
+                                            },
+                                            "yes":{
+                                                "display":"Yes"
+                                            },
+                                            "no":{
+                                                "display":"No"
+                                            }
+                                        }
+                                    },
+                                    "Impact Factor":{
+                                        "type": "text",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Impact Factor",
+                                        "label": "Impact Factor",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                    "Author":{
+                                        "type": "text",
+                                        "placeholder": "Type here",
+                                        "width":"49%",
+                                        "key": "Author",
+                                        "label": "Author",
+                                        "flex": true,
+                                        "required": true
+                                    },
+                                },
+                                "submit": {
+                                    "api": "",
+                                    "display": "Save"
+                                }
+                            },
+                            "uploaded_document":{
+                                "id": "opportunities_table",
+                                "type": "table",
+                                "width": "100%",
+                                "display": "All Documents",
+                                "api":  "",
+                                "columns":{
+                                    "_order":{
+                                        "title": 1,
+                                        "requirement": 2,
+                                        "category": 3,
+                                        "editor": 4,
+                                        "version": 5,
+                                        "dol": 6,
+                                        "dop": 7,
+                                        "isbn":8,
+                                        "in_house_publication": 9,
+                                        "name": 10,
+                                    },
+                                    "title": {
+                                        "display": "Title",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "left"
+                                    },
+                                    "name": {
+                                        "display": "Author",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "left"
+                                    },
+                                    "requirement": {
+                                        "display": "Type",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "certifying_body": {
+                                        "display": "Certifying Body",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "category": {
+                                        "display": "Category",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "editor": {
+                                        "display": "Editor",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "version": {
+                                        "display": "Version",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "dol": {
+                                        "display": "DOL",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "dop": {
+                                        "display": "DOP",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "isbn": {
+                                        "display": "ISBN",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    },
+                                    "in_house_publication": {
+                                        "display": "In-house Publication",
+                                        "type":"string",
+                                        "width": "",
+                                        "align": "center"
+                                    }
+                                }
+                            },
+                        }
+                    }
+                },
                 "form_group": {
                     "type":"form-group",
                     "width":"100%",

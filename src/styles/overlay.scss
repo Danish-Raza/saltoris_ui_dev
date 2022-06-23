@@ -13,11 +13,12 @@
         z-index: -1;
     }
     .overlay-content {
-        width: 70% !important;
+        width: 80% !important;
         background-color: white;
         height: 100%;
         z-index: 1;
         right: 0;
         position: absolute;
+        overflow: auto;
     }
 }

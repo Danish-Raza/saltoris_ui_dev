@@ -11,7 +11,7 @@ function FormComponent(props) {
     const { config, reset, title, recaptcha, width, message, preFilledData, disabled, id, footer } = props;
     const [components, setComponents] = useState([])
     const [formTitle, setTitle] = useState(title)
-    const { template } = config;
+    let template = props.template || config.template;
 
     useEffect(() => {
         if(config && config.length){
@@ -23,7 +23,7 @@ function FormComponent(props) {
                 let value = config[order].value
                 if(preFilledData && preFilledData[order]) {
                     value = preFilledData[order]
-                } else if(config[order].default) {
+                } else if(config[order].default && !value) {
                     let defaultOrder = _.keys(Utils.sortOrder(config[order].default._order))
                     if(defaultOrder){
                         value = defaultOrder[0]
@@ -235,9 +235,13 @@ function FormComponent(props) {
         }
     }
 
+    let exStyles = {}
+    if(config.style) {
+        exStyles = { ...config.style }
+    }
     return (
 
-        <form className="form-component" onSubmit={onSubmit} data-template={template||"default-template"} style={{width: width || "100%"}}>
+        <form className="form-component" onSubmit={onSubmit} data-template={template||"default-template"} style={{width: width || config.width || "100%", ...exStyles}}>
             {
                 formTitle != undefined && (
                     <div className="form-title"> 
@@ -247,7 +251,8 @@ function FormComponent(props) {
                     </div>
                 )
             }
-            {
+           <div className="form-body-wrapper">
+           {
                 _.map(components, component => {
                     return (
                         <Fields
@@ -266,6 +271,7 @@ function FormComponent(props) {
                     )
                 })
             }
+           </div>
             {reset && <button onClick={onReset}>Reset</button>}
             {message}
             {footer}

@@ -232,6 +232,7 @@ function Login(props={}) {
                   config={registerFormConfig}
                   title={["Step 1", "Enter Company Details"]}
                   onSubmit={registerHandler}
+                  template={"login-form"}
                   recaptcha={true}
                   width={"40%"}
                 />
@@ -243,6 +244,7 @@ function Login(props={}) {
                   config={signUpFormConfig}
                   title={["Step 2", "Enter Company Administrator Details"]}
                   onSubmit={signUpHandler}
+                  template={"login-form"}
                   width={"40%"}
                 />
               )

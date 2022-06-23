@@ -6,8 +6,10 @@ import Utils from "../Utils";
 import Cards from "./Cards";
 import Charts from "./Charts/Index";
 import FormGroup from "./FormGroup";
+import Information from "./Information";
 import Overview from "./Overview";
 import Table from "./Table/Index";
+import Tab from "./Tabs";
 
 function Widgets(props) {
     const { curPage, curValue, appData, config } = props;
@@ -78,12 +80,15 @@ function Widgets(props) {
                     let showComponent = true
                     let componentKey = config[component].id + "-" + JSON.stringify(appData.appParams)
                     let dependentData = {}
-
+                    if(props.dependentData) {
+                        dependentData = { ...props.dependentData }
+                        componentKey = componentKey + "-" + JSON.stringify(dependentData);
+                    }
                     if(propertyDependsOn) {
                         if(formData[propertyDependsOn]) {
                             showComponent=true;
-                           // componentKey = componentKey + "-" + JSON.stringify(formData[propertyDependsOn]);
-                            dependentData = {...formData[propertyDependsOn]}
+                            componentKey = componentKey + "-" + JSON.stringify(formData[propertyDependsOn]);
+                            dependentData = { ...dependentData, ...formData[propertyDependsOn]}
                         } else {
                             if(config[component].render_initial) {
                                 showComponent = true;
@@ -130,7 +135,15 @@ function Widgets(props) {
                                <FormGroup {...commonProps} onSubmit={dataFromForm} />
                             </WidgetWrapper> 
                         case "tab":
-                            return showComponent && <FormGroup {...commonProps} onSubmit={dataFromForm} />
+                            return showComponent && 
+                            <WidgetWrapper commonProps={commonProps}>
+                                <Tab {...commonProps} />
+                            </WidgetWrapper> 
+                        case "info":
+                            return showComponent && 
+                            <WidgetWrapper commonProps={commonProps}>
+                                <Information {...commonProps} />
+                            </WidgetWrapper> 
                         default:
                             break;
                     }

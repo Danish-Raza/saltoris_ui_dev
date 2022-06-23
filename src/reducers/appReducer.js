@@ -194,7 +194,8 @@ export default function appReducer(state=initialState, action) {
       ...state,
       overlay:  {
         show: action.show,
-        components: action.overlay
+        components: action.overlay,
+        dependentData: action.dependentData
       }
     };
   } else{

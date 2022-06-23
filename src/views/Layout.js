@@ -89,7 +89,7 @@ function Layout(props={}) {
           </Fragment>
           : 
         <div style={{width: "100%", height:"100vh", display:"flex", alignItems:"center", justifyContent:"center"}}><Spin size="large" /></div>}
-        <Overlay config={appData ? appData.overlay : {}} />
+        <Overlay appData={appData} config={appData ? appData.overlay : {}} />
     </div>
   );
 }

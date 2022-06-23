@@ -1,0 +1,23 @@
+.tab-wrapper {
+    display: flex;
+    margin-bottom: 20px;
+
+    .tab {
+        display: flex;
+        margin: 0 20px 0 0;
+        // min-width: 190px;
+        cursor: pointer;
+        >div {
+            margin-right: 5px;
+        } 
+    }
+    // .tab:hover {
+    //     text-decoration: underline;
+    // }
+    .tab[disabled] {
+        color: lightgray;
+        cursor: not-allowed;
+        pointer-events: none;
+        font-weight: bold !important;
+    }
+}

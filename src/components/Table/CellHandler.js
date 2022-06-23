@@ -54,13 +54,13 @@ function cellHandler(config, data, helperFuntion) {
             obj.render = (text) => <a>{text}</a>
             columns.push(obj)
         } else if(column.type == "action") {
-            obj.render = (text) => {
+            obj.render = (text, rec) => {
                 if(column.on_click == "overlay") {
                     return  (
                         <div 
                             data-action={column.on_click}
                             data-template={column.template||"default_template"}
-                            onClick={()=> helperFuntion.setOverlay({show: true, overlay: column.overlay})}
+                            onClick={()=> helperFuntion.setOverlay({show: true, overlay: column.overlay, dependentData: rec})}
                          >
                             {column.button_label}
                          </div>

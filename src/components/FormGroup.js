@@ -174,11 +174,11 @@ function FormGroup(props) {
     }
 
     return (
-        <form className="form-group-wrapper"  onSubmit={submitHandler} style={{width: width || "100%"}} data-componentDontExist={props.componentDontExist}>
+        <form className="form-group-wrapper"  onSubmit={submitHandler} style={{width: width || "100%" }} data-componentDontExist={props.componentDontExist}>
             {
                 _.map(sortOrder, order => {
                     return (
-                        <div className="form-wrapper">
+                        <div className="form-wrapper" style={{width: config[order].width || "100%",  ...config[order].group_style && (config[order].group_style)}}>
                             {config[order].title !== undefined &&
                                 <div className="form-wrapper-title">
                                     {config[order].title}
@@ -192,7 +192,7 @@ function FormGroup(props) {
                                 </div>
                             }
                             <FormComponent
-                                config={{...config[order], title: null, on_change:true}}
+                                config={{...config[order], title: null, on_change:true, width: "100%"}}
                                 preFilledData={mockData[order]}
                                 disabled={isDisabled[order]}
                                 id={order}

@@ -11,11 +11,13 @@ const { TextArea } = Input;
 function FieldWrapper(props) {
     const {validated, config} = props
     return (
-        <div className='field' data-validated={validated} type={config.type} style={{display: config.flex ? "flex" : "block", width: config.width || "100%"}}>
-            <div className='field-label'>
-                {config.label_icon && <Icon type={config.label_icon} width={15} height={15}/>}
-                {config.label}
-            </div>
+        <div className='field' data-key={config.key} data-validated={validated} type={config.type} data-template={config.template} style={{display: config.flex ? "flex" : "block", width: config.width || "100%"}}>
+            {config.label &&
+                <div className='field-label'>
+                    {config.label_icon && <Icon type={config.label_icon} width={15} height={15}/>}
+                    {config.label}
+                </div>
+            }
             {props.children}
             {config.fieldFooter}
         </div>
@@ -88,7 +90,7 @@ function Fields(props) {
         case "date":
                 fieldToRender = (
                     <FieldWrapper config={config} validated={validated}>
-                         <DatePicker disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onDateSelect(config.key, value) }/>
+                         <DatePicker getPopupContainer={triggerNode => triggerNode.parentNode} disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onDateSelect(config.key, value) }/>
                     </FieldWrapper>
                 )
                 break;
@@ -102,25 +104,43 @@ function Fields(props) {
                 <FieldWrapper config={config} validated={validated}>
                     <Fragment>
                         <div style={{display:"flex", justifyContent:"space-between", width:"100%"}}>
-                            <div style={{display:"flex", alignItems:"center"}}>
+                            <div className='field-button-wrapper' style={{display:"flex", alignItems:"center", flexWrap:"wrap"}}>
                                 {config.checkbox_label && <Checkbox  disabled={config.disabled} checked={config.value ? true : false}>{config.checkbox_label}</Checkbox>}
                                 <input accept={acceptedFormat} style={{display:"none"}} type={"file"} onChange={(info) => fileHandler(config.key, inputField)} ref={inputField}  />
                                 <input accept={acceptedFormat} style={{display:"none"}} type={"file"} onChange={(info) => fileHandler(config.key, multiInputField, "multiple")} ref={multiInputField}  />
-                                {config.value && config.file_type == "image" &&
-                                    _.map(modValues, value => {
-                                        return (
-                                            <div className='image-preview' disabled={config.disabled}  style={{background: typeof value == "string" ?`url(${value})` : `url(${URL.createObjectURL(value)})` }}></div>
-                                        )
-                                    })
+                                {
+                                    config.template && config.template.includes("box-preview") ? (
+                                        config.value ?
+                                        _.map(modValues, value => {
+                                            return (
+                                                <div key={value} className='image-preview' disabled={config.disabled}  style={{background: typeof value == "string" ?`url(${value})` : `url(${URL.createObjectURL(value)})` }}></div>
+                                            )
+                                        }) : (
+                                            <div className='select-image-box' onClick={() => inputField.current.click()}> + </div>
+                                        )           
+                                    ) : (
+                                        config.value && config.file_type == "image" &&
+                                        _.map(modValues, value => {
+                                            return (
+                                                <div className='image-preview' disabled={config.disabled}  style={{background: typeof value == "string" ?`url(${value})` : `url(${URL.createObjectURL(value)})` }}></div>
+                                            )
+                                        })
+                                    )
                                 }
                                     
                                 <div>
-                                    <Button type='primary' disabled={config.disabled} onClick={() => inputField.current.click()} style={{borderRadius: 8, background:config.disabled?null: "#3B6BFD"}}>{config.placeholder}</Button>
-                                    <div className='field-extra-detail'>
-                                        {config.file_format && <span>Format  ({config.file_format })</span>}
-                                        {config.file_aspect_ratio && <span>Aspect Ratio  ({config.file_aspect_ratio})</span>}
-                                        {config.file_size && <span>Size  ({config.file_size}kb)</span>}
-                                    </div>
+                                    {
+                                        !config.template || (config.template && !config.template.includes("box-preview")) ? (
+                                            <Fragment>
+                                                <Button type='primary' disabled={config.disabled} onClick={() => inputField.current.click()} style={{borderRadius: 8, background:config.disabled?null: "#3B6BFD"}}>{config.placeholder}</Button>
+                                                <div className='field-extra-detail'>
+                                                    {config.file_format && <span>Format  ({config.file_format })</span>}
+                                                    {config.file_aspect_ratio && <span>Aspect Ratio  ({config.file_aspect_ratio})</span>}
+                                                    {config.file_size && <span>Size  ({config.file_size}kb)</span>}
+                                                </div>
+                                            </Fragment>
+                                        ) : ""
+                                    }
                                 </div>
                                 <div className='selected-file-name' disabled={config.disabled}> {
                                 config.value ?
@@ -133,7 +153,7 @@ function Fields(props) {
                                         </div>
                                     )
                                 })
-                                : null}
+                                : config.template && config.template.includes("box-preview")? <div>{config.placeholder}</div>: null}
                                 </div>
                             </div>
                             {

@@ -235,9 +235,15 @@ function Icon(props) {
                </div>
             )
         case "eye-crossed":
-        return (
-            <EyeInvisibleOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height}} />
-        )
+            return (
+                <EyeInvisibleOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height}} />
+            )
+        case "plus":
+            return (
+               <div style={{fontSize: 14, fontWeight: "bold"}}  onClick={onClick?onClick:()=>{}}>
+                   +
+               </div>
+            )
         default:
             break;
     }
