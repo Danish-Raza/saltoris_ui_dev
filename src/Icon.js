@@ -1,4 +1,4 @@
-import { DeleteFilled } from "@ant-design/icons"
+import { DeleteFilled, EyeInvisibleOutlined } from "@ant-design/icons"
 function Icon(props) {
     const {type, width, height, onClick} = props
     switch (type) {
@@ -228,12 +228,16 @@ function Icon(props) {
             )
         case "three-dots":
             return (
-               <div style={{display:"inline-block"}}>
+               <div style={{display:"inline-block"}} onClick={onClick?onClick:()=>{}}>
                    <div style={{backgroundColor:"grey", width: 5, height: 5, borderRadius:"50%", marginBottom: 1}} ></div>
                    <div style={{backgroundColor:"grey", width: 5, height: 5, borderRadius:"50%", marginBottom: 1}}></div>
                    <div style={{backgroundColor:"grey", width: 5, height: 5, borderRadius:"50%"}}></div>
                </div>
             )
+        case "eye-crossed":
+        return (
+            <EyeInvisibleOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height}} />
+        )
         default:
             break;
     }

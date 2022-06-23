@@ -60,7 +60,14 @@ function Cards(props) {
                 time: moment().format("MMM Do, h:mm a")
             },
         ]
-        setData(_mockData)
+        let tempArray = _mockData.filter(rec => rec.status == "archive")
+        let tempArray2 = _mockData.filter(rec => rec.status != "archive")
+        // _.map(_mockData, rec => {
+        //     if(rec.status== "archive") {
+        //         tempArray.push(rec)
+        //     }
+        // })
+        setData([...tempArray2, ...tempArray])
         setOriginalData(_mockData)
     }, [])
   
@@ -88,6 +95,17 @@ function Cards(props) {
             setSelectedFilter(value)
         }
         
+    }
+
+    const changeSatus = (index, value) => {
+        let result = [...data]
+        result[index].status = value
+        if(value == "archive") {
+           let tempObject =  result[index]
+           result.splice(index,1)
+           result.push(tempObject)
+        }
+        setData(result)
     }
 
     const content = (
@@ -118,12 +136,15 @@ function Cards(props) {
             </div>
             <div style={{height: 320, overflowY:"auto"}}>
             {
-                _.map(data, rec => {
+                _.map(data, (rec, _index) => {
                     return (
                         <div className="card-wrapper">
                              <div className="card">
+                                {rec.status == "unread" && <Icon type="eye-crossed" width={15} height={15}/>}
                                 {
-                                    imagePosition == "left" && <div className="image"></div>
+                                    imagePosition == "left" && 
+                                        <div className="image">
+                                        </div>
                                 }
                                 {
                                         <div className="card-content">
@@ -148,7 +169,7 @@ function Cards(props) {
                                 }
                             </div>
                             <div className="mark-option">
-                                <Radio.Group onChange={onChange}>
+                                <Radio.Group onChange={(e) => changeSatus(_index, e.target.value) }value={rec.status}>
                                     <Space direction="vertical">
                                         <Radio value={"read"}>Read</Radio>
                                         <Radio value={"unread"}>Unread</Radio>
