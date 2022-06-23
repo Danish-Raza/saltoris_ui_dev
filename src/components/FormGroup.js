@@ -174,7 +174,7 @@ function FormGroup(props) {
     }
 
     return (
-        <form className="form-group-wrapper"  onSubmit={submitHandler} style={{width: width || "100%"}}>
+        <form className="form-group-wrapper"  onSubmit={submitHandler} style={{width: width || "100%"}} data-componentDontExist={props.componentDontExist}>
             {
                 _.map(sortOrder, order => {
                     return (

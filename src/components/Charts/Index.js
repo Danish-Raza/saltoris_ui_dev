@@ -8,7 +8,7 @@ import DropDown from "./DropDown";
 import Header from "../Header";
 
 function Charts(props) {
-    const { config, handleDrag, handleDrop, isEditable, componentIndex } = props;
+    const { config, handleDrag, handleDrop, isEditable, componentIndex, componentDontExist } = props;
     const { chart_type, dropdown, title, api, params, width, id } = config;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -53,16 +53,9 @@ function Charts(props) {
     return (
         <div 
             className="chart-wrapper widget" 
-            style={{width: width || "100%", 
+            style={{ 
             height:"auto"}}
-            id={config.id}
-            draggable={isEditable}
-            onDrop={handleDrop} 
-            onDragStart={handleDrag}
-            onDragOver={(event) => {
-                event.stopPropagation();
-                event.preventDefault();
-            }}
+            data-componentDontExist={componentDontExist}
         >
             <Header  
                 componentIndex={componentIndex} 

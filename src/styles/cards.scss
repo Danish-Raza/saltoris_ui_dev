@@ -6,6 +6,7 @@
     padding-top: 0;
     margin-bottom: 20px;
     margin-right: 20px;
+    
     .card-wrapper-title {
         font-size: 14px;
         color: black;
@@ -108,17 +109,17 @@
         display: flex;
         .mark-option {
             width: 0%;
-            //display: none;
+            display: none;
             background-color: #3e3a3a;
             transition: 0.3s all;
             margin-bottom: 10px;
             border-top-right-radius: 15px;
             border-bottom-right-radius: 15px;
-            display: flex;
+           // display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            right: -61px;
+           // right: -61px;
             .ant-space-vertical {
                 gap:3px !important;
             }
@@ -152,9 +153,15 @@
         .mark-option {
             width: 30%;
             right:0;
+            display: flex;
             transition: 0.3s all;
         }
     }
+}
+.card-component-wrapper[data-componentdontexist="true"]{
+    opacity: 0.3;
+    pointer-events: none;
+    border: 1px solid grey;
 }
 
 .ant-popover-inner-content {

@@ -13,6 +13,7 @@ const data = {
                     "api": "/asd/asda?",
                     "display":"Overview",
                     "id": "overview",
+                    "parent_id": "overview",
                     "dropdown":{
                         "key": "customer",
                         "api": "",
@@ -287,6 +288,7 @@ const data = {
                     "chart_type": "line",
                     "width": "31%",
                     "id": "chart_1",
+                    "parent_id": "chart_1",
                     "api":"",
                     "header_config":{
                         "template":"dropdown-title"
@@ -329,6 +331,7 @@ const data = {
                     "chart_type": "line",
                     "width": "33%",
                     "id": "chart_2",
+                    "parent_id": "chart_2",
                     "api":"",
                     "title":"Chart 2",
                     "xy_value": "analysis",
@@ -364,7 +367,8 @@ const data = {
                     "type": "chart",
                     "chart_type": "line",
                     "width": "33%",
-                    "id": "chart_2",
+                    "id": "chart_3",
+                    "parent_id": "chart_3",
                     "api":"",
                     "title":"Chart 3",
                     "xy_value": "analysis",
@@ -401,6 +405,7 @@ const data = {
                     "api": "",
                     "width": "30%",
                     "id":"user_feedback",
+                    "parent_id": "user_feedback",
                     "replicate": true,
                     "display": "Activity Feed",
                     "_order": {
@@ -426,6 +431,7 @@ const data = {
                 },
                 "opportunities_table":{
                     "id": "opportunities_table",
+                    "parent_id": "opportunities_table",
                     "type": "table",
                     "width": "48.2%",
                     "display": "Opportunities",
@@ -563,6 +569,7 @@ const data = {
                 },
                 "invoice_table":{
                     "id": "invoice_table",
+                    "parent_id": "invoice_table",
                     "type": "table",
                     "replicate": true,
                     "width": "48.2%",
@@ -638,6 +645,9 @@ const data = {
                             }
                         }
                     }
+                },
+                "original_order":  { 
+                    "overview": 1, "chart_1": 2, "user_feedback": 4, "opportunities_table": 5
                 }
             }
         },

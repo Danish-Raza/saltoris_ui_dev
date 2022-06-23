@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, Fragment } from "react";
 import { useDispatch } from "react-redux";
 import  _ from "underscore";
 import { changeConfig } from "../actions/appActions";
@@ -16,8 +16,10 @@ function Widgets(props) {
     const [formData, setFormData] = useState({})
     const [isEditable, setIsEditable] = useState(false)
     const [draggedItem, setDraggedItem] = useState(null)
-
-    let components = config && config._order ? _.keys(Utils.sortOrder(config._order)) : []
+    const defaultComponents = [];
+    
+    let components = config && config._order ? _.keys(Utils.sortOrder(config._order)) : [];
+   
 
     const handleDrop = ev => {
         dispatch(changeConfig({action:"CHANGE_WIDGET_ORDER", widgetsWrapper, ev, draggedItem }));
@@ -34,9 +36,19 @@ function Widgets(props) {
     }
 
     const toggleIsEditable = () => {
-        setIsEditable(!isEditable)
-    }
+        setIsEditable(!isEditable);
 
+    }
+    if(isEditable) {
+        let originalOrder = config && config.original_order ? _.keys(Utils.sortOrder(config.original_order)) : [];
+        _.map(originalOrder, o => {
+            let i = _.findIndex(components, c => config[c].parent_id == config[o].id);
+            if( i==-1 ) {
+                defaultComponents.push(o);
+            }
+        })
+    } 
+    let combinedComponent = [...components, ...defaultComponents];
     return (
         <div
             className="widgets-wrapper"  
@@ -47,7 +59,7 @@ function Widgets(props) {
             }}
         >
             {
-                _.map(components, (component, componentIndex) => {
+                _.map(combinedComponent, (component, componentIndex) => {
                     let type = config[component].type;
                     let propertyDependsOn = config[component].property_depends_on;
                     let showComponent = true
@@ -71,7 +83,8 @@ function Widgets(props) {
                     let commonProps = {
                         key: componentKey,
                         id: component.id || component,
-                        isEditable: isEditable,
+                        componentDontExist: !components.includes(component) ? true : false,
+                        isEditable: components.includes(component) ? isEditable : false,
                         config: config[component],
                         handleDrop: handleDrop,
                         handleDrag: handleDrag,
@@ -84,13 +97,25 @@ function Widgets(props) {
                             delete commonProps.key
                             return showComponent && <Overview {...commonProps} toggleIsEditable={toggleIsEditable} />
                         case "card":
-                            return showComponent && <Cards {...commonProps} />
+                            return showComponent && 
+                            <WidgetWrapper commonProps={commonProps}>
+                                <Cards {...commonProps} />
+                            </WidgetWrapper>
                         case "chart":
-                            return showComponent && <Charts {...commonProps} />
+                            return showComponent &&
+                            <WidgetWrapper commonProps={commonProps}>
+                                <Charts {...commonProps} />
+                            </WidgetWrapper>
                         case "table":
-                            return showComponent && <Table {...commonProps} />
+                            return showComponent &&
+                            <WidgetWrapper commonProps={commonProps}>
+                                <Table {...commonProps} />
+                            </WidgetWrapper>
                         case "form-group":
-                            return showComponent && <FormGroup {...commonProps} onSubmit={dataFromForm} />
+                            return showComponent &&
+                            <WidgetWrapper commonProps={commonProps}>
+                               <FormGroup {...commonProps} onSubmit={dataFromForm} />
+                            </WidgetWrapper> 
                         case "tab":
                             return showComponent && <FormGroup {...commonProps} onSubmit={dataFromForm} />
                         default:
@@ -99,6 +124,25 @@ function Widgets(props) {
                 })
             }
         </div>
+    )
+}
+function WidgetWrapper(props) {
+    const dispatch = useDispatch()
+    return (
+        <div  
+            id={props.commonProps.config.id}
+            style={{position:"relative" ,width: props.commonProps.config.width || "100%"}}
+            draggable={props.commonProps.isEditable}
+            onDrop={props.commonProps.handleDrop} 
+            onDragStart={props.commonProps.handleDrag}
+            onDragOver={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+            }}
+        >
+            {props.children}
+            {props.commonProps.componentDontExist && <div className="add-back-button" onClick={() => dispatch(changeConfig({action:"ADD_WIDGET",index: props.commonProps.componentIndex , id: props.commonProps.config.id}))}>+</div>}
+        </div>  
     )
 }
 export default Widgets

@@ -258,9 +258,9 @@ export default function LineChart(props) {
     return (
         
         <div>
-            <div>
-            <Line data={dataConfig} options={options} plugins={[annotationLine]} height={250}/>
-        </div>
+        {/* <div> */}
+        <Line data={dataConfig} options={options} plugins={[annotationLine]} height={250}/>
+        {/* </div> */}
         <div className='last-updated'>Last Updated: {moment(new Date()).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
         </div>
     );

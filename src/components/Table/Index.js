@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { setOverlay } from "../../actions/appActions";
 
 function TableComponent(props) {
-    const { config, handleDrop, handleDrag, isEditable, componentIndex, dependentData } = props;
+    const { config, handleDrop, handleDrag, isEditable, componentIndex, dependentData, componentDontExist } = props;
     const { columns, width }  = config;
     const [selectedOption, setSelectedOption] = useState({});
     const [data, setData] = useState([]);
@@ -167,16 +167,8 @@ function TableComponent(props) {
     }
     return (
         <div 
-            className="widget table-wrapper" 
-            style={{width: width}} id={config.id}
-            draggable={isEditable}
-            onDrop={handleDrop} 
-            onDragStart={handleDrag}
-            onDragOver={(event) => {
-                // let event = e as Event;
-                event.stopPropagation();
-                event.preventDefault();
-            }}
+            className="widget table-wrapper"
+            data-componentDontExist={componentDontExist}
             >
             <Header 
                 config={config}
@@ -187,26 +179,6 @@ function TableComponent(props) {
                 
                 />
             <Table dataSource={data} columns={columnConfig} />
-            {/* {
-                <table>
-                    <thead>
-                        <tr>
-                            {
-                                _.map(sortedOrder, order => <th>{columns[order].display}</th>)
-                            }   
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {
-                                _.map(sortedOrder, order => <td>{columns[order].display}</td>)
-                            } 
-                        </tr>
-                    </tbody>
-                </table>
-
-            } */}
-
         </div>
     )
 }

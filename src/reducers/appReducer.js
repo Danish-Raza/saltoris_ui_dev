@@ -118,6 +118,20 @@ export default function appReducer(state=initialState, action) {
       ...state,
       userConfig:  modConfig
     };
+  } else if (actionType == "ADD_WIDGET") {
+      let _modConfig = {...state.userConfig};
+      let _modOrder = _.keys(Utils.sortOrder(_modConfig[state.appParams.curPage][state.appParams.curView].widgets._order));
+      _modOrder.splice(action.index,0, action.id);
+      let _obj = {};
+      _.map(_modOrder, (o,_i) => {
+        _obj={..._obj, [o]: _i}
+      })
+      _modOrder=_obj;
+      _modConfig[state.appParams.curPage][state.appParams.curView].widgets._order=_modOrder;
+      return {
+        ...state,
+        userConfig:  _modConfig
+      };
   } else if (actionType == "REMOVE_WIDGET") {
     let _modConfig = {...state.userConfig};
     let _modOrder = _.keys(Utils.sortOrder(_modConfig[state.appParams.curPage][state.appParams.curView].widgets._order));
@@ -131,7 +145,6 @@ export default function appReducer(state=initialState, action) {
       _modOrder=_obj;
     }
     _modConfig[state.appParams.curPage][state.appParams.curView].widgets._order=_modOrder;
-    
     return {
       ...state,
       userConfig:  _modConfig
@@ -141,13 +154,14 @@ export default function appReducer(state=initialState, action) {
     let dropBoxIndex = null
     let dragBox = null
     let dropBox =  null
-    let field = null
     let detailPanelChildren = action.widgetsWrapper.current.children;
     let _modConfig = {...state.userConfig};
     let components =  _.keys(Utils.sortOrder(_modConfig[state.appParams.curPage][state.appParams.curView].widgets._order));
     for (let i = 0; i < detailPanelChildren.length; i++) {
-      field = detailPanelChildren[i].getAttribute("data-field")
       if (detailPanelChildren[i].id === action.draggedItem) {
+      //  detailPanelChildren[i].dataTransfer.setData("text", action.ev.currentTarget.id);
+       // document.getElementById(action.ev.currentTarget.id).innerHTML = "working";
+       action.ev.dataTransfer.setData('text/plain', 'This text may be dragged') 
         let _componentsIndex =  _.findIndex(components, r => _modConfig[state.appParams.curPage][state.appParams.curView].widgets[r].id == action.draggedItem)
         dragBoxIndex = _componentsIndex
         dragBox = _componentsIndex!=-1 ?  components[_componentsIndex]: null

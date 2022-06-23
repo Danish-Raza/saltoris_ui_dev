@@ -10,7 +10,7 @@ import Icon from "../Icon";
 import { Button, Popover } from 'antd';
 
 function Cards(props) {
-    const {  config, handleDrop, handleDrag, isEditable, componentIndex } = props;
+    const {  config, handleDrop, handleDrag, isEditable, componentIndex, componentDontExist } = props;
     const {display, width, template} = config;
     const dispatch = useDispatch();
     const [markedValue, setMarkedValue] = useState();
@@ -100,18 +100,10 @@ function Cards(props) {
     );
     return (
         <div 
-            className="card-component-wrapper" 
-            style={{width: width || "100%"}} 
+            className="card-component-wrapper"
             data-template={template||"default_template"} 
-            draggable={isEditable} 
-            id={config.id}
-            onDrop={handleDrop} 
-            onDragStart={handleDrag}
-            onDragOver={(event) => {
-                // let event = e as Event;
-                event.stopPropagation();
-                event.preventDefault();
-            }}
+            data-componentDontExist={componentDontExist}
+
         >
             {/* <Header isEditable={isEditable} config={config} /> */}
             <div className="card-wrapper-title">
@@ -119,13 +111,12 @@ function Cards(props) {
                 {isEditable ? <div className="remove-button" onClick={()=>dispatch(changeConfig({action:"REMOVE_WIDGET", id: config.id }))}>-</div>:""}
                 {isEditable && config.replicate && <div className="replicate-button" onClick={()=> dispatch(changeConfig({action:"REPLICATE_WIDGET",component: config, index: componentIndex})) }>+</div>}
                 <Popover className="card-icon" placement="bottomRight" title={false} content={content} trigger="hover">
-                    {/* <Icon type="three-dots"/> */}
                     <Button>
                         <Icon type="three-dots"/> 
                     </Button>
                 </Popover>
             </div>
-            <div style={{height: 310, overflowY:"auto"}}>
+            <div style={{height: 320, overflowY:"auto"}}>
             {
                 _.map(data, rec => {
                     return (
