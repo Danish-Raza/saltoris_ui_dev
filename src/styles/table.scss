@@ -4,6 +4,9 @@
         font-size: 12px;
         .ant-table-cell {
             vertical-align: baseline;
+            .ant-tag {
+                border-radius: 10px;
+            }
             .ant-table-column-sorters  {
                 align-items: baseline;
             }

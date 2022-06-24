@@ -104,18 +104,36 @@ function Cards(props) {
            let tempObject =  result[index]
            result.splice(index,1)
            result.push(tempObject)
-        }
+        } else if(value == "unread") {
+            let tempObject =  result[index]
+            result.splice(index,1)
+            result.splice(0,0,tempObject)
+         }
         setData(result)
     }
 
-    const content = (
-        <div className="card-misc-option">
-            <p data-status={selectedFilter == "read"} onClick={()=> filterData("status", "read")}>Read</p>
-            <p data-status={selectedFilter == "unread"} onClick={()=> filterData("status", "unread")}>Unread</p>
-            <p data-status={selectedFilter == "archive"} onClick={()=> filterData("status", "archive")}>Archive</p>
-            <p className="reset-option" data-status={selectedFilter !== undefined && selectedFilter !== null ? true:    false} onClick={()=> filterData("status", null)}>Reset</p>
-        </div>
-    );
+    const getContent = (order, _index) => {
+        if(order == "card") {
+            return (
+                <div className="card-misc-option">
+                    <p data-status={selectedFilter == "read"} onClick={(e) => changeSatus(_index, "read") }>Read</p>
+                    <p data-status={selectedFilter == "unread"} onClick={(e) => changeSatus(_index, "unread") }>Unread</p>
+                    <p data-status={selectedFilter == "archive"} onClick={(e) => changeSatus(_index, "archive") }>Archive</p>
+                </div>
+            );
+        } else {
+            return (
+                <div className="card-misc-option">
+                    <p data-status={selectedFilter == "read"} onClick={()=> filterData("status", "read")}>Read</p>
+                    <p data-status={selectedFilter == "unread"} onClick={()=> filterData("status", "unread")}>Unread</p>
+                    <p data-status={selectedFilter == "archive"} onClick={()=> filterData("status", "archive")}>Archive</p>
+                    <p className="reset-option" data-status={selectedFilter !== undefined && selectedFilter !== null ? true:    false} onClick={()=> filterData("status", null)}>Reset</p>
+                </div>
+            );
+        }
+
+    }
+
     return (
         <div 
             className="card-component-wrapper"
@@ -126,9 +144,9 @@ function Cards(props) {
             {/* <Header isEditable={isEditable} config={config} /> */}
             <div className="card-wrapper-title">
                 {display}
-                {isEditable ? <div className="remove-button" onClick={()=>dispatch(changeConfig({action:"REMOVE_WIDGET", id: config.id }))}>-</div>:""}
+                {isEditable && config.replicate ? <div className="remove-button" onClick={()=>dispatch(changeConfig({action:"REMOVE_WIDGET", id: config.id }))}>-</div>:""}
                 {isEditable && config.replicate && <div className="replicate-button" onClick={()=> dispatch(changeConfig({action:"REPLICATE_WIDGET",component: config, index: componentIndex})) }>+</div>}
-                <Popover className="card-icon" placement="bottomRight" title={false} content={content} trigger="hover">
+                <Popover className="card-icon" placement="bottomRight" title={false} content={getContent()} trigger="hover">
                     <Button>
                         <Icon type="three-dots"/> 
                     </Button>
@@ -149,7 +167,15 @@ function Cards(props) {
                                 {
                                         <div className="card-content">
                                         {
-                                          rec.time && <div>{rec.time}</div>  
+                                          rec.time && 
+                                            <div>
+                                                {rec.time} 
+                                                <Popover className="card-icon" placement="bottomRight" title={false} content={getContent('card', _index)} trigger="hover">
+                                                    <Button>
+                                                        <Icon type="three-dots" width={15} height={15}/> 
+                                                    </Button>
+                                                </Popover>
+                                            </div>  
                                         }
                                         {
                                             _.map(sortOrder, order => {

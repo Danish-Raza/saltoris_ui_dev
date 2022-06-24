@@ -406,7 +406,7 @@ const data = {
                     "width": "30%",
                     "id":"user_feedback",
                     "parent_id": "user_feedback",
-                    "replicate": true,
+                    //"replicate": true,
                     "display": "Activity Feed",
                     "_order": {
                         "image": 1,

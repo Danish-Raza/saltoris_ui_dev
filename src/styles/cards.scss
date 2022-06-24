@@ -46,6 +46,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            padding-bottom: 2px;
         }
         .replicate-button {
             position: absolute;
@@ -61,6 +62,8 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            padding-bottom: 2px;
+            padding-left: 1px;
         }
     }
     .card {
@@ -83,12 +86,33 @@
         .card-content {
             min-width: 230px;
             position: relative;
-            div:nth-child(1) {
+            >div:nth-child(1) {
                 color: grey;
                 font-size: 10px;
                 position: absolute;
                 top: 0;
-                right: 0;
+                right: 6px;
+                display: flex;
+                align-items: center;
+                height: 15px;
+                >button {
+                    margin-left: 5px;
+                    border: 0;
+                    padding: 0;
+                    background-color: transparent;
+                    top: 4px;
+                    position: relative;
+                    height: auto;
+                    >div{
+                       
+                        pointer-events: none;
+                        >div {
+                            width: 3px !important;
+                            height: 3px !important;
+                            background-color: transparent !important;
+                        }
+                    }
+                }
             }
             div:nth-child(2) {
                 color: #0062FF;
@@ -151,17 +175,32 @@
     .card-wrapper:hover {
         transition: 0.3s all;
         .card {
-            width: 70%;
+          //  width: 70%;
             background-color: #F2F7FF;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+         //   border-top-right-radius: 0;
+        //    border-bottom-right-radius: 0;
+        .card-content {
+            min-width: 230px;
+            position: relative;
+            >div:nth-child(1) {
+                >button {
+                    >div{
+                        cursor: pointer;
+                        pointer-events: unset;
+                        >div {
+                           background-color: grey !important;
+                        }
+                    }
+                }
+            }
         }
-        .mark-option {
-            width: 30%;
-            right:0;
-            display: flex;
-            transition: 0.3s all;
-        }
+    }
+        // .mark-option {
+        //     width: 30%;
+        //     right:0;
+        //     display: flex;
+        //     transition: 0.3s all;
+        // }
     }
 }
 .card-component-wrapper[data-componentdontexist="true"]{
@@ -189,4 +228,10 @@
         }
     }
    
+}
+.ant-popover-placement-bottomRight {
+    padding-top: 3px !important;
+    .ant-popover-arrow{
+        display: none;
+    }
 }

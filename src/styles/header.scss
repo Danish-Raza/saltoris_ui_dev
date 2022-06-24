@@ -20,6 +20,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        padding-bottom: 2px;
     }
     .replicate-button {
         position: absolute;
@@ -35,6 +36,8 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        padding-bottom: 2px;
+        padding-left: 1px;
     }
     .replicate-button:active {
         top: -22px;
