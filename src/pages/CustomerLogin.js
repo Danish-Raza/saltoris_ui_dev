@@ -2,20 +2,16 @@ import { useDispatch } from "react-redux";
 import { login } from "../actions/appActions";
 import FormComponent from "../components/Form/FormComponent";
 import { Fragment, useRef, useState } from "react";
-import Reaptcha from 'reaptcha';
 import Icon from "../Icon";
-
 
 function Login(props={}) {
   let {authLoading, error, errorMessage } = props.appData
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("login")
   const recaptchaRef = useRef();
+
   const loginHandler = (data) => {
     dispatch(login({...data} ))
-  }
-  const onreChange=(value) => {
-    window.alert(value);
   }
 
   const registerHandler = (data) => {
@@ -24,9 +20,11 @@ function Login(props={}) {
     }
     setActiveTab("register-2")
   }
+
   const signUpHandler = (data) => {
   
   }
+
   const loginFormConfig = [
     {
       type: "text",
@@ -53,6 +51,7 @@ function Login(props={}) {
       button_type:"primary"
     }
   ]
+
   const registerFormConfig = [
     {
       type: "text",
@@ -120,6 +119,7 @@ function Login(props={}) {
       button_type:"primary"
     }
   ]
+
   const signUpFormConfig = [
     {
       type: "text",
@@ -202,14 +202,13 @@ function Login(props={}) {
   ]
   
   const tabHandler = (tab) => {
-    error=null
+    error = null
     if (recaptchaRef && recaptchaRef.current && recaptchaRef.current.reset) {
       recaptchaRef.current.reset()
     }
     setActiveTab(tab)
-
-  
   }
+
   let message = ""
   if(authLoading) {
     message = <div>Please wait</div>
@@ -222,8 +221,6 @@ function Login(props={}) {
       <div className="tabs">
          <div className="saltoris-logo"></div>
          <div style={{display:"flex"}}>
-         <div className="tab" data-active={(activeTab === "register-1" || activeTab === "register-2")? true: false} onClick={() => tabHandler("register-1")}>Signup</div>
-         <div className="tab" data-active={activeTab === "login" ? true: false} onClick={() => tabHandler("login")}>Login</div>
          </div>
       </div>
       <div className="network-background">
@@ -237,17 +234,10 @@ function Login(props={}) {
           <FormComponent
             config={loginFormConfig}
             onSubmit={loginHandler}
-            title={["Supplier Login"]}
+            title={["Customer Login"]}
             width={"40%"}
             message={message}
             template={"login-form"}
-            footer = {(
-              <div className="join-network-wrapper">
-                <span>Join the ELIT Network</span> 
-                <span className="seperator">|</span> 
-                <span onClick={() => tabHandler("register-1")}>Register Here</span>
-              </div>
-            )}
           />
         )
       }
@@ -278,9 +268,6 @@ function Login(props={}) {
                   onSubmit={signUpHandler}
                   template={"login-form"}
                   width={"50%"}
-                  // footer={
-                  //  re
-                  // }
                 />
               )
             }

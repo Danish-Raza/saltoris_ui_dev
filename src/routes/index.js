@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import Login from "../pages/Login";
+import SupplierLogin from "../pages/SupplierLogin";
+import CustomerLogin from "../pages/CustomerLogin";
 import Layout from "../views/Layout";
 import NoPage from "../pages/NoPage";
 
@@ -9,7 +10,8 @@ export default function AppRoutes(props) {
     if(loggedIn) {
         element = <Layout />
     } else if(!loggedIn) {
-        element = <Login appData={props.appData}/>
+       element = <SupplierLogin appData={props.appData}/>
+      // element = <CustomerLogin appData={props.appData}/>
     }
     return (
         <Routes>

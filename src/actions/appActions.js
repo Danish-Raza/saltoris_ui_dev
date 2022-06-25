@@ -1,4 +1,5 @@
-import mockConfig from "./mockConfig";
+import defaultSupplierConfig from "./defaultSupplierConfig";
+import defaultBuyerConfig from "./defaultBuyerConfig";
 export function login(data) {
     return function (dispatch, getState) {
         // WebUtils.loadUserDetails(data).then((response) => {
@@ -8,6 +9,22 @@ export function login(data) {
         //   })
         
         dispatch({ type: 'APP_LOADER', data: true});
+        let userList = [
+            {  
+                username:"John Doe",
+                email:"admin@mail.com",
+                user_role: "admin",
+                account_type: "supplier",
+                config_name:"default_supplier"
+            },
+            {
+                username:"John Doe",
+                email:"customer@mail.com",
+                user_role: "admin",
+                account_type: "buyer",
+                config_name:"default_buyer"
+            }
+        ]
         setTimeout(() => {
             let mockUserData = {
                 username:"John Doe",
@@ -17,8 +34,9 @@ export function login(data) {
                 config_name:"default_supplier"
             }
             let password = "demo"
-            if(data.email === mockUserData.email && data.password === password){
-                dispatch({ type: 'LOGIN', data: mockUserData});
+            let userIndex  = userList.findIndex(r => r.email == data.email)
+            if(userIndex != -1 && data.password === password) {
+                dispatch({ type: 'LOGIN', data: userList[userIndex]});
             } else {
                 dispatch({ type: 'LOGIN_FAILED', message: "User not found"});
             }
@@ -38,7 +56,9 @@ export function getUserConfig(configName, curPage, curView, appliedFilters) {
         //     }
         // })
         if(configName == "default_supplier") {
-            dispatch({ type: 'USER_CONFIG', data: mockConfig, curPage, curView, appliedFilters});
+            dispatch({ type: 'USER_CONFIG', data: defaultSupplierConfig, curPage, curView, appliedFilters});
+        } else if(configName == "default_buyer") {
+            dispatch({ type: 'USER_CONFIG', data: defaultBuyerConfig, curPage, curView, appliedFilters});
         }   
     }
 }
