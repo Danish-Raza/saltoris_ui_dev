@@ -206,9 +206,9 @@ function Fields(props) {
             fieldToRender = (
                 <FieldWrapper config={config} validated={validated}>
                      <Reaptcha
-                        sitekey="6LegpDogAAAAAMijU9n21oAwQ2kgb_nRfoYi7od-"
+                        sitekey="6Ld5ppsgAAAAAOLM2Om-owkeHVZz48oez-zKNCqw"
                         onVerify={(value) => onreChange(config.key, value)}
-                        // ref={recaptchaRef}
+                        action={"login"}
                     />
                 </FieldWrapper>  
             )
