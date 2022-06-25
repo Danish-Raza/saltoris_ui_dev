@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import Utils from '../../Utils';
 import _ from "underscore"
 import moment from 'moment';
+import { Fragment } from 'react';
 
 
 export default function LineChart(props) {
@@ -62,9 +63,9 @@ export default function LineChart(props) {
       
         if (!tooltipEl) {
             tooltipEl = document.createElement('div');
-            tooltipEl.style.background = 'rgba(0, 0, 0, 0.7)';
+            // tooltipEl.style.background = 'rgba(0, 0, 0, 0.7)';
             tooltipEl.style.borderRadius = '3px';
-            tooltipEl.style.color = 'white';
+            // tooltipEl.style.color = 'white';
             tooltipEl.style.opacity = 1;
             tooltipEl.style.pointerEvents = 'none';
             tooltipEl.style.position = 'absolute';
@@ -255,13 +256,12 @@ export default function LineChart(props) {
         }
     }
 
-    return (
-        
-        <div>
-        {/* <div> */}
-        <Line data={dataConfig} options={options} plugins={[annotationLine]} height={250}/>
-        {/* </div> */}
-        <div className='last-updated'>Last Updated: {moment(new Date()).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
-        </div>
+    return (    
+        <Fragment>
+            <div>
+                <Line data={dataConfig} options={options} plugins={[annotationLine]} height={250}/>
+            </div>
+            <div className='last-updated'>Last Updated: {moment(new Date()).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
+        </Fragment>
     );
 }

@@ -148,7 +148,7 @@ function Cards(props) {
                 {isEditable && config.replicate && <div className="replicate-button" onClick={()=> dispatch(changeConfig({action:"REPLICATE_WIDGET",component: config, index: componentIndex})) }>+</div>}
                 <Popover className="card-icon" placement="bottomRight" title={false} content={getContent()} trigger="hover">
                     <Button>
-                        <Icon type="three-dots"/> 
+                        <Icon type="filter" width={15} height={15}/> 
                     </Button>
                 </Popover>
             </div>

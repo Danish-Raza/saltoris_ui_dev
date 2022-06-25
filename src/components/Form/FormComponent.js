@@ -155,7 +155,6 @@ function FormComponent(props) {
         } else {
 
         }
-        console.log(components)
     }
 
     const onReset = () => {
@@ -296,14 +295,6 @@ function FormComponent(props) {
             {reset && <button onClick={onReset}>Reset</button>}
             {message}
             {footer}
-            {/* {
-                  <ReCAPTCHA
-                  size= {recaptcha ? "normal": "compact"}
-                  key={'register-1-r-1'}
-                  sitekey="6LegpDogAAAAAMijU9n21oAwQ2kgb_nRfoYi7od-"
-                  onChange={onreChange}
-            />
-            } */}
         </form>
     )
 }
