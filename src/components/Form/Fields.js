@@ -5,6 +5,7 @@ import Icon from '../../Icon';
 import _ from "underscore"
 import Utils from '../../Utils';
 import DropDown from '../Charts/DropDown';
+import Reaptcha from 'reaptcha';
 const { TextArea } = Input;
 
 
@@ -28,7 +29,7 @@ function Fields(props) {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [modalData, setModalData] = useState([]);
-    const { config,  onChange, onSearch, onSelect, onMultiSelect, onDateSelect, onSubmit, validated, onFocus, fileHandler, removeValueHander } = props;
+    const { config,  onChange, onSearch, onSelect, onMultiSelect, onDateSelect, onSubmit, validated, onFocus, fileHandler, removeValueHander, onreChange } = props;
     let fieldToRender=<div>Field</div>
     let inputField = useRef()
     let multiInputField = useRef()
@@ -199,6 +200,32 @@ function Fields(props) {
                 <FieldWrapper config={config} validated={validated}>
                         <DropDown value={config.value} config={config} onChange={onSelect} />
                 </FieldWrapper>
+            )
+            break;
+        case "reaptcha":
+            fieldToRender = (
+                <FieldWrapper config={config} validated={validated}>
+                     <Reaptcha
+                        sitekey="6LegpDogAAAAAMijU9n21oAwQ2kgb_nRfoYi7od-"
+                        onVerify={(value) => onreChange(config.key, value)}
+                        // ref={recaptchaRef}
+                    />
+                </FieldWrapper>  
+            )
+            break;
+            
+        case "checkbox":
+            const checkboxOptions = [];
+            let sortedOptions =  config.option ? _.keys(Utils.sortOrder(config.option._order)) : []
+            _.map(sortedOptions, o => {
+                checkboxOptions.push(
+                    { label: config.option[o] ? config.option[o].display: o, value: o},
+                )
+            })
+            fieldToRender = (
+                <FieldWrapper config={config} validated={validated}>
+                        <Checkbox.Group options={checkboxOptions} onChange={(value) => onSelect(config.key, value)} />
+                </FieldWrapper>  
             )
             break;
         case "button":

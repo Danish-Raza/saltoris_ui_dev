@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { login } from "../actions/appActions";
 import FormComponent from "../components/Form/FormComponent";
-import { Fragment, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha"
+import { Fragment, useRef, useState } from "react";
+import Reaptcha from 'reaptcha';
 import Icon from "../Icon";
 
 
@@ -10,6 +10,7 @@ function Login(props={}) {
   let {authLoading, error, errorMessage } = props.appData
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("login")
+  const recaptchaRef = useRef();
   const loginHandler = (data) => {
     dispatch(login({...data} ))
   }
@@ -18,7 +19,9 @@ function Login(props={}) {
   }
 
   const registerHandler = (data) => {
-  
+    if (recaptchaRef && recaptchaRef.current && recaptchaRef.current.reset) {
+      recaptchaRef.current.reset()
+    }
     setActiveTab("register-2")
   }
   const signUpHandler = (data) => {
@@ -166,6 +169,30 @@ function Login(props={}) {
       key: "business_role"
     },
     {
+      type: "checkbox",
+      placeholder:"Business Role",
+      width:"100%",
+      // icon: <Icon type="business" height={16} width={16}/>,      
+      key: "term_condition",
+      option:{
+        _order: {
+          "I hereby affirm to the Terms and Condition, Privacy Statement and Policy.": 1,
+          "I hereby acknowledge that parts of my (company) information will be made accessible to other users on - boarded on the ELIT Network, based on my roles defined within the scope of the read and agreed - upon, Terms and Conditions, Privacy Statements and Policy.": 2,
+          "Terms and Conditions, Privacy Policy and Statements are subject to change from time to time at the sole discretion of Saltoris Technologies Private Limited.": 3
+        }
+      },
+      required: true,
+      validation_rule:"select-all"
+    },
+    {
+      type: "reaptcha",
+      placeholder:"Business Role",
+      width:"100%",
+      // icon: <Icon type="business" height={16} width={16}/>,      
+      key: "reaptcha",
+      required: true
+    },
+    {
       type: "button",
       onClick: "post",
       api: "",
@@ -176,7 +203,11 @@ function Login(props={}) {
   
   const tabHandler = (tab) => {
     error=null
+    if (recaptchaRef && recaptchaRef.current && recaptchaRef.current.reset) {
+      recaptchaRef.current.reset()
+    }
     setActiveTab(tab)
+
   
   }
   let message = ""
@@ -185,6 +216,7 @@ function Login(props={}) {
   } else if(error) {
     message = <div>{errorMessage}</div>
   }
+
   return (
     <div className="Login-page">
       <div className="tabs">
@@ -245,7 +277,10 @@ function Login(props={}) {
                   title={["Step 2", "Enter Company Administrator Details"]}
                   onSubmit={signUpHandler}
                   template={"login-form"}
-                  width={"40%"}
+                  width={"50%"}
+                  // footer={
+                  //  re
+                  // }
                 />
               )
             }

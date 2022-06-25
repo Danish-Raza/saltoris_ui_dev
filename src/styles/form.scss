@@ -170,7 +170,12 @@
          .ant-picker, .ant-checkbox-inner, 
          .ant-radio-inner {
             border-color: red;
-        } 
+        }
+        .g-recaptcha {
+            >div {
+                border: 1px solid red;
+            }
+        }
     }
     .field[data-validated="true"] {
         .ant-checkbox-inner, 
@@ -207,6 +212,13 @@
             margin: 0 4px 0 4px
         }
     }
+    .field[type="reaptcha"]{
+        .g-recaptcha {
+            >div {
+                margin: auto
+            }
+        }
+    }
     
 }
 .form-component {
@@ -220,7 +232,10 @@
         .field {
             .ant-input-affix-wrapper {
                 border-radius: 0 !important;
-
+            }
+            .ant-checkbox-wrapper {
+                font-size: 12px;
+                margin-bottom: 10px
             }
         }
     }

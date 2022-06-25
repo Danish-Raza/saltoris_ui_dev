@@ -2,7 +2,6 @@ import { notification } from "antd"
 import { useEffect, useState } from "react"
 import Fields from "./Fields"
 import _ from "underscore"
-import ReCAPTCHA from "react-google-recaptcha"
 import Utils from "../../Utils"
 import Icon from "../../Icon"
 import { message as messageF } from 'antd';
@@ -123,12 +122,18 @@ function FormComponent(props) {
         let result = true
         _.map(components, r => {
            if(r.type !== "button") {
+            //validation_rule:"select-all"
+            let validated = (r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
+            if(r.validation_rule && r.validation_rule.includes("select-all")) {
+                let allOption = _.keys(r.option._order)
+                validated = allOption && r.value && allOption.length === r.value.length ? true : false
+            }
             modComponent.push({
                 ...r,
-                validated: (r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
+                validated: validated
             })
             if(result) {
-                result =  (r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
+                result =  validated
             }
            } else  if(r.type  ===  "button") {
                 modComponent.push({
@@ -239,6 +244,21 @@ function FormComponent(props) {
     if(config.style) {
         exStyles = { ...config.style }
     }
+
+    const onreChange = (key,value) => {
+        const { on_change } = config;
+        const { onChange, id } = props
+        let fieldIndex = _.findIndex(components, r => r.key === key)
+        if(fieldIndex !== -1) {
+            let modComponent = [...components]
+            modComponent[fieldIndex].value = value
+            modComponent[fieldIndex].validated = true
+           setComponents(modComponent)
+           if(on_change && onChange) {
+                onChange({key: key, value: modComponent[fieldIndex].value, id: id})
+           }
+        }
+    }
     return (
 
         <form className="form-component" onSubmit={onSubmit} data-template={template||"default-template"} style={{width: width || config.width || "100%", ...exStyles}}>
@@ -266,6 +286,7 @@ function FormComponent(props) {
                             validated={component.validated}
                             onFocus={onFocus}
                             fileHandler={fileHandler}
+                            onreChange={onreChange}
                             removeValueHander={removeValueHander}
                         />
                     )
@@ -283,7 +304,6 @@ function FormComponent(props) {
                   onChange={onreChange}
             />
             } */}
-
         </form>
     )
 }
