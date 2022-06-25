@@ -2,11 +2,9 @@
     background-color: white;
     box-shadow:0 1px 3px 0 rgb(0 0 0 / 5%);
     border-radius: 10px;
-    padding: 15px;
-    padding-top: 0;
+    padding: 0 0 15px 0;
     margin-bottom: 20px;
     margin-right: 20px;
-    
     .card-wrapper-title {
         font-size: 14px;
         color: black;
@@ -18,10 +16,13 @@
         background-color: white;
         height: 50px;
         padding-top: 10px;
+        padding-left: 7px;
         position: sticky;
         top: 0;
         display: flex;
         justify-content: space-between;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
         .ant-btn{
             border: 0;
             outline: none;
@@ -137,6 +138,8 @@
         overflow-x: hidden;
         transition: 0.3s all;
         display: flex;
+        padding-left: 7px;
+        padding-right: 7px;
         .mark-option {
             width: 0%;
             display: none;
