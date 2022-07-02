@@ -1,13 +1,13 @@
 const data = {
     "_order": { "business_analytics": 1, "company_profile": 2},
     "business_analytics": {
-        "display": "Business",
-        "_order":{ "dashboard": 1, "order": 2, "invoice": 3, "trade_relation": 6 , "quality": 4 },
-        "dashboard": {
-            "display":"Dashboard",
+        "display": "About",
+        "_order":{ "overview": 1, "purchase_orders": 2, "invoice": 3, "delivery": 4 , "quality": 5, "customer_ledger": 6 },
+        "overview": {
+            "display":"Overview",
             "icon": "vector",
             "widgets": {
-                "_order": {"overview": 1, "chart_1": 2, "user_feedback": 4, "opportunities_table": 5},
+                "_order": {"overview": 1, "chart_1": 2, "chart_2": 3 ,"user_feedback": 4, "invoice_table": 5, "purchase_table": 6 },
                 "overview":{
                     "type":"overview",
                     "api": "/asd/asda?",
@@ -152,10 +152,42 @@ const data = {
                         }
                     },
                     "_order":{
-                        "Invoice": 1,
-                        "Opportunities": 2,
-                        "Bid": 3,
-                        "Payments": 4
+                        "Order": 1,
+                        "Invoice": 2,
+                        "Invoice (value)": 3,
+                        "Payments": 4,
+                        "Deliveries": 5
+                    },
+                    "Order": {
+                        "_order":{
+                            "title": 1,
+                            "gain_difference": 2,
+                            "compared_against": 3
+                        },
+                        "title": {
+                            "display": "{_key}",
+                        },
+                        "gain_difference": {
+                            "multiple": {
+                                "_order":{
+                                    "gain": 1,
+                                    "difference": 2
+                                },
+                                "gain": {
+                                    "is_currency": "$",
+                                    "display": "{gain}"
+                                },
+                                "difference": {
+                                    "is_percent": true,
+                                    "display": "{difference}",
+                                    "template": "arrow-up-down"
+                                }
+                            }
+                        },
+                        "compared_against": {
+                            "display": "Compared to ({previous_score}) last year",
+                        },
+                        "mapping_key":"Order"
                     },
                     "Invoice": {
                         "_order":{
@@ -186,9 +218,9 @@ const data = {
                         "compared_against": {
                             "display": "Compared to ({previous_score}) last year",
                         },
-                        "mapping_key":"Invoices"
+                        "mapping_key":"Invoice"
                     },
-                    "Opportunities": {
+                    "Invoice (value)": {
                         "_order":{
                             "title": 1,
                             "gain_difference": 2,
@@ -217,38 +249,7 @@ const data = {
                         "compared_against": {
                             "display": "Compared to ({previous_score}) last year",
                         },
-                        "mapping_key":"Opportunities"
-                    },
-                    "Bid": {
-                        "_order":{
-                            "title": 1,
-                            "gain_difference": 2,
-                            "compared_against": 3
-                        },
-                        "title": {
-                            "display": "{_key}",
-                        },
-                        "gain_difference": {
-                            "multiple": {
-                                "_order":{
-                                    "gain": 1,
-                                    "difference": 2
-                                },
-                                "gain": {
-                                    "is_currency": "$",
-                                    "display": "{gain}"
-                                },
-                                "difference": {
-                                    "is_percent": true,
-                                    "display": "{difference}",
-                                    "template": "arrow-up-down"
-                                }
-                            }
-                        },
-                        "compared_against": {
-                            "display": "Compared to ({previous_score}) last year",
-                        },
-                        "mapping_key":"Bid"
+                        "mapping_key":"Invoice (value)"
                     },
                     "Payments": {
                         "_order":{
@@ -281,6 +282,37 @@ const data = {
                         },
                         "mapping_key":"Payments"
                     },
+                    "Deliveries": {
+                        "_order":{
+                            "title": 1,
+                            "gain_difference": 2,
+                            "compared_against": 3
+                        },
+                        "title": {
+                            "display": "{_key}",
+                        },
+                        "gain_difference": {
+                            "multiple": {
+                                "_order":{
+                                    "gain": 1,
+                                    "difference": 2
+                                },
+                                "gain": {
+                                    "is_currency": "$",
+                                    "display": "{gain}"
+                                },
+                                "difference": {
+                                    "is_percent": true,
+                                    "display": "{difference}",
+                                    "template": "arrow-up-down"
+                                }
+                            }
+                        },
+                        "compared_against": {
+                            "display": "Compared to ({previous_score}) last year",
+                        },
+                        "mapping_key":"Deliveries"
+                    },
                 },
                 "chart_1":{
                     "type": "chart",
@@ -308,32 +340,36 @@ const data = {
                         "key": "compared_against",
                         "api": "",
                         "id": "chart_1_dropdown",
-                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "Invoice": 4},
+                        "_order": {"Invoices":2 , "Payments": 1, "Orders": 3, "Delivery": 4},
+                        "Invoices":{
+                            "display":"Invoices"
+                        },
                         "Payments":{
                             "display":"Payments"
                         },
-                        "Bid":{
-                            "display":"Bid"
+                        "Delivery":{
+                            "display":"Delivery"
                         },
-                        "Opportunities":{
-                            "display":"Opportunities"
-                        },
-                        "Invoice":{
-                            "display":"Invoice"
+                        "Orders":{
+                            "display":"Orders"
                         },
                         "default": {
-                            "_order": { "Bid": 1, "Payments": 2},
+                            "_order": { "Invoices": 1, "Payments": 2},
                         }
                     }
                 },
                 "chart_2":{
                     "type": "chart",
+                    "replicate": true,
                     "chart_type": "line",
-                    "width": "33%",
-                    "id": "chart_2",
-                    "parent_id": "chart_2",
+                    "width": "31%",
+                    "id": "chart_1",
+                    "parent_id": "chart_1",
                     "api":"",
-                    "title":"Chart 2",
+                    "header_config":{
+                        "template":"dropdown-title"
+                    },
+                    //"title":"Chart 1",
                     "xy_value": "analysis",
                     "data_template": "convertToList",
                     "x_axis_settings":{
@@ -348,55 +384,21 @@ const data = {
                         "key": "compared_against",
                         "api": "",
                         "id": "chart_1_dropdown",
-                        "_order": {"New Invoice":2 , "Old Invoice": 1, "New Parameter": 3},
-                        "New Invoice":{
-                            "display":"New Invoice"
+                        "_order": {"Purchase Orders":2 , "Dispatch": 1, "Quality": 3, "Rejections": 4},
+                        "Purchase Orders":{
+                            "display":"Purchase Orders"
                         },
-                        "Old Invoice":{
-                            "display":"Old Invoice"
+                        "Dispatch":{
+                            "display":"Dispatch"
                         },
-                        "New Parameter":{
-                            "display":"New Parameter"
+                        "Quality":{
+                            "display":"Quality"
                         },
-                        "default": {
-                            "_order": { "key_1": 1},
-                        }
-                    }
-                },
-                "chart_3":{
-                    "type": "chart",
-                    "chart_type": "line",
-                    "width": "33%",
-                    "id": "chart_3",
-                    "parent_id": "chart_3",
-                    "api":"",
-                    "title":"Chart 3",
-                    "xy_value": "analysis",
-                    "data_template": "convertToList",
-                    "x_axis_settings":{
-                        "x_axis": "date",
-                        "format": "MMMM"
-                    },
-                    "y_axis_settings":{
-                        "y_axis": "score",
-                        "is_currency":"$",
-                    },
-                    "dropdown":{
-                        "key": "compared_against",
-                        "api": "",
-                        "id": "chart_1_dropdown",
-                        "_order": {"New Invoice":2 , "Old Invoice": 1, "New Parameter": 3},
-                        "New Invoice":{
-                            "display":"New Invoice"
-                        },
-                        "Old Invoice":{
-                            "display":"Old Invoice"
-                        },
-                        "New Parameter":{
-                            "display":"New Parameter"
+                        "Rejections":{
+                            "display":"Rejections"
                         },
                         "default": {
-                            "_order": { "key_1": 1},
+                            "_order": { "Purchase Orders": 1, "Dispatch": 2},
                         }
                     }
                 },
@@ -429,95 +431,121 @@ const data = {
                         "display": "{long_text}"
                     }
                 },
-                "opportunities_table":{
-                    "id": "opportunities_table",
-                    "parent_id": "opportunities_table",
+                "invoice_table":{
+                    "id": "invoice_table",
+                    "parent_id": "invoice_table",
                     "type": "table",
-                    "width": "48.2%",
-                    "display": "Opportunities",
+                    "width": "100%",
+                    "display": "Invoice",
                     "replicate": true,
                     "api":  "",
                     "header_config": {
-                        "template":"dropdown-title"
+                        //"template":"dropdown-title"
                     },
-                    "dropdown":{
-                        "key": "compared_against",
-                        "template": "filter",
-                        "api": "",
-                        "mode": "select",
-                        "id": "chart_1_dropdown",
-                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "Invoice": 4},
-                        "Payments":{
-                            "display":"Payments"
-                        },
-                        "Bid":{
-                            "display":"Bid"
-                        },
-                        "Opportunities":{
-                            "display":"Opportunities"
-                        },
-                        "Invoice":{
-                            "display":"Invoice"
-                        },
-                        "default": {
-                            "_order": { "Opportunities":1},
-                        }
-                    },
+                    // "dropdown":{
+                    //     "key": "compared_against",
+                    //     "template": "filter",
+                    //     "api": "",
+                    //     "mode": "select",
+                    //     "id": "chart_1_dropdown",
+                    //     "_order": {"Payments":2 , "Invoice": 4},
+                    //     "Payments":{
+                    //         "display":"Payments"
+                    //     },
+                    //     "Bid":{
+                    //         "display":"Bid"
+                    //     },
+                    //     "Opportunities":{
+                    //         "display":"Opportunities"
+                    //     },
+                    //     "Invoice":{
+                    //         "display":"Invoice"
+                    //     },
+                    //     "default": {
+                    //         "_order": { "Invoice":1},
+                    //     }
+                    // },
                     "columns":{
                         "_order":{
-                            "name": 1,
-                            "requirement": 2,
-                            "due_date": 3,
-                            "value": 4
+                            "invoice_no": 1,
+                            "legal_entity_name": 2,
+                            "invoice_amount": 3,
+                            "invoice_date":4,
+                            "due_date": 5,
+                            "date": 6,
+                            "material": 7,
+                            "invoice_status": 9,
+                           
                         },
-                        "name": {
-                            "display": "Name",
+                        "invoice_no": {
+                            "display": "Invoice ID",
                             "type":"string",
                             "width": "",
                             "align": "left"
                         },
-                        "requirement": {
-                            "display": "Requirement",
+                        "legal_entity_name": {
+                            "display": "Legal Entity Name",
                             "type":"string",
-                            "width": "",
+                            "width":100,
                             "align": "center",
+                            "sort": true
+                        },
+                        "invoice_date": {
+                            "display": "Invoice Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width":200,
+                            // "color":"#FC5A5A",
+                            "align": "left",
                             "sort": true
                         },
                         "due_date": {
                             "display": "Due Date",
                             "type":"date",
                             "format": 'MMM Do YYYY, h:mm a',
-                            "width": "",
+                            "width":200,
                             "color":"#FC5A5A",
                             "align": "left",
                             "sort": true
                         },
-                        "value": {
-                            "display": "Value",
+                        "date": {
+                            "display": "Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',    
+                            "width":200,
+                            // "color":"#FC5A5A",
+                            "align": "left",
+                            "sort": true
+                        },
+                        "invoice_amount": {
+                            "display": "Invoice Amount",
                             "type":"string",
                             "width": "",
                             "align": "center",
-                            "sort": true
+                            //  
                         },
-                        "check_conditions":{
+                        "check_conditions_ex":{
                             "_order":{
                                 "condition_1": 1
                             },
                             "condition_1": {
                                 "condition": "'{compared_against}' == 'Invoice'",
-                                "_order": {
-                                    "buyer": 1,
-                                    "invoice_no": 2,
-                                    "due_date": 3,
-                                    "order_ammount": 4,
-                                    "status": 5
+                                "_order":{
+                                    "invoice_no": 1,
+                                    "legal_entity_name": 2,
+                                    "invoice_amount": 3,
+                                    "invoice_date":4,
+                                    "due_date": 5,
+                                    "date": 6,
+                                    "material": 7,
+                                    "invoice_status": 9,  
                                 }
                             }
                         },
-                        "buyer": {
-                            "display": "Buyer",
+                        "material": {
+                            "display": "material",
                             "type":"string",
-                            "width": "",
+                            "width":100,
                             "align": "left"
                         },
                         "order_ammount": {
@@ -528,101 +556,128 @@ const data = {
                             "is_currency": "$",
                             "sort": true
                         },
-                        "status": {
+                        "invoice_status": {
                             "display": "Status",
                             "type": "tag",
                             "width": "",
                             "align": "left",
                             "color_mapping":{
-                                "Send":"green",
-                                "Rejected":"red",
-                                "Approved": "blue",
-                                "Payments":"#40a9ff"
+                                "Paid":"green",
+                                "Overdue":"red",
+                                "Due":"yellow"
                             },
                             "filters": [
                                 {
-                                    "text": 'Send',
-                                    "value": 'Send',
+                                    "text": 'Paid',
+                                    "value": 'Paid',
                                 },
                                 {
-                                    "text": 'Payments',
-                                    "value": 'Payments',
+                                    "text": 'Overdue',
+                                    "value": 'Overdue',
                                 },
                                 {
-                                    "text": 'Approved',
-                                    "value": 'Approved',
-                                },
-                                {
-                                    "text": 'Rejected',
-                                    "value": 'Rejected',
+                                    "text": 'Due',
+                                    "value": 'Due',
                                 }
                             ],
                             "sort": true
-                        },
-                        "invoice_no": {
-                            "display": "Invoice No.",
-                            "type":"string",
-                            "width": "",
-                            "align": "center"
-                        },
+                        }
                     }
                 },
-                "invoice_table":{
-                    "id": "invoice_table",
-                    "parent_id": "invoice_table",
+                "purchase_table":{
+                    "id": "purchase_table",
+                    "parent_id": "purchase_table",
                     "type": "table",
+                    "width": "100%",
+                    "display": "Purchase Orders",
                     "replicate": true,
-                    "width": "48.2%",
-                    "display": "Invoice Details",
                     "api":  "",
-                    "dropdown":{
-                        "template": "filter",
-                        "key": "compared_against",
-                        "api": "",
-                        "id": "chart_1_dropdown",
-                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "Invoice": 4},
-                        "Payments":{
-                            "display":"Payments"
-                        },
-                        "Bid":{
-                            "display":"Bid"
-                        },
-                        "Opportunities":{
-                            "display":"Opportunities"
-                        },
-                        "Invoice":{
-                            "display":"Invoice"
-                        },
-                        "default": {
-                            "_order": { "Bid": 1, "Payments": 2},
-                        }
+                    "header_config": {
+                        //"template":"dropdown-title"
                     },
+                    // "dropdown":{
+                    //     "key": "compared_against",
+                    //     "template": "filter",
+                    //     "api": "",
+                    //     "mode": "select",
+                    //     "id": "chart_1_dropdown",
+                    //     "_order": {"Payments":2 , "Invoice": 4},
+                    //     "Payments":{
+                    //         "display":"Payments"
+                    //     },
+                    //     "Bid":{
+                    //         "display":"Bid"
+                    //     },
+                    //     "Opportunities":{
+                    //         "display":"Opportunities"
+                    //     },
+                    //     "Invoice":{
+                    //         "display":"Invoice"
+                    //     },
+                    //     "default": {
+                    //         "_order": { "Invoice":1},
+                    //     }
+                    // },
                     "columns":{
                         "_order":{
-                            "buyer": 1,
-                            "invoice_no": 2,
-                            "due_date": 3,
-                            "order_ammount": 4,
-                            "status": 5
+                            "po_id": 1,
+                            "po_date":2,
+                            "address": 3,
+                            "material": 4,                           
+                            "purchase_status": 5,
+                           
                         },
-                        "buyer": {
-                            "display": "Buyer",
+                        "po_id": {
+                            "display": "PO Number",
                             "type":"string",
                             "width": "",
                             "align": "left"
                         },
-                        "invoice_no": {
-                            "display": "Invoice No.",
+                        "address": {
+                            "display": "(Address) Ship To",
                             "type":"string",
-                            "width": "",
-                            "align": "center"
+                            "width":250,
+                            "align": "left",
+                            "sort": true
                         },
-                        "due_date": {
-                            "display": "Due Date",
+                        "po_date": {
+                            "display": "PO Date",
                             "type":"date",
                             "format": 'MMM Do YYYY, h:mm a',
+                            "width":200,
+                            // "color":"#FC5A5A",
+                            "align": "left",
+                            "sort": true
+                        },
+                        "invoice_amount": {
+                            "display": "Invoice Amount",
+                            "type":"string",
                             "width": "",
-                            "color":"#FC5A5A",
+                            "align": "center",
+                            //  
+                        },
+                        "check_conditions_ex":{
+                            "_order":{
+                                "condition_1": 1
+                            },
+                            "condition_1": {
+                                "condition": "'{compared_against}' == 'Invoice'",
+                                "_order":{
+                                    "invoice_no": 1,
+                                    "legal_entity_name": 2,
+                                    "invoice_amount": 3,
+                                    "invoice_date":4,
+                                    "due_date": 5,
+                                    "date": 6,
+                                    "material": 7,
+                                    "invoice_status": 9,  
+                                }
+                            }
+                        },
+                        "material": {
+                            "display": "Material",
+                            "type":"string",
+                            "width":200,
                             "align": "left"
                         },
                         "order_ammount": {
@@ -630,29 +685,44 @@ const data = {
                             "type":"string",
                             "width": "",
                             "align": "center",
-                            "is_currency": "$"
+                            "is_currency": "$",
+                            "sort": true
                         },
-                        "status": {
+                        "purchase_status": {
                             "display": "Status",
                             "type": "tag",
-                            "width": "",
+                            // "width": "",
                             "align": "left",
                             "color_mapping":{
-                                "Send":"green",
-                                "Rejected":"red",
-                                "Approved": "blue",
-                                "Payments":"#40a9ff"
-                            }
+                                "Received":"yellow",
+                                "Dispatched":"green",
+                                "Invoiced":"blue"
+                            },
+                            "filters": [
+                                {
+                                    "text": 'Received',
+                                    "value": 'Received',
+                                },
+                                {
+                                    "text": 'Dispatched',
+                                    "value": 'Dispatched',
+                                },
+                                {
+                                    "text": 'Invoiced',
+                                    "value": 'Invoiced',
+                                }
+                            ],
+                            "sort": true
                         }
                     }
                 },
                 "original_order":  { 
-                    "overview": 1, "chart_1": 2, "user_feedback": 4, "opportunities_table": 5
+                    "overview": 1, "chart_1": 2, "user_feedback": 4, "invoice_table": 5, "purchase_table": 6
                 }
             }
         },
-        "order": {
-            "display": "Order",
+        "purchase_orders": {
+            "display": "Purchase Orders",
             "icon": "orders",
             "widgets": {
                 "_order": {"overlay_tab":1, "form_group":2, "uploaded_certificate": 3},
@@ -1341,15 +1411,15 @@ const data = {
             }
         },
         "invoice": {
-            "display": "Invoice",
+            "display": "Invoices",
             "icon": "invoice"
         },
-        "opportunities": {
-            "display": "Opportunities",
+        "delivery": {
+            "display": "Delivery",
             "icon": "opportunities"
         },
-        "trade_relation": {
-            "display": "Trade Relationships",
+        "customer_ledger": {
+            "display": "Customer Ledger",
             "icon": "relation"
         },
         "quality": {
@@ -1358,7 +1428,7 @@ const data = {
         }
     },
     "company_profile": {
-        "display": "Company Profile",
+        "display": "Profile",
         "_order": {"overview": 1, "company": 2, "contact": 3, "certificate": 4, "document": 5, "miscellaneous": 6},
         "overview": {
             "display":"Overview",

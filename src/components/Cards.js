@@ -20,7 +20,7 @@ function Cards(props) {
     useEffect(() =>{
         const _mockData = [
             {
-                name: "Artem Sazonov",
+                name: "Danish Raza",
                 short_text: "Codedellaroute Project",
                 long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
                 image: "",
@@ -28,23 +28,7 @@ function Cards(props) {
                 time: moment().format("MMM Do, h:mm a")
             },
             {
-                name: "Jaroslav Brabec",
-                short_text: "Website Redesign",
-                long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
-                image: "",
-                status: "archive",
-                time: moment().format("MMM Do, h:mm a")
-            },
-            {
-                name: "Ren Xue",
-                short_text: "Fone Dynamics Website",
-                long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
-                image: "",
-                status: "archive",
-                time: moment().format("MMM Do, h:mm a")
-            },
-            {
-                name: "Jaroslav Brabec",
+                name: "Akshay Pai",
                 short_text: "Website Redesign",
                 long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
                 image: "",
@@ -52,7 +36,23 @@ function Cards(props) {
                 time: moment().format("MMM Do, h:mm a")
             },
             {
-                name: "Ren Xue",
+                name: "Ritwik Pandey",
+                short_text: "Fone Dynamics Website",
+                long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
+                image: "",
+                status: "archive",
+                time: moment().format("MMM Do, h:mm a")
+            },
+            {
+                name: "Ashish Kumar",
+                short_text: "Website Redesign",
+                long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
+                image: "",
+                status: "unread",
+                time: moment().format("MMM Do, h:mm a")
+            },
+            {
+                name: "Mukesh Kumar",
                 short_text: "Fone Dynamics Website",
                 long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
                 image: "",

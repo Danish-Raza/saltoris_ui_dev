@@ -10,8 +10,8 @@ export default function AppRoutes(props) {
     if(loggedIn) {
         element = <Layout />
     } else if(!loggedIn) {
-       element = <SupplierLogin appData={props.appData}/>
-      // element = <CustomerLogin appData={props.appData}/>
+    //  element = <SupplierLogin appData={props.appData}/>
+        element = <CustomerLogin appData={props.appData}/>
     }
     return (
         <Routes>
