@@ -716,9 +716,7 @@ const data = {
                         }
                     }
                 },
-                "original_order":  { 
-                    "overview": 1, "chart_1": 2, "user_feedback": 4, "invoice_table": 5, "purchase_table": 6
-                }
+                "original_order": {"overview": 1, "chart_1": 2, "chart_2": 3 ,"user_feedback": 4, "invoice_table": 5, "purchase_table": 6 }
             }
         },
         "purchase_orders": {
