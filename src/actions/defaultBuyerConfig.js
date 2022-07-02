@@ -363,8 +363,8 @@ const data = {
                     "replicate": true,
                     "chart_type": "line",
                     "width": "31%",
-                    "id": "chart_1",
-                    "parent_id": "chart_1",
+                    "id": "chart_2",
+                    "parent_id": "chart_2",
                     "api":"",
                     "header_config":{
                         "template":"dropdown-title"
