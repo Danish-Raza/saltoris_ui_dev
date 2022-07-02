@@ -38,47 +38,47 @@ function Overview(props) {
     },[])
     const data = {
         "Invoices": {
-            "previous_score": "$21350",
+            "previous_score": "₹ 21350",
             "difference": "2.5",
             "gain": "27632"
         },
         "Opportunities": {
-            "previous_score": "$20119",
+            "previous_score": "₹ 20119",
             "difference": "-2.5",
             "gain": "165"
         },
         "Bid": {
-            "previous_score": "$20119",
+            "previous_score": "₹ 20119",
             "difference": "2.5",
             "gain": "165"
         },
         "Payments": {
-            "previous_score": "$20119",
+            "previous_score": "₹ 20119",
             "difference": "-2.5",
             "gain": "165"
         },
         "Order": {
-            "previous_score": "$21350",
+            "previous_score": "₹ 21350",
             "difference": "2.5",
             "gain": "27632"
         },
         "Invoice": {
-            "previous_score": "$20119",
+            "previous_score": "₹ 20119",
             "difference": "-2.5",
             "gain": "165"
         },
-        "Invoice (value)": {
-            "previous_score": "$20119",
+        "Invoice (₹)": {
+            "previous_score": "₹ 20119",
             "difference": "2.5",
             "gain": "165"
         },
         "Payments": {
-            "previous_score": "$20119",
+            "previous_score": "₹ 20119",
             "difference": "-2.5",
             "gain": "165"
         },
         "Deliveries": {
-            "previous_score": "$20119",
+            "previous_score": "₹ 20119",
             "difference": "-2.5",
             "gain": "165"
         }

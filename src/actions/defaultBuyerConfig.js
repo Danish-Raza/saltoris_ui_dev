@@ -154,7 +154,7 @@ const data = {
                     "_order":{
                         "Order": 1,
                         "Invoice": 2,
-                        "Invoice (value)": 3,
+                        "Invoice (₹)": 3,
                         "Payments": 4,
                         "Deliveries": 5
                     },
@@ -174,7 +174,7 @@ const data = {
                                     "difference": 2
                                 },
                                 "gain": {
-                                    "is_currency": "$",
+                                    "is_currency": "₹",
                                     "display": "{gain}"
                                 },
                                 "difference": {
@@ -205,7 +205,7 @@ const data = {
                                     "difference": 2
                                 },
                                 "gain": {
-                                    "is_currency": "$",
+                                    "is_currency": "₹",
                                     "display": "{gain}"
                                 },
                                 "difference": {
@@ -220,7 +220,7 @@ const data = {
                         },
                         "mapping_key":"Invoice"
                     },
-                    "Invoice (value)": {
+                    "Invoice (₹)": {
                         "_order":{
                             "title": 1,
                             "gain_difference": 2,
@@ -236,7 +236,7 @@ const data = {
                                     "difference": 2
                                 },
                                 "gain": {
-                                    "is_currency": "$",
+                                    "is_currency": "₹",
                                     "display": "{gain}"
                                 },
                                 "difference": {
@@ -249,7 +249,7 @@ const data = {
                         "compared_against": {
                             "display": "Compared to ({previous_score}) last year",
                         },
-                        "mapping_key":"Invoice (value)"
+                        "mapping_key":"Invoice (₹)"
                     },
                     "Payments": {
                         "_order":{
@@ -267,7 +267,7 @@ const data = {
                                     "difference": 2
                                 },
                                 "gain": {
-                                    "is_currency": "$",
+                                    "is_currency": "₹",
                                     "display": "{gain}"
                                 },
                                 "difference": {
@@ -298,7 +298,7 @@ const data = {
                                     "difference": 2
                                 },
                                 "gain": {
-                                    "is_currency": "$",
+                                    "is_currency": "₹",
                                     "display": "{gain}"
                                 },
                                 "difference": {
@@ -334,7 +334,7 @@ const data = {
                     },
                     "y_axis_settings":{
                         "y_axis": "score",
-                        "is_currency":"$",
+                        "is_currency":"₹",
                     },
                     "dropdown":{
                         "key": "compared_against",
@@ -378,7 +378,7 @@ const data = {
                     },
                     "y_axis_settings":{
                         "y_axis": "score",
-                        "is_currency":"$",
+                        "is_currency": "₹",
                     },
                     "dropdown":{
                         "key": "compared_against",
@@ -1444,7 +1444,7 @@ const data = {
                     "form_1":{
                         "initial_disabled": true,
                         "title":"Company Profile",
-                        "_order": {"company_name": 1, "other_name": 2,"elit_network_id": 3,"corporate_website": 4,"elit_public_profile": 5, "description": 6},
+                        "_order": {"company_name": 1, "other_name": 2,"corporate_website": 4, "description": 6},
                         "company_name":{
                             "type": "text",
                             "placeholder": "Type here",
