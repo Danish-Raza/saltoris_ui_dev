@@ -27,6 +27,7 @@ function cellHandler(config, data, helperFuntion) {
             key: order,
             align: column.align,
             color:  color,
+            width: column.width,
             sorter: column.sort ? (a, b) => a.name.length - b.name.length : false,
             filters: column.filters || null,
             onFilter: (value, record) => record[order].indexOf(value) === 0

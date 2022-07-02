@@ -49,6 +49,7 @@ function TableComponent(props) {
           due_date: "2022-10-09",
           address: 'New York No. 1 Lake Park',
           status: 'Send',
+          invoice_status:"Paid",
           invoice_no: "#123",
           title:"title 1",
           category: "category 1",
@@ -58,12 +59,14 @@ function TableComponent(props) {
           dol:"DOL 1",
           dop:"DOP 2",
           isbn:"ISBN 1",
-          in_house_publication: "Publication 1"
+          in_house_publication: "Publication 1",
+          purchase_status:"Dispatched",
         },
         {
           key: '2',
           name: 'Jim Green',
           buyer: 'Jim Green',
+          invoice_status:"Overdue",
           value: 42,
           order_ammount: 42,
           requirement:"Type I",
@@ -83,13 +86,16 @@ function TableComponent(props) {
           dol:"DOL 2",
           dop:"DOP 2",
           isbn:"ISBN 2",
-          in_house_publication: "Publication 2"
+          in_house_publication: "Publication 2",
+          purchase_status:"Received",
         },
         {
           key: '3',
           name: 'Joe Black',
           buyer: 'Joe Black',
           value: 32,
+          purchase_status:"Invoiced",
+          invoice_status:"Overdue",
           order_ammount: 32,
           requirement:"Type I",
           customer_id: "c3",
@@ -116,7 +122,9 @@ function TableComponent(props) {
             buyer:"Joe",
             customer_id: "c4",
             customer_name: "Joe",
+            invoice_Status:"Paid",
             po_id: "p4",
+            invoice_status:"Due",
             material: "material 4",
             value: 32,
             order_ammount: 32,
@@ -133,7 +141,8 @@ function TableComponent(props) {
             dol:"DOL 4",
             dop:"DOP 4",
             isbn:"ISBN 4",
-            in_house_publication: "Publication 4"
+            in_house_publication: "Publication 4",
+            purchase_status:"Received",
           }
     ];
     if(dependentData.po_id) {

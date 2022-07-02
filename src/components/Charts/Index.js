@@ -11,6 +11,7 @@ function Charts(props) {
     const { config, handleDrag, handleDrop, isEditable, componentIndex, componentDontExist } = props;
     const { chart_type, dropdown, title, api, params, width, id } = config;
     const [data, setData] = useState([]);
+    const [oiginal,setOriginal] = useState([])
     const [loading, setLoading] = useState(false)
     const [selectedOption, setSelectedOption] = useState([])
 
@@ -37,8 +38,20 @@ function Charts(props) {
         let resData = supplierDashboard["chart_1"]
         await WebUtils.httpOperations(api, params, "GET")
         .then(response =>  {
-            setData(resData)
             setLoading(false)
+            let filteredData = []
+            _.map(params,(valO, k) => {
+                _.map(resData, rec => {
+                    let modRec = {}
+                    _.map(valO, val => {
+                        modRec={ ...modRec, [val]: rec[val]}
+                    })
+                    modRec.date = rec.date
+                    filteredData.push(modRec)
+                })
+            })
+            setData(filteredData)
+            setOriginal(resData)
             setSelectedOption(params)
         }, error =>  {
             setData(resData)
