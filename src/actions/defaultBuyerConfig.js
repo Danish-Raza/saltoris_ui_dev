@@ -1,6 +1,6 @@
 const data = {
-    "_order": { "business_analytics": 1, "company_profile": 2},
-    "business_analytics": {
+    "_order": { "about": 1, "profile": 2},
+    "about": {
         "display": "About",
         "_order":{ "overview": 1, "purchase_orders": 2, "invoice": 3, "delivery": 4 , "quality": 5, "customer_ledger": 6 },
         "overview": {
@@ -112,16 +112,23 @@ const data = {
                                 "key": "against",
                                 "label": "Download",
                                 "_order": {
+                                    "Order":1,
                                     "Invoice":1,
-                                    "Opportunities": 2,
-                                    "Bid":3,
-                                    "Payments": 4
+                                    "Invoice (₹)": 2,
+                                    "Payments": 4,
+                                    "Deliveries":3,
+                                },
+                                "Order": {
+                                    "display":"Order"
                                 },
                                 "Invoice": {
                                     "display":"Invoice"
                                 },
-                                "Opportunities": {
-                                    "display":"Opportunities"
+                                "Invoice (₹)": {
+                                    "display":"Invoice (₹)"
+                                },
+                                "Deliveries": {
+                                    "display":"Deliveries"
                                 },
                                 "Bid": {
                                     "display":"Bid"
@@ -129,21 +136,9 @@ const data = {
                                 "Payments": {
                                     "display":"Payments"
                                 },
-                                "option":{
-                                    "_order": {
-                                        "pdf":1,
-                                        "csv": 2
-                                    },
-                                    "pdf": {
-                                        "display":"PDF"
-                                    },
-                                    "csv": {
-                                        "display":"CSV"
-                                    }
-                                },
                                 "default":{
                                     "_order": {
-                                        "Invoice":1
+                                        "Order":1
                                     }
                                 },
                                 "flex": true,
@@ -1425,7 +1420,7 @@ const data = {
             "icon": "quality"
         }
     },
-    "company_profile": {
+    "profile": {
         "display": "Profile",
         "_order": {"overview": 1, "company": 2, "contact": 3, "certificate": 4, "document": 5, "miscellaneous": 6},
         "overview": {
