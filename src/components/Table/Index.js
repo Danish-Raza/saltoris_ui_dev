@@ -59,8 +59,10 @@ function TableComponent(props) {
           dol:"DOL 1",
           dop:"DOP 2",
           isbn:"ISBN 1",
+          "ship_to":"Hyderabad",
           in_house_publication: "Publication 1",
           purchase_status:"Dispatched",
+          po_status:"Received"
         },
         {
           key: '2',
@@ -88,6 +90,8 @@ function TableComponent(props) {
           isbn:"ISBN 2",
           in_house_publication: "Publication 2",
           purchase_status:"Received",
+          "ship_to":"Agra",
+          po_status:"Invoiced"
         },
         {
           key: '3',
@@ -114,7 +118,9 @@ function TableComponent(props) {
           dol:"DOL 3",
           dop:"DOP 3",
           isbn:"ISBN 3",
-          in_house_publication: "Publication 3"
+          "ship_to":"Delhi",
+          in_house_publication: "Publication 3",
+          po_status:"Dispatched"
         }, 
         {
             key: '4',
@@ -141,12 +147,21 @@ function TableComponent(props) {
             dol:"DOL 4",
             dop:"DOP 4",
             isbn:"ISBN 4",
+            "ship_to":"Lucknow",
             in_house_publication: "Publication 4",
             purchase_status:"Received",
+            po_status:"Received"    
           }
     ];
     if(dependentData.po_id) {
         let filteredData = _mockData.filter(rec => dependentData.po_id.includes(rec.po_id))
+        if(filteredData && filteredData.length>0) {
+            setData(filteredData)
+        } else {
+            setData(data)
+        }  
+    } else if(dependentData.invoice_no) {
+        let filteredData = _mockData.filter(rec => dependentData.invoice_no.includes(rec.invoice_no))
         if(filteredData && filteredData.length>0) {
             setData(filteredData)
         } else {

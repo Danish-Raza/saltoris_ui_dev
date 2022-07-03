@@ -1,46 +1,74 @@
 import defaultSupplierConfig from "./defaultSupplierConfig";
 import defaultBuyerConfig from "./defaultBuyerConfig";
+import WebUtils from "../WebUtils";
 export function login(data) {
     return function (dispatch, getState) {
-        // WebUtils.loadUserDetails(data).then((response) => {
-        //     if(response && response.status == 200) {
-        //       dispatch({ type: 'LOGIN', data: response.data.data});
-        //     }
-        //   })
-        
         dispatch({ type: 'APP_LOADER', data: true});
-        let userList = [
-            {  
-                username:"John Doe",
-                email:"admin@mail.com",
-                user_role: "admin",
-                account_type: "supplier",
-                config_name:"default_supplier"
-            },
-            {
-                username:"John Doe",
-                email:"customer@mail.com",
-                user_role: "admin",
-                account_type: "buyer",
-                config_name:"default_buyer"
-            }
-        ]
-        setTimeout(() => {
-            let mockUserData = {
-                username:"John Doe",
-                email:"admin@mail.com",
-                user_role: "admin",
-                account_type: "supplier",
-                config_name:"default_supplier"
-            }
-            let password = "demo"
-            let userIndex  = userList.findIndex(r => r.email == data.email)
-            if(userIndex != -1 && data.password === password) {
-                dispatch({ type: 'LOGIN', data: userList[userIndex]});
+        WebUtils.loadUserDetails(data).then((response) => {
+            if(response && response.status == 200 && response.data && response.data.authenticated) {
+                let userList = [
+                    {  
+                        username:"John Doe",
+                        email:"admin@mail.com",
+                        user_role: "admin",
+                        account_type: "supplier",
+                        config_name:"default_supplier"
+                    },
+                    {
+                        username:"John Doe",
+                        email:"customer@mail.com",
+                        user_role: "admin",
+                        account_type: "buyer",
+                        config_name:"default_buyer"
+                    }
+                ]
+                dispatch({ type: 'LOGIN', data:  {
+                    username: response.data.customerName,
+                    email:"customer@mail.com",
+                    user_role: "admin",
+                    account_type: "buyer",
+                    config_name:"default_buyer",
+                    ...response.data,
+                }});
             } else {
                 dispatch({ type: 'LOGIN_FAILED', message: "User not found"});
             }
-        }, 1000);
+
+        })
+        
+      
+        // let userList = [
+        //     {  
+        //         username:"John Doe",
+        //         email:"admin@mail.com",
+        //         user_role: "admin",
+        //         account_type: "supplier",
+        //         config_name:"default_supplier"
+        //     },
+        //     {
+        //         username:"John Doe",
+        //         email:"customer@mail.com",
+        //         user_role: "admin",
+        //         account_type: "buyer",
+        //         config_name:"default_buyer"
+        //     }
+        // ]
+        // setTimeout(() => {
+        //     let mockUserData = {
+        //         username:"John Doe",
+        //         email:"admin@mail.com",
+        //         user_role: "admin",
+        //         account_type: "supplier",
+        //         config_name:"default_supplier"
+        //     }
+        //     let password = "demo"
+        //     let userIndex  = userList.findIndex(r => r.email == data.email)
+        //     if(userIndex != -1 && data.password === password) {
+        //         dispatch({ type: 'LOGIN', data: userList[userIndex]});
+        //     } else {
+        //         dispatch({ type: 'LOGIN_FAILED', message: "User not found"});
+        //     }
+        // }, 1000);
     }
 }
 export function logout() {

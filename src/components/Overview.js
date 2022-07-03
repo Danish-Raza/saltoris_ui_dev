@@ -7,6 +7,7 @@ import { Modal } from "antd";
 import GenerateReport from "./GenerateReport";
 import { applyFilters } from "../actions/appActions";
 import { useDispatch, useSelector } from "react-redux";
+
 function Overview(props) {
     const { config={}, toggleIsEditable, isEditable } = props;
     const [sortedTabOrder, setSortedTabOrder] = useState([]);
@@ -15,6 +16,7 @@ function Overview(props) {
     const [draggedItem, setDraggedItem] = useState(null);
     const overviewWrapper = useRef(null);
     const { display } = config;
+    
     useEffect(() => {
         let _sortedTabOrder = _.keys(Utils.sortOrder(config._order))
         setSortedTabOrder(_sortedTabOrder)
@@ -36,6 +38,7 @@ function Overview(props) {
             dispatch(applyFilters(appliedFilters))
         }
     },[])
+
     const data = {
         "Invoices": {
             "previous_score": "₹ 21350",
@@ -60,7 +63,7 @@ function Overview(props) {
         "Order": {
             "previous_score": "₹ 21350",
             "difference": "2.5",
-            "gain": "27632"
+            "gain": "27.60 L"
         },
         "Invoice": {
             "previous_score": "₹ 20119",
@@ -144,7 +147,7 @@ function Overview(props) {
                      <GenerateReport config={config.generate_report}/>
                 ) : ""}
             </div>
-            <div ref={overviewWrapper} style={{display:"flex"}} >
+            <div ref={overviewWrapper} style={{display:"flex", flexWrap:"wrap"}} >
             {
                _.map(sortedTabOrder, tab => {
                    let rec = {...data[config[tab].mapping_key], _key: tab}
@@ -199,9 +202,14 @@ function Overview(props) {
                                         </div>
                                     )
                                 } else {
+                                    let modRec = rec
+                                    if(config[tab][order].property_depends_on == "filters") {
+                                        modRec={...modRec, ...appData.appParams.appliedFilters}
+                                    }
+                                    console.log("modRec", modRec)
                                  return (
                                         <div className="cell" data-point={order}>
-                                            {Utils.injectData(config[tab][order].display, rec)}
+                                            {Utils.injectData(config[tab][order].display, modRec, config[tab][order].mapping)}
                                         </div>
                                     )
                                 }
@@ -218,4 +226,5 @@ function Overview(props) {
         </div>
     ) 
 }
+
 export default Overview;

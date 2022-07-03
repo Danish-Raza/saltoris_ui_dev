@@ -37,7 +37,7 @@ const nFormatter = (num, digits=1) =>  {
     });
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
-const injectData = (str , data) => {
+const injectData = (str , data, mapping) => {
     var stateItem = [];
     var r = str.match(/\{[\w]+\}/g);
     r && r.forEach((state) => {
@@ -50,6 +50,9 @@ const injectData = (str , data) => {
     if(dPoints.length > 0) {
       let parsedString = dPoints.reduce( (accString, string) => {
         let value = obj[string];
+        if(mapping && mapping[value]) {
+          value = mapping[value]
+        }
         accString = accString.replace('{' + string + '}', `${value}`);
         return accString;
       }, str);

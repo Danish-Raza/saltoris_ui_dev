@@ -6,27 +6,27 @@ const setHeaderParams = () => {
 }
 const WebUtils = {
     downloadFile: function(url, fileName) {
-    setHeaderParams()
-    axios({
-        url: url,
-        method: 'GET',
-        responseType: 'blob',
-        })
-        .then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `${fileName}`);
-            document.body.appendChild(link);
-            link.click();
-        })
-        .catch(err=>{
-            let args = {
-                message: 'Failed to download',
-                duration: 0
-            };
-            notification.error(args)
-        })
+      setHeaderParams()
+      axios({
+          url: url,
+          method: 'GET',
+          responseType: 'blob',
+          })
+          .then((response) => {
+              const url = window.URL.createObjectURL(new Blob([response.data]));
+              const link = document.createElement('a');
+              link.href = url;
+              link.setAttribute('download', `${fileName}`);
+              document.body.appendChild(link);
+              link.click();
+          })
+          .catch(err=>{
+              let args = {
+                  message: 'Failed to download',
+                  duration: 0
+              };
+              notification.error(args)
+          })
     },
     httpOperations: function(url, data,  httpMethod = undefined, responseType = undefined) {
         setHeaderParams()
@@ -48,6 +48,11 @@ const WebUtils = {
           return axios.put(url,data)
           .then(success => Promise.resolve(success) , error =>  Promise.reject(error))
         }
+    },
+    loadUserDetails: function(data,  httpMethod = undefined, responseType = undefined) {
+      setHeaderParams()
+      return axios.get(`http://54.87.33.187:8081/authenticate?username=${data.email}&password=${data.password}`)
+      .then(success => Promise.resolve(success) , error =>  Promise.reject(error))
     },
 }
 export default WebUtils

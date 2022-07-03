@@ -36,7 +36,7 @@ function Cards(props) {
                 time: moment().format("MMM Do, h:mm a")
             },
             {
-                name: "Ritwik Pandey",
+                name: "Akshay Pai",
                 short_text: "Fone Dynamics Website",
                 long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
                 image: "",
@@ -44,7 +44,7 @@ function Cards(props) {
                 time: moment().format("MMM Do, h:mm a")
             },
             {
-                name: "Ashish Kumar",
+                name: "Shweta Gupta",
                 short_text: "Website Redesign",
                 long_text: "Hey Cak, Could you free now? Can you look and read the brief first…",
                 image: "",
