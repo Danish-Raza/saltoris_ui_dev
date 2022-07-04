@@ -352,7 +352,7 @@ const data = {
                     "data_template": "convertToList",
                     "x_axis_settings": {
                         "x_axis": "date",
-                        "format": "DD MMM"
+                        "format": "Do MMM"
                     },
                     "y_axis_settings":{
                         "y_axis": "score",
@@ -394,11 +394,11 @@ const data = {
                     //"title":"Chart 1",
                     "xy_value": "analysis",
                     "data_template": "convertToList",
-                    "x_axis_settings":{
+                    "x_axis_settings": {
                         "x_axis": "date",
-                        "format": "MMMM"
+                        "format": "Do MMM"
                     },
-                    "y_axis_settings":{
+                    "y_axis_settings": {
                         "y_axis": "score",
                         "is_currency": "₹",
                     },
