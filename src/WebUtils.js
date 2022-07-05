@@ -51,7 +51,7 @@ const WebUtils = {
     },
     loadUserDetails: function(data,  httpMethod = undefined, responseType = undefined) {
       setHeaderParams()
-      return axios.get(`http://54.87.33.187:8081/authenticate?username=${data.email}&password=${data.password}`)
+      return axios.get(`https://54.87.33.187:8081/authenticate?username=${data.email}&password=${data.password}`)
       .then(success => Promise.resolve(success) , error =>  Promise.reject(error))
     },
 }
