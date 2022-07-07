@@ -59,7 +59,7 @@ function Layout(props={}) {
       }
       navigate(url)
     }
-    console.log(appData.appParams)
+    
   return (
     <div className="App">
         {appData.userConfig ?

@@ -33,7 +33,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "deploy-buyer":  "concurrently 'git remote set-url origin https://github.com/Danish-Raza/dixon.git' 'git add .' 'git commit -m `updating branch`'  'git push origin master' 'npm run deploy'"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^7.2.2",
     "gh-pages": "^4.0.0",
     "react-router-dom": "^6.3.0"
   }
