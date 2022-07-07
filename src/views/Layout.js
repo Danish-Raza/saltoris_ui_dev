@@ -59,7 +59,6 @@ function Layout(props={}) {
       }
       navigate(url)
     }
-    console.log("ad")
   return (
     <div className="App">
         {appData.userConfig ?

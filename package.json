@@ -2,7 +2,7 @@
   "name": "saltoris",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Danish-raza.github.io/dixon",
+  "homepage": "/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -19,7 +19,7 @@
     "react-redux": "^8.0.2",
     "react-route": "^1.0.3",
     "react-router": "^6.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "4.0.3",
     "reaptcha": "^1.12.0",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
@@ -29,12 +29,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-buyer": "concurrently 'REACT_APP_ACCOUNT_TYPE=BUYER PUBLIC_URL=dixon npm run start'",
+    "start-supplier": "concurrently 'REACT_APP_ACCOUNT_TYPE=SUPPIER PUBLIC_URL=saltoris_ui_dev npm run start'",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "deploy-buyer":  "concurrently 'git remote set-url origin https://github.com/Danish-Raza/dixon.git' 'git add .' 'git commit -m updating'  'git push origin master' 'npm run deploy'"
+    "deploy-buyer": "concurrently 'git remote set-url origin https://github.com/Danish-Raza/dixon.git' 'git add .' 'git commit -m \"deploying\"'  'git push origin master' 'REACT_APP_ACCOUNT_TYPE=BUYER PUBLIC_URL=dixon npm run deploy'",
+    "deploy-supplier": "concurrently 'git remote set-url origin https://github.com/Danish-Raza/saltoris_ui_dev.git' 'git add .' 'git commit -m \"deploying\"'  'git push origin master' 'REACT_APP_ACCOUNT_TYPE=SUPPIER PUBLIC_URL=saltoris_ui_dev npm run deploy'"
   },
   "eslintConfig": {
     "extends": [

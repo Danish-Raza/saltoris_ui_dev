@@ -11,7 +11,7 @@ function UserProfile(props) {
     const navigate = useNavigate()
     document.querySelector("body").addEventListener("click", (e) => {
         var element = document.querySelector('.user-profile-section');
-        if(!element.contains(e.target)) {
+        if(element && !element.contains(e.target)) {
             setDropDownStatus(false)
         }
 

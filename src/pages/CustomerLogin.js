@@ -209,17 +209,17 @@ function Login(props={}) {
     setActiveTab(tab)
   }
 
-  let message = ""
+  let message = ""  
   if(authLoading) {
     message = <div>Please wait</div>
   } else if(error) {
     message = <div>{errorMessage}</div>
   }
-
+  console.log(process.env)
   return (
     <div className="Login-page">
-      <div className="tabs">
-         <div className="saltoris-logo"></div>
+      <div className="tabs" >
+         <div className="saltoris-logo" data-account-type={process && process.env && process.env.REACT_APP_ACCOUNT_TYPE ? process.env.REACT_APP_ACCOUNT_TYPE : false}></div>
          <div style={{display:"flex"}}>
          </div>
       </div>

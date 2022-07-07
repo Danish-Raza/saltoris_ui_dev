@@ -21,7 +21,7 @@ const SideBar = (props) => {
     return (
         <div className="sidebar"  data-status={ collapsed ? "active" : "inactive"}>
             <div className="saltoris-logo-wrapper">
-                <div className="saltoris-logo"></div>
+                <div className="saltoris-logo" data-account-type={process.env.REACT_APP_ACCOUNT_TYPE}></div>
                 <span className="border-bottom"></span>
                 <Icon type={collapsed ? "arrow-left" : "arrow-right"} width={20} height={20} onClick={() => setCollapsed(!collapsed)}/>
                 {/* <div className="expand-icon" data-status={ collapsed ? "active" : "inactive"} onClick={() => setCollapsed(!collapsed)}>arrow</div> */}

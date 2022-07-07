@@ -6,8 +6,15 @@
     align-items: center;
 }
 
-.saltoris-logo {
+.saltoris-logo[data-account-type="BUYER"] {
     background-image: url("../images/deil-logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 150px;
+    height: 42px;
+}
+.saltoris-logo[data-account-type="SUPPIER"] {
+    background-image: url("../images/saltoris.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 150px;

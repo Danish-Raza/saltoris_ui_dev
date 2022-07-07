@@ -10,8 +10,11 @@ export default function AppRoutes(props) {
     if(loggedIn) {
         element = <Layout />
     } else if(!loggedIn) {
-    //  element = <SupplierLogin appData={props.appData}/>
-        element = <CustomerLogin appData={props.appData}/>
+        if(process && process.env && process.env.REACT_APP_ACCOUNT_TYPE == "SUPPIER") {
+            element = <SupplierLogin appData={props.appData}/>
+        } else if(process && process.env && process.env.REACT_APP_ACCOUNT_TYPE == "BUYER") {
+            element = <CustomerLogin appData={props.appData}/>
+        }
     }
     return (
         <Routes>
