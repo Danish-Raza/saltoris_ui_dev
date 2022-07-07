@@ -34,7 +34,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "deploy-buyer":  "concurrently 'git remote set-url origin https://github.com/Danish-Raza/dixon.git' 'git add .' 'git commit -m `updating branch`'  'git push origin master' 'npm run deploy'"
+    "deploy-buyer":  "concurrently 'git remote set-url origin https://github.com/Danish-Raza/dixon.git' 'git add .' 'git commit -m updating'  'git push origin master' 'npm run deploy'"
   },
   "eslintConfig": {
     "extends": [
