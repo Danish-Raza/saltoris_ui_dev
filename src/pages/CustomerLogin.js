@@ -41,7 +41,7 @@ function Login(props={}) {
       width:"100%",
       key: "password",
       required: true,
-      fieldFooter: <div style={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop: 15, fontSize:13 }}><span style={{color:"red"}}>Forgot Username</span> </div>
+      fieldFooter: <div style={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop: 15, fontSize:13 }}><span style={{color:"red"}}>Forgot Username</span> <span style={{margin:"0 5px 0 5px"}}>or</span> <span style={{color:"red"}}>Forgot Passowrd</span></div>
     },
     {
       type: "button",
