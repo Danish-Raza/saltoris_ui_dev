@@ -2,6 +2,11 @@
    // margin-top: 20px;
     .ant-table {
         font-size: 12px;
+        .ant-table-header {
+            &.ant-table-sticky-holder {
+                top: 3.819vw !important;
+            }
+        }
         .ant-table-cell {
             vertical-align: baseline;
             .ant-tag {
@@ -12,6 +17,8 @@
             }
             >div[data-template="button"] {
                 border-radius: 5px;
+                min-width: 77px;
+                max-width: 77px;
                 color: white;
                 font-size: 12px;
                 font-weight: normal;
@@ -36,4 +43,18 @@
             }
         }
     }
+}
+.popover-button-wrapper {
+    padding: 0;
+    border: 0;
+}
+.table-column-icon {    
+    background-image: url("../images/table-column.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: -3px;
 }

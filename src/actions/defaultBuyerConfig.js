@@ -340,7 +340,7 @@ const data = {
                     "type": "chart",
                     "replicate": true,
                     "chart_type": "line",
-                    "width": "31%",
+                    "width": "35%",
                     "id": "chart_1",
                     "parent_id": "chart_1",
                     "api":"",
@@ -376,7 +376,7 @@ const data = {
                             "display":"Purchase Orders"
                         },
                         "default": {
-                            "_order": { "Invoices": 1, "Payments": 2},
+                            "_order": { "Invoices": 1, "Purchase Orders": 2},
                         }
                     }
                 },
@@ -384,7 +384,7 @@ const data = {
                     "type": "chart",
                     "replicate": true,
                     "chart_type": "line",
-                    "width": "31%",
+                    "width": "35%",
                     "id": "chart_2",
                     "parent_id": "chart_2",
                     "api":"",
@@ -455,7 +455,8 @@ const data = {
                 },
                 "invoice_table": {
                     "render_initial": true,
-                    "id": "opportunities_table",
+                    "id": "invoice_table",
+                    "parent_id":"invoice_table",
                     "type": "table",
                     "width": "100%",
                     "display": "Invoices",
@@ -556,7 +557,8 @@ const data = {
                 },
                 "purchase_order_table": {
                     "render_initial": true,
-                    "id": "opportunities_table",
+                    "id": "purchase_order_table",
+                    "parent_id":"purchase_order_table",
                     "type": "table",
                     "width": "100%",
                    "display": "Purchase Orders",

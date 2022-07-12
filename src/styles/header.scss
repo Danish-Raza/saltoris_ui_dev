@@ -1,6 +1,7 @@
 .widget-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 15px;
     position: relative;
     .widget-title {
@@ -55,6 +56,16 @@
         }
         .ant-select-arrow {
             font-size: 10px;
+        }
+    }
+}
+.magnify-popup {
+    width: 100% !important;
+
+    .ant-modal-body {
+        height: auto !important;
+        >div{
+            margin: 0 auto  ;
         }
     }
 }

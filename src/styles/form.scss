@@ -52,7 +52,9 @@
                 border-radius: 10px;
                 height: 100%;
             }
-            
+        }
+        .ant-slider {
+            width: 100%;
         }
         &[data-template*="no-border"] {
             >input , >textarea,  .ant-input-affix-wrapper, .ant-picker {
@@ -169,7 +171,9 @@
          .ant-input-affix-wrapper, 
          .ant-picker, .ant-checkbox-inner, 
          .ant-radio-inner {
-            border-color: red;
+            // border-color: red;
+            border: 1px solid red !important;
+            border-radius: 10px !important;
         }
         iframe[title="reCAPTCHA"]{
             border: 2px solid red !important;
@@ -188,9 +192,12 @@
         align-items: center;
         display: flex;
         color: #44444F;
-        span, svg{
+        span, svg {
             margin-right: 10px;
             cursor: default;
+            path {
+                fill: black;
+            }
         }
     }
     .ant-picker {
@@ -228,6 +235,21 @@
     &[data-template="default-template"] {
         @include default-template()
     }
+    &[data-template*="table-search-popup"] {
+        @include default-template();
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        padding-left: 0 !important;
+        width: 85% !important;
+        position: absolute;
+        top: 9px; 
+        .field {
+            margin-top: 0;
+        }
+        .ant-select {
+            max-width: unset !important;
+        }
+    }
     &[data-template="login-form"] {
         @include default-template();
         background-color: white;
@@ -239,6 +261,11 @@
             .ant-checkbox-wrapper {
                 font-size: 12px;
                 margin-bottom: 10px
+            }
+            svg[class="address-icon"] {
+               path {
+                stroke: rgb(146, 146, 157) !important
+               }
             }
         }
     }
@@ -252,7 +279,7 @@
             }
         }
     }
-    &[data-template="template-1"] {
+    &[data-template*="template-1"] {
         @include default-template();
         .field {
             margin-top: 10px;
@@ -266,6 +293,9 @@
                 }
             }
         }
+        .field:nth-child(1) {
+            margin-top: 0px;
+        }
         .ant-picker {
             .ant-picker-input {
                 width: 15%;
@@ -274,6 +304,37 @@
         }
         .ant-picker {
             height: 30px;
+        }
+    }
+    &[data-template*="table-filter-popup"] {
+        @include default-template();
+        &.form-component {
+            padding: 0;
+            .form-body-wrapper {
+                .field:nth-child(1) {
+                    margin-top: 5px;
+                }
+            }
+        }
+        .ant-picker {
+            height: 33px;
+        }
+    }
+
+    &[data-template*="no-box-shadow"] {
+        &.form-component {
+           box-shadow: none;
+        }
+    }
+    &[data-template*="tran-title"] {
+        .form-wrapper-title  {
+            background-color: transparent !important;
+        }
+    }
+    &[data-template*="no-min-width-label"] {
+        .field-label {
+            min-width: unset !important;
+
         }
     }
 }

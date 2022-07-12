@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState } from 'react';
-import { Button, Input,Checkbox, Modal,DatePicker, Radio } from 'antd';
+import { Button, Input,Checkbox, Modal,DatePicker, Radio, Slider} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import Icon from '../../Icon';
 import _ from "underscore"
@@ -7,13 +7,13 @@ import Utils from '../../Utils';
 import DropDown from '../Charts/DropDown';
 import Reaptcha from 'reaptcha';
 const { TextArea } = Input;
-
+const { RangePicker } = DatePicker;
 
 function FieldWrapper(props) {
     const {validated, config} = props
     return (
         <div className='field' data-key={config.key} data-validated={validated} type={config.type} data-template={config.template} style={{display: config.flex ? "flex" : "block", width: config.width || "100%"}}>
-            {config.label &&
+            {(config.label || config.label_icon) &&
                 <div className='field-label'>
                     {config.label_icon && <Icon type={config.label_icon} width={15} height={15}/>}
                     {config.label}
@@ -29,7 +29,7 @@ function Fields(props) {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [modalData, setModalData] = useState([]);
-    const { config,  onChange, onSearch, onSelect, onMultiSelect, onDateSelect, onSubmit, validated, onFocus, fileHandler, removeValueHander, onreChange } = props;
+    const { config,  onChange, onSearch, onSelect, onMultiSelect, onDateSelect, onSubmit, validated, onFocus, fileHandler, removeValueHander, onreChange, onDateRangeSelect, onSliderChange } = props;
     let fieldToRender=<div>Field</div>
     let inputField = useRef()
     let multiInputField = useRef()
@@ -95,6 +95,20 @@ function Fields(props) {
                     </FieldWrapper>
                 )
                 break;
+        case "date-range":
+            fieldToRender = (
+                <FieldWrapper config={config} validated={validated}> 
+                    <RangePicker getPopupContainer={triggerNode => triggerNode.parentNode} disabled={config.disabled} key={config.key} value={config.value} onChange={(value, dateStrings) => onDateRangeSelect(config.key, value, dateStrings) }/> 
+                </FieldWrapper>
+            )
+            break;
+        case "slider":
+            fieldToRender = (
+                <FieldWrapper config={config} validated={validated}> 
+                    <Slider min={config.min} max={config.max} range disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onSliderChange(config.key, value) }/>
+                </FieldWrapper> 
+            )
+            break;
         case "file":
             let acceptedFormat = "image/png, image/jpeg, application/pdf"
             if(config.file_type == "image") {

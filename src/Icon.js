@@ -1,6 +1,6 @@
-import { DeleteFilled, EyeInvisibleOutlined } from "@ant-design/icons"
+import { DeleteFilled, EyeInvisibleOutlined, ZoomInOutlined, ZoomOutOutlined, CloudDownloadOutlined } from "@ant-design/icons"
 function Icon(props) {
-    const {type, width, height, onClick} = props
+    const {type, width, height, onClick, styles={}} = props
     switch (type) {
         case "business":
             return (
@@ -25,7 +25,7 @@ function Icon(props) {
         case "email":
             return (
                 <svg onClick={onClick?onClick:()=>{}} width={width} height={height} viewBox="0 0 50 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.81832 0H43.1817C46.9472 0 49.9998 3.05258 49.9998 6.81813V7.78957C50.0001 7.80941 50.0001 7.82924 49.9998 7.84907V31.8179C49.9998 35.5835 46.9472 38.6361 43.1817 38.6361H6.81832C3.05277 38.6361 0.000193238 35.5835 0.000193238 31.8179V7.84899C-6.42567e-05 7.82922 -6.45683e-05 7.80943 0.000193238 7.78964V6.81813C0.000193238 3.05258 3.05277 0 6.81832 0ZM4.54561 12.1864V31.8179C4.54561 33.0731 5.56314 34.0906 6.81832 34.0906H43.1817C44.4369 34.0906 45.4544 33.0731 45.4544 31.8179V12.1864L28.9099 23.7675C26.5623 25.4108 23.4377 25.4108 21.0901 23.7675L4.54561 12.1864ZM45.4477 6.64267L26.3033 20.0438C25.5208 20.5915 24.4792 20.5915 23.6967 20.0438L4.55228 6.64267C4.64186 5.46948 5.62218 4.54542 6.81832 4.54542H43.1817C44.3778 4.54542 45.3581 5.46948 45.4477 6.64267Z" fill="#92929D"/>
+                    <path style={{stroke: props.stroke}} fill-rule="evenodd" clip-rule="evenodd" d="M6.81832 0H43.1817C46.9472 0 49.9998 3.05258 49.9998 6.81813V7.78957C50.0001 7.80941 50.0001 7.82924 49.9998 7.84907V31.8179C49.9998 35.5835 46.9472 38.6361 43.1817 38.6361H6.81832C3.05277 38.6361 0.000193238 35.5835 0.000193238 31.8179V7.84899C-6.42567e-05 7.82922 -6.45683e-05 7.80943 0.000193238 7.78964V6.81813C0.000193238 3.05258 3.05277 0 6.81832 0ZM4.54561 12.1864V31.8179C4.54561 33.0731 5.56314 34.0906 6.81832 34.0906H43.1817C44.4369 34.0906 45.4544 33.0731 45.4544 31.8179V12.1864L28.9099 23.7675C26.5623 25.4108 23.4377 25.4108 21.0901 23.7675L4.54561 12.1864ZM45.4477 6.64267L26.3033 20.0438C25.5208 20.5915 24.4792 20.5915 23.6967 20.0438L4.55228 6.64267C4.64186 5.46948 5.62218 4.54542 6.81832 4.54542H43.1817C44.3778 4.54542 45.3581 5.46948 45.4477 6.64267Z" fill="#92929D"/>
                 </svg>
             )
         case "country":
@@ -64,9 +64,9 @@ function Icon(props) {
         )
         case "address":
             return (
-                <svg  onClick={onClick?onClick:()=>{}}width={width} height={height} viewBox="0 0 46 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23 30.5C27.1421 30.5 30.5 27.1421 30.5 23C30.5 18.8579 27.1421 15.5 23 15.5C18.8579 15.5 15.5 18.8579 15.5 23C15.5 27.1421 18.8579 30.5 23 30.5Z" stroke="#92929D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M23 3C17.6957 3 12.6086 5.10714 8.85786 8.85786C5.10714 12.6086 3 17.6957 3 23C3 27.73 4.005 30.825 6.75 34.25L23 53L39.25 34.25C41.995 30.825 43 27.73 43 23C43 17.6957 40.8929 12.6086 37.1421 8.85786C33.3914 5.10714 28.3043 3 23 3V3Z" stroke="#92929D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg  className="address-icon" onClick={onClick?onClick:()=>{}}width={width} height={height} viewBox="0 0 46 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path style={{stroke: "black", fill :"unset"}} d="M23 30.5C27.1421 30.5 30.5 27.1421 30.5 23C30.5 18.8579 27.1421 15.5 23 15.5C18.8579 15.5 15.5 18.8579 15.5 23C15.5 27.1421 18.8579 30.5 23 30.5Z" stroke="#92929D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path style={{stroke: "black",  fill :"unset"}} d="M23 3C17.6957 3 12.6086 5.10714 8.85786 8.85786C5.10714 12.6086 3 17.6957 3 23C3 27.73 4.005 30.825 6.75 34.25L23 53L39.25 34.25C41.995 30.825 43 27.73 43 23C43 17.6957 40.8929 12.6086 37.1421 8.85786C33.3914 5.10714 28.3043 3 23 3V3Z" stroke="#92929D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
         )
         case "pan":
@@ -119,6 +119,12 @@ function Icon(props) {
             return (
                 <svg onClick={onClick?onClick:()=>{}} width={width} height={height} viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0H38.1071C40.7309 0 42.8571 2.1381 42.8571 4.7381V42.881C42.8571 45.4976 40.7309 47.619 38.1071 47.619H0V0ZM9.52381 4.7619H4.7619V42.8571H9.52381V4.7619ZM14.2857 42.8571H38.0952V4.7619H14.2857V42.8571ZM19.0476 33.3333C19.0476 31.4389 19.8002 29.6221 21.1397 28.2826C22.4793 26.943 24.2961 26.1905 26.1905 26.1905C28.0849 26.1905 29.9017 26.943 31.2412 28.2826C32.5808 29.6221 33.3333 31.4389 33.3333 33.3333H19.0476ZM26.1905 23.8095C24.9275 23.8095 23.7163 23.3078 22.8233 22.4148C21.9303 21.5218 21.4286 20.3106 21.4286 19.0476C21.4286 17.7847 21.9303 16.5735 22.8233 15.6804C23.7163 14.7874 24.9275 14.2857 26.1905 14.2857C27.4534 14.2857 28.6646 14.7874 29.5577 15.6804C30.4507 16.5735 30.9524 17.7847 30.9524 19.0476C30.9524 20.3106 30.4507 21.5218 29.5577 22.4148C28.6646 23.3078 27.4534 23.8095 26.1905 23.8095ZM45.2381 9.52381H50V19.0476H45.2381V9.52381ZM45.2381 23.8095H50V33.3333H45.2381V23.8095Z" fill="#92929D"/>
+                </svg>
+            )
+        case "phone":
+            return (
+                <svg onClick={onClick?onClick:()=>{}} width={width} height={height}  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 21" fill="none">
+                    <path style={{stroke: props.stroke}} d="M1.57039 5.8866C1.28389 3.9996 2.61439 2.3046 4.64689 1.6836C5.00757 1.57332 5.39673 1.60471 5.73507 1.77138C6.07342 1.93804 6.33549 2.22744 6.46789 2.5806L7.12039 4.3206C7.22543 4.60052 7.24442 4.90544 7.17493 5.19623C7.10544 5.48702 6.95064 5.75041 6.73039 5.9526L4.78939 7.7301C4.69371 7.8179 4.62242 7.92899 4.58246 8.05255C4.5425 8.1761 4.53524 8.3079 4.56139 8.4351L4.57939 8.5131L4.62589 8.7081C4.86728 9.65557 5.23508 10.5662 5.71939 11.4156C6.24695 12.3181 6.90167 13.1401 7.66339 13.8561L7.72339 13.9101C7.82029 13.9961 7.93782 14.0555 8.06453 14.0826C8.19123 14.1097 8.3228 14.1035 8.44639 14.0646L10.9559 13.2741C11.2411 13.1846 11.5465 13.1823 11.833 13.2675C12.1195 13.3528 12.374 13.5217 12.5639 13.7526L13.7519 15.1941C14.2469 15.7941 14.1869 16.6761 13.6184 17.2056C12.0629 18.6561 9.92389 18.9531 8.43589 17.7576C6.61193 16.2863 5.07432 14.4919 3.89989 12.4641C2.71592 10.4378 1.92508 8.20624 1.56889 5.8866H1.57039ZM6.13489 8.5341L7.74289 7.0581C8.18364 6.6539 8.49354 6.1272 8.63279 5.54561C8.77204 4.96402 8.73429 4.35408 8.52439 3.7941L7.87339 2.0541C7.6069 1.34347 7.07949 0.76119 6.39861 0.425907C5.71773 0.0906252 4.93464 0.027573 4.20889 0.249599C1.68439 1.0221 -0.342112 3.2856 0.0868879 6.1131C0.386888 8.0871 1.07839 10.5981 2.60389 13.2201C3.87095 15.4066 5.52957 17.3414 7.49689 18.9276C9.72889 20.7201 12.7079 20.1081 14.6429 18.3051C15.1966 17.7896 15.5326 17.0822 15.5825 16.3273C15.6324 15.5725 15.3924 14.827 14.9114 14.2431L13.7234 12.8001C13.3433 12.3388 12.8342 12.0016 12.2612 11.8316C11.6882 11.6616 11.0775 11.6667 10.5074 11.8461L8.42389 12.5016C7.88594 11.9469 7.41474 11.3313 7.01989 10.6671C6.63847 9.99564 6.34123 9.27975 6.13489 8.5356V8.5341Z" fill="rgb(146, 146, 157)"/>
                 </svg>
             )
         case "certificate": 
@@ -219,16 +225,20 @@ function Icon(props) {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47715 0 0 4.47715 0 10V40C0 45.5228 4.47715 50 10 50H30C35.5228 50 40 45.5228 40 40V16.8856C40 15.7397 39.6064 14.6285 38.885 13.7381L29.2554 1.85246C28.306 0.680682 26.8785 0 25.3704 0H10ZM29.0625 9.55707V13.5H32.257L29.0625 9.55707ZM10 5C7.23858 5 5 7.23858 5 10V40C5 42.7614 7.23858 45 10 45H30C32.7614 45 35 42.7614 35 40V18.5H29.0625C26.3011 18.5 24.0625 16.2614 24.0625 13.5V5H10ZM22.5 31.25L23.5 30.5C24.6046 29.6716 26.1716 29.8954 27 31C27.8284 32.1046 27.6046 33.6716 26.5 34.5L21.5202 38.2348C21.099 38.558 20.5719 38.75 20 38.75C19.4281 38.75 18.901 38.558 18.4798 38.2348L13.5 34.5C12.3954 33.6716 12.1716 32.1046 13 31C13.8284 29.8954 15.3954 29.6716 16.5 30.5L17.5 31.25V21.5285C17.5 20.1478 18.6193 19.0285 20 19.0285C21.3807 19.0285 22.5 20.1478 22.5 21.5285V31.25Z" fill="#92929D"/>
                 </svg>
             )
+        case "cloud-download":
+            return (
+                <CloudDownloadOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height, fontSize:18, color:"rgb(146, 146, 157)", marginLeft: 9, position:"relative", top:-1, ...styles}} />
+            )
         case "search":
             return (
-                <svg onClick={onClick?onClick:()=>{}} width={width} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg onClick={onClick?onClick:()=>{}} width={width} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style={{...styles}}>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.57405 6.57404C-2.19135 15.3394 -2.19135 29.5509 6.57405 38.3163C15.3394 47.0817 29.551 47.0817 38.3163 38.3163C47.0817 29.5509 47.0817 15.3394 38.3163 6.57404C29.551 -2.19135 15.3394 -2.19135 6.57405 6.57404ZM10.0394 10.0394C16.8909 3.18781 27.9995 3.18781 34.851 10.0394C41.7026 16.8909 41.7026 27.9995 34.851 34.851C27.9995 41.7026 16.8909 41.7026 10.0394 34.851C3.18781 27.9995 3.18781 16.8909 10.0394 10.0394Z" fill="#92929D"/>
                     <path d="M49.2381 44.7984L39.1195 34.6798C36.8093 32.3696 33.344 35.8349 35.6542 38.1451L45.7728 48.2638C48.083 50.574 51.5483 47.1087 49.2381 44.7984Z" fill="#92929D"/>
                 </svg>
             )
         case "three-dots":
             return (
-               <div style={{display:"inline-block"}} onClick={onClick?onClick:()=>{}}>
+               <div style={{display:"inline-block", ...styles}} onClick={onClick?onClick:()=>{}}>
                    <div style={{backgroundColor:"grey", width: 5, height: 5, borderRadius:"50%", marginBottom: 1}} ></div>
                    <div style={{backgroundColor:"grey", width: 5, height: 5, borderRadius:"50%", marginBottom: 1}}></div>
                    <div style={{backgroundColor:"grey", width: 5, height: 5, borderRadius:"50%"}}></div>
@@ -238,12 +248,27 @@ function Icon(props) {
             return (
                 <EyeInvisibleOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height}} />
             )
+        case "zoomIn":
+            return (
+                <ZoomInOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height, fontSize:16, color:"rgb(146, 146, 157)", marginLeft: 9, position:"relative", top:-1, ...styles}} />
+            )
+        case "zoomOut":
+            return (
+                <ZoomOutOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height, fontSize:16, color:"rgb(146, 146, 157)", marginLeft: 9, position:"relative", top:-1, ...styles}} />
+            )
         case "plus":
             return (
                <div style={{fontSize: 14, fontWeight: "bold"}}  onClick={onClick?onClick:()=>{}}>
                    +
                </div>
             )
+        case "check-mark":
+            return (
+                <span class="checkmark" onClick={onClick?onClick:()=>{}} style={{display:"inline-flex", width: 22, height: 22, transform:"rotate(45deg)", position:"relative", top: 6}} >
+                    <div class="checkmark_stem" style={{position:"absolute", width: 3, height: 9, left: 11, top: 6, background: props.checked ? "#3963E8" :"#CCC"}}></div>
+                    <div class="checkmark_kick" style={{position:"absolute", width: 3, height: 3, left: 8, top: 12, background:props.checked ? "#3963E8" :"#CCC"}}></div>
+                </span>
+                )
         default:
             break;
     }

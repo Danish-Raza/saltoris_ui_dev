@@ -121,7 +121,7 @@ function FormGroup(props) {
                             ...modConfig[order],
                             [rec]: {
                                 ...modConfig[order][rec],
-                                value: mockData[order][rec]
+                                value: mockData[order] ? mockData[order][rec] : null
                             }
                         }
                     }

@@ -238,3 +238,12 @@
         display: none;
     }
 }
+.sidebar[data-status="inactive"]+div {
+    .widgets-wrapper {      
+        .card-component-wrapper {
+            .card-wrapper-body {
+                height: 407px !important;
+            }
+        }
+    }
+}

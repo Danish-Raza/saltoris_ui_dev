@@ -22,7 +22,7 @@ function DropDown(props) {
 
   let sortOrder = _.keys(Utils.sortOrder(config._order))
   _.map(sortOrder, order => {
-    children.push(<Option key={config[order].display} value={order}>{config[order].display}</Option>);
+    children.push(<Option key={config[order] ? config[order].display: order} value={order}>{config[order] ? config[order].display : order}</Option>);
   })
 
   useEffect(() => {
@@ -59,7 +59,7 @@ function DropDown(props) {
   //  return 
     return (
       <Dropdown overlay={menu} placement="bottom" trigger={['click']} >
-          <Button className='filter-icon-wrappper' > <Icon type="filter" width={15} height={15}/></Button>
+          <Button className='filter-icon-wrappper' > <Icon type="three-dots" width={15} height={15} styles={props.styles}/></Button>
         {/* <Icon type="filter" width={15} height={15}/> */}
     </Dropdown>
     )

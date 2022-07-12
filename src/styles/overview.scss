@@ -81,6 +81,8 @@
         margin-right: 15px;
         margin-bottom: 20px;
         position: relative;
+        max-width: 230px;
+        min-width: 230px;
         .multiple {
             display: flex;
             align-items: center;

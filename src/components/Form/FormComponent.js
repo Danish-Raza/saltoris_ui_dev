@@ -5,6 +5,7 @@ import _ from "underscore"
 import Utils from "../../Utils"
 import Icon from "../../Icon"
 import { message as messageF } from 'antd';
+import moment from "moment"
 
 function FormComponent(props) {
     const { config, reset, title, recaptcha, width, message, preFilledData, disabled, id, footer } = props;
@@ -99,6 +100,37 @@ function FormComponent(props) {
         }
     }
 
+    const onDateRangeSelect = (key,value,dateStrings)  => {
+        const { on_change } = config;
+        const { onChange, id } = props
+        let fieldIndex = _.findIndex(components, r => r.key === key)
+        if(fieldIndex !== -1) {
+            let modComponent = [...components]
+            modComponent[fieldIndex].value = value
+            modComponent[fieldIndex].dateStrings = dateStrings
+            modComponent[fieldIndex].validated = true
+           setComponents(modComponent)
+           if(on_change && onChange) {
+                onChange({key: key, value: dateStrings, id: id})
+           }
+        }
+    }
+
+    const onSliderChange = (key,value) => {
+        const { on_change } = config;
+        const { onChange, id } = props
+        let fieldIndex = _.findIndex(components, r => r.key === key)
+        if(fieldIndex !== -1) {
+            let modComponent = [...components]
+            modComponent[fieldIndex].value = value
+            modComponent[fieldIndex].validated = true
+           setComponents(modComponent)
+           if(on_change && onChange) {
+                onChange({key: key, value: modComponent[fieldIndex].value, id: id})
+           }
+        }
+    }
+
     const getData = () => {
 
     }
@@ -110,7 +142,9 @@ function FormComponent(props) {
     const getFormData = () => {
         let formData = {}
         _.map(components, r => {
-            if(r.type !== "button") {
+            if(r.type == "date-range" &&  r.dateStrings !== undefined) {
+                formData = {...formData, [r.key]: r.dateStrings}
+            } else if(r.type !== "button" && r.value !== undefined) {
                 formData = {...formData, [r.key]: r.value}
             }
         })
@@ -287,6 +321,8 @@ function FormComponent(props) {
                             fileHandler={fileHandler}
                             onreChange={onreChange}
                             removeValueHander={removeValueHander}
+                            onDateRangeSelect={onDateRangeSelect}
+                            onSliderChange={onSliderChange}
                         />
                     )
                 })
