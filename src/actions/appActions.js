@@ -50,7 +50,8 @@ export function login(data) {
                 email:"customer@mail.com",
                 user_role: "admin",
                 account_type: "buyer",
-                config_name:"default_buyer"
+                config_name:"default_buyer",
+                client_logo: "customer"
             }
         ]
         setTimeout(() => {
@@ -105,4 +106,10 @@ export function setOverlay(params) {
        return function (dispatch, getState) {
         dispatch({ type: "SET_OVERLAY", ...params});
     }
+}
+
+export function setTableRowData(params) {
+    return function (dispatch, getState) {
+     dispatch({ type: "SET_TABLE_ROW_DATA", ...params});
+ }
 }

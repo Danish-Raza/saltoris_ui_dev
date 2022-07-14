@@ -4,8 +4,8 @@ import Header from "../Header";
 import { Space, Table, Tag, Popover, Button, Switch} from 'antd';
 import cellHandler from "./CellHandler";
 import { Fragment, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setOverlay } from "../../actions/appActions";
+import { useDispatch, useSelector } from "react-redux";
+import { setOverlay, setTableRowData } from "../../actions/appActions";
 import Icon from "../../Icon";
 import FormComponent from "../Form/FormComponent";
 import moment from "moment";
@@ -21,6 +21,9 @@ function TableComponent(props) {
     const [allColumn, setAllColumn] = useState([])
     const dispatch = useDispatch()
     const [fixedTop, setFixedTop] = useState(false);
+    let selectedRowKeys = []
+    const appData = useSelector(state => state.appData)
+    let dataAvailable = null
 
     const sortHandler = () => {
 
@@ -29,180 +32,213 @@ function TableComponent(props) {
         
     }
 
-   useEffect(() => {
-    let defaultDropdown = config.dropdown ? config.dropdown.default: null;
-    let params = {}
-    if(defaultDropdown) {
-        let sortedOrder = _.keys(Utils.sortOrder(defaultDropdown._order))
-        let dropdownKey = config.dropdown.key
-        let mode = defaultDropdown.mode
-        params = {
-            [dropdownKey]: mode == "select" ? sortedOrder[0]: sortedOrder
-        }
-        setSelectedOption(params)
+    if(config.dependent_table && !config.api && appData.tableRowData) {
+        dataAvailable = []
+        _.map(config.dependent_table_ids, id => {
+            if(appData.tableRowData[id]) {
+                _.map(appData.tableRowData[id].activeRowData, rec => {
+                    let i = _.findIndex(dataAvailable, r => r.key == rec.key)
+                    if(i == -1) {
+                        dataAvailable.push(rec)
+                    }
+                })
+            }
+        })
     }
-    const _mockData = [
-        {
-          key: '1',
-          name: 'Danish Raza',
-          buyer: 'Danish Raza',
-          value: 32,
-          customer_id: "1100712",
-          customer_name: "Danish Raza",
-          po_id: "#4400000555",
-          material: "material 1",
-          order_ammount: '1,881,395.00',
-          requirement:"Type I",
-          due_date: "2022-10-09",
-          valid_from: "2022-10-09",
-          address: 'New York No. 1 Lake Park',
-          status: 'Send',
-          invoice_status:"Paid",
-          invoice_no: "#123",
-          title:"title 1",
-          category: "category 1",
-          certifying_body: "body 1",
-          editor:"Editor 1",
-          version:"Version 2",
-          dol:"DOL 1",
-          dop:"DOP 2",
-          isbn:"ISBN 1",
-          "ship_to":"Hyderabad",
-          in_house_publication: "Publication 1",
-          purchase_status:"Dispatched",
-          po_status:"Received"
-        },
-        {
-          key: '2',
-          name: 'Akshay Pai',
-          buyer: 'Akshay Pai',
-          invoice_status:"Overdue",
-          value: 42,
-          valid_from: "2022-10-10",
-          order_ammount: '311,520.00',
-          requirement:"Type I",
-          due_date: "2022-10-09",
-          customer_id: "1700294",
-          customer_name: "Akshay Pai",
-          po_id: "#5500002705",
-          material: "material 2",
-          address: 'London No. 1 Lake Park',
-          status: 'Payments',
-          invoice_no: "#124",
-          title:"title 2",
-          category: "category 2",
-          certifying_body: "body 2",
-          editor:"Editor 2",
-          version:"Version 2",
-          dol:"DOL 2",
-          dop:"DOP 2",
-          isbn:"ISBN 2",
-          in_house_publication: "Publication 2",
-          purchase_status:"Received",
-          "ship_to":"Agra",
-          po_status:"Invoiced"
-        }, 
-        {
-            key: '4',
-            name: 'Mukesh Kumar',
-            buyer:"Mukesh Kumar",
-            customer_id: "4300002632",
-            customer_name: "Mukesh Kumar",
-            invoice_Status:"Paid",
-            po_id: "#4300002632",
-            invoice_status:"Due",
-            material: "material 4",
-            valid_from: "2022-10-11",
-            value: 32,
-            order_ammount: '333,000.00',
-            requirement:"Type I",
-            due_date: "2022-10-09",
-            address: 'Sidney No. 1 Lake Park',
-            status: 'Rejected',
-            invoice_no: "#126",
-            title:"title 4",
-            category: "category 4",
-            certifying_body: "body 4",
-            editor:"Editor 4",
-            version:"Version 4",
-            dol:"DOL 4",
-            dop:"DOP 4",
-            isbn:"ISBN 4",
-            "ship_to":"Lucknow",
-            in_house_publication: "Publication 4",
-            purchase_status:"Received",
-            po_status:"Received"    
-        },
-        {
-            key: '1',
-            name: 'Danish Raza',
-            buyer: 'Danish Raza',
-            value: 32,
-            customer_id: "1100712",
-            customer_name: "Danish Raza",
-            po_id: "#4500149543",
-            material: "material 1",
-            order_ammount: '235,000.00',
-            requirement:"Type I",
-            due_date: "2022-10-09",
-            valid_from: "2022-10-09",
-            address: 'New York No. 1 Lake Park',
-            status: 'Send',
-            invoice_status:"Paid",
-            invoice_no: "#123",
-            title:"title 1",
-            category: "category 1",
-            certifying_body: "body 1",
-            editor:"Editor 1",
-            version:"Version 2",
-            dol:"DOL 1",
-            dop:"DOP 2",
-            isbn:"ISBN 1",
-            "ship_to":"Hyderabad",
-            in_house_publication: "Publication 1",
-            purchase_status:"Dispatched",
-            po_status:"Received"
+
+  
+    if(appData.tableRowData && appData.tableRowData[config.id]) {
+        let tableId = null;
+        let activeKeys = [];
+        if(appData.tableRowData[config.id]) {
+            tableId = config.id;
+            activeKeys = _.map(appData.tableRowData[tableId].activeRowData, rec => rec.key)
         }
-    ];
-    if(dependentData.po_id) {
-        let filteredData = _mockData.filter(rec => dependentData.po_id.includes(rec.po_id))
-        if(filteredData && filteredData.length>0) {
-            setData(filteredData)
-        } else {
-            setData(data)
-        }  
-    } else if(dependentData.invoice_no) {
-        let filteredData = _mockData.filter(rec => dependentData.invoice_no.includes(rec.invoice_no))
-        if(filteredData && filteredData.length>0) {
-            setData(filteredData)
-        } else {
-            setData(data)
-        }  
-    } else {
-        setData(_mockData)
+        selectedRowKeys = _.uniq(activeKeys)
     }
-    setOriginalData(_mockData)
-    const columnConfig = cellHandler(columns, selectedOption, helperFuntion)
-    setAllColumn(columnConfig)
-    setCurColumn(columnConfig)
 
-   },[])
-
-   useEffect(() => {
-        // if(dependentData.po_id) {
-        //     let filteredData = originalData.filter(rec => dependentData.po_id.includes(rec.po_id))
-        //     if(filteredData && filteredData.length>0) {
-        //         setData(filteredData)
-        //     } else {
-        //         setData(data)
-        //     }  
-        // }
-   },[dependentData])
-   let helperFuntion = {
-        setOverlay: (params) => {
-           return dispatch(setOverlay({...params}))
+    useEffect(() => {
+        let defaultDropdown = config.dropdown ? config.dropdown.default: null;
+        let params = {}
+        
+        if(!dataAvailable) {
+            if(defaultDropdown) {
+                let sortedOrder = _.keys(Utils.sortOrder(defaultDropdown._order))
+                let dropdownKey = config.dropdown.key;
+                let mode = defaultDropdown.mode;
+                params = {
+                    [dropdownKey]: mode == "select" ? sortedOrder[0]: sortedOrder
+                };
+                setSelectedOption(params);
+            }
+            const _mockData = [
+                {
+                key: '1',
+                name: 'Danish Raza',
+                buyer: 'Danish Raza',
+                value: 32,
+                customer_id: "1100712",
+                customer_name: "Danish Raza",
+                po_id: "#4400000555",
+                material: "material 1",
+                order_ammount: '1,881,395.00',
+                requirement:"Type I",
+                due_date: "2022-10-09",
+                valid_from: "2022-10-09",
+                address: 'New York No. 1 Lake Park',
+                status: 'Send',
+                invoice_status:"Paid",
+                invoice_no: "#123",
+                title:"title 1",
+                category: "category 1",
+                certifying_body: "body 1",
+                editor:"Editor 1",
+                version:"Version 2",
+                dol:"DOL 1",
+                dop:"DOP 2",
+                isbn:"ISBN 1",
+                "ship_to":"Hyderabad",
+                in_house_publication: "Publication 1",
+                purchase_status:"Dispatched",
+                po_status:"Received"
+                },
+                {
+                key: '2',
+                name: 'Akshay Pai',
+                buyer: 'Akshay Pai',
+                invoice_status:"Overdue",
+                value: 42,
+                valid_from: "2022-10-10",
+                order_ammount: '311,520.00',
+                requirement:"Type I",
+                due_date: "2022-10-09",
+                customer_id: "1700294",
+                customer_name: "Akshay Pai",
+                po_id: "#5500002705",
+                material: "material 2",
+                address: 'London No. 1 Lake Park',
+                status: 'Payments',
+                invoice_no: "#124",
+                title:"title 2",
+                category: "category 2",
+                certifying_body: "body 2",
+                editor:"Editor 2",
+                version:"Version 2",
+                dol:"DOL 2",
+                dop:"DOP 2",
+                isbn:"ISBN 2",
+                in_house_publication: "Publication 2",
+                purchase_status:"Received",
+                "ship_to":"Agra",
+                po_status:"Invoiced"
+                }, 
+                {
+                    key: '4',
+                    name: 'Mukesh Kumar',
+                    buyer:"Mukesh Kumar",
+                    customer_id: "4300002632",
+                    customer_name: "Mukesh Kumar",
+                    invoice_Status:"Paid",
+                    po_id: "#4300002632",
+                    invoice_status:"Due",
+                    material: "material 4",
+                    valid_from: "2022-10-11",
+                    value: 32,
+                    order_ammount: '333,000.00',
+                    requirement:"Type I",
+                    due_date: "2022-10-09",
+                    address: 'Sidney No. 1 Lake Park',
+                    status: 'Rejected',
+                    invoice_no: "#126",
+                    title:"title 4",
+                    category: "category 4",
+                    certifying_body: "body 4",
+                    editor:"Editor 4",
+                    version:"Version 4",
+                    dol:"DOL 4",
+                    dop:"DOP 4",
+                    isbn:"ISBN 4",
+                    "ship_to":"Lucknow",
+                    in_house_publication: "Publication 4",
+                    purchase_status:"Received",
+                    po_status:"Received"    
+                },
+                {
+                    key: '5',
+                    name: 'Danish Raza',
+                    buyer: 'Danish Raza',
+                    value: 32,
+                    customer_id: "1100712",
+                    customer_name: "Danish Raza",
+                    po_id: "#4500149543",
+                    material: "material 1",
+                    order_ammount: '235,000.00',
+                    requirement:"Type I",
+                    due_date: "2022-10-09",
+                    valid_from: "2022-10-09",
+                    address: 'New York No. 1 Lake Park',
+                    status: 'Send',
+                    invoice_status:"Paid",
+                    invoice_no: "#123",
+                    title:"title 1",
+                    category: "category 1",
+                    certifying_body: "body 1",
+                    editor:"Editor 1",
+                    version:"Version 2",
+                    dol:"DOL 1",
+                    dop:"DOP 2",
+                    isbn:"ISBN 1",
+                    "ship_to":"Hyderabad",
+                    in_house_publication: "Publication 1",
+                    purchase_status:"Dispatched",
+                    po_status:"Received"
+                }
+            ];
+            if(dependentData.po_id) {
+                let filteredData = _mockData.filter(rec => dependentData.po_id.includes(rec.po_id))
+                if(filteredData && filteredData.length>0) {
+                    setData(filteredData)
+                } else {
+                    setData(data)
+                }  
+            } else if(dependentData.invoice_no) {
+                let filteredData = _mockData.filter(rec => dependentData.invoice_no.includes(rec.invoice_no))
+                if(filteredData && filteredData.length>0) {
+                    setData(filteredData)
+                } else {
+                    setData(data)
+                }  
+            } else {
+                setData(_mockData)
+            }
+            if(config.dependent_table && config.selectable && config.api && appData.tableRowData) {
+                let tableId = config.dependent_table_ids[0]
+                let activeKeysData = appData.tableRowData[tableId] ? appData.tableRowData[tableId].activeRowData : []
+                dispatch(setTableRowData({data: activeKeysData, tableId: config.id}))
+            }
+            setOriginalData(_mockData)
         }
-   }
+        const columnConfig = cellHandler(columns, selectedOption, helperFuntion)
+        setAllColumn(columnConfig)
+        setCurColumn(columnConfig)
+
+    },[])
+
+    useEffect(() => {
+            // if(dependentData.po_id) {
+            //     let filteredData = originalData.filter(rec => dependentData.po_id.includes(rec.po_id))
+            //     if(filteredData && filteredData.length>0) {
+            //         setData(filteredData)
+            //     } else {
+            //         setData(data)
+            //     }  
+            // }
+    },[dependentData])
+
+    const onSelectChange = (newSelectedRowKeys) => {
+        let selectData = _.filter(data, rec => newSelectedRowKeys.includes(rec.key))
+        dispatch(setTableRowData({data: selectData, tableId: config.id}))
+    }
 
     const dropDownHandler = (key,value) => {
         setSelectedOption({[key]: value})
@@ -286,6 +322,16 @@ function TableComponent(props) {
         display:"Set Filters"
     }
 
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
+
+    let helperFuntion = {
+        setOverlay: (params) => {
+            return dispatch(setOverlay({...params}))
+        }
+    }
     return (
         <div 
             className="widget table-wrapper"
@@ -297,6 +343,7 @@ function TableComponent(props) {
                 onChange={dropDownHandler}
                 componentIndex={componentIndex}
                 selectedOption={selectedOption}
+                parentComponentData={selectedRowKeys}
                 columnSelectorComponent={
                      <Popover placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
                         <Button className="popover-button-wrapper">
@@ -310,40 +357,40 @@ function TableComponent(props) {
                            <Icon type="filter" width={15} height={15}/>
                        </Button>
                    </Popover>
-               }
+                }
                 magnifiedContent={
                     <div 
-                    className="widget table-wrapper"
-                    data-componentDontExist={componentDontExist}
+                        className="widget table-wrapper"
+                        data-componentDontExist={componentDontExist}
                     >
-                    <Header 
-                        config={config}
-                        isEditable={isEditable} 
-                        onChange={dropDownHandler}
-                        componentIndex={componentIndex}
-                        selectedOption={selectedOption}
-                        columnSelectorComponent={
-                             <Popover placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
-                                <Button className="popover-button-wrapper">
-                                    <div className="table-column-icon"></div>
-                                </Button>
-                            </Popover>
-                        }
-                        filterSelectorComponent={
-                            <Popover getContainer={() => document.body}   className="table-filter-form" placement="leftTop" title={false} content={<FormComponent template="table-filter-popup no-box-shadow" config={filterFormConfig} id={config.id} width={"440px"} onSubmit={filterHandler}/>} trigger="click">
-                               <Button className="popover-button-wrapper">
-                                   <Icon type="filter" width={15} height={15}/>
-                               </Button>
-                           </Popover>
-                       }
+                        <Header 
+                            config={config}
+                            isEditable={isEditable} 
+                            onChange={dropDownHandler}
+                            componentIndex={componentIndex}
+                            selectedOption={selectedOption}       
+                            columnSelectorComponent={
+                                <Popover placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
+                                    <Button className="popover-button-wrapper">
+                                        <div className="table-column-icon"></div>
+                                    </Button>
+                                </Popover>
+                            }
+                            filterSelectorComponent={
+                                <Popover getContainer={() => document.body}   className="table-filter-form" placement="leftTop" title={false} content={<FormComponent template="table-filter-popup no-box-shadow" config={filterFormConfig} id={config.id} width={"440px"} onSubmit={filterHandler}/>} trigger="click">
+                                    <Button className="popover-button-wrapper">
+                                        <Icon type="filter" width={15} height={15}/>
+                                    </Button>
+                                </Popover>
+                            }
                         />
-                    <Table dataSource={data} columns={curColumn} pagination={config.pagination === false ? false : null} showSorterTooltip={false}/>
-                </div>
+                        <Table  dataSource={dataAvailable || data} columns={curColumn} pagination={config.pagination === false ? false : null} showSorterTooltip={false}/>
+                    </div>
                 }
-                />
+            />
             <Table
                 sticky={sticky}
-                dataSource={data} 
+                dataSource={dataAvailable || data} 
                 columns={curColumn}
                 pagination={{
                     current: 1,
@@ -353,6 +400,7 @@ function TableComponent(props) {
                   }}
                 // pagination={config.pagination === false ? false : null} 
                 showSorterTooltip={false}
+                rowSelection={ config.selectable ? rowSelection : null }
             />
         </div>
     )

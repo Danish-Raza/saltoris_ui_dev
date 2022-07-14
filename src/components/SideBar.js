@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux";
 import { changePageView } from "../actions/appActions";
 import Icon from "../Icon";
 import { useState } from "react";
+import saltorisLogo from "../images/saltoris.png";
+import dixonLogo from "../images/deil-logo.png";
 
 const SideBar = (props) => {
-    let { config, curPage, curView } = props;
+    let { config, curPage, curView, userDetail } = props;
     const dispatch = useDispatch();
     const [collapsed, setCollapsed] = useState(true)
     let sortedOrder = _.keys(Utils.sortOrder(config._order))
@@ -18,13 +20,14 @@ const SideBar = (props) => {
         dispatch(changePageView(curPage, view))
     }
 
+    let appLogo = userDetail ?  userDetail.client_logo == "customer"? `url('${dixonLogo}')` : userDetail.client_logo || `url('${saltorisLogo}')` : null
+   
     return (
         <div className="sidebar"  data-status={ collapsed ? "active" : "inactive"}>
             <div className="saltoris-logo-wrapper">
-                <div className="saltoris-logo" data-account-type={process.env.REACT_APP_ACCOUNT_TYPE}></div>
+                <div className="app-logo" style={{position:"relative", backgroundImage: appLogo}}></div>
                 <span className="border-bottom"></span>
                 <Icon type={collapsed ? "arrow-left" : "arrow-right"} width={20} height={20} onClick={() => setCollapsed(!collapsed)}/>
-                {/* <div className="expand-icon" data-status={ collapsed ? "active" : "inactive"} onClick={() => setCollapsed(!collapsed)}>arrow</div> */}
             </div>
            {
                 _.map(sortedOrder, view => 

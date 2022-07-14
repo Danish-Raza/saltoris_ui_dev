@@ -8,6 +8,7 @@ let initialState = {
   loggedIn: localStorage.getItem("saltoris-userD") ? true : false,
   userDetail: localStorage.getItem("saltoris-userD") ?  JSON.parse(localStorage.getItem("saltoris-userD")) : {},
   appParams: {appliedFilters: {}},
+  tableRowData: {},
   error: false,
   errorMessage: null,
   overlay: {
@@ -83,6 +84,7 @@ export default function appReducer(state=initialState, action) {
      return {
       ...state,
       appParams: {...state.appParams, curPage: action.curPage, curView: action.curView, appliedFilters: {}},
+      tableRowData: {}
     };
   } else if (actionType == "APPLY_GLOBAL_FILTERS") {
     let modFilters = { ...state.appParams.appliedFilters, ...action.appliedFilters}
@@ -192,13 +194,25 @@ export default function appReducer(state=initialState, action) {
   } else if (actionType == "SET_OVERLAY") {
     return {
       ...state,
-      overlay:  {
+      overlay: {
         show: action.show,
         components: action.overlay,
         dependentData: action.dependentData
       }
     };
-  } else{
+  } else if (actionType == "SET_TABLE_ROW_DATA") {
+    let tableId = action.tableId
+    let data = action.data
+    return {
+      ...state,
+      tableRowData: {
+        ...state.tableRowData,
+        [tableId]: {
+          activeRowData: data
+        }
+      }
+    };
+  }else{
     return state;
   }
 };

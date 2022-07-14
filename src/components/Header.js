@@ -8,7 +8,7 @@ import Icon from "../Icon";
 import FormComponent from "./Form/FormComponent";
 
 function Header(props) {
-    const { config, isEditable, componentIndex, onChange=()=>{}, selectedOption, columnSelectorComponent,filterSelectorComponent, magnifiedContent } = props;
+    const { config, isEditable, componentIndex, onChange=()=>{}, selectedOption, columnSelectorComponent,filterSelectorComponent, magnifiedContent, parentComponentData } = props;
     const { title, dropdown, display } = config;
     const dispatch = useDispatch()
     const [searchBar, setSearchBar] = useState(false)
@@ -55,7 +55,7 @@ function Header(props) {
                 {config.type == "table" && columnSelectorComponent}
                 {magnifiedContent && <Icon type="zoomIn" width={20} height={20} onClick={showModal}/>}
                 {config.download && <Icon type="cloud-download" width={20} height={20}/>}
-                {dropdown !== undefined && <DropDown config={dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
+                {dropdown !== undefined && <DropDown parentComponentData={parentComponentData} config={dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
             </div>
             {isEditable  ? <div className="remove-button" onClick={()=> dispatch(changeConfig({action:"REMOVE_WIDGET", id:config.id}))}>-</div>:""}
             {isEditable && config.replicate && <div className="replicate-button" onClick={()=> dispatch(changeConfig({action:"REPLICATE_WIDGET",component: config, index: componentIndex})) }>+</div>}
