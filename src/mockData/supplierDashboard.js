@@ -7,6 +7,7 @@ const supplierDashboard = {
             "Invoices": "2122",
             "Purchase Orders": "3232",
             "Dispatch":"233",
+            "Opportunities":"334",
             "Quality":"3223",
             "Rejections":"1231"
 

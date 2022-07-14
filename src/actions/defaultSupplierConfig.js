@@ -2947,7 +2947,7 @@ const data = {
                     "selectable": true,
                     "type": "table",
                     "width": "100%",
-                    "display": "Purchase Orders",
+                    // "display": "Purchase Orders",
                     "download": true,
                     "searchConfig": {
                         "initial_disabled": false,

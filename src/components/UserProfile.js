@@ -14,7 +14,6 @@ function UserProfile(props) {
         if(element && !element.contains(e.target)) {
             setDropDownStatus(false)
         }
-
     })
     const handleLogout = () => {
         navigate("/")
@@ -47,8 +46,6 @@ function UserProfile(props) {
                 )
             }
         </Fragment>
-
     )
-    
 }
-export default UserProfile
+export default UserProfile;

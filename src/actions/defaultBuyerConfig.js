@@ -534,11 +534,20 @@ const data = {
                             "width": "",
                             "align": "left"
                         },
+                        "invoice_date": {
+                            "display": "Invoice Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width":200,
+                            // "color":"#FC5A5A",
+                            "align": "left",
+                            "sort": true
+                        },
                         "due_date": {
                             "display": "Due Date",
                             "type":"date",
                             "format": 'MMM Do YYYY, h:mm a',
-                            "width": "",
+                            "width":200,
                             "color":"#FC5A5A",
                             "align": "left"
                         },
@@ -576,7 +585,7 @@ const data = {
                         "customer_id":{
                             "display": "PO Number",
                             "type":"string",
-                            "width": "",
+                            "width":100,
                             "align": "left"
                         },
                         "ship_to":{
@@ -640,8 +649,40 @@ const data = {
                             "display": "Delivery Date",
                             "type":"date",
                             "format": 'MMM Do YYYY, h:mm a',
+                            "width":200,
+                            // "color":"#FC5A5A",
+                            "align": "left",
+                            "sort": true
+                        },
+                        "invoice_amount": {
+                            "display": "Invoice Amount",
+                            "type":"string",
                             "width": "",
-                            "color":"#FC5A5A",
+                            "align": "center",
+                            //  
+                        },
+                        "check_conditions_ex":{
+                            "_order":{
+                                "condition_1": 1
+                            },
+                            "condition_1": {
+                                "condition": "'{compared_against}' == 'Invoice'",
+                                "_order":{
+                                    "invoice_no": 1,
+                                    "legal_entity_name": 2,
+                                    "invoice_amount": 3,
+                                    "invoice_date":4,
+                                    "due_date": 5,
+                                    "date": 6,
+                                    "material": 7,
+                                    "invoice_status": 9,  
+                                }
+                            }
+                        },
+                        "material": {
+                            "display": "Material",
+                            "type":"string",
+                            "width":200,
                             "align": "left"
                         },
                         "view_detail": {
