@@ -1,16 +1,28 @@
 {
   "files": {
-    "main.css": "/saltoris_ui_dev/static/css/main.f6480b1f.css",
-    "main.js": "/saltoris_ui_dev/static/js/main.cb0f3657.js",
-    "static/js/787.c4c76647.chunk.js": "/saltoris_ui_dev/static/js/787.c4c76647.chunk.js",
-    "static/media/saltoris.png": "/saltoris_ui_dev/static/media/saltoris.85ee1f2ddaea2b827b67.png",
+    "main.css": "/saltoris_ui_dev/static/css/main.18beee66.chunk.css",
+    "main.js": "/saltoris_ui_dev/static/js/main.3a598e5e.chunk.js",
+    "main.js.map": "/saltoris_ui_dev/static/js/main.3a598e5e.chunk.js.map",
+    "runtime-main.js": "/saltoris_ui_dev/static/js/runtime-main.b9c726a5.js",
+    "runtime-main.js.map": "/saltoris_ui_dev/static/js/runtime-main.b9c726a5.js.map",
+    "static/css/2.b5f9dda7.chunk.css": "/saltoris_ui_dev/static/css/2.b5f9dda7.chunk.css",
+    "static/js/2.ae235abd.chunk.js": "/saltoris_ui_dev/static/js/2.ae235abd.chunk.js",
+    "static/js/2.ae235abd.chunk.js.map": "/saltoris_ui_dev/static/js/2.ae235abd.chunk.js.map",
+    "static/js/3.366413be.chunk.js": "/saltoris_ui_dev/static/js/3.366413be.chunk.js",
+    "static/js/3.366413be.chunk.js.map": "/saltoris_ui_dev/static/js/3.366413be.chunk.js.map",
     "index.html": "/saltoris_ui_dev/index.html",
-    "main.f6480b1f.css.map": "/saltoris_ui_dev/static/css/main.f6480b1f.css.map",
-    "main.cb0f3657.js.map": "/saltoris_ui_dev/static/js/main.cb0f3657.js.map",
-    "787.c4c76647.chunk.js.map": "/saltoris_ui_dev/static/js/787.c4c76647.chunk.js.map"
+    "static/css/2.b5f9dda7.chunk.css.map": "/saltoris_ui_dev/static/css/2.b5f9dda7.chunk.css.map",
+    "static/css/main.18beee66.chunk.css.map": "/saltoris_ui_dev/static/css/main.18beee66.chunk.css.map",
+    "static/js/2.ae235abd.chunk.js.LICENSE.txt": "/saltoris_ui_dev/static/js/2.ae235abd.chunk.js.LICENSE.txt",
+    "static/media/deil-logo.d96e8767.png": "/saltoris_ui_dev/static/media/deil-logo.d96e8767.png",
+    "static/media/saltoris.85ee1f2d.png": "/saltoris_ui_dev/static/media/saltoris.85ee1f2d.png",
+    "static/media/main.scss": "/saltoris_ui_dev/static/media/table-column.b3164c2e.webp"
   },
   "entrypoints": [
-    "static/css/main.f6480b1f.css",
-    "static/js/main.cb0f3657.js"
+    "static/js/runtime-main.b9c726a5.js",
+    "static/css/2.b5f9dda7.chunk.css",
+    "static/js/2.ae235abd.chunk.js",
+    "static/css/main.18beee66.chunk.css",
+    "static/js/main.3a598e5e.chunk.js"
   ]
 }
