@@ -37,6 +37,9 @@ const nFormatter = (num, digits=1) =>  {
     });
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 const injectData = (str , data, mapping) => {
     var stateItem = [];
     var r = str.match(/\{[\w]+\}/g);
@@ -114,5 +117,6 @@ export default {
     convertToList,
     nFormatter,
     injectData,
-    returnSuccessfullObject
+    returnSuccessfullObject,
+    numberWithCommas
 }

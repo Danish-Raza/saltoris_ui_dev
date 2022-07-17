@@ -98,7 +98,7 @@ function Fields(props) {
         case "date-range":
             fieldToRender = (
                 <FieldWrapper config={config} validated={validated}> 
-                    <RangePicker getPopupContainer={triggerNode => triggerNode.parentNode} disabled={config.disabled} key={config.key} value={config.value} onChange={(value, dateStrings) => onDateRangeSelect(config.key, value, dateStrings) }/> 
+                    <RangePicker getPopupContainer={triggerNode => triggerNode.parentNode} disabled={config.disabled} key={config.key} value={config.value} onChange={(value, dateStrings) => onDateRangeSelect(config.key, value, dateStrings) } placeholder={["From","To"]}/> 
                 </FieldWrapper>
             )
             break;

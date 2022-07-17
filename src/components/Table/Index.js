@@ -1,18 +1,19 @@
 import _ from "underscore"
 import Utils from "../../Utils";
 import Header from "../Header";
-import { Space, Table, Tag, Popover, Button, Switch} from 'antd';
+import { Space, Table, Tag, Popover, Button, Switch, Pagination} from 'antd';
 import cellHandler from "./CellHandler";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setOverlay, setTableRowData } from "../../actions/appActions";
+import { changePageView, setOverlay, setTableRowData } from "../../actions/appActions";
 import Icon from "../../Icon";
 import FormComponent from "../Form/FormComponent";
 import moment from "moment";
-
+import { useNavigate } from "react-router";
 
 function TableComponent(props) {
     const { config, handleDrop, handleDrag, isEditable, componentIndex, dependentData, componentDontExist } = props;
+    const navigate = useNavigate()
     const { columns, width, sticky }  = config;
     const [selectedOption, setSelectedOption] = useState({});
     const [data, setData] = useState([]);
@@ -81,7 +82,7 @@ function TableComponent(props) {
                 customer_name: "Danish Raza",
                 po_id: "#4400000555",
                 material: "material 1",
-                order_ammount: '1,881,395.00',
+                order_ammount: 1881395.00,
                 requirement:"Type I",
                 due_date: "2022-10-09",
                 valid_from: "2022-10-09",
@@ -109,7 +110,7 @@ function TableComponent(props) {
                 invoice_status:"Overdue",
                 value: 42,
                 valid_from: "2022-10-10",
-                order_ammount: '311,520.00',
+                order_ammount: 311520.00,
                 requirement:"Type I",
                 due_date: "2022-10-09",
                 customer_id: "1700294",
@@ -144,7 +145,7 @@ function TableComponent(props) {
                     material: "material 4",
                     valid_from: "2022-10-11",
                     value: 32,
-                    order_ammount: '333,000.00',
+                    order_ammount: 333000.00,
                     requirement:"Type I",
                     due_date: "2022-10-09",
                     address: 'Sidney No. 1 Lake Park',
@@ -172,7 +173,7 @@ function TableComponent(props) {
                     customer_name: "Danish Raza",
                     po_id: "#4500149543",
                     material: "material 1",
-                    order_ammount: '235,000.00',
+                    order_ammount: 235000.00,
                     requirement:"Type I",
                     due_date: "2022-10-09",
                     valid_from: "2022-10-09",
@@ -282,13 +283,17 @@ function TableComponent(props) {
             filterFormConfig._order={...filterFormConfig._order, [col.dataIndex]: filterFieldCounter}
             let uniqueValues = []
             let fieldType = "dropdown"
-            _.map(data,rec => {
+            let restrictedColumn = ["customer_id"]
+            let modData = dataAvailable || data
+            _.map(modData,rec => {
                 if(!uniqueValues.includes(rec[col.dataIndex])) {
                     let isDate = moment(rec[col.dataIndex], "YYYY-MM-DD", true).isValid()
-                    if(isDate) {
-                        fieldType = "date-range"
-                    } else if(!isNaN(rec[col.dataIndex])) {
-                        fieldType = "slider" 
+                    if(!restrictedColumn.includes(col.dataIndex)) {
+                        if(isDate) {
+                            fieldType = "date-range"
+                        } else if(!isNaN(rec[col.dataIndex])) {
+                            fieldType = "slider" 
+                        }
                     }
                     uniqueValues.push(rec[col.dataIndex])
                 }
@@ -309,8 +314,8 @@ function TableComponent(props) {
                 filterFormConfig[col.dataIndex]._order = options
             }
             if(fieldType=="slider"){
-                filterFormConfig[col.dataIndex].min = _.min(uniqueValues)
-                filterFormConfig[col.dataIndex].max = _.max(uniqueValues)
+                filterFormConfig[col.dataIndex].min = Number(_.min(uniqueValues))
+                filterFormConfig[col.dataIndex].max = Number(_.max(uniqueValues))   
             }
             filterFieldCounter++
         }
@@ -332,6 +337,7 @@ function TableComponent(props) {
             return dispatch(setOverlay({...params}))
         }
     }
+
     return (
         <div 
             className="widget table-wrapper"
@@ -345,14 +351,14 @@ function TableComponent(props) {
                 selectedOption={selectedOption}
                 parentComponentData={selectedRowKeys}
                 columnSelectorComponent={
-                     <Popover placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
+                     <Popover getPopupContainer={() => document.body}  placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
                         <Button className="popover-button-wrapper">
                             <div className="table-column-icon"></div>
                         </Button>
                     </Popover>
                 }
                 filterSelectorComponent={
-                    <Popover className="table-filter-form" placement="leftTop" title={false} content={<FormComponent template="table-filter-popup no-box-shadow" config={filterFormConfig} id={config.id} width={"440px"} onSubmit={filterHandler}/>} trigger="click">
+                    <Popover getPopupContainer={() => document.body}         className="table-filter-form" placement="leftTop" title={false} content={<FormComponent template="table-filter-popup no-box-shadow" config={filterFormConfig} id={config.id} width={"440px"} onSubmit={filterHandler}/>} trigger="click">
                        <Button className="popover-button-wrapper">
                            <Icon type="filter" width={15} height={15}/>
                        </Button>
@@ -392,15 +398,39 @@ function TableComponent(props) {
                 sticky={sticky}
                 dataSource={dataAvailable || data} 
                 columns={curColumn}
-                pagination={{
-                    current: 1,
-                    pageSize: 10,
-                    pageSizeOptions: [5,10, 20, 30],
-                    total: 100
-                  }}
-                // pagination={config.pagination === false ? false : null} 
+                pagination={config.pagination && {
+                    size:"small", total: 100, showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`
+                }}
                 showSorterTooltip={false}
                 rowSelection={ config.selectable ? rowSelection : null }
+                footer={config.redirect_on_view_all ? () => {
+                    let paramString = config.redirect_on_view_all.split('?')[1];
+                    let queryString = new URLSearchParams(paramString);
+                    let cur_page = null;
+                    let cur_view =  null;
+                    for(let pair of queryString.entries()) {
+                        console.log('v', pair);
+                        if(pair[0] == "cur_page") {
+                            cur_page = pair[1];   
+                        }
+                        if(pair[0] == "cur_view") {
+                            cur_view = pair[1];
+                        }
+                    }
+
+                    return (
+                        <div 
+                            className="view-all-button"
+                            onClick={() => {
+                                dispatch(changePageView(cur_page, cur_view))
+                                navigate(config.redirect_on_view_all)
+                            }}
+                        >   
+                            View all
+                        </div> 
+                    )
+
+                }: false}
             />
         </div>
     )

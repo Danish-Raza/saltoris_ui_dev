@@ -58,3 +58,37 @@
     position: relative;
     top: -3px;
 }
+.ant-table-pagination {
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    .ant-select-selector {
+        border-radius: 8px !important;
+    }
+    .ant-pagination-total-text {
+        position: absolute;
+        left: 13px;
+    }
+    button[class*="ant-pagination-item-link"] {
+        svg {
+            path {
+                fill: unset;
+            }
+        }
+    }
+   
+}
+.ant-table-footer {
+    display: flex;
+    justify-content: flex-end;
+    background-color: white;
+    .view-all-button {
+        font-size: 14px;
+        color: #3963E8;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    .view-all-button:hover {
+        text-decoration: underline;
+    }
+}

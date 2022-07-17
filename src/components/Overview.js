@@ -132,8 +132,24 @@ function Overview(props) {
         dispatch(applyFilters({[key]: value}))
     }
 
-    
-   
+    const addBack = (tab) => {
+        let modOrder =  [...sortedTabOrder]
+        modOrder.splice(sortedTabOrder.length, 0, tab)
+        setSortedTabOrder(modOrder)
+       // dispatch(changeConfig({action:"ADD_WIDGET",index: props.commonProps.componentIndex , id: props.commonProps.config.id}))
+    }
+    let modsortedTabOrder = [...sortedTabOrder]
+    if(isEditable) {
+        let defaultComponents = []
+        let originalOrder = config && config.original_order ? _.keys(Utils.sortOrder(config.original_order)) : [];
+        _.map(originalOrder, o => {
+            let i = _.findIndex(sortedTabOrder, c => config[c].parent_id == config[o].id);
+            if( i==-1 ) {
+                defaultComponents.push(o);
+            }
+        })
+        modsortedTabOrder = [ ...sortedTabOrder, ...defaultComponents];
+    } 
     return (
         <div className="overview" >
             {config.dropdown ? <DropDown value={appData && appData.appParams ? appData.appParams.appliedFilters[config.dropdown.key] : null} config={config.dropdown} onChange={changeHandler}/> : null}
@@ -149,15 +165,18 @@ function Overview(props) {
             </div>
             <div ref={overviewWrapper} style={{display:"flex", flexWrap:"wrap"}} >
             {
-               _.map(sortedTabOrder, tab => {
+               _.map(modsortedTabOrder, tab => {
                    let rec = {...data[config[tab].mapping_key], _key: tab}
                    let sortOrder = _.keys(Utils.sortOrder(config[tab]._order))
+                   let componentDontExist= !sortedTabOrder.includes(tab) ? true : false
                    return (
                 
-                    <div className="overview-block"
+                    <div style={{position:"relative"}}>
+                        <div className="overview-block"
                          draggable={isEditable}
                          onDrop={handleDrop} 
                          onDragStart={handleDrag}
+                         data-componentDontExist={componentDontExist}
                          onDragOver={(event) => {
                              // let event = e as Event;
                              event.stopPropagation();
@@ -165,7 +184,7 @@ function Overview(props) {
                          }}
                          id={tab}
                      >
-                        {isEditable ? <div className="remove-button" onClick={() => removeHandler(tab)}>-</div> : ""}
+                        {isEditable && !componentDontExist? <div className="remove-button" onClick={() => removeHandler(tab)}>-</div> : ""}
                         {
                              _.map(sortOrder, order => {
                                 if(config[tab][order].multiple) {
@@ -216,7 +235,10 @@ function Overview(props) {
                             })
 
                         }
+                        
                    </div>
+                    {componentDontExist && <div className="add-back-button" onClick={() => addBack(tab)}>+</div>}
+                    </div>
                    )
                })
            }

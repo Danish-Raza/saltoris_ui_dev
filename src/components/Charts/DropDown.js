@@ -73,7 +73,7 @@ function DropDown(props) {
     
   //  return 
     return (
-      <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']} >
+      <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']} getPopupContainer={() => document.body} >
           <Button className='filter-icon-wrappper' > <Icon type="three-dots" width={15} height={15} styles={props.styles}/></Button>
         {/* <Icon type="filter" width={15} height={15}/> */}
     </Dropdown>

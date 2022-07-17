@@ -73,7 +73,7 @@ function Charts(props) {
             counter++
             let newDate = startDate.setDate(startDate.getDate() + 1);
             startDate = new Date(newDate);
-         }
+        }
 
         await WebUtils.httpOperations(api, params, "GET")
         .then(response =>  {
@@ -111,7 +111,7 @@ function Charts(props) {
         >
             <Header  
                 componentIndex={componentIndex} 
-                config={{...config }}
+                config={{ ...config }}
                 isEditable={isEditable} 
                 onChange={dropDownHandler}
                 selectedOption={selectedOption}

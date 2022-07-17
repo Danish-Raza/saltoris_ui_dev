@@ -43,9 +43,6 @@ function Widgets(props) {
         if(cardWrapper) {
            ev.currentTarget.querySelector(".card-wrapper-body").style["overflow-y"]="visible"
            ev.currentTarget.querySelector(".card-wrapper-body").style["height"]="auto"
-            console.log( ev.currentTarget.style)
-          //  ev.currentTarget =  ev.currentTarget.querySelector('.card-component-wrapper')
-            console.log(ev.currentTarget)
         }
         setDraggedItem(ev.currentTarget.id);
     }
@@ -64,6 +61,7 @@ function Widgets(props) {
         })
     } 
     let combinedComponent = [...components, ...defaultComponents];
+    
     return (
         <div
             className="widgets-wrapper"  

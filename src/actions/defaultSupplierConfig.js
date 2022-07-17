@@ -7,11 +7,11 @@ const data = {
             "display":"Dashboard",
             "icon": "vector",
             "widgets": {
-                "_order": {"overview": 1, "chart_1": 2, "user_feedback": 3, "purchase_order_table": 4},
-                "original_order":  { 
-                    "overview": 1, "chart_1": 2, "user_feedback": 3, "purchase_order_table": 4
+                "_order": {"overview": 1, "chart_1": 2, "user_feedback": 3, "purchase_order_table": 4, "invoice_table": 5},
+                "original_order":  {
+                    "overview": 1, "chart_1": 2, "user_feedback": 3, "purchase_order_table": 4, "invoice_table": 5
                 },
-                "overview":{
+                "overview": {
                     "type":"overview",
                     "api": "/asd/asda?",
                     "display":"Overview",
@@ -155,12 +155,55 @@ const data = {
                         }
                     },
                     "_order":{
-                        "Invoice": 1,
-                        "Opportunities": 2,
-                        "Bid": 3,
-                        "Payments": 4
+                        "purchase_order": 1,
+                        "Invoice": 2,
+                        "Opportunities": 3,
+                        "Bid": 4,
+                        "Payments": 5
+                    },
+                    "original_order":{
+                        "purchase_order": 1,
+                        "Invoice": 2,
+                        "Opportunities": 3,
+                        "Bid": 4,
+                        "Payments": 5
+                    },
+                    "purchase_order": {
+                        "id": "purchase_order" ,
+                        "parent_id": "purchase_order",
+                        "_order":{
+                            "title": 1,
+                            "gain_difference": 2,
+                            "compared_against": 3
+                        },
+                        "title": {
+                            "display": "Purchase Order",
+                        },
+                        "gain_difference": {
+                            "multiple": {
+                                "_order":{
+                                    "gain": 1,
+                                    "difference": 2
+                                },
+                                "gain": {
+                                    "is_currency": "₹",
+                                    "display": "{gain}"
+                                },
+                                "difference": {
+                                    "is_percent": true,
+                                    "display": "{difference}",
+                                    "template": "arrow-up-down"
+                                }
+                            }
+                        },
+                        "compared_against": {
+                            "display": "Compared to ({previous_score}) last year",
+                        },
+                        "mapping_key":"Invoices"
                     },
                     "Invoice": {
+                        "id": "Invoice" ,
+                        "parent_id": "Invoice",
                         "_order":{
                             "title": 1,
                             "gain_difference": 2,
@@ -192,6 +235,8 @@ const data = {
                         "mapping_key":"Invoices"
                     },
                     "Opportunities": {
+                        "id": "Opportunities" ,
+                        "parent_id": "Opportunities",
                         "_order":{
                             "title": 1,
                             "gain_difference": 2,
@@ -223,6 +268,8 @@ const data = {
                         "mapping_key":"Opportunities"
                     },
                     "Bid": {
+                        "id": "Bid" ,
+                        "parent_id": "Bid",
                         "_order":{
                             "title": 1,
                             "gain_difference": 2,
@@ -254,6 +301,8 @@ const data = {
                         "mapping_key":"Bid"
                     },
                     "Payments": {
+                        "id": "Payments" ,
+                        "parent_id": "Payments",
                         "_order":{
                             "title": 1,
                             "gain_difference": 2,
@@ -283,7 +332,7 @@ const data = {
                             "display": "Compared to ({previous_score}) last year",
                         },
                         "mapping_key":"Payments"
-                    },
+                    }
                 },
                 "chart_1":{
                     "type": "chart",
@@ -385,6 +434,7 @@ const data = {
                                     "api":  "abc",
                                     "download": true,
                                     "selectable": true,
+                                    "pagination": false,
                                     "searchConfig": {
                                         "initial_disabled": false,
                                         "template": "table-search-popup no-box-shadow",
@@ -461,29 +511,46 @@ const data = {
                                     },
                                     "columns":{
                                         "_order":{
-                                            "po_id": 1,
+                                            "customer_id": 1,
+                                            "customer_name": 2,
+                                            "po_id": 3,
                                             "valid_from": 4,
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "po_status": 8
                                         },
                                         "customer_id":{
-                                            "display": "PO Number",
+                                            "display": "Customer ID",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "sort": true,
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "filters": [
+                                                {
+                                                    "text": 'Hyderabad',
+                                                    "value": 'Hyderabad',
+                                                },
+                                                {
+                                                    "text": 'Agra',
+                                                    "value": 'Agra',
+                                                },
+                                                {
+                                                    "text": 'Lucknow',
+                                                    "value": 'Lucknow',
+                                                }
+                                            ],
                                         },
                                         "order_ammount":{
                                             "display": "Amount (₹)",
                                             "type":"string",
+                                            "sort": true,
                                             "width": "",
                                             "align": "left"
                                             
@@ -517,7 +584,8 @@ const data = {
                                             "display": "Customer Name",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "sort": true,
                                         },
                                         "po_id": {
                                             "display": "PO Number",
@@ -549,7 +617,7 @@ const data = {
                                             "overlay": {},
                                             "template": "button",
                                             "button_label": "View Detail"
-                                        },      
+                                        }
                                     }
                                 },
                                 "first_section": {
@@ -1092,29 +1160,46 @@ const data = {
                                     "pagination": false,
                                     "columns":{
                                         "_order":{
-                                            "po_id": 1,
+                                            "customer_id": 1,
+                                            "customer_name": 2,
+                                            "po_id": 3,
                                             "valid_from": 4,
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "po_status": 8
                                         },
                                         "customer_id":{
-                                            "display": "PO Number",
+                                            "display": "Customer ID",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "sort": true,
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "filters": [
+                                                {
+                                                    "text": 'Hyderabad',
+                                                    "value": 'Hyderabad',
+                                                },
+                                                {
+                                                    "text": 'Agra',
+                                                    "value": 'Agra',
+                                                },
+                                                {
+                                                    "text": 'Lucknow',
+                                                    "value": 'Lucknow',
+                                                }
+                                            ],
                                         },
                                         "order_ammount":{
                                             "display": "Amount (₹)",
                                             "type":"string",
+                                            "sort": true,
                                             "width": "",
                                             "align": "left"
                                             
@@ -1148,7 +1233,8 @@ const data = {
                                             "display": "Customer Name",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "sort": true,
                                         },
                                         "po_id": {
                                             "display": "PO Number",
@@ -1180,7 +1266,7 @@ const data = {
                                             "overlay": {},
                                             "template": "button",
                                             "button_label": "View Detail"
-                                        },      
+                                        }
                                     }
                                 },
                             },
@@ -1190,10 +1276,12 @@ const data = {
                         }
                     },
                     "selectable": true,
+                    "pagination": false,
                     "type": "table",
                     "width": "100%",
                     "display": "Purchase Orders",
                     "download": true,
+                    "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=order",
                     "searchConfig": {
                         "initial_disabled": false,
                         "template": "table-search-popup no-box-shadow",
@@ -1270,29 +1358,46 @@ const data = {
                     },
                     "columns":{
                         "_order":{
-                            "po_id": 1,
+                            "customer_id": 1,
+                            "customer_name": 2,
+                            "po_id": 3,
                             "valid_from": 4,
                             "due_date": 5,
                             "ship_to": 6,
                             "order_ammount": 7,
-                            "po_status": 8,
-                            "view_detail": 9
+                            "po_status": 8
                         },
                         "customer_id":{
-                            "display": "PO Number",
+                            "display": "Customer ID",
                             "type":"string",
                             "width": "",
-                            "align": "left"
+                            "align": "left",
+                            "sort": true,
                         },
                         "ship_to":{
                             "display": " Ship To (Address)",
                             "type":"string",
                             "width": "",
-                            "align": "left"
+                            "align": "left",
+                            "filters": [
+                                {
+                                    "text": 'Hyderabad',
+                                    "value": 'Hyderabad',
+                                },
+                                {
+                                    "text": 'Agra',
+                                    "value": 'Agra',
+                                },
+                                {
+                                    "text": 'Lucknow',
+                                    "value": 'Lucknow',
+                                }
+                            ],
                         },
                         "order_ammount":{
                             "display": "Amount (₹)",
                             "type":"string",
+                            "sort": true,
                             "width": "",
                             "align": "left"
                             
@@ -1326,7 +1431,8 @@ const data = {
                             "display": "Customer Name",
                             "type":"string",
                             "width": "",
-                            "align": "left"
+                            "align": "left",
+                            "sort": true,
                         },
                         "po_id": {
                             "display": "PO Number",
@@ -1358,230 +1464,1060 @@ const data = {
                             "overlay": {},
                             "template": "button",
                             "button_label": "View Detail"
-                        },
-                        
+                        }
                     }
                 },
-                "opportunities_table":{
-                    "id": "opportunities_table",
-                    "parent_id": "opportunities_table",
-                    "type": "table",
-                    "width": "48.2%",
-                    "display": "Opportunities",
-                    "replicate": true,
-                    "api":  "",
-                    "header_config": {
-                        "template":"dropdown-title"
+                "invoice_table": {
+                    "render_initial": true,
+                    "download": true,
+                    "selectable": true,
+                    "searchConfig": {
+                        "initial_disabled": false,
+                        "template": "table-search-popup no-box-shadow",
+                        "_order": {"po_id": 1, "document": 2, "keyword": 3},
+                        "po_id":{
+                            "type": "dropdown",
+                            "placeholder": "Select",
+                            "width":"32%",
+                            "key": "po_id",
+                            "mode":"select",
+                            // "label": "PO Number",
+                            "flex": true,
+                            "required": true,
+                            "on_change": true,
+                            "icon":"search",
+                            "_order": {
+                                "p1":1,
+                                "p2":2,
+                                "p3":3,
+                                "p4":4
+                            },
+                            "p1": {
+                                "display":"P1"
+                            },
+                            "p2": {
+                                "display":"P2"
+                            },
+                            "p3": {
+                                "display":"P3"
+                            },
+                            "p4": {
+                                "display":"P4"
+                            }
+                        },
+                        "document": {
+                            "type": "dropdown",
+                            "placeholder": "Select",
+                            "width":"32%",
+                            "key": "document",
+                            "mode":"select",
+                            // "label": "Document",
+                            "flex": true,
+                            "required": false,
+                            "icon":"search",
+                            "_order": {
+                                "p1":1,
+                                "p2":2,
+                                "p3":3,
+                                "p4":4
+                            },
+                            "p1": {
+                                "display":"P1"
+                            },
+                            "p2": {
+                                "display":"P2"
+                            },
+                            "p3": {
+                                "display":"P3"
+                            },
+                            "p4": {
+                                "display":"P4"
+                            }
+                        },
+                        "keyword": {
+                            "type": "text",
+                            "placeholder": "Search by keyword",
+                            "width":"32%",
+                            "key": "keyword",
+                            // "label": "Document",
+                            "flex": true,
+                            "required": false,
+                            "icon":"search"
+                        },
                     },
+                    "id": "invoice_table",
+                    "parent_id":"invoice_table",
+                    "type": "table",
+                    "width": "100%",
+                    "display": "Invoices",
+                    "api":  "",
+                    "pagination": false,
                     "dropdown":{
                         "key": "compared_against",
                         "template": "filter",
                         "api": "",
                         "mode": "select",
-                        "id": "chart_1_dropdown",
-                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "Invoice": 4},
-                        "Payments":{
-                            "display":"Payments"
+                        "id": "purchase_order_table_dropdown",
+                        "_order": {"create shipping notification":1 , "create invoice": 2},
+                        "create shipping notification":{
+                            "display":"Create Shipping Notification",
+                            "on_click": "overlay",
+                            "overlay": {
+                                "id": "create_asn_overlay",
+                                "_order": {"form_group": 4, "invoice_table_overlay": 1, "first_section":3, "selected_invoice_table": 2},
+                                "invoice_table_overlay": {
+                                    "render_initial": true,
+                                    "id": "invoice_table_overlay",
+                                    "dependent_table": true,
+                                    "dependent_table_ids": ["invoice_table"],
+                                    "type": "table",
+                                    "width": "100%",
+                                    "api":  "abc",
+                                    "download": true,
+                                    "selectable": true,
+                                    "pagination": false,
+                                    "searchConfig": {
+                                        "initial_disabled": false,
+                                        "template": "table-search-popup no-box-shadow",
+                                        "_order": {"po_id": 1, "document": 2, "keyword": 3},
+                                        "po_id":{
+                                            "type": "dropdown",
+                                            "placeholder": "Select",
+                                            "width":"32%",
+                                            "key": "po_id",
+                                            "mode":"select",
+                                            // "label": "PO Number",
+                                            "flex": true,
+                                            "required": true,
+                                            "on_change": true,
+                                            "icon":"search",
+                                            "_order": {
+                                                "p1":1,
+                                                "p2":2,
+                                                "p3":3,
+                                                "p4":4
+                                            },
+                                            "p1": {
+                                                "display":"P1"
+                                            },
+                                            "p2": {
+                                                "display":"P2"
+                                            },
+                                            "p3": {
+                                                "display":"P3"
+                                            },
+                                            "p4": {
+                                                "display":"P4"
+                                            }
+                                        },
+                                        "document": {
+                                            "type": "dropdown",
+                                            "placeholder": "Select",
+                                            "width":"32%",
+                                            "key": "document",
+                                            "mode":"select",
+                                            // "label": "Document",
+                                            "flex": true,
+                                            "required": false,
+                                            "icon":"search",
+                                            "_order": {
+                                                "p1":1,
+                                                "p2":2,
+                                                "p3":3,
+                                                "p4":4
+                                            },
+                                            "p1": {
+                                                "display":"P1"
+                                            },
+                                            "p2": {
+                                                "display":"P2"
+                                            },
+                                            "p3": {
+                                                "display":"P3"
+                                            },
+                                            "p4": {
+                                                "display":"P4"
+                                            }
+                                        },
+                                        "keyword": {
+                                            "type": "text",
+                                            "placeholder": "Search by keyword",
+                                            "width":"32%",
+                                            "key": "keyword",
+                                            // "label": "Document",
+                                            "flex": true,
+                                            "required": false,
+                                            "icon":"search"
+                                        },
+                                    },
+                                    "columns":{
+                                        "_order":{
+                                            "customer_id": 1,
+                                            "customer_name": 2,
+                                            "invoice_no": 3,
+                                            "valid_from": 4,
+                                            "due_date": 5,
+                                            "order_ammount": 7,
+                                            "invoice_status": 8,
+                                            // "view_detail": 9
+                                        },
+                                        "customer_id":{
+                                            "display": "Customer ID",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true
+                                        },
+                                        "ship_to":{
+                                            "display": " Ship To (Address)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "order_ammount":{
+                                            "display": "Amount (₹)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true
+                                            
+                                        },
+                                        "invoice_status":{
+                                            "display": "Status",
+                                            "type": "tag",
+                                            "width": "",
+                                            "align": "left",
+                                            "color_mapping":{
+                                                "Due":"orange",
+                                                "Paid": "green",
+                                                "Overdue":"red"
+                                            },
+                                            "filters": [
+                                                {
+                                                    "text": 'Due',
+                                                    "value": 'Due',
+                                                },
+                                                {
+                                                    "text": 'Paid',
+                                                    "value": 'Paid',
+                                                },
+                                                {
+                                                    "text": 'Overdue',
+                                                    "value": 'Overdue',
+                                                }
+                                            ],
+                                        },
+                                        "customer_name": {
+                                            "display": "Customer Name",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true
+                                        },
+                                        "invoice_no": {
+                                            "display": "Invoice Number",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "valid_from": {
+                                            "display": "Invoice Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "invoice_date": {
+                                            "display": "Invoice Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width":200,
+                                            // "color":"#FC5A5A",
+                                            "align": "left",
+                                            "sort": true
+                                        },
+                                        "due_date": {
+                                            "display": "Due Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width":200,
+                                            "color":"#FC5A5A",
+                                            "align": "left"
+                                        },
+                                        "view_detail": {
+                                            "display": "",
+                                            "type": "action",
+                                            "width": "",
+                                            "align": "center",
+                                            "on_click": "overlay",
+                                            "overlay": {},
+                                            "template": "button",
+                                            "button_label": "View Detail"
+                                        }
+                                        
+                                    },
+                                },
+                                "first_section": {
+                                    "type" : "info",
+                                    "_order": {
+                                        "title": 1
+                                    },
+                                    "title": {
+                                        "display": "Shipping Order Details"
+                                    }
+                                },
+                                "form_group":{
+                                    "type":"form-group",
+                                    "width":"100%",
+                                    "_order": {"form_2": 2, "form_3": 2, "form_4": 3, "form_5": 4, "payment_1":5,"payment_2": 6, "form_8": 7, "form_9": 8, "form_10": 9},
+                                    "api": "/asd/asda?",
+                                    "form_2": {
+                                       // "title":"Shipping Order Details",
+                                        "group_style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "boxShadow":"unset"
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "boxShadow":"unset",
+                                            "borderRadius":"unset"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"20%",
+                                        "_order": { "product_image": 1},
+                                        "product_image": {
+                                            "type": "file",
+                                            "placeholder": "Upload Product Image",
+                                            "file_format": "image",
+                                            "file_type":"image",
+                                            "template":"box-preview",
+                                            "no_view_document": false,
+                                            "width":"100%",
+                                            "key": "product_image",
+                                            "flex": true,
+                                            "required": true
+                                        }
+                                    },
+                                    "form_3": {
+                                        "template":"template-1",
+                                        "group_style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "background":"white"
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "boxShadow":"unset",
+                                            "borderRadius":"unset"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"80%",
+                                        "_order": { "product_title": 2,"product_price": 3, "product_date": 4},
+                                        "product_title": {
+                                            "type": "text",
+                                            "placeholder": "Title",
+                                            "width":"100%",
+                                            "key": "product_title",
+                                            "template":"no-border no-padding",
+                                            "default": {
+                                                "_order": {
+                                                    "Title":1
+                                                }
+                                            },
+                                          //  "label": "Product Title",
+                                            "flex": true,
+                                          //  "label_icon":"linkedin",
+                                            "required": false
+                                        },
+                                        "product_price": {
+                                            "type": "text",
+                                            "placeholder": "Product Price",
+                                            "template":"no-border no-padding",
+                                            "width":"100%",
+                                            "key": "product_price",
+                                            "label": "Price:",
+                                            "flex": true,
+                                          //  "label_icon":"linkedin",
+                                            "required": false
+                                        },
+                                        "product_date":{
+                                            "type": "date",
+                                            "placeholder": "Date",
+                                            "template":"no-border  no-padding",
+                                            "width":"100%", 
+                                            "key": "product_date",
+                                            "label": "Date:",
+                                            "flex": true,
+                                          //  "label_icon":"linkedin",
+                                            "required": false
+                                        },
+                                    },
+                                    "form_4": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"To (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0 
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            // "boxShadow":"unset",
+                                            "borderRadius":"10px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"49%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "form_5": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"From (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0,
+    
+                                            
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "borderRadius":"20px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"49%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "payment_1":{
+                                        "title":"Payment",
+                                        "initial_disabled": false,
+                                        "_order": {"Terms": 1, "Routing Status": 2,"Terms Document": 3,"Related Document": 4,"Comment": 5,"Information": 6,"Comment Type": 7},
+                                        "Terms":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Terms",
+                                            "label": "Terms",
+                                            "flex": true,
+                                            "required": false
+                                        },
+                                        "Routing Status":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Routing Status",
+                                            "label": "Routing Status",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Related Document":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Related Document",
+                                            "label": "Related Document",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Comment":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Comment",
+                                            "label": "Comment",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Terms Document":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Terms Document",
+                                            "label": "Terms Document",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Information":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Information",
+                                            "label": "Information",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Comment Type":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Comment Type",
+                                            "label": "Comment Type",
+                                            "flex": true,
+                                            "required": true
+                                        }
+                                    },
+                                    "payment_2":{
+                                       // "title":"Payment",
+                                        "initial_disabled": false,
+                                        "_order": {"Telephone (#)": 1, "Purchase Group Administrator": 2,"Company Code": 4,"Email": 3,"Purchase Group": 5,"Plant": 6,"Purchase Group Telephone (#)": 7},
+                                        "Telephone (#)":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Telephone (#)",
+                                            "label": "Telephone (#)",
+                                            "flex": true,
+                                            "required": false
+                                        },
+                                        "Purchase Group Administrator":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Purchase Group Administrator",
+                                            "label": "Purchase Group Administrator",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Email":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Email",
+                                            "label": "Email",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Purchase Group":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Purchase Group",
+                                            "label": "Purchase Group",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Company Code":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Company Code",
+                                            "label": "Company Code",
+                                            "flex": true,
+                                            "required": true
+                                        },
+    
+                                        "Plant":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Plant",
+                                            "label": "Plant",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Purchase Group Telephone (#)":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Purchase Group Telephone (#)",
+                                            "label": "Purchase Group Telephone (#)",
+                                            "flex": true,
+                                            "required": true
+                                        }
+                                    },
+                                    "form_8": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"Ship To (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0 
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "borderRadius":"20px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"32%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "form_9": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"Bill To (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "borderRadius":"20px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"32%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "form_10": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"Deliver To (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0         
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "borderRadius":"20px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"32%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "submit": {
+                                        "api": "",
+                                        "display": "Save"
+                                    }
+                                },
+                                "selected_invoice_table": {
+                                    "id": "selected_invoice_table",
+                                    "dependent_table": true,
+                                    "dependent_table_ids": ["invoice_table_overlay"],
+                                    "type": "table",
+                                    "width": "100%",
+                                    "sticky_top": 0,
+                                    "display": "Selected Invoices",
+                                    "api":  "",
+                                    "pagination": false,
+                                    "columns":{
+                                        "_order":{
+                                            "customer_id": 1,
+                                            "customer_name": 2,
+                                            "invoice_no": 3,
+                                            "valid_from": 4,
+                                            "due_date": 5,
+                                            "order_ammount": 7,
+                                            "invoice_status": 8,
+                                            // "view_detail": 9
+                                        },
+                                        "customer_id":{
+                                            "display": "Customer ID",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true
+                                        },
+                                        "ship_to":{
+                                            "display": " Ship To (Address)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "order_ammount":{
+                                            "display": "Amount (₹)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true
+                                            
+                                        },
+                                        "invoice_status":{
+                                            "display": "Status",
+                                            "type": "tag",
+                                            "width": "",
+                                            "align": "left",
+                                            "color_mapping":{
+                                                "Due":"orange",
+                                                "Paid": "green",
+                                                "Overdue":"red"
+                                            },
+                                            "filters": [
+                                                {
+                                                    "text": 'Due',
+                                                    "value": 'Due',
+                                                },
+                                                {
+                                                    "text": 'Paid',
+                                                    "value": 'Paid',
+                                                },
+                                                {
+                                                    "text": 'Overdue',
+                                                    "value": 'Overdue',
+                                                }
+                                            ],
+                                        },
+                                        "customer_name": {
+                                            "display": "Customer Name",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true
+                                        },
+                                        "invoice_no": {
+                                            "display": "Invoice Number",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "valid_from": {
+                                            "display": "Invoice Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "invoice_date": {
+                                            "display": "Invoice Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width":200,
+                                            // "color":"#FC5A5A",
+                                            "align": "left",
+                                            "sort": true
+                                        },
+                                        "due_date": {
+                                            "display": "Due Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width":200,
+                                            "color":"#FC5A5A",
+                                            "align": "left"
+                                        },
+                                        "view_detail": {
+                                            "display": "",
+                                            "type": "action",
+                                            "width": "",
+                                            "align": "center",
+                                            "on_click": "overlay",
+                                            "overlay": {},
+                                            "template": "button",
+                                            "button_label": "View Detail"
+                                        }
+                                        
+                                    },
+                                },
+                            },
                         },
-                        "Bid":{
-                            "display":"Bid"
-                        },
-                        "Opportunities":{
-                            "display":"Opportunities"
-                        },
-                        "Invoice":{
-                            "display":"Invoice"
-                        },
-                        "default": {
-                            "_order": { "Opportunities":1},
+                        "create invoice":{
+                            "display":"Create Invoice"
                         }
                     },
                     "columns":{
                         "_order":{
-                            "name": 1,
-                            "requirement": 2,
-                            "due_date": 3,
-                            "value": 4
+                            "customer_id": 1,
+                            "customer_name": 2,
+                            "invoice_no": 3,
+                            "valid_from": 4,
+                            "due_date": 5,
+                            "order_ammount": 7,
+                            "invoice_status": 8,
+                            // "view_detail": 9
                         },
-                        "name": {
-                            "display": "Name",
+                        "customer_id":{
+                            "display": "Customer ID",
+                            "type":"string",
+                            "width": "",
+                            "align": "left",
+                            "sort": true
+                        },
+                        "ship_to":{
+                            "display": " Ship To (Address)",
                             "type":"string",
                             "width": "",
                             "align": "left"
                         },
-                        "requirement": {
-                            "display": "Requirement",
-                            "type":"string",
-                            "width": "",
-                            "align": "center",
-                            "sort": true
-                        },
-                        "due_date": {
-                            "display": "Due Date",
-                            "type":"date",
-                            "format": 'MMM Do YYYY, h:mm a',
-                            "width": "",
-                            "color":"#FC5A5A",
-                            "align": "left",
-                            "sort": true
-                        },
-                        "value": {
-                            "display": "Value",
-                            "type":"string",
-                            "width": "",
-                            "align": "center",
-                            "sort": true
-                        },
-                        "check_conditions":{
-                            "_order":{
-                                "condition_1": 1
-                            },
-                            "condition_1": {
-                                "condition": "'{compared_against}' == 'Invoice'",
-                                "_order": {
-                                    "buyer": 1,
-                                    "invoice_no": 2,
-                                    "due_date": 3,
-                                    "order_ammount": 4,
-                                    "status": 5
-                                }
-                            }
-                        },
-                        "buyer": {
-                            "display": "Buyer",
-                            "type":"string",
-                            "width": "",
-                            "align": "left"
-                        },
-                        "order_ammount": {
-                            "display": "Order Amount",
+                        "order_ammount":{
+                            "display": "Amount (₹)",
                             "type":"string",
                             "width": "",
                             "align": "left",
-                            "is_currency": "₹",
                             "sort": true
+                            
                         },
-                        "status": {
+                        "invoice_status":{
                             "display": "Status",
                             "type": "tag",
                             "width": "",
                             "align": "left",
                             "color_mapping":{
-                                "Send":"green",
-                                "Rejected":"red",
-                                "Approved": "blue",
-                                "Payments":"#40a9ff"
+                                "Due":"orange",
+                                "Paid": "green",
+                                "Overdue":"red"
                             },
                             "filters": [
                                 {
-                                    "text": 'Send',
-                                    "value": 'Send',
+                                    "text": 'Due',
+                                    "value": 'Due',
                                 },
                                 {
-                                    "text": 'Payments',
-                                    "value": 'Payments',
+                                    "text": 'Paid',
+                                    "value": 'Paid',
                                 },
                                 {
-                                    "text": 'Approved',
-                                    "value": 'Approved',
-                                },
-                                {
-                                    "text": 'Rejected',
-                                    "value": 'Rejected',
+                                    "text": 'Overdue',
+                                    "value": 'Overdue',
                                 }
                             ],
+                        },
+                        "customer_name": {
+                            "display": "Customer Name",
+                            "type":"string",
+                            "width": "",
+                            "align": "left",
                             "sort": true
                         },
                         "invoice_no": {
-                            "display": "Invoice No.",
+                            "display": "Invoice Number",
                             "type":"string",
                             "width": "",
                             "align": "left"
                         },
-                    }
-                },
-                "invoice_table":{
-                    "id": "invoice_table",
-                    "parent_id": "invoice_table",
-                    "type": "table",
-                    "replicate": true,
-                    "width": "48.2%",
-                    "display": "Invoice Details",
-                    "api":  "",
-                    "dropdown":{
-                        "template": "filter",
-                        "key": "compared_against",
-                        "api": "",
-                        "id": "chart_1_dropdown",
-                        "_order": {"Payments":2 , "Bid": 1, "Opportunities": 3, "Invoice": 4},
-                        "Payments":{
-                            "display":"Payments"
-                        },
-                        "Bid":{
-                            "display":"Bid"
-                        },
-                        "Opportunities":{
-                            "display":"Opportunities"
-                        },
-                        "Invoice":{
-                            "display":"Invoice"
-                        },
-                        "default": {
-                            "_order": { "Bid": 1, "Payments": 2},
-                        }
-                    },
-                    "columns":{
-                        "_order":{
-                            "buyer": 1,
-                            "invoice_no": 2,
-                            "due_date": 3,
-                            "order_ammount": 4,
-                            "status": 5
-                        },
-                        "buyer": {
-                            "display": "Buyer",
-                            "type":"string",
+                        "valid_from": {
+                            "display": "Invoice Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
                             "width": "",
                             "align": "left"
                         },
-                        "invoice_no": {
-                            "display": "Invoice No.",
-                            "type":"string",
-                            "width": "",
-                            "align": "center"
+                        "invoice_date": {
+                            "display": "Invoice Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width":200,
+                            // "color":"#FC5A5A",
+                            "align": "left",
+                            "sort": true
                         },
                         "due_date": {
                             "display": "Due Date",
                             "type":"date",
                             "format": 'MMM Do YYYY, h:mm a',
-                            "width": "",
+                            "width":200,
                             "color":"#FC5A5A",
                             "align": "left"
                         },
-                        "order_ammount": {
-                            "display": "Order Amount",
-                            "type":"string",
+                        "view_detail": {
+                            "display": "",
+                            "type": "action",
                             "width": "",
                             "align": "center",
-                            "is_currency": "₹"
-                        },
-                        "status": {
-                            "display": "Status",
-                            "type": "tag",
-                            "width": "",
-                            "align": "left",
-                            "color_mapping":{
-                                "Send":"green",
-                                "Rejected":"red",
-                                "Approved": "blue",
-                                "Payments":"#40a9ff"
-                            }
+                            "on_click": "overlay",
+                            "overlay": {},
+                            "template": "button",
+                            "button_label": "View Detail"
                         }
-                    }
+                        
+                    },
+                    "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
                 }
             }
         },
-
         "order": {
             "display": "Orders",
             "icon": "orders",
@@ -2129,7 +3065,7 @@ const data = {
                             "on_click": "overlay",
                             "overlay": {
                                 "id": "create_asn_overlay",
-                                "_order": {"form_group": 4, "purchase_order_table_overlay_order": 1, "first_section":3, "selected_po_table_order": 2},
+                                "_order": {"form_group": 4, "purchase_order_table_overlay_order": 1, "first_section":3, "selected_po_table": 2},
                                 "purchase_order_table_overlay_order": {
                                     "render_initial": true,
                                     "id": "purchase_order_table_overlay_order",
@@ -2140,6 +3076,7 @@ const data = {
                                     "api":  "abc",
                                     "download": true,
                                     "selectable": true,
+                                    "pagination": false,
                                     "searchConfig": {
                                         "initial_disabled": false,
                                         "template": "table-search-popup no-box-shadow",
@@ -2216,29 +3153,46 @@ const data = {
                                     },
                                     "columns":{
                                         "_order":{
-                                            "po_id": 1,
+                                            "customer_id": 1,
+                                            "customer_name": 2,
+                                            "po_id": 3,
                                             "valid_from": 4,
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "po_status": 8
                                         },
                                         "customer_id":{
-                                            "display": "PO Number",
+                                            "display": "Customer ID",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "sort": true,
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "filters": [
+                                                {
+                                                    "text": 'Hyderabad',
+                                                    "value": 'Hyderabad',
+                                                },
+                                                {
+                                                    "text": 'Agra',
+                                                    "value": 'Agra',
+                                                },
+                                                {
+                                                    "text": 'Lucknow',
+                                                    "value": 'Lucknow',
+                                                }
+                                            ],
                                         },
                                         "order_ammount":{
                                             "display": "Amount (₹)",
                                             "type":"string",
+                                            "sort": true,
                                             "width": "",
                                             "align": "left"
                                             
@@ -2272,7 +3226,8 @@ const data = {
                                             "display": "Customer Name",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "sort": true,
                                         },
                                         "po_id": {
                                             "display": "PO Number",
@@ -2304,7 +3259,7 @@ const data = {
                                             "overlay": {},
                                             "template": "button",
                                             "button_label": "View Detail"
-                                        },      
+                                        }
                                     }
                                 },
                                 "first_section": {
@@ -2835,7 +3790,7 @@ const data = {
                                         "display": "Save"
                                     }
                                 },
-                                "selected_po_table_order": {
+                                "selected_po_table": {
                                     "id": "selected_po_table",
                                     "dependent_table": true,
                                     "dependent_table_ids": ["purchase_order_table_overlay_order"],
@@ -2847,29 +3802,46 @@ const data = {
                                     "pagination": false,
                                     "columns":{
                                         "_order":{
-                                            "po_id": 1,
+                                            "customer_id": 1,
+                                            "customer_name": 2,
+                                            "po_id": 3,
                                             "valid_from": 4,
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "po_status": 8
                                         },
                                         "customer_id":{
-                                            "display": "PO Number",
+                                            "display": "Customer ID",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "sort": true,
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "filters": [
+                                                {
+                                                    "text": 'Hyderabad',
+                                                    "value": 'Hyderabad',
+                                                },
+                                                {
+                                                    "text": 'Agra',
+                                                    "value": 'Agra',
+                                                },
+                                                {
+                                                    "text": 'Lucknow',
+                                                    "value": 'Lucknow',
+                                                }
+                                            ],
                                         },
                                         "order_ammount":{
                                             "display": "Amount (₹)",
                                             "type":"string",
+                                            "sort": true,
                                             "width": "",
                                             "align": "left"
                                             
@@ -2903,7 +3875,8 @@ const data = {
                                             "display": "Customer Name",
                                             "type":"string",
                                             "width": "",
-                                            "align": "left"
+                                            "align": "left",
+                                            "sort": true,
                                         },
                                         "po_id": {
                                             "display": "PO Number",
@@ -2935,7 +3908,7 @@ const data = {
                                             "overlay": {},
                                             "template": "button",
                                             "button_label": "View Detail"
-                                        },      
+                                        }
                                     }
                                 },
                             },
@@ -2945,9 +3918,10 @@ const data = {
                         }
                     },
                     "selectable": true,
+                    "pagination": true,
                     "type": "table",
                     "width": "100%",
-                    // "display": "Purchase Orders",
+                   // "display": "Purchase Orders",
                     "download": true,
                     "searchConfig": {
                         "initial_disabled": false,
@@ -3025,29 +3999,46 @@ const data = {
                     },
                     "columns":{
                         "_order":{
-                            "po_id": 1,
+                            "customer_id": 1,
+                            "customer_name": 2,
+                            "po_id": 3,
                             "valid_from": 4,
                             "due_date": 5,
                             "ship_to": 6,
                             "order_ammount": 7,
-                            "po_status": 8,
-                            "view_detail": 9
+                            "po_status": 8
                         },
                         "customer_id":{
-                            "display": "PO Number",
+                            "display": "Customer ID",
                             "type":"string",
                             "width": "",
-                            "align": "left"
+                            "align": "left",
+                            "sort": true,
                         },
                         "ship_to":{
                             "display": " Ship To (Address)",
                             "type":"string",
                             "width": "",
-                            "align": "left"
+                            "align": "left",
+                            "filters": [
+                                {
+                                    "text": 'Hyderabad',
+                                    "value": 'Hyderabad',
+                                },
+                                {
+                                    "text": 'Agra',
+                                    "value": 'Agra',
+                                },
+                                {
+                                    "text": 'Lucknow',
+                                    "value": 'Lucknow',
+                                }
+                            ],
                         },
                         "order_ammount":{
                             "display": "Amount (₹)",
                             "type":"string",
+                            "sort": true,
                             "width": "",
                             "align": "left"
                             
@@ -3081,7 +4072,8 @@ const data = {
                             "display": "Customer Name",
                             "type":"string",
                             "width": "",
-                            "align": "left"
+                            "align": "left",
+                            "sort": true,
                         },
                         "po_id": {
                             "display": "PO Number",
@@ -3113,16 +4105,1057 @@ const data = {
                             "overlay": {},
                             "template": "button",
                             "button_label": "View Detail"
-                        },
-                        
+                        }
                     }
-                },
+                }
             }
         },
 
         "invoice": {
             "display": "Invoice",
-            "icon": "invoice"
+            "icon": "invoice",
+            "widgets": {
+                "_order": {"invoice_table_detail": 1},
+                "invoice_table_detail": {
+                    "render_initial": true,
+                    "download": true,
+                    "selectable": true,
+                    "searchConfig": {
+                        "initial_disabled": false,
+                        "template": "table-search-popup no-box-shadow",
+                        "_order": {"po_id": 1, "document": 2, "keyword": 3},
+                        "po_id":{
+                            "type": "dropdown",
+                            "placeholder": "Select",
+                            "width":"32%",
+                            "key": "po_id",
+                            "mode":"select",
+                            // "label": "PO Number",
+                            "flex": true,
+                            "required": true,
+                            "on_change": true,
+                            "icon":"search",
+                            "_order": {
+                                "p1":1,
+                                "p2":2,
+                                "p3":3,
+                                "p4":4
+                            },
+                            "p1": {
+                                "display":"P1"
+                            },
+                            "p2": {
+                                "display":"P2"
+                            },
+                            "p3": {
+                                "display":"P3"
+                            },
+                            "p4": {
+                                "display":"P4"
+                            }
+                        },
+                        "document": {
+                            "type": "dropdown",
+                            "placeholder": "Select",
+                            "width":"32%",
+                            "key": "document",
+                            "mode":"select",
+                            // "label": "Document",
+                            "flex": true,
+                            "required": false,
+                            "icon":"search",
+                            "_order": {
+                                "p1":1,
+                                "p2":2,
+                                "p3":3,
+                                "p4":4
+                            },
+                            "p1": {
+                                "display":"P1"
+                            },
+                            "p2": {
+                                "display":"P2"
+                            },
+                            "p3": {
+                                "display":"P3"
+                            },
+                            "p4": {
+                                "display":"P4"
+                            }
+                        },
+                        "keyword": {
+                            "type": "text",
+                            "placeholder": "Search by keyword",
+                            "width":"32%",
+                            "key": "keyword",
+                            // "label": "Document",
+                            "flex": true,
+                            "required": false,
+                            "icon":"search"
+                        },
+                    },
+                    "id": "invoice_table_detail",
+                    "parent_id":"invoice_table_detail",
+                    "type": "table",
+                    "width": "100%",
+                   // "display": "Invoices",
+                    "api":  "",
+                    "pagination": true,
+                    "dropdown":{
+                        "key": "compared_against",
+                        "template": "filter",
+                        "api": "",
+                        "mode": "select",
+                        "id": "purchase_order_table_dropdown",
+                        "_order": {"create shipping notification":1 , "create invoice": 2},
+                        "create shipping notification":{
+                            "display":"Create Shipping Notification",
+                            "on_click": "overlay",
+                            "overlay": {
+                                "id": "create_asn_overlay",
+                                "_order": {"form_group": 4, "invoice_table_detail_overlay": 1, "first_section":3, "selected_invoice_table": 2},
+                                "invoice_table_detail_overlay": {
+                                    "render_initial": true,
+                                    "id": "invoice_table_detail_overlay",
+                                    "dependent_table": true,
+                                    "dependent_table_ids": ["invoice_table_detail"],
+                                    "type": "table",
+                                    "width": "100%",
+                                    "api":  "abc",
+                                    "download": true,
+                                    "selectable": true,
+                                    "pagination": true,
+                                    "searchConfig": {
+                                        "initial_disabled": false,
+                                        "template": "table-search-popup no-box-shadow",
+                                        "_order": {"po_id": 1, "document": 2, "keyword": 3},
+                                        "po_id":{
+                                            "type": "dropdown",
+                                            "placeholder": "Select",
+                                            "width":"32%",
+                                            "key": "po_id",
+                                            "mode":"select",
+                                            // "label": "PO Number",
+                                            "flex": true,
+                                            "required": true,
+                                            "on_change": true,
+                                            "icon":"search",
+                                            "_order": {
+                                                "p1":1,
+                                                "p2":2,
+                                                "p3":3,
+                                                "p4":4
+                                            },
+                                            "p1": {
+                                                "display":"P1"
+                                            },
+                                            "p2": {
+                                                "display":"P2"
+                                            },
+                                            "p3": {
+                                                "display":"P3"
+                                            },
+                                            "p4": {
+                                                "display":"P4"
+                                            }
+                                        },
+                                        "document": {
+                                            "type": "dropdown",
+                                            "placeholder": "Select",
+                                            "width":"32%",
+                                            "key": "document",
+                                            "mode":"select",
+                                            // "label": "Document",
+                                            "flex": true,
+                                            "required": false,
+                                            "icon":"search",
+                                            "_order": {
+                                                "p1":1,
+                                                "p2":2,
+                                                "p3":3,
+                                                "p4":4
+                                            },
+                                            "p1": {
+                                                "display":"P1"
+                                            },
+                                            "p2": {
+                                                "display":"P2"
+                                            },
+                                            "p3": {
+                                                "display":"P3"
+                                            },
+                                            "p4": {
+                                                "display":"P4"
+                                            }
+                                        },
+                                        "keyword": {
+                                            "type": "text",
+                                            "placeholder": "Search by keyword",
+                                            "width":"32%",
+                                            "key": "keyword",
+                                            // "label": "Document",
+                                            "flex": true,
+                                            "required": false,
+                                            "icon":"search"
+                                        },
+                                    },
+                                    "columns":{
+                                        "_order":{
+                                            "customer_id": 1,
+                                            "customer_name": 2,
+                                            "invoice_no": 3,
+                                            "valid_from": 4,
+                                            "due_date": 5,
+                                            "order_ammount": 7,
+                                            "invoice_status": 8,
+                                            // "view_detail": 9
+                                        },
+                                        "customer_id":{
+                                            "display": "Customer ID",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "ship_to":{
+                                            "display": " Ship To (Address)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "order_ammount":{
+                                            "display": "Amount (₹)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                            
+                                        },
+                                        "invoice_status":{
+                                            "display": "Status",
+                                            "type": "tag",
+                                            "width": "",
+                                            "align": "left",
+                                            "color_mapping":{
+                                                "Due":"orange",
+                                                "Paid": "green",
+                                                "Overdue":"red"
+                                            },
+                                            "filters": [
+                                                {
+                                                    "text": 'Due',
+                                                    "value": 'Due',
+                                                },
+                                                {
+                                                    "text": 'Paid',
+                                                    "value": 'Paid',
+                                                },
+                                                {
+                                                    "text": 'Overdue',
+                                                    "value": 'Overdue',
+                                                }
+                                            ],
+                                        },
+                                        "customer_name": {
+                                            "display": "Customer Name",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "invoice_no": {
+                                            "display": "Invoice Number",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "valid_from": {
+                                            "display": "Invoice Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "invoice_date": {
+                                            "display": "Invoice Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width":200,
+                                            // "color":"#FC5A5A",
+                                            "align": "left",
+                                            "sort": true
+                                        },
+                                        "due_date": {
+                                            "display": "Due Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width":200,
+                                            "color":"#FC5A5A",
+                                            "align": "left"
+                                        },
+                                        "view_detail": {
+                                            "display": "",
+                                            "type": "action",
+                                            "width": "",
+                                            "align": "center",
+                                            "on_click": "overlay",
+                                            "overlay": {},
+                                            "template": "button",
+                                            "button_label": "View Detail"
+                                        }
+                                        
+                                    }
+                                },
+                                "first_section": {
+                                    "type" : "info",
+                                    "_order": {
+                                        "title": 1
+                                    },
+                                    "title": {
+                                        "display": "Shipping Order Details"
+                                    }
+                                },
+                                "form_group":{
+                                    "type":"form-group",
+                                    "width":"100%",
+                                    "_order": {"form_2": 2, "form_3": 2, "form_4": 3, "form_5": 4, "payment_1":5,"payment_2": 6, "form_8": 7, "form_9": 8, "form_10": 9},
+                                    "api": "/asd/asda?",
+                                    "form_2": {
+                                       // "title":"Shipping Order Details",
+                                        "group_style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "boxShadow":"unset"
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "boxShadow":"unset",
+                                            "borderRadius":"unset"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"20%",
+                                        "_order": { "product_image": 1},
+                                        "product_image": {
+                                            "type": "file",
+                                            "placeholder": "Upload Product Image",
+                                            "file_format": "image",
+                                            "file_type":"image",
+                                            "template":"box-preview",
+                                            "no_view_document": false,
+                                            "width":"100%",
+                                            "key": "product_image",
+                                            "flex": true,
+                                            "required": true
+                                        }
+                                    },
+                                    "form_3": {
+                                        "template":"template-1",
+                                        "group_style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "background":"white"
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "boxShadow":"unset",
+                                            "borderRadius":"unset"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"80%",
+                                        "_order": { "product_title": 2,"product_price": 3, "product_date": 4},
+                                        "product_title": {
+                                            "type": "text",
+                                            "placeholder": "Title",
+                                            "width":"100%",
+                                            "key": "product_title",
+                                            "template":"no-border no-padding",
+                                            "default": {
+                                                "_order": {
+                                                    "Title":1
+                                                }
+                                            },
+                                          //  "label": "Product Title",
+                                            "flex": true,
+                                          //  "label_icon":"linkedin",
+                                            "required": false
+                                        },
+                                        "product_price": {
+                                            "type": "text",
+                                            "placeholder": "Product Price",
+                                            "template":"no-border no-padding",
+                                            "width":"100%",
+                                            "key": "product_price",
+                                            "label": "Price:",
+                                            "flex": true,
+                                          //  "label_icon":"linkedin",
+                                            "required": false
+                                        },
+                                        "product_date":{
+                                            "type": "date",
+                                            "placeholder": "Date",
+                                            "template":"no-border  no-padding",
+                                            "width":"100%", 
+                                            "key": "product_date",
+                                            "label": "Date:",
+                                            "flex": true,
+                                          //  "label_icon":"linkedin",
+                                            "required": false
+                                        },
+                                    },
+                                    "form_4": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"To (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0 
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            // "boxShadow":"unset",
+                                            "borderRadius":"10px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"49%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "form_5": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"From (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0,
+    
+                                            
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "borderRadius":"20px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"49%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "payment_1":{
+                                        "title":"Payment",
+                                        "initial_disabled": false,
+                                        "_order": {"Terms": 1, "Routing Status": 2,"Terms Document": 3,"Related Document": 4,"Comment": 5,"Information": 6,"Comment Type": 7},
+                                        "Terms":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Terms",
+                                            "label": "Terms",
+                                            "flex": true,
+                                            "required": false
+                                        },
+                                        "Routing Status":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Routing Status",
+                                            "label": "Routing Status",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Related Document":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Related Document",
+                                            "label": "Related Document",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Comment":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Comment",
+                                            "label": "Comment",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Terms Document":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Terms Document",
+                                            "label": "Terms Document",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Information":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Information",
+                                            "label": "Information",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Comment Type":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Comment Type",
+                                            "label": "Comment Type",
+                                            "flex": true,
+                                            "required": true
+                                        }
+                                    },
+                                    "payment_2":{
+                                       // "title":"Payment",
+                                        "initial_disabled": false,
+                                        "_order": {"Telephone (#)": 1, "Purchase Group Administrator": 2,"Company Code": 4,"Email": 3,"Purchase Group": 5,"Plant": 6,"Purchase Group Telephone (#)": 7},
+                                        "Telephone (#)":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Telephone (#)",
+                                            "label": "Telephone (#)",
+                                            "flex": true,
+                                            "required": false
+                                        },
+                                        "Purchase Group Administrator":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Purchase Group Administrator",
+                                            "label": "Purchase Group Administrator",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Email":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Email",
+                                            "label": "Email",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Purchase Group":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Purchase Group",
+                                            "label": "Purchase Group",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Company Code":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Company Code",
+                                            "label": "Company Code",
+                                            "flex": true,
+                                            "required": true
+                                        },
+    
+                                        "Plant":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Plant",
+                                            "label": "Plant",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Purchase Group Telephone (#)":{
+                                            "type": "text",
+                                            "placeholder": "Type here",
+                                            "width":"49%",
+                                            "key": "Purchase Group Telephone (#)",
+                                            "label": "Purchase Group Telephone (#)",
+                                            "flex": true,
+                                            "required": true
+                                        }
+                                    },
+                                    "form_8": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"Ship To (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0 
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "borderRadius":"20px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"32%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "form_9": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"Bill To (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "borderRadius":"20px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"32%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "form_10": {
+                                        "template":"template-1 no-min-width-label",
+                                        "title":"Deliver To (Address)",
+                                        "group_style": {
+                                            "marginTop": 20,
+                                            "marginLeft": 0         
+                                        },
+                                        "style": {
+                                            "marginTop": 0,
+                                            "marginLeft": 0,
+                                            "borderRadius":"20px",
+                                            "background":"white"
+                                        },
+                                        "initial_disabled": false,
+                                        "width":"32%",
+                                        "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
+                                        "to_name": {
+                                            "type": "text",
+                                            "placeholder": "Type name",
+                                            "width":"100%",
+                                            "key": "to_name",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"user",
+                                            "required": true
+                                        },
+                                        "to_address": {
+                                            "type": "text",
+                                            "placeholder": "Type address",
+                                            "width":"100%",
+                                            "key": "to_address",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"address",
+                                            "required": true
+                                        },
+                                        "to_contact": {
+                                            "type": "text",
+                                            "placeholder": "Type contact no.",
+                                            "width":"100%",
+                                            "key": "to_contact",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"phone",
+                                            "required": true
+                                        },
+                                        "to_mail": {
+                                            "type": "text",
+                                            "placeholder": "Type mail ID",
+                                            "width":"100%",
+                                            "key": "to_mail",
+                                            "template":"no-border no-padding",
+                                            "flex": true,
+                                            "label_icon":"email",
+                                            "required": true
+                                        },
+                                    },
+                                    "submit": {
+                                        "api": "",
+                                        "display": "Save"
+                                    }
+                                },
+                                "selected_invoice_table": {
+                                    "id": "selected_invoice_table",
+                                    "dependent_table": true,
+                                    "dependent_table_ids": ["invoice_table_detail_overlay"],
+                                    "type": "table",
+                                    "width": "100%",
+                                    "sticky_top": 0,
+                                    "display": "Selected Invoices",
+                                    "api":  "",
+                                    "pagination": false,
+                                    "columns":{
+                                        "_order":{
+                                            "customer_id": 1,
+                                            "customer_name": 2,
+                                            "invoice_no": 3,
+                                            "valid_from": 4,
+                                            "due_date": 5,
+                                            "order_ammount": 7,
+                                            "invoice_status": 8,
+                                            // "view_detail": 9
+                                        },
+                                        "customer_id":{
+                                            "display": "Customer ID",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "ship_to":{
+                                            "display": " Ship To (Address)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "order_ammount":{
+                                            "display": "Amount (₹)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                            
+                                        },
+                                        "invoice_status":{
+                                            "display": "Status",
+                                            "type": "tag",
+                                            "width": "",
+                                            "align": "left",
+                                            "color_mapping":{
+                                                "Due":"orange",
+                                                "Paid": "green",
+                                                "Overdue":"red"
+                                            },
+                                            "filters": [
+                                                {
+                                                    "text": 'Due',
+                                                    "value": 'Due',
+                                                },
+                                                {
+                                                    "text": 'Paid',
+                                                    "value": 'Paid',
+                                                },
+                                                {
+                                                    "text": 'Overdue',
+                                                    "value": 'Overdue',
+                                                }
+                                            ],
+                                        },
+                                        "customer_name": {
+                                            "display": "Customer Name",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "invoice_no": {
+                                            "display": "Invoice Number",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "valid_from": {
+                                            "display": "Invoice Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "invoice_date": {
+                                            "display": "Invoice Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width":200,
+                                            // "color":"#FC5A5A",
+                                            "align": "left",
+                                            "sort": true
+                                        },
+                                        "due_date": {
+                                            "display": "Due Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width":200,
+                                            "color":"#FC5A5A",
+                                            "align": "left"
+                                        },
+                                        "view_detail": {
+                                            "display": "",
+                                            "type": "action",
+                                            "width": "",
+                                            "align": "center",
+                                            "on_click": "overlay",
+                                            "overlay": {},
+                                            "template": "button",
+                                            "button_label": "View Detail"
+                                        }
+                                        
+                                    }
+                                },
+                            },
+                        },
+                        "create invoice":{
+                            "display":"Create Invoice"
+                        }
+                    },
+                    "columns":{
+                        "_order":{
+                            "customer_id": 1,
+                            "customer_name": 2,
+                            "invoice_no": 3,
+                            "valid_from": 4,
+                            "due_date": 5,
+                            "order_ammount": 7,
+                            "invoice_status": 8,
+                            // "view_detail": 9
+                        },
+                        "customer_id":{
+                            "display": "Customer ID",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "ship_to":{
+                            "display": " Ship To (Address)",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "order_ammount":{
+                            "display": "Amount (₹)",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                            
+                        },
+                        "invoice_status":{
+                            "display": "Status",
+                            "type": "tag",
+                            "width": "",
+                            "align": "left",
+                            "color_mapping":{
+                                "Due":"orange",
+                                "Paid": "green",
+                                "Overdue":"red"
+                            },
+                            "filters": [
+                                {
+                                    "text": 'Due',
+                                    "value": 'Due',
+                                },
+                                {
+                                    "text": 'Paid',
+                                    "value": 'Paid',
+                                },
+                                {
+                                    "text": 'Overdue',
+                                    "value": 'Overdue',
+                                }
+                            ],
+                        },
+                        "customer_name": {
+                            "display": "Customer Name",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "invoice_no": {
+                            "display": "Invoice Number",
+                            "type":"string",
+                            "width": "",
+                            "align": "left"
+                        },
+                        "valid_from": {
+                            "display": "Invoice Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width": "",
+                            "align": "left"
+                        },
+                        "invoice_date": {
+                            "display": "Invoice Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width":200,
+                            // "color":"#FC5A5A",
+                            "align": "left",
+                            "sort": true
+                        },
+                        "due_date": {
+                            "display": "Due Date",
+                            "type":"date",
+                            "format": 'MMM Do YYYY, h:mm a',
+                            "width":200,
+                            "color":"#FC5A5A",
+                            "align": "left"
+                        },
+                        "view_detail": {
+                            "display": "",
+                            "type": "action",
+                            "width": "",
+                            "align": "center",
+                            "on_click": "overlay",
+                            "overlay": {},
+                            "template": "button",
+                            "button_label": "View Detail"
+                        }
+                        
+                    }
+                },
+            }
         },
         "opportunities": {
             "display": "Opportunities",

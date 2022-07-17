@@ -124,4 +124,28 @@
         cursor: pointer;
         padding-bottom: 2px;
     }
+    .overview-block[data-componentdontexist="true"]{
+        opacity: 0.3;
+        pointer-events: none;
+        border: 2px dotted grey ;
+    }
+    .add-back-button {
+        position: absolute;
+        top: 19%;
+        left: 37%;
+        font-size: 25px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #3B6BFD;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        cursor: pointer;
+    }
+    .add-back-button:active {
+        top: 19.2%;
+    }
 }

@@ -30,7 +30,7 @@ function cellHandler(config, data, helperFuntion) {
             color:  color,
             width: column.width,
             sorter: column.sort ? (a, b) => a.name.length - b.name.length : false,
-           // filters: column.filters || null,
+            filters: column.filters || null,
             onFilter: (value, record) => record[order].indexOf(value) === 0
         }
 
@@ -39,7 +39,7 @@ function cellHandler(config, data, helperFuntion) {
             <div className="cell" style={{color: color}}>
                 {isCurrency ? isCurrency : ""}
                 {isPercent ? isPercent : ""}
-                {text}
+                {typeof text == "number" ? Utils.numberWithCommas(text) : text}
             </div>
             columns.push(obj)
         } else if(column.type == "date") {
