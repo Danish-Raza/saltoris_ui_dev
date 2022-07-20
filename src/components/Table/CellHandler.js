@@ -2,6 +2,7 @@ import Utils from "../../Utils";
 import _ from "underscore"
 import { Space, Table, Tag } from 'antd';
 import moment from "moment";
+import TableModal from "./TableModal";
 
 function cellHandler(config, data, helperFuntion) {
     // const { config } = props;
@@ -66,6 +67,14 @@ function cellHandler(config, data, helperFuntion) {
                          >
                             {column.button_label}
                          </div>
+                    )
+                } if(column.on_click == "modal") {
+                    return  (
+                        <TableModal 
+                            config={column.modal}
+                            dependentData={rec}
+                            displayText = {column.button_label}
+                        />
                     )
                 } else {
                     return text

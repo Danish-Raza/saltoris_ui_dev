@@ -1,7 +1,7 @@
 import _ from "underscore"
 import Utils from "../../Utils";
 import Header from "../Header";
-import { Space, Table, Tag, Popover, Button, Switch, Pagination} from 'antd';
+import { Space, Table, Tag, Popover, Button} from 'antd';
 import cellHandler from "./CellHandler";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +32,58 @@ function TableComponent(props) {
     const paginationHandler = () => {
         
     }
+    const expandedRowRender = () => {
+        const columns = [
+          {
+            title: 'Item#',
+            dataIndex: 'item',
+            key: 'item'
+          },
+          {
+            title: 'Item / Name / Description',
+            dataIndex: 'item_desc',
+            key: 'item_desc'
+          },
+          {
+            title: 'Quantity (Unit)',
+            dataIndex: 'quatity',
+            key: 'quatity'
+          },
+          {
+            title: 'Delivery Date',
+            dataIndex: 'date',
+            key: 'date'
+          },
+          {
+            title: 'Unit Price',
+            dataIndex: 'unit_price',
+            key: 'unit_price'
+          },  
+          {
+            title: 'Subtotal',
+            dataIndex: 'Subtotal',
+            key: 'Subtotal'
+          },    
+        ];
+        const data = [];
+    
+        for (let i = 1; i < 4; ++i) {
+          data.push({
+            key: i.toString(),
+            date: '2014-12-24 23:12:00',
+            name: 'This is production name',
+            upgradeNum: 'Upgraded: 56',
+            item: i,
+            item_desc:'Item name',
+            quatity: 3*1,
+            unit_price: 10,
+            Subtotal: 100
+          });
+        }
+    
+        return <Table columns={columns} dataSource={data} pagination={false} />;
+    };
+
 
     if(config.dependent_table && !config.api && appData.tableRowData) {
         dataAvailable = []
@@ -403,6 +455,10 @@ function TableComponent(props) {
                 }}
                 showSorterTooltip={false}
                 rowSelection={ config.selectable ? rowSelection : null }
+                expandable={config.expandedRowRender && {
+                    expandedRowRender,
+                    defaultExpandedRowKeys: ['0'],
+                  }}
                 footer={config.redirect_on_view_all ? () => {
                     let paramString = config.redirect_on_view_all.split('?')[1];
                     let queryString = new URLSearchParams(paramString);

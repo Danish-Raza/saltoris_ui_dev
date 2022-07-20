@@ -42,6 +42,23 @@
                 top: 1px;
             }
         }
+        .ant-table-row-expand-icon  {
+            position: relative;
+            top: 4px;
+        }
+        .ant-table-expanded-row {
+            >.ant-table-cell {
+                padding-top: 0 !important;
+            }
+            .ant-table-wrapper:only-child .ant-table {
+                margin: 0 !important;
+            }
+        }
+    }
+    .widget-header {
+        .remove-button {
+            top: -11px;
+        }
     }
 }
 .popover-button-wrapper {
@@ -80,7 +97,7 @@
 }
 .ant-table-footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content:center;
     background-color: white;
     .view-all-button {
         font-size: 14px;

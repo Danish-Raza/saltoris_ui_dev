@@ -47,7 +47,10 @@ function Header(props) {
     }
     return (
         <div className="widget-header">
-            <div className="widget-title">{widgetTitle}</div>
+            <div className="widget-title">
+                {widgetTitle}
+                {config.change_status_config && <DropDown allowClear={false} parentComponentData={parentComponentData} config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
+            </div>
             {searchBar && <FormComponent config={config.searchConfig} />}
             <div style={{display:"flex", alignItems:"center"}}>
                 {config.searchConfig && <Icon type="search" width={15} height={15} styles={{position:"relative", top: -2, marginRight: 9}} onClick={toggleSearchBar}/>}

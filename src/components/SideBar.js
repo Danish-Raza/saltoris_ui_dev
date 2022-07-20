@@ -34,7 +34,9 @@ const SideBar = (props) => {
                     config[view] && ( 
                         <div className="view-tab-wrapper" data-view-status={curView==view ? true: false} onClick={() => clickHandler(view)}>
                             <Icon type={config[view].icon} width={20} height={20}/>
-                            <div className="view-tab" >{config[view].display}</div>
+                            <div className="view-tab" >{config[view].display}
+                            {/* <Icon  type={"plus"} width={20} height={20}/> */}
+                            </div>
                         </div>
                     )
                 )

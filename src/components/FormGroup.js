@@ -180,7 +180,7 @@ function FormGroup(props) {
                     return (
                         <div className="form-wrapper" style={{width: config[order].width || "100%",  ...config[order].group_style && (config[order].group_style)}}>
                             {config[order].title !== undefined &&
-                                <div className="form-wrapper-title">
+                                <div className="form-wrapper-title" style={{marginBottom: config[order] && config[order]._order && _.isEmpty(config[order]._order) && 0}} >
                                     {config[order].title}
                                     {
                                         config[order].initial_disabled && (
@@ -191,13 +191,13 @@ function FormGroup(props) {
                                     }
                                 </div>
                             }
-                            <FormComponent
+                            {config[order] && config[order]._order && !_.isEmpty(config[order]._order) && <FormComponent
                                 config={{...config[order], title: null, on_change:true, width: "100%"}}
                                 preFilledData={mockData[order]}
                                 disabled={isDisabled[order]}
                                 id={order}
                                 onChange={changeHandler}
-                            />
+                            />}
                         </div>
                     )
                 })
