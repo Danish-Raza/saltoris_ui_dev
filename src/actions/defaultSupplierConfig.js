@@ -6105,6 +6105,17 @@ const data = {
                     "id": "purchase_order_table",
                     "parent_id":"purchase_order_table",
                     "api": "abc",
+                    "change_status_config": {
+                        "position":"right",
+                        "dropdown":{
+                            "status": "compared_against",
+                            "mode": "select",
+                            "id": "change_status_config_dropdown",
+                            "placeholder":"Order Confirmation",
+                            "allowSearch": false,
+                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
+                        }
+                    },
                     "dropdown":{
                         "key": "compared_against",
                         "template": "filter",
@@ -6126,14 +6137,26 @@ const data = {
                                     "dependent_table_ids": ["purchase_order_table"],
                                     "type": "table",
                                     "width": "100%",
+                                    "change_status_config": {
+                                        "position":"right",
+                                        "dropdown":{
+                                            "status": "compared_against",
+                                            "mode": "select",
+                                            "id": "change_status_config_dropdown",
+                                            "placeholder":"Order Confirmation",
+                                            "allowSearch": false,
+                                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
+                                        }
+                                    },
+                                    "display": "Purchase Orders",
                                     "api":  "abc",
                                     "download": true,
                                     "selectable": true,
-                                    "pagination": true,
+                                    "pagination": false,
                                     "searchConfig": {
                                         "initial_disabled": false,
                                         "template": "table-search-popup no-box-shadow",
-                                        "_order": {"po_id": 1, "document": 2, "keyword": 3},
+                                        "_order": {"keyword": 3},
                                         "po_id":{
                                             "type": "dropdown",
                                             "placeholder": "Select",
@@ -6850,6 +6873,17 @@ const data = {
                                     "dependent_table": true,
                                     "dependent_table_ids": ["purchase_order_table_overlay"],
                                     "type": "table",
+                                    "change_status_config": {
+                                        "position":"right",
+                                        "dropdown":{
+                                            "status": "compared_against",
+                                            "mode": "select",
+                                            "id": "change_status_config_dropdown",
+                                            "placeholder":"Order Confirmation",
+                                            "allowSearch": false,
+                                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
+                                        }
+                                    },
                                     "width": "100%",
                                     "sticky_top": 0,
                                     "display": "Selected Purchase Order",
@@ -6974,23 +7008,24 @@ const data = {
                             "on_click": "overlay",
                             "overlay": {
                                 "id": "create_invoice_overlay",
-                                "_order": {"form_group": 4, "purchase_order_table_overlay": 1, "selected_po_table": 2},
+                                "_order": {"form_group": 5, "purchase_order_table_overlay": 1, "selected_po_table": 2, "advance_shipping_table": 3, "selected_shipping_table": 4},
                                 "purchase_order_table_overlay": {
                                     "render_initial": true,
                                     "expandedRowRender": true,
                                     "id": "purchase_order_table_overlay",
                                     "dependent_table": true,
+                                    "display": "Purchase Orders",
                                     "dependent_table_ids": ["purchase_order_table"],
                                     "type": "table",
                                     "width": "100%",
                                     "api":  "abc",
                                     "download": true,
                                     "selectable": true,
-                                    "pagination": true,
+                                    "pagination": false,
                                     "searchConfig": {
                                         "initial_disabled": false,
                                         "template": "table-search-popup no-box-shadow",
-                                        "_order": {"po_id": 1, "document": 2, "keyword": 3},
+                                        "_order": {"keyword": 3},
                                         "po_id":{
                                             "type": "dropdown",
                                             "placeholder": "Select",
@@ -7060,6 +7095,17 @@ const data = {
                                             "required": false,
                                             "icon":"search"
                                         },
+                                    },
+                                    "change_status_config": {
+                                        "position":"right",
+                                        "dropdown":{
+                                            "status": "compared_against",
+                                            "mode": "select",
+                                            "id": "change_status_config_dropdown",
+                                            "placeholder":"Order Confirmation",
+                                            "allowSearch": false,
+                                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
+                                        }
                                     },
                                     "columns":{
                                         "_order":{
@@ -8114,9 +8160,21 @@ const data = {
                                     "type": "table",
                                     "width": "100%",
                                     "sticky_top": 0,
+                                    "change_status_config": {
+                                        "position":"right",
+                                        "dropdown":{
+                                            "status": "compared_against",
+                                            "mode": "select",
+                                            "id": "change_status_config_dropdown",
+                                            "placeholder":"Order Confirmation",
+                                            "allowSearch": false,
+                                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
+                                        }
+                                    },
                                     "display": "Selected Purchase Order",
                                     "api":  "",
                                     "pagination": false,
+                                    "download": true,
                                     "columns":{
                                         "_order":{
                                             "customer_id": 1,
@@ -8229,6 +8287,478 @@ const data = {
                                         }
                                     }
                                 },
+                                "advance_shipping_table": {
+                                    "id": "advance_shipping_table",
+                                    //"expandedRowRender": true,
+                                    //"dependent_table": true,
+                                    // "dependent_table_ids": ["purchase_order_table_overlay"],
+                                    "type": "table",
+                                    "width": "100%",
+                                    "sticky_top": 0,
+                                    "display": "Advance Shipping Notifications",
+                                    "api":  "",
+                                    "pagination": false,
+                                    "download": true,
+                                    "selectable": true,
+                                    "searchConfig": {
+                                        "initial_disabled": false,
+                                        "template": "table-search-popup no-box-shadow",
+                                        "_order": {"keyword": 3},
+                                        "po_id":{
+                                            "type": "dropdown",
+                                            "placeholder": "Select",
+                                            "width":"32%",
+                                            "key": "po_id",
+                                            "mode":"select",
+                                            // "label": "PO Number",
+                                            "flex": true,
+                                            "required": true,
+                                            "on_change": true,
+                                            "icon":"search",
+                                            "_order": {
+                                                "p1":1,
+                                                "p2":2,
+                                                "p3":3,
+                                                "p4":4
+                                            },
+                                            "p1": {
+                                                "display":"P1"
+                                            },
+                                            "p2": {
+                                                "display":"P2"
+                                            },
+                                            "p3": {
+                                                "display":"P3"
+                                            },
+                                            "p4": {
+                                                "display":"P4"
+                                            }
+                                        },
+                                        "document": {
+                                            "type": "dropdown",
+                                            "placeholder": "Select",
+                                            "width":"32%",
+                                            "key": "document",
+                                            "mode":"select",
+                                            // "label": "Document",
+                                            "flex": true,
+                                            "required": false,
+                                            "icon":"search",
+                                            "_order": {
+                                                "p1":1,
+                                                "p2":2,
+                                                "p3":3,
+                                                "p4":4
+                                            },
+                                            "p1": {
+                                                "display":"P1"
+                                            },
+                                            "p2": {
+                                                "display":"P2"
+                                            },
+                                            "p3": {
+                                                "display":"P3"
+                                            },
+                                            "p4": {
+                                                "display":"P4"
+                                            }
+                                        },
+                                        "keyword": {
+                                            "type": "text",
+                                            "placeholder": "Search by keyword",
+                                            "width":"32%",
+                                            "key": "keyword",
+                                            // "label": "Document",
+                                            "flex": true,
+                                            "required": false,
+                                            "icon":"search"
+                                        },
+                                    },
+                                    "columns":{
+                                        "_order":{
+                                            "po_id": 2,
+                                            "customer_name": 3,
+                                            "ship_to": 4,
+                                            "order_ammount": 5,
+                                            "valid_from": 6,
+                                            "type": 1,
+                                            "settlement": 7,    
+                                            "invoice_amount": 8,
+                                            "revision": 9,
+                                            "version": 10,
+                                            "view_detail": 11
+                                        },
+                                        "customer_id":{
+                                            "display": "Customer ID",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "type":{
+                                            "display": "Type",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "ship_to":{
+                                            "display": " Ship To (Address)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "filters": [
+                                                {
+                                                    "text": 'Hyderabad',
+                                                    "value": 'Hyderabad',
+                                                },
+                                                {
+                                                    "text": 'Agra',
+                                                    "value": 'Agra',
+                                                },
+                                                {
+                                                    "text": 'Lucknow',
+                                                    "value": 'Lucknow',
+                                                }
+                                            ],
+                                        },
+                                        "order_ammount":{
+                                            "display": "Amount (₹)",
+                                            "type":"string",
+                                            "sort": true,
+                                            "width": "",
+                                            "align": "left"
+                                            
+                                        },
+                                        "po_status":{
+                                            "display": "Status",
+                                            "type": "tag",
+                                            "width": "",
+                                            "align": "left",
+                                            "color_mapping":{
+                                                "Dispatched":"green",
+                                                "Invoiced": "blue",
+                                                "Received":"#40a9ff"
+                                            },
+                                            "filters": [
+                                                {
+                                                    "text": 'Invoiced',
+                                                    "value": 'Invoiced',
+                                                },
+                                                {
+                                                    "text": 'Dispatched',
+                                                    "value": 'Dispatched',
+                                                },
+                                                {
+                                                    "text": 'Received',
+                                                    "value": 'Received',
+                                                }
+                                            ],
+                                        },
+                                        "customer_name": {
+                                            "display": "Buyer",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "settlement": {
+                                            "display": "Settlement",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "invoice_amount": {
+                                            "display": "(Invoiced) Amount (₹)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "revision": {
+                                            "display": "Revision",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "version": {
+                                            "display": "Version",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "po_id": {
+                                            "display": "PO Number",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "valid_from": {
+                                            "display": "PO Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width": 100,
+                                            "align": "left"
+                                        },
+                                        "due_date": {
+                                            "display": "Delivery Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width": "",
+                                            "color":"#FC5A5A",
+                                            "align": "left"
+                                        },
+                                        "view_detail": {
+                                            "display": "",
+                                            "type": "action",
+                                            "width": "",
+                                            "align": "center",
+                                            "on_click": "modal",
+                                            "modal": {},
+                                            "template": "button",
+                                            "button_label": "View Detail"
+                                        }
+                                    }
+                                },
+                                "selected_shipping_table": {
+                                    "id": "selected_shipping_table",
+                                    //"expandedRowRender": true,
+                                    "dependent_table": true,
+                                    "dependent_table_ids": ["advance_shipping_table"],
+                                    "type": "table",
+                                    "width": "100%",
+                                    "sticky_top": 0,
+                                    "display": "Selected Advance Shipping Notifications",
+                                    "api":  "",
+                                    "pagination": false,
+                                    "download": true,
+                                    // "selectable": true,
+                                    // "searchConfig": {
+                                    //     "initial_disabled": false,
+                                    //     "template": "table-search-popup no-box-shadow",
+                                    //     "_order": {"keyword": 3},
+                                    //     "po_id":{
+                                    //         "type": "dropdown",
+                                    //         "placeholder": "Select",
+                                    //         "width":"32%",
+                                    //         "key": "po_id",
+                                    //         "mode":"select",
+                                    //         // "label": "PO Number",
+                                    //         "flex": true,
+                                    //         "required": true,
+                                    //         "on_change": true,
+                                    //         "icon":"search",
+                                    //         "_order": {
+                                    //             "p1":1,
+                                    //             "p2":2,
+                                    //             "p3":3,
+                                    //             "p4":4
+                                    //         },
+                                    //         "p1": {
+                                    //             "display":"P1"
+                                    //         },
+                                    //         "p2": {
+                                    //             "display":"P2"
+                                    //         },
+                                    //         "p3": {
+                                    //             "display":"P3"
+                                    //         },
+                                    //         "p4": {
+                                    //             "display":"P4"
+                                    //         }
+                                    //     },
+                                    //     "document": {
+                                    //         "type": "dropdown",
+                                    //         "placeholder": "Select",
+                                    //         "width":"32%",
+                                    //         "key": "document",
+                                    //         "mode":"select",
+                                    //         // "label": "Document",
+                                    //         "flex": true,
+                                    //         "required": false,
+                                    //         "icon":"search",
+                                    //         "_order": {
+                                    //             "p1":1,
+                                    //             "p2":2,
+                                    //             "p3":3,
+                                    //             "p4":4
+                                    //         },
+                                    //         "p1": {
+                                    //             "display":"P1"
+                                    //         },
+                                    //         "p2": {
+                                    //             "display":"P2"
+                                    //         },
+                                    //         "p3": {
+                                    //             "display":"P3"
+                                    //         },
+                                    //         "p4": {
+                                    //             "display":"P4"
+                                    //         }
+                                    //     },
+                                    //     "keyword": {
+                                    //         "type": "text",
+                                    //         "placeholder": "Search by keyword",
+                                    //         "width":"32%",
+                                    //         "key": "keyword",
+                                    //         // "label": "Document",
+                                    //         "flex": true,
+                                    //         "required": false,
+                                    //         "icon":"search"
+                                    //     },
+                                    // },
+                                    "columns":{
+                                        "_order":{
+                                            "po_id": 2,
+                                            "customer_name": 3,
+                                            "ship_to": 4,
+                                            "order_ammount": 5,
+                                            "valid_from": 6,
+                                            "type": 1,
+                                            "settlement": 7,    
+                                            "invoice_amount": 8,
+                                            "revision": 9,
+                                            "version": 10,
+                                            "view_detail": 11
+                                        },
+                                        "customer_id":{
+                                            "display": "Customer ID",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "type":{
+                                            "display": "Type",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "ship_to":{
+                                            "display": " Ship To (Address)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "filters": [
+                                                {
+                                                    "text": 'Hyderabad',
+                                                    "value": 'Hyderabad',
+                                                },
+                                                {
+                                                    "text": 'Agra',
+                                                    "value": 'Agra',
+                                                },
+                                                {
+                                                    "text": 'Lucknow',
+                                                    "value": 'Lucknow',
+                                                }
+                                            ],
+                                        },
+                                        "order_ammount":{
+                                            "display": "Amount (₹)",
+                                            "type":"string",
+                                            "sort": true,
+                                            "width": "",
+                                            "align": "left"
+                                            
+                                        },
+                                        "po_status":{
+                                            "display": "Status",
+                                            "type": "tag",
+                                            "width": "",
+                                            "align": "left",
+                                            "color_mapping":{
+                                                "Dispatched":"green",
+                                                "Invoiced": "blue",
+                                                "Received":"#40a9ff"
+                                            },
+                                            "filters": [
+                                                {
+                                                    "text": 'Invoiced',
+                                                    "value": 'Invoiced',
+                                                },
+                                                {
+                                                    "text": 'Dispatched',
+                                                    "value": 'Dispatched',
+                                                },
+                                                {
+                                                    "text": 'Received',
+                                                    "value": 'Received',
+                                                }
+                                            ],
+                                        },
+                                        "customer_name": {
+                                            "display": "Buyer",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "settlement": {
+                                            "display": "Settlement",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "invoice_amount": {
+                                            "display": "(Invoiced) Amount (₹)",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "revision": {
+                                            "display": "Revision",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "version": {
+                                            "display": "Version",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left",
+                                            "sort": true,
+                                        },
+                                        "po_id": {
+                                            "display": "PO Number",
+                                            "type":"string",
+                                            "width": "",
+                                            "align": "left"
+                                        },
+                                        "valid_from": {
+                                            "display": "PO Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width": 100,
+                                            "align": "left"
+                                        },
+                                        "due_date": {
+                                            "display": "Delivery Date",
+                                            "type":"date",
+                                            "format": 'MMM Do YYYY, h:mm a',
+                                            "width": "",
+                                            "color":"#FC5A5A",
+                                            "align": "left"
+                                        },
+                                        "view_detail": {
+                                            "display": "",
+                                            "type": "action",
+                                            "width": "",
+                                            "align": "center",
+                                            "on_click": "modal",
+                                            "modal": {},
+                                            "template": "button",
+                                            "button_label": "View Detail"
+                                        }
+                                    }
+                                },
                             },
                         }
                     },
@@ -8236,13 +8766,13 @@ const data = {
                     "pagination": true,
                     "type": "table",
                     "width": "100%",
-                    // "display": "Purchase Orders",
+                   // "display": "Purchase Orders",
                     "download": true,
-                    // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=order",
+                   // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=order",
                     "searchConfig": {
                         "initial_disabled": false,
                         "template": "table-search-popup no-box-shadow",
-                        "_order": {"po_id": 1, "document": 2, "keyword": 3},
+                        "_order": {"keyword": 1},
                         "po_id":{
                             "type": "dropdown",
                             "placeholder": "Select",
@@ -8696,7 +9226,7 @@ const data = {
                     "searchConfig": {
                         "initial_disabled": false,
                         "template": "table-search-popup no-box-shadow",
-                        "_order": {"po_id": 1, "document": 2, "keyword": 3},
+                        "_order": { "keyword": 3},
                         "po_id":{
                             "type": "dropdown",
                             "placeholder": "Select",
@@ -8780,7 +9310,7 @@ const data = {
                         "api": "",
                         "mode": "select",
                         "id": "purchase_order_table_dropdown",
-                        "_order": {"create shipping notification":1 , "create invoice": 2},
+                        "_order": {},
                         "create shipping notification":{
                             "display":"Create Shipping Notification",
                             "on_click": "overlay",
