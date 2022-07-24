@@ -18,11 +18,22 @@ function Widgets(props) {
     const [formData, setFormData] = useState({})
     const [isEditable, setIsEditable] = useState(false)
     const [draggedItem, setDraggedItem] = useState(null)
+    const [tabData, setTabData] = useState(null)
     const defaultComponents = [];
+
+    const orderHandler = (value) => {
+        setTabData(value)
+    }
     
     let components = config && config._order ? _.keys(Utils.sortOrder(config._order)) : [];
-   
 
+    if( config && config._order && config.check_condition && tabData){
+        let result = Utils.returnSuccessfullObject(config.check_condition, tabData)
+        if(result && result._order){
+            components =  _.keys(Utils.sortOrder(result._order))
+        }
+    }
+   
     const handleDrop = ev => {
        let cardWrapper  = document.getElementById(`${draggedItem}`) ? document.getElementById(`${draggedItem}`).querySelector('.card-wrapper-body') : null
         if(cardWrapper) {
@@ -135,7 +146,7 @@ function Widgets(props) {
                         case "tab":
                             return showComponent && 
                             <WidgetWrapper commonProps={commonProps}>
-                                <Tab {...commonProps} />
+                                <Tab {...commonProps} orderHandler={orderHandler}  activeTab={tabData ? tabData.tab  : null} />
                             </WidgetWrapper> 
                         case "info":
                             return showComponent && 

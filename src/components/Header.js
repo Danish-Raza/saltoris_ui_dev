@@ -2,7 +2,7 @@ import DropDown from "./Charts/DropDown";
 import _ from "underscore"
 import { useDispatch } from "react-redux";
 import { changeConfig } from "../actions/appActions";
-import { Button, Modal } from 'antd';
+import { Button, Modal, Popover } from 'antd';
 import { useState } from 'react';
 import Icon from "../Icon";
 import FormComponent from "./Form/FormComponent";
@@ -49,15 +49,29 @@ function Header(props) {
         <div className="widget-header">
             <div className="widget-title">
                 {widgetTitle}
-                {config.change_status_config && <DropDown allowClear={false} parentComponentData={parentComponentData} config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
+                {config.change_status_config && config.change_status_config.position  == "left" && <DropDown allowClear={false} parentComponentData={parentComponentData} config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
             </div>
             {searchBar && <FormComponent config={config.searchConfig} />}
             <div style={{display:"flex", alignItems:"center"}}>
+                {config.change_status_config && config.change_status_config.position  == "right" && <div className="change-status-wrapper"> <DropDown allowClear={false} parentComponentData={parentComponentData} config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} /></div>}
                 {config.searchConfig && <Icon type="search" width={15} height={15} styles={{position:"relative", top: -2, marginRight: 9}} onClick={toggleSearchBar}/>}
                 {config.type == "table" && filterSelectorComponent}
                 {config.type == "table" && columnSelectorComponent}
                 {magnifiedContent && <Icon type="zoomIn" width={20} height={20} onClick={showModal}/>}
-                {config.download && <Icon type="cloud-download" width={20} height={20}/>}
+                {config.download && 
+                    <Popover 
+                    content={
+                       <div className="download-popover">
+                            <div className="title">Download Report</div>
+                            <div className="option">PDF</div>    
+                            <div className="option">CSV</div>    
+                       </div>
+                    }  
+                    trigger="click"  placement="bottomRight"
+                    > 
+                        <Icon type="cloud-download" width={20} height={20}/>
+                    </Popover>
+                }
                 {dropdown !== undefined && <DropDown parentComponentData={parentComponentData} config={dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
             </div>
             {isEditable  ? <div className="remove-button" onClick={()=> dispatch(changeConfig({action:"REMOVE_WIDGET", id:config.id}))}>-</div>:""}

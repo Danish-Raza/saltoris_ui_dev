@@ -1,7 +1,7 @@
 import _ from "underscore"
 import Utils from "../../Utils";
 import Header from "../Header";
-import { Space, Table, Tag, Popover, Button} from 'antd';
+import { Space, Table, Tag, Popover, Button, InputNumber, DatePicker} from 'antd';
 import cellHandler from "./CellHandler";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +22,8 @@ function TableComponent(props) {
     const [allColumn, setAllColumn] = useState([])
     const dispatch = useDispatch()
     const [fixedTop, setFixedTop] = useState(false);
+    const [quatity, setQuantity] = useState({})
+    const [dueDate, setDueDate] = useState({})
     let selectedRowKeys = []
     const appData = useSelector(state => state.appData)
     let dataAvailable = null
@@ -32,57 +34,7 @@ function TableComponent(props) {
     const paginationHandler = () => {
         
     }
-    const expandedRowRender = () => {
-        const columns = [
-          {
-            title: 'Item#',
-            dataIndex: 'item',
-            key: 'item'
-          },
-          {
-            title: 'Item / Name / Description',
-            dataIndex: 'item_desc',
-            key: 'item_desc'
-          },
-          {
-            title: 'Quantity (Unit)',
-            dataIndex: 'quatity',
-            key: 'quatity'
-          },
-          {
-            title: 'Delivery Date',
-            dataIndex: 'date',
-            key: 'date'
-          },
-          {
-            title: 'Unit Price',
-            dataIndex: 'unit_price',
-            key: 'unit_price'
-          },  
-          {
-            title: 'Subtotal',
-            dataIndex: 'Subtotal',
-            key: 'Subtotal'
-          },    
-        ];
-        const data = [];
-    
-        for (let i = 1; i < 4; ++i) {
-          data.push({
-            key: i.toString(),
-            date: '2014-12-24 23:12:00',
-            name: 'This is production name',
-            upgradeNum: 'Upgraded: 56',
-            item: i,
-            item_desc:'Item name',
-            quatity: 3*1,
-            unit_price: 10,
-            Subtotal: 100
-          });
-        }
-    
-        return <Table columns={columns} dataSource={data} pagination={false} />;
-    };
+   
 
 
     if(config.dependent_table && !config.api && appData.tableRowData) {
@@ -153,7 +105,11 @@ function TableComponent(props) {
                 "ship_to":"Hyderabad",
                 in_house_publication: "Publication 1",
                 purchase_status:"Dispatched",
-                po_status:"Received"
+                po_status:"Received",
+                type: "Type 1",
+                settlement: "SM 1",    
+                invoice_amount: 82112,
+                revision: "R 01",
                 },
                 {
                 key: '2',
@@ -183,7 +139,11 @@ function TableComponent(props) {
                 in_house_publication: "Publication 2",
                 purchase_status:"Received",
                 "ship_to":"Agra",
-                po_status:"Invoiced"
+                po_status:"Invoiced",
+                type: "Type 2",
+                settlement: "SM 2",    
+                invoice_amount: 62112,
+                revision: "R 02",
                 }, 
                 {
                     key: '4',
@@ -214,7 +174,11 @@ function TableComponent(props) {
                     "ship_to":"Lucknow",
                     in_house_publication: "Publication 4",
                     purchase_status:"Received",
-                    po_status:"Received"    
+                    po_status:"Received" ,
+                    type: "Type 3",
+                settlement: "SM 3",    
+                invoice_amount: 92112,
+                revision: "R 03",   
                 },
                 {
                     key: '5',
@@ -244,7 +208,11 @@ function TableComponent(props) {
                     "ship_to":"Hyderabad",
                     in_house_publication: "Publication 1",
                     purchase_status:"Dispatched",
-                    po_status:"Received"
+                    po_status:"Received",
+                    type: "Type 4",
+                    settlement: "SM 4",    
+                    invoice_amount: 22112,
+                    revision: "R 04",
                 }
             ];
             if(dependentData.po_id) {
@@ -372,7 +340,16 @@ function TableComponent(props) {
             filterFieldCounter++
         }
     })
-    filterFormConfig._order["submit"]=100
+    filterFormConfig._order["search_by_keyword"] = 99;
+    filterFormConfig["search_by_keyword"] = {
+        "type": "text",
+        "placeholder": `Search by keyword`,
+        "width":"100%",
+        "key": "search",
+        "label": "Search",
+        "flex": true
+    }
+    filterFormConfig._order["submit"] = 100
     filterFormConfig["submit"] = {
         type:"button",
         button_type:"primary",
@@ -389,6 +366,95 @@ function TableComponent(props) {
             return dispatch(setOverlay({...params}))
         }
     }
+    const expandedRowRender =  ()  => {
+    
+        const columns = [
+          {
+            title: 'Item#',
+            dataIndex: 'item',
+            key: 'item'
+          },
+          {
+            title: 'Item / Name / Description',
+            dataIndex: 'item_desc',
+            key: 'item_desc'
+          },
+          {
+            title: 'Quantity (Unit)',
+            dataIndex: 'quatity',
+            key: 'quatity',
+            render: (value,  r) => {
+                let val = quatity[r.key] || value
+               return <InputNumber min={1} value={val}
+                onChange={(v)=>{
+                   let modQuantity = {...quatity}
+                   modQuantity[r.key]=v
+                   setQuantity(modQuantity)
+                }}/>
+            }
+          },
+          {
+            title: 'Delivery Date',
+            dataIndex: 'date',
+            key: 'date',
+            render: (value, r)  => {
+                let val = dueDate[r.key] || value
+                return   <DatePicker value={moment(val)} 
+                onChange={(v) => {
+                    let modDueDate = {...dueDate}
+                    modDueDate[r.key]=v.format(v._f)
+                    setDueDate(modDueDate)
+                }}  />
+            }
+          },
+          {
+            title: 'Unit Price (₹)',
+            dataIndex: 'unit_price',
+            key: 'unit_price'
+          },
+          {
+            title: 'Tax (₹)',
+            dataIndex: 'tax',
+            key: 'tax',
+            render: (value, r)  => {
+                let quant = quatity[r.key] || r.quatity
+                let unitPrice =  r.unit_price
+                return <div>{(quant * r.tax)}</div>
+            }
+          },
+          {
+            title: 'Subtotal (₹)',
+            dataIndex: 'Subtotal',
+            key: 'Subtotal',
+            render: (value, r)  => {
+                let quant = quatity[r.key] || r.quatity
+                let unitPrice =  r.unit_price
+                return <div>{(quant * unitPrice) +(quant*r.tax)}</div>
+            }
+          },   
+        ];
+        const data = [];
+    
+        for (let i = 1; i < 4; ++i) {
+          data.push({
+            key: i.toString(),
+            date: '2014-12-24 23:12:00',
+            name: 'This is production name',
+            upgradeNum: 'Upgraded: 56',
+            item: i,
+            item_desc:'Item name',
+            quatity: 3*1,
+            unit_price: 10,
+            Subtotal: 100,
+            tax: 2*i
+          });
+        }
+    
+        return <Table  rowSelection={{
+            // selectedRowKeys,
+            onChange: ()=>{},
+        }}  columns={columns} dataSource={data} pagination={false} />;
+    };
 
     return (
         <div 
@@ -410,7 +476,7 @@ function TableComponent(props) {
                     </Popover>
                 }
                 filterSelectorComponent={
-                    <Popover getPopupContainer={() => document.body}         className="table-filter-form" placement="leftTop" title={false} content={<FormComponent template="table-filter-popup no-box-shadow" config={filterFormConfig} id={config.id} width={"440px"} onSubmit={filterHandler}/>} trigger="click">
+                    <Popover getPopupContainer={() => document.body}  className="table-filter-form" placement="leftTop" title={false} content={<FormComponent template="table-filter-popup no-box-shadow" config={filterFormConfig} id={config.id} width={"440px"} onSubmit={filterHandler}/>} trigger="click">
                        <Button className="popover-button-wrapper">
                            <Icon type="filter" width={15} height={15}/>
                        </Button>
@@ -491,4 +557,5 @@ function TableComponent(props) {
         </div>
     )
 }
+
 export default TableComponent

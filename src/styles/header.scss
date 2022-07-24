@@ -53,10 +53,23 @@
             border-radius: 20px;
             border: 0;
             font-size: 12px;
+            font-weight: normal !important;
         }
         .ant-select-arrow {
             font-size: 10px;
         }
+    }
+    .change-status-wrapper {
+        // z-index: 0;
+        margin-right: 15px;
+        .ant-select {
+            .ant-select-selector {
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid lightgray;
+            }
+        }
+        
     }
 }
 .magnify-popup {
@@ -67,5 +80,19 @@
         >div{
             margin: 0 auto  ;
         }
+    }
+}
+.download-popover {
+    .title{
+        font-size: 12px;
+        margin-bottom:1px;
+        font-weight: bold;
+    }
+    .option {
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .option:hover{
+        background-color: #e6f7ff;
     }
 }
