@@ -6,6 +6,9 @@
     position: relative;
     .widget-title {
         font-weight: bold;
+        position: relative;
+        width: 100%;
+        display: flex;
     }
     .remove-button {
         position: absolute;
@@ -48,9 +51,10 @@
         min-width: 80px;
         height: auto;
         max-width: 239px;
+        // border-left: 1px solid #beb8b8;
         .ant-select-selector {
             background: #FAFAFB;
-            border-radius: 20px;
+           // border-radius: 20px;
             border: 0;
             font-size: 12px;
             font-weight: normal !important;
@@ -70,6 +74,11 @@
             }
         }
         
+    }
+    .tab-wrapper {
+        margin-bottom: 0;
+        font-weight: normal;
+        width: unset !important;
     }
 }
 .magnify-popup {

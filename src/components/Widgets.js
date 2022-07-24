@@ -136,7 +136,21 @@ function Widgets(props) {
                         case "table":
                             return showComponent &&
                             <WidgetWrapper commonProps={commonProps}>
-                                <Table {...commonProps} />
+                                <Table 
+                                    {...commonProps} 
+                                    tabs = {
+                                        config[component].tabs && 
+                                        <Tab {...{
+                                            key: config[component].id,
+                                            id: config[component].id || component,
+                                            componentDontExist: !components.includes(component) ? true : false,
+                                            isEditable: components.includes(component) ? isEditable : false,
+                                            config: config[component].tabs,
+                                            componentIndex: componentIndex,
+                                            dependentData: dependentData
+                                        }} orderHandler={orderHandler}  activeTab={tabData ? tabData.tab  : null} />
+                                    }
+                                />
                             </WidgetWrapper>
                         case "form-group":
                             return showComponent &&
@@ -149,7 +163,7 @@ function Widgets(props) {
                                 <Tab {...commonProps} orderHandler={orderHandler}  activeTab={tabData ? tabData.tab  : null} />
                             </WidgetWrapper> 
                         case "info":
-                            return showComponent && 
+                            return showComponent &&
                             <WidgetWrapper commonProps={commonProps}>
                                 <Information {...commonProps} />
                             </WidgetWrapper> 

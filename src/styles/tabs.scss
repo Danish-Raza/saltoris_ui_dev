@@ -2,7 +2,7 @@
     display: flex;
     margin-bottom: 20px;
     align-items: center;
-
+    margin-right: 5px;
     .tab {
         display: flex;
       //  margin: 0 20px 0 0;
@@ -12,7 +12,7 @@
             margin-right: 5px;
         }
         padding: 7px 10px;
-        background: lightgray;
+        background: white;
         color: black;
         font-size: 12px;
         border-right:1px solid #beb8b8;
@@ -22,19 +22,20 @@
     .tab[data-status="true"]{ 
         background: #3963E8;
         color: white;
+        border-radius: 5px;
     }
     .tab-title {
         margin-right: 10px;
         font-size: 16px;
     }
-    .tab:nth-child(2) {
-        border-bottom-left-radius: 10px;
-        border-top-left-radius: 10px;
+    .tab:nth-child(1) {
+        // border-bottom-left-radius: 10px;
+        // border-top-left-radius: 10px;
     }
     .tab:last-child {
-        border-bottom-right-radius: 10px;
-        border-top-right-radius: 10px;
-        border-right: 0;
+        // border-bottom-right-radius: 10px;
+        // border-top-right-radius: 10px;
+      //  border-right: 0;
     }
     // .tab:hover {
     //     text-decoration: underline;

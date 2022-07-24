@@ -22,8 +22,9 @@ function TableComponent(props) {
     const [allColumn, setAllColumn] = useState([])
     const dispatch = useDispatch()
     const [fixedTop, setFixedTop] = useState(false);
-    const [quatity, setQuantity] = useState({})
+    const [quantity, setQuantity] = useState({})
     const [dueDate, setDueDate] = useState({})
+    const [editableTableData, setEditableTableData] = useState({})
     let selectedRowKeys = []
     const appData = useSelector(state => state.appData)
     let dataAvailable = null
@@ -31,11 +32,10 @@ function TableComponent(props) {
     const sortHandler = () => {
 
     }
+
     const paginationHandler = () => {
         
     }
-   
-
 
     if(config.dependent_table && !config.api && appData.tableRowData) {
         dataAvailable = []
@@ -60,6 +60,13 @@ function TableComponent(props) {
             activeKeys = _.map(appData.tableRowData[tableId].activeRowData, rec => rec.key)
         }
         selectedRowKeys = _.uniq(activeKeys)
+    }
+
+    const helperFuntion = {
+        setOverlay: (params) => {
+            return dispatch(setOverlay({...params}))
+        },
+        setEditableTableData
     }
 
     useEffect(() => {
@@ -340,13 +347,13 @@ function TableComponent(props) {
             filterFieldCounter++
         }
     })
-    filterFormConfig._order["search_by_keyword"] = 99;
-    filterFormConfig["search_by_keyword"] = {
+    filterFormConfig._order["filter_by"] = 99;
+    filterFormConfig["filter_by"] = {
         "type": "text",
-        "placeholder": `Search by keyword`,
+        "placeholder": `Filter by keyword`,
         "width":"100%",
-        "key": "search",
-        "label": "Search",
+        "key": "filter_by",
+        "label": "Filter by",
         "flex": true
     }
     filterFormConfig._order["submit"] = 100
@@ -361,80 +368,10 @@ function TableComponent(props) {
         onChange: onSelectChange,
     };
 
-    let helperFuntion = {
-        setOverlay: (params) => {
-            return dispatch(setOverlay({...params}))
-        }
-    }
+    
     const expandedRowRender =  ()  => {
-    
-        const columns = [
-          {
-            title: 'Item#',
-            dataIndex: 'item',
-            key: 'item'
-          },
-          {
-            title: 'Item / Name / Description',
-            dataIndex: 'item_desc',
-            key: 'item_desc'
-          },
-          {
-            title: 'Quantity (Unit)',
-            dataIndex: 'quatity',
-            key: 'quatity',
-            render: (value,  r) => {
-                let val = quatity[r.key] || value
-               return <InputNumber min={1} value={val}
-                onChange={(v)=>{
-                   let modQuantity = {...quatity}
-                   modQuantity[r.key]=v
-                   setQuantity(modQuantity)
-                }}/>
-            }
-          },
-          {
-            title: 'Delivery Date',
-            dataIndex: 'date',
-            key: 'date',
-            render: (value, r)  => {
-                let val = dueDate[r.key] || value
-                return   <DatePicker value={moment(val)} 
-                onChange={(v) => {
-                    let modDueDate = {...dueDate}
-                    modDueDate[r.key]=v.format(v._f)
-                    setDueDate(modDueDate)
-                }}  />
-            }
-          },
-          {
-            title: 'Unit Price (₹)',
-            dataIndex: 'unit_price',
-            key: 'unit_price'
-          },
-          {
-            title: 'Tax (₹)',
-            dataIndex: 'tax',
-            key: 'tax',
-            render: (value, r)  => {
-                let quant = quatity[r.key] || r.quatity
-                let unitPrice =  r.unit_price
-                return <div>{(quant * r.tax)}</div>
-            }
-          },
-          {
-            title: 'Subtotal (₹)',
-            dataIndex: 'Subtotal',
-            key: 'Subtotal',
-            render: (value, r)  => {
-                let quant = quatity[r.key] || r.quatity
-                let unitPrice =  r.unit_price
-                return <div>{(quant * unitPrice) +(quant*r.tax)}</div>
-            }
-          },   
-        ];
+        const _columns = config.expandedRowRender.columns
         const data = [];
-    
         for (let i = 1; i < 4; ++i) {
           data.push({
             key: i.toString(),
@@ -443,17 +380,24 @@ function TableComponent(props) {
             upgradeNum: 'Upgraded: 56',
             item: i,
             item_desc:'Item name',
-            quatity: 3*1,
+            quantity: 3*1,
             unit_price: 10,
             Subtotal: 100,
             tax: 2*i
           });
         }
-    
-        return <Table  rowSelection={{
-            // selectedRowKeys,
-            onChange: ()=>{},
-        }}  columns={columns} dataSource={data} pagination={false} />;
+        const columnConfig = cellHandler(_columns, selectedOption, helperFuntion, editableTableData)
+        return (
+            <Table  
+                rowSelection={{
+                    // selectedRowKeys,
+                    onChange: ()=>{},
+                }}
+                columns={columnConfig}
+                dataSource={data} 
+                pagination={false} 
+            />
+        )
     };
 
     return (
@@ -468,6 +412,7 @@ function TableComponent(props) {
                 componentIndex={componentIndex}
                 selectedOption={selectedOption}
                 parentComponentData={selectedRowKeys}
+                tabs={props.tabs}
                 columnSelectorComponent={
                      <Popover getPopupContainer={() => document.body}  placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
                         <Button className="popover-button-wrapper">

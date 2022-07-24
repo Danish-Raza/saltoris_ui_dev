@@ -1,10 +1,10 @@
 import Utils from "../../Utils";
 import _ from "underscore"
-import { Space, Table, Tag } from 'antd';
+import { Space, Table, Tag,  InputNumber, DatePicker } from 'antd';
 import moment from "moment";
 import TableModal from "./TableModal";
 
-function cellHandler(config, data, helperFuntion) {
+function cellHandler(config, data, helperFuntion, editableTableData={}) {
     // const { config } = props;
     let columns = []
     let columnsOrder = config._order
@@ -14,6 +14,7 @@ function cellHandler(config, data, helperFuntion) {
             columnsOrder = result._order
         }
     }
+
     let sortedOrder = _.keys(Utils.sortOrder(columnsOrder))
     _.map(sortedOrder, order => {
         let column = config[order];
@@ -81,8 +82,64 @@ function cellHandler(config, data, helperFuntion) {
                 }
             }
             columns.push(obj)
+        } else if(column.type == "editable") {
+            obj.render = (value,  r) => {
+                if(typeof value == "number") {
+                    let val = editableTableData[obj.dataIndex] &&  editableTableData[obj.dataIndex][r.key] ?  editableTableData[obj.dataIndex][r.key] : value
+                    return (
+                        <InputNumber 
+                            min={1} value={val}
+                            onChange={(v)=>{
+                                let modValue = {...editableTableData}
+                                if(modValue[obj.dataIndex]) {
+                                    modValue[obj.dataIndex][r.key]=v
+                                } else {
+                                    modValue[obj.dataIndex] = {}
+                                    modValue[obj.dataIndex][r.key]=v
+                                }
+                               
+                                helperFuntion.setEditableTableData(modValue)
+                            }}
+                        />
+                    )
+                } else if(moment(value).isValid()) {
+                    let val = editableTableData[obj.dataIndex] && editableTableData[obj.dataIndex][r.key] ? editableTableData[obj.dataIndex][r.key] : value
+                    return (
+                        <DatePicker 
+                            value={moment(val)}
+                            getPopupContainer={triggerNode => triggerNode.parentNode} 
+                            onChange={(v) => {
+                                let modDate = {...editableTableData}
+                                if(modDate[obj.dataIndex]){
+                                    modDate[obj.dataIndex][r.key]=v.format(v._f)
+                                } else {
+                                    modDate[obj.dataIndex]={}
+                                    modDate[obj.dataIndex][r.key]=v.format(v._f)
+                                }
+                               
+                                helperFuntion.setEditableTableData(modDate)
+                            }}  
+                        />
+                    )
+                }
+            }
+            columns.push(obj)
+        } else if(column.type == "tax") {
+            obj.render = (value, r)  => {
+                let quant = editableTableData["quantity"] && editableTableData["quantity"][r.key] ? editableTableData["quantity"][r.key] : r.quantity
+                return <div>{(quant * r.tax)}</div>
+            }
+            columns.push(obj)
+        } else if(column.type == "total") {
+            obj.render = (value, r)  => {
+                let quant = editableTableData["quantity"] && editableTableData["quantity"][r.key] ? editableTableData["quantity"][r.key] : r.quantity
+                let unitPrice =  r.unit_price
+                return <div>{(quant * unitPrice) +(quant*r.tax)}</div>
+            }
+            columns.push(obj)
         }
     })
+
     return columns
 }
 export default cellHandler;

@@ -49,12 +49,17 @@ function Header(props) {
         <div className="widget-header">
             <div className="widget-title">
                 {widgetTitle}
+                {props.tabs}
                 {config.change_status_config && config.change_status_config.position  == "left" && <DropDown allowClear={false} parentComponentData={parentComponentData} config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
             </div>
-            {searchBar && <FormComponent config={config.searchConfig} />}
+           
             <div style={{display:"flex", alignItems:"center"}}>
                 {config.change_status_config && config.change_status_config.position  == "right" && <div className="change-status-wrapper"> <DropDown allowClear={false} parentComponentData={parentComponentData} config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} /></div>}
-                {config.searchConfig && <Icon type="search" width={15} height={15} styles={{position:"relative", top: -2, marginRight: 9}} onClick={toggleSearchBar}/>}
+                {config.searchConfig && 
+                <div style={{position:"relative"}}>
+                    {searchBar && <FormComponent config={config.searchConfig} />}
+                    <Icon type="search" width={15} height={15} styles={{position:"relative", top: -2, marginRight: 9}} onClick={toggleSearchBar}/>
+                </div>}
                 {config.type == "table" && filterSelectorComponent}
                 {config.type == "table" && columnSelectorComponent}
                 {magnifiedContent && <Icon type="zoomIn" width={20} height={20} onClick={showModal}/>}
