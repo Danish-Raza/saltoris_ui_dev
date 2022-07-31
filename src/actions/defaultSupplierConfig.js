@@ -2971,7 +2971,7 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": 100,
+                                            "width": 180,
                                             "align": "left"
                                         },
                                         "due_date": {
@@ -3132,7 +3132,7 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": 100,
+                                            "width": 180,
                                             "align": "left"
                                         },
                                         "due_date": {
@@ -8825,7 +8825,7 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": 100,
+                                            "width": 180,
                                             "align": "left"
                                         },
                                         "due_date": {
@@ -8985,7 +8985,7 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": 100,
+                                            "width": 180,
                                             "align": "left"
                                         },
                                         "due_date": {
