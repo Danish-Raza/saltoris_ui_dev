@@ -8,7 +8,7 @@ import Icon from "../Icon";
 import FormComponent from "./Form/FormComponent";
 
 function Header(props) {
-    const { config, isEditable, componentIndex, onChange=()=>{}, selectedOption, columnSelectorComponent,filterSelectorComponent, magnifiedContent, parentComponentData } = props;
+    const { config, isEditable, componentIndex, onChange=()=>{}, selectedOption, columnSelectorComponent,filterSelectorComponent, magnifiedContent, parentComponentData, confirmationStatus } = props;
     const { title, dropdown, display } = config;
     const dispatch = useDispatch()
     const [searchBar, setSearchBar] = useState(false)
@@ -50,11 +50,11 @@ function Header(props) {
             <div className="widget-title">
                 {widgetTitle}
                 {props.tabs}
-                {config.change_status_config && config.change_status_config.position  == "left" && <DropDown allowClear={false} parentComponentData={parentComponentData} config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
+                {config.change_status_config && config.change_status_config.position  == "left" &&  <div className="change-status-wrapper"> <DropDown allowClear={false} parentComponentData={parentComponentData}  changeStatus={true}  config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} /> </div>}
             </div>
            
             <div style={{display:"flex", alignItems:"center"}}>
-                {config.change_status_config && config.change_status_config.position  == "right" && <div className="change-status-wrapper"> <DropDown allowClear={false} parentComponentData={parentComponentData} config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} /></div>}
+                {config.change_status_config && config.change_status_config.position  == "right" && <div className="change-status-wrapper"> <DropDown allowClear={false} parentComponentData={parentComponentData}  changeStatus={true}  config={config.change_status_config.dropdown} onChange={onChange} styles={{marginLeft: 9}} /></div>}
                 {config.searchConfig && 
                 <div style={{position:"relative"}}>
                     {searchBar && <FormComponent config={config.searchConfig} />}
@@ -72,16 +72,16 @@ function Header(props) {
                             <div className="option">CSV</div>    
                        </div>
                     }  
-                    trigger="click"  placement="bottomRight"
-                    > 
+                    trigger="click" placement="bottomRight"
+                    >
                         <Icon type="cloud-download" width={20} height={20}/>
                     </Popover>
                 }
-                {dropdown !== undefined && <DropDown parentComponentData={parentComponentData} config={dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
+                {dropdown !== undefined &&  <DropDown confirmationStatus={confirmationStatus} allowClear={false}  parentComponentData={parentComponentData} config={dropdown} onChange={onChange} styles={{marginLeft: 9}} />}
             </div>
             {isEditable  ? <div className="remove-button" onClick={()=> dispatch(changeConfig({action:"REMOVE_WIDGET", id:config.id}))}>-</div>:""}
             {isEditable && config.replicate && <div className="replicate-button" onClick={()=> dispatch(changeConfig({action:"REPLICATE_WIDGET",component: config, index: componentIndex})) }>+</div>}
-            <Modal getContainer={() => document.body}   className="magnify-popup" style={{top: 20 }} title={false} visible={isModalVisible} onOk={handleOk} cancelButtonProps={{style: {display:"none"}}} okText={<Icon type="zoomOut" width={20} height={20} styles={{marginLeft:0, left: -2, top: 1}}/>} onCancel={handleCancel}>
+            <Modal getContainer={() => document.body} className="magnify-popup" style={{top: 20 }} title={false} visible={isModalVisible} onOk={handleOk} cancelButtonProps={{style: {display:"none"}}} okText={<Icon type="zoomOut" width={20} height={20} styles={{marginLeft:0, left: -2, top: 1}}/>} onCancel={handleCancel}>
                {magnifiedContent}
             </Modal>
         </div>

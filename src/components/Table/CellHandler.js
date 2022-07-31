@@ -3,8 +3,9 @@ import _ from "underscore"
 import { Space, Table, Tag,  InputNumber, DatePicker } from 'antd';
 import moment from "moment";
 import TableModal from "./TableModal";
+import Icon from "../../Icon";
 
-function cellHandler(config, data, helperFuntion, editableTableData={}) {
+function cellHandler(config, data, helperFuntion, editableTableData={}, allowEdit, parentColumn) {
     // const { config } = props;
     let columns = []
     let columnsOrder = config._order
@@ -22,11 +23,12 @@ function cellHandler(config, data, helperFuntion, editableTableData={}) {
         let colorMapping = column.color_mapping|| {};
         let isCurrency = column.is_currency;
         let isPercent = column.is_percent;
+        let columnType = allowEdit ? column.type : "string"
         
         let obj = {
             title: column.display,
             dataIndex: order,
-            type: column.type,
+            type: columnType,
             key: order,
             align: column.align,
             color:  color,
@@ -36,7 +38,7 @@ function cellHandler(config, data, helperFuntion, editableTableData={}) {
             onFilter: (value, record) => record[order].indexOf(value) === 0
         }
 
-        if(column.type == "string") {
+        if(columnType == "string") {
             obj.render = text => 
             <div className="cell" style={{color: color}}>
                 {isCurrency ? isCurrency : ""}
@@ -44,20 +46,20 @@ function cellHandler(config, data, helperFuntion, editableTableData={}) {
                 {typeof text == "number" ? Utils.numberWithCommas(text) : text}
             </div>
             columns.push(obj)
-        } else if(column.type == "date") {
+        } else if(columnType == "date") {
             obj.render = text =>  <div className="cell" style={{color: color}}>{moment(text).format(column.format)}</div>
             columns.push(obj)
-        } else if(column.type == "tag") {
+        } else if(columnType == "tag") {
             obj.render = (text) => (
                 <Tag color={colorMapping[text]} key={text}>
                     <div className="cell" style={{color: color}}> {text}</div>
                 </Tag>
             )
             columns.push(obj)
-        } else if(column.type == "link") {
+        } else if(columnType == "link") {
             obj.render = (text) => <a>{text}</a>
             columns.push(obj)
-        } else if(column.type == "action") {
+        } else if(columnType == "action") {
             obj.render = (text, rec) => {
                 if(column.on_click == "overlay") {
                     return  (
@@ -82,23 +84,14 @@ function cellHandler(config, data, helperFuntion, editableTableData={}) {
                 }
             }
             columns.push(obj)
-        } else if(column.type == "editable") {
-            obj.render = (value,  r) => {
+        } else if(columnType == "editable") {
+            obj.render = (value,  r, rowIndex) => {
                 if(typeof value == "number") {
-                    let val = editableTableData[obj.dataIndex] &&  editableTableData[obj.dataIndex][r.key] ?  editableTableData[obj.dataIndex][r.key] : value
                     return (
                         <InputNumber 
-                            min={1} value={val}
+                            min={1} value={value}
                             onChange={(v)=>{
-                                let modValue = {...editableTableData}
-                                if(modValue[obj.dataIndex]) {
-                                    modValue[obj.dataIndex][r.key]=v
-                                } else {
-                                    modValue[obj.dataIndex] = {}
-                                    modValue[obj.dataIndex][r.key]=v
-                                }
-                               
-                                helperFuntion.setEditableTableData(modValue)
+                                helperFuntion.setEditableTableData({[obj.dataIndex]: v}, rowIndex, parentColumn)
                             }}
                         />
                     )
@@ -109,32 +102,55 @@ function cellHandler(config, data, helperFuntion, editableTableData={}) {
                             value={moment(val)}
                             getPopupContainer={triggerNode => triggerNode.parentNode} 
                             onChange={(v) => {
-                                let modDate = {...editableTableData}
-                                if(modDate[obj.dataIndex]){
-                                    modDate[obj.dataIndex][r.key]=v.format(v._f)
-                                } else {
-                                    modDate[obj.dataIndex]={}
-                                    modDate[obj.dataIndex][r.key]=v.format(v._f)
-                                }
-                               
-                                helperFuntion.setEditableTableData(modDate)
+                                helperFuntion.setEditableTableData({[obj.dataIndex]: v.format(v._f)}, rowIndex, parentColumn)
                             }}  
                         />
                     )
                 }
             }
             columns.push(obj)
-        } else if(column.type == "tax") {
+        } else if(columnType == "tax") {
             obj.render = (value, r)  => {
                 let quant = editableTableData["quantity"] && editableTableData["quantity"][r.key] ? editableTableData["quantity"][r.key] : r.quantity
                 return <div>{(quant * r.tax)}</div>
             }
             columns.push(obj)
-        } else if(column.type == "total") {
+        } else if(columnType == "total") {
             obj.render = (value, r)  => {
                 let quant = editableTableData["quantity"] && editableTableData["quantity"][r.key] ? editableTableData["quantity"][r.key] : r.quantity
                 let unitPrice =  r.unit_price
                 return <div>{(quant * unitPrice) +(quant*r.tax)}</div>
+            }
+            columns.push(obj)
+        } else if(columnType == "switch-data") {
+            obj.render = (value, record, ind)  => {
+                let switchData = column.data_key
+                let displayKey = column.display_key
+                let curVersionIndex = record._curVersionIndex || 0;
+                if(record[switchData]) {
+                    return (
+                        <div className="switch-column-wrapper">
+                            <Icon 
+                                type="arrow-left" 
+                                prams={{disabled: curVersionIndex == 0 ? true: false}}  
+                                width={20} height={20}
+                                onClick={()  => helperFuntion.switchDataHandler("GO_BACK", ind, column)}
+                            />
+                                <div>{value}</div>
+                            <Icon 
+                                type="arrow-right" 
+                                prams={{disabled: curVersionIndex == record[switchData].length-1 ? true : false}}  
+                                width={20} height={20}
+                                onClick={()  => helperFuntion.switchDataHandler("GO_FORTH",ind, column)}
+                            />
+                        </div>
+                    )
+                } else {
+                    return (
+                        <div>{value}</div>
+                    )
+                }
+                
             }
             columns.push(obj)
         }

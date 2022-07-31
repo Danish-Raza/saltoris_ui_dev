@@ -215,7 +215,6 @@ function Login(props={}) {
   } else if(error) {
     message = <div>{errorMessage}</div>
   }
-  console.log(process.env)
   return (
     <div className="Login-page">
       <div className="tabs" >

@@ -415,6 +415,7 @@ const data = {
                             "id": "change_status_config_dropdown",
                             "placeholder":"Order Confirmation",
                             "allowSearch": false,
+                            "key":"change_status",
                             "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3}
                         }
                     },
@@ -456,12 +457,12 @@ const data = {
                                             "quantity":{
                                                 "display": "Quantity",
                                                 "align": "left",
-                                                "type":"string"
+                                                "type":"editable"
                                             },
                                             "date":{
                                                 "display": "Delivery Date",
                                                 "align": "left",
-                                                "type":"date",
+                                                "type":"editable",
                                                 "format": "MMM Do YYYY, h:mm a"
                                             },
                                             "unit_price":{
@@ -497,6 +498,7 @@ const data = {
                                             "id": "change_status_config_dropdown",
                                             "placeholder":"Order Confirmation",
                                             "allowSearch": false,
+                                            "key":"change_status",
                                             "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3}
                                         }
                                     },
@@ -1217,6 +1219,7 @@ const data = {
                                 "selected_po_table": {
                                     "id": "selected_po_table",
                                     "expandedRowRender": {
+                                        // "selectable": true,
                                         "columns":  {
                                             _order:{item: 1, item_desc: 2, quantity: 3, date: 4, unit_price: 5, tax: 6, Subtotal: 7},
                                             "item":{
@@ -1264,17 +1267,17 @@ const data = {
                                     "dependent_table": true,
                                     "dependent_table_ids": ["purchase_order_table_overlay"],
                                     "type": "table",
-                                    "change_status_config": {
-                                        "position":"right",
-                                        "dropdown":{
-                                            "status": "compared_against",
-                                            "mode": "select",
-                                            "id": "change_status_config_dropdown",
-                                            "placeholder":"Order Confirmation",
-                                            "allowSearch": false,
-                                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
-                                        }
-                                    },
+                                    // "change_status_config": {
+                                    //     "position":"right",
+                                    //     "dropdown":{
+                                    //         "status": "compared_against",
+                                    //         "mode": "select",
+                                    //         "id": "change_status_config_dropdown",
+                                    //         "placeholder":"Order Confirmation",
+                                    //         "allowSearch": false,
+                                    //         "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
+                                    //     }
+                                    // },
                                     "width": "100%",
                                     "sticky_top": 0,
                                     "display": "Selected Purchase Order",
@@ -3170,12 +3173,12 @@ const data = {
                             "quantity":{
                                 "display": "Quantity",
                                 "align": "left",
-                                "type":"string"
+                                "type":"editable"
                             },
                             "date":{
                                 "display": "Delivery Date",
                                 "align": "left",
-                                "type":"date",
+                                "type":"editable",
                                 "format": "MMM Do YYYY, h:mm a"
                             },
                             "unit_price":{
@@ -3283,8 +3286,9 @@ const data = {
                             "due_date": 5,
                             "ship_to": 6,
                             "order_ammount": 7,
-                            "po_status": 8,
-                            "view_detail": 9
+                            "version": 8,
+                            "po_status": 9,
+                            "view_detail": 10
                         },
                         "customer_id":{
                             "display": "Customer ID",
@@ -3292,6 +3296,14 @@ const data = {
                             "width": "",
                             "align": "left",
                             "sort": true,
+                        },
+                        "version":{
+                            "display": "Version",
+                            "type":"switch-data",
+                            "width": 150,
+                            "align": "left",
+                            "data_key":"available_version",
+                            "display_key":"version"
                         },
                         "ship_to":{
                             "display": " Ship To (Address)",
@@ -3363,14 +3375,12 @@ const data = {
                             "display": "PO Date",
                             "type":"date",
                             "format": "MMM Do YYYY, h:mm a",
-                            "width": "",
                             "align": "left"
                         },
                         "due_date": {
                             "display": "Delivery Date",
                             "type":"date",
                             "format": "MMM Do YYYY, h:mm a",
-                            "width": "",
                             "color":"#FC5A5A",
                             "align": "left"
                         },

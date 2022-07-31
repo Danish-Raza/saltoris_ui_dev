@@ -1,4 +1,4 @@
-import { Select, Dropdown, Menu , Button} from 'antd';
+import { Select, Dropdown, Menu , Button, message} from 'antd';
 import React, { useEffect, useState } from 'react';
 import Utils from '../../Utils';
 import _ from "underscore"
@@ -18,7 +18,7 @@ const getData = () => {
 
 function DropDown(props) {
   const children = [];
-  const { config, parentComponentData } =props;
+  const { config, parentComponentData, confirmationStatus } =props;
   const [value, setValue] = useState(props.value);
   const dispatch = useDispatch()
   let template = config.template;
@@ -39,6 +39,9 @@ function DropDown(props) {
     }
   },[])
 
+  const warning = (config) => {
+    message.warning(config.message);
+  };
  
   
   if(template == "filter") {
@@ -70,17 +73,21 @@ function DropDown(props) {
         items={items}
       />
     )
-    
-  //  return 
-    return (
-      <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']} getPopupContainer={() => document.body} >
-          <Button className='filter-icon-wrappper' > <Icon type="three-dots" width={15} height={15} styles={props.styles}/></Button>
-        {/* <Icon type="filter" width={15} height={15}/> */}
-    </Dropdown>
-    )
+    if(confirmationStatus && confirmationStatus.status === false) {
+      return (
+        <Button className='filter-icon-wrappper' onClick={() => warning(confirmationStatus)}> <Icon type="three-dots" width={15} height={15} styles={props.styles}/></Button>
+      )
+    } else {
+      return (
+        <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']} getPopupContainer={() => document.body} >
+            <Button className='filter-icon-wrappper' > <Icon type="three-dots" width={15} height={15} styles={props.styles}/></Button>
+      </Dropdown>
+      )
+    }
   } else {
     return (
       <Select
+        disabled = {props.changeStatus && parentComponentData && parentComponentData.length == 0} 
         mode={config.mode || "tags"}
         dropdownMatchSelectWidth={false}
         placeholder={config.placeholder ? config.placeholder: "Select"}

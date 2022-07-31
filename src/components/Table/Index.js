@@ -1,33 +1,62 @@
 import _ from "underscore"
 import Utils from "../../Utils";
 import Header from "../Header";
-import { Space, Table, Tag, Popover, Button, InputNumber, DatePicker} from 'antd';
+import { Table, Popover, Button, InputNumber, DatePicker, notification} from 'antd';
 import cellHandler from "./CellHandler";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changePageView, setOverlay, setTableRowData } from "../../actions/appActions";
+import { changePageView, setOverlay } from "../../actions/appActions";
 import Icon from "../../Icon";
 import FormComponent from "../Form/FormComponent";
 import moment from "moment";
 import { useNavigate } from "react-router";
+import { changeStatus } from "../../actions/headerAction";
+import { changeTableParams } from "../../actions/tableAction";
 
 function TableComponent(props) {
     const { config, handleDrop, handleDrag, isEditable, componentIndex, dependentData, componentDontExist } = props;
+    const { columns, sticky }  = config;
     const navigate = useNavigate()
-    const { columns, width, sticky }  = config;
-    const [selectedOption, setSelectedOption] = useState({});
-    const [data, setData] = useState([]);
-    const [originalData, setOriginalData] = useState([]);
+    const dispatch = useDispatch()
     const [curColumn, setCurColumn] = useState([])
     const [allColumn, setAllColumn] = useState([])
-    const dispatch = useDispatch()
-    const [fixedTop, setFixedTop] = useState(false);
-    const [quantity, setQuantity] = useState({})
-    const [dueDate, setDueDate] = useState({})
-    const [editableTableData, setEditableTableData] = useState({})
+    const [selectedOption, setSelectedOption] = useState({});
+    const [changedTableData, setchangedTableData] = useState({})
+    const [confirmationStatus,setConfirmationStatus] = useState()
+
+    const headerData = useSelector(state => state.headerData)
+    const tablesState = useSelector(state => state.tables)
+
+    let data = []
     let selectedRowKeys = []
-    const appData = useSelector(state => state.appData)
     let dataAvailable = null
+    let nestedDataAvailable = null
+   
+    if(tablesState[config.id]) {
+        data = tablesState[config.id].dataSet
+    } 
+    if(config.dependent_table && !config.api && tablesState) {
+        dataAvailable = []
+        _.map(config.dependent_table_ids, id => {
+            if(tablesState[id]) {
+                _.map(tablesState[id].selectedRow, (rec,ind) => {
+                    let i = _.findIndex(dataAvailable, r => r.key == rec.key)
+                    if(i == -1) {
+                        dataAvailable.push(rec)
+                    }
+                })
+                if(tablesState[id].nestedSelectedRow) {
+                    nestedDataAvailable = []
+                    _.map(tablesState[id].nestedSelectedRow, (rec,ind) => {
+                        let i = _.findIndex(nestedDataAvailable, r => r.key == rec.rowKeyValue.key)
+                        if(i == -1) {
+                            nestedDataAvailable.push(rec.rowKeyValue)
+                        }
+                    })
+                }
+            }
+        })
+    }
 
     const sortHandler = () => {
 
@@ -37,42 +66,14 @@ function TableComponent(props) {
         
     }
 
-    if(config.dependent_table && !config.api && appData.tableRowData) {
-        dataAvailable = []
-        _.map(config.dependent_table_ids, id => {
-            if(appData.tableRowData[id]) {
-                _.map(appData.tableRowData[id].activeRowData, rec => {
-                    let i = _.findIndex(dataAvailable, r => r.key == rec.key)
-                    if(i == -1) {
-                        dataAvailable.push(rec)
-                    }
-                })
-            }
-        })
-    }
-
-  
-    if(appData.tableRowData && appData.tableRowData[config.id]) {
-        let tableId = null;
-        let activeKeys = [];
-        if(appData.tableRowData[config.id]) {
-            tableId = config.id;
-            activeKeys = _.map(appData.tableRowData[tableId].activeRowData, rec => rec.key)
-        }
+    if(tablesState[config.id]){
+        let activeKeys =  _.map(tablesState[config.id].selectedRow, rec => rec.key);
         selectedRowKeys = _.uniq(activeKeys)
-    }
-
-    const helperFuntion = {
-        setOverlay: (params) => {
-            return dispatch(setOverlay({...params}))
-        },
-        setEditableTableData
     }
 
     useEffect(() => {
         let defaultDropdown = config.dropdown ? config.dropdown.default: null;
         let params = {}
-        
         if(!dataAvailable) {
             if(defaultDropdown) {
                 let sortedOrder = _.keys(Utils.sortOrder(defaultDropdown._order))
@@ -83,173 +84,20 @@ function TableComponent(props) {
                 };
                 setSelectedOption(params);
             }
-            const _mockData = [
-                {
-                key: '1',
-                name: 'Danish Raza',
-                buyer: 'Danish Raza',
-                value: 32,
-                customer_id: "1100712",
-                customer_name: "Danish Raza",
-                po_id: "#4400000555",
-                material: "material 1",
-                order_ammount: 1881395.00,
-                requirement:"Type I",
-                due_date: "2022-10-09",
-                valid_from: "2022-10-09",
-                address: 'New York No. 1 Lake Park',
-                status: 'Send',
-                invoice_status:"Paid",
-                invoice_no: "#123",
-                title:"title 1",
-                category: "category 1",
-                certifying_body: "body 1",
-                editor:"Editor 1",
-                version:"Version 2",
-                dol:"DOL 1",
-                dop:"DOP 2",
-                isbn:"ISBN 1",
-                "ship_to":"Hyderabad",
-                in_house_publication: "Publication 1",
-                purchase_status:"Dispatched",
-                po_status:"Received",
-                type: "Type 1",
-                settlement: "SM 1",    
-                invoice_amount: 82112,
-                revision: "R 01",
-                },
-                {
-                key: '2',
-                name: 'Akshay Pai',
-                buyer: 'Akshay Pai',
-                invoice_status:"Overdue",
-                value: 42,
-                valid_from: "2022-10-10",
-                order_ammount: 311520.00,
-                requirement:"Type I",
-                due_date: "2022-10-09",
-                customer_id: "1700294",
-                customer_name: "Akshay Pai",
-                po_id: "#5500002705",
-                material: "material 2",
-                address: 'London No. 1 Lake Park',
-                status: 'Payments',
-                invoice_no: "#124",
-                title:"title 2",
-                category: "category 2",
-                certifying_body: "body 2",
-                editor:"Editor 2",
-                version:"Version 2",
-                dol:"DOL 2",
-                dop:"DOP 2",
-                isbn:"ISBN 2",
-                in_house_publication: "Publication 2",
-                purchase_status:"Received",
-                "ship_to":"Agra",
-                po_status:"Invoiced",
-                type: "Type 2",
-                settlement: "SM 2",    
-                invoice_amount: 62112,
-                revision: "R 02",
-                }, 
-                {
-                    key: '4',
-                    name: 'Mukesh Kumar',
-                    buyer:"Mukesh Kumar",
-                    customer_id: "4300002632",
-                    customer_name: "Mukesh Kumar",
-                    invoice_Status:"Paid",
-                    po_id: "#4300002632",
-                    invoice_status:"Due",
-                    material: "material 4",
-                    valid_from: "2022-10-11",
-                    value: 32,
-                    order_ammount: 333000.00,
-                    requirement:"Type I",
-                    due_date: "2022-10-09",
-                    address: 'Sidney No. 1 Lake Park',
-                    status: 'Rejected',
-                    invoice_no: "#126",
-                    title:"title 4",
-                    category: "category 4",
-                    certifying_body: "body 4",
-                    editor:"Editor 4",
-                    version:"Version 4",
-                    dol:"DOL 4",
-                    dop:"DOP 4",
-                    isbn:"ISBN 4",
-                    "ship_to":"Lucknow",
-                    in_house_publication: "Publication 4",
-                    purchase_status:"Received",
-                    po_status:"Received" ,
-                    type: "Type 3",
-                settlement: "SM 3",    
-                invoice_amount: 92112,
-                revision: "R 03",   
-                },
-                {
-                    key: '5',
-                    name: 'Danish Raza',
-                    buyer: 'Danish Raza',
-                    value: 32,
-                    customer_id: "1100712",
-                    customer_name: "Danish Raza",
-                    po_id: "#4500149543",
-                    material: "material 1",
-                    order_ammount: 235000.00,
-                    requirement:"Type I",
-                    due_date: "2022-10-09",
-                    valid_from: "2022-10-09",
-                    address: 'New York No. 1 Lake Park',
-                    status: 'Send',
-                    invoice_status:"Paid",
-                    invoice_no: "#123",
-                    title:"title 1",
-                    category: "category 1",
-                    certifying_body: "body 1",
-                    editor:"Editor 1",
-                    version:"Version 2",
-                    dol:"DOL 1",
-                    dop:"DOP 2",
-                    isbn:"ISBN 1",
-                    "ship_to":"Hyderabad",
-                    in_house_publication: "Publication 1",
-                    purchase_status:"Dispatched",
-                    po_status:"Received",
-                    type: "Type 4",
-                    settlement: "SM 4",    
-                    invoice_amount: 22112,
-                    revision: "R 04",
-                }
-            ];
-            if(dependentData.po_id) {
-                let filteredData = _mockData.filter(rec => dependentData.po_id.includes(rec.po_id))
-                if(filteredData && filteredData.length>0) {
-                    setData(filteredData)
-                } else {
-                    setData(data)
-                }  
-            } else if(dependentData.invoice_no) {
-                let filteredData = _mockData.filter(rec => dependentData.invoice_no.includes(rec.invoice_no))
-                if(filteredData && filteredData.length>0) {
-                    setData(filteredData)
-                } else {
-                    setData(data)
-                }  
-            } else {
-                setData(_mockData)
-            }
-            if(config.dependent_table && config.selectable && config.api && appData.tableRowData) {
+            if(config.dependent_table && config.selectable && config.api && tablesState) {
                 let tableId = config.dependent_table_ids[0]
-                let activeKeysData = appData.tableRowData[tableId] ? appData.tableRowData[tableId].activeRowData : []
-                dispatch(setTableRowData({data: activeKeysData, tableId: config.id}))
+                let activeKeysData = tablesState[tableId] ? tablesState[tableId].selectedRow : []
+                let nestedSelectedRow = tablesState[tableId] ? tablesState[tableId].nestedSelectedRow : []
+                dispatch(changeTableParams({config: config, init: true, activeKeysData, nestedSelectedRow}))
+            } else {
+                dispatch(changeTableParams({config: config, init: true}))
             }
-            setOriginalData(_mockData)
+        } else {
+            dispatch(changeTableParams({config: config, init: true}))
         }
-        const columnConfig = cellHandler(columns, selectedOption, helperFuntion)
+        const columnConfig = cellHandler(columns, selectedOption, helperFuntion,null, true)
         setAllColumn(columnConfig)
         setCurColumn(columnConfig)
-
     },[])
 
     useEffect(() => {
@@ -264,15 +112,18 @@ function TableComponent(props) {
     },[dependentData])
 
     const onSelectChange = (newSelectedRowKeys) => {
-        let selectData = _.filter(data, rec => newSelectedRowKeys.includes(rec.key))
-        dispatch(setTableRowData({data: selectData, tableId: config.id}))
+        dispatch(changeTableParams({config: config, newSelectedRowKeys, type:"SELECT_TABLE_ROW"}))
     }
 
     const dropDownHandler = (key,value) => {
-        setSelectedOption({[key]: value})
-        const columnConfig = cellHandler(columns, {[key]: value}, helperFuntion)
-        setAllColumn(columnConfig)
-        setCurColumn(columnConfig)
+        if(key == "change_status") {
+           dispatch(changeStatus({tableId:config.id, operation: value}))
+        } else {
+            setSelectedOption({[key]: value})
+            const columnConfig = cellHandler(columns, {[key]: value}, helperFuntion, null, true)
+            setAllColumn(columnConfig)
+            setCurColumn(columnConfig)
+        }
     }
 
     const columnSelector = (column) => {
@@ -302,7 +153,7 @@ function TableComponent(props) {
             return <div onClick={() => columnSelector(col)}><Icon type="check-mark" checked={i == -1 ? false : true}/> {col.title}</div>
         }
     })
-    
+
     let filterFormConfig = {_order:{}};
     let filterFieldCounter = 1;
     _.map(curColumn, col => {
@@ -368,37 +219,71 @@ function TableComponent(props) {
         onChange: onSelectChange,
     };
 
-    
-    const expandedRowRender =  ()  => {
+    const changeConfirmationStatus = () => {
+        setConfirmationStatus(null)
+        notification["success"]({
+            message: 'Success',
+            description:
+              'New version created successfully'
+        });
+
+    }
+
+    const expandedRowRender =  (record, index, indent, expanded)  => {
         const _columns = config.expandedRowRender.columns
-        const data = [];
-        for (let i = 1; i < 4; ++i) {
-          data.push({
-            key: i.toString(),
-            date: '2014-12-24 23:12:00',
-            name: 'This is production name',
-            upgradeNum: 'Upgraded: 56',
-            item: i,
-            item_desc:'Item name',
-            quantity: 3*1,
-            unit_price: 10,
-            Subtotal: 100,
-            tax: 2*i
-          });
+        let allowEdit = config.selectable ? headerData && headerData[config.id] && headerData[config.id].isEditable && selectedRowKeys.includes(record.key) : true
+        let parentColumn = record;
+        const columnConfig = cellHandler(_columns, selectedOption, helperFuntion, changedTableData, allowEdit, parentColumn)
+        let nestedSelectedRow = []
+        if(tablesState[config.id].nestedSelectedRow) {
+            _.map(tablesState[config.id].nestedSelectedRow, r => nestedSelectedRow.push(r.rowKeyValue.key +""))
         }
-        const columnConfig = cellHandler(_columns, selectedOption, helperFuntion, editableTableData)
+        
+        if((headerData && headerData[config.id] && headerData[config.id].isEditable && selectedRowKeys.includes(record.key)) || (!config.selectable || nestedSelectedRow.length)) {
+            columnConfig[columnConfig.length-1].title = (
+                <div style={{display:"flex", justifyContent:"space-between"}}>
+                    <div>{columnConfig[columnConfig.length-1].title}</div>
+                    <Button type="primary" onClick={changeConfirmationStatus} style={{borderRadius: 8}}>Save</Button>
+                </div>
+            )
+        }
         return (
             <Table  
-                rowSelection={{
-                    // selectedRowKeys,
-                    onChange: ()=>{},
-                }}
+                key={JSON.stringify(record.inner_table)+"_inner_key"}
+                rowSelection={
+                    (headerData && headerData[config.id] && headerData[config.id].isEditable && selectedRowKeys.includes(record.key)) || (!config.selectable || nestedSelectedRow.length)? {
+                    selectedRowKeys: nestedSelectedRow,
+                    onChange: (v)=> {
+                        dispatch(changeTableParams({type:'SELECT_NESTED_TABLE_ROW', config: config, newSelectedRowKeys: v, parentRecord: record}))
+                    },
+                }: null}
                 columns={columnConfig}
-                dataSource={data} 
+                dataSource={nestedDataAvailable ? nestedDataAvailable : record.inner_table} 
                 pagination={false} 
             />
         )
     };
+
+    const switchDataHandler = (operation, rowIndex, column) => {
+        dispatch(changeTableParams({type:'SWITCH_TABLE_ROW', config: config, operation, rowIndex, column}))
+    }
+
+    const setEditableTableData = (data, rowIndex, parentColumn) => {
+        setConfirmationStatus({
+            status: false,
+            message: "Changes are not saved"
+        })
+        dispatch(changeTableParams({type:'CHANGE_TABLE_DATA', config: config, data, rowIndex, parentColumn}))
+
+    }
+
+    const helperFuntion = {
+        setOverlay: (params) => {
+            return dispatch(setOverlay({...params}))
+        },
+        switchDataHandler,
+        setEditableTableData
+    }
 
     return (
         <div 
@@ -413,6 +298,7 @@ function TableComponent(props) {
                 selectedOption={selectedOption}
                 parentComponentData={selectedRowKeys}
                 tabs={props.tabs}
+                confirmationStatus={confirmationStatus}
                 columnSelectorComponent={
                      <Popover getPopupContainer={() => document.body}  placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
                         <Button className="popover-button-wrapper">
@@ -437,7 +323,9 @@ function TableComponent(props) {
                             isEditable={isEditable} 
                             onChange={dropDownHandler}
                             componentIndex={componentIndex}
-                            selectedOption={selectedOption}       
+                            selectedOption={selectedOption} 
+                            parentComponentData={selectedRowKeys}  
+                            tabs={props.tabs}    
                             columnSelectorComponent={
                                 <Popover placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
                                     <Button className="popover-button-wrapper">
@@ -453,11 +341,56 @@ function TableComponent(props) {
                                 </Popover>
                             }
                         />
-                        <Table  dataSource={dataAvailable || data} columns={curColumn} pagination={config.pagination === false ? false : null} showSorterTooltip={false}/>
+                        {/* <Table  dataSource={dataAvailable || data} columns={curColumn} pagination={config.pagination === false ? false : null} showSorterTooltip={false}/> */}
+                        <Table
+                            key={config.id+"_table"}
+                            sticky={sticky}
+                            dataSource={dataAvailable || data} 
+                            columns={curColumn}
+                            pagination={config.pagination && {
+                                size:"small", total: 100, showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`
+                            }}
+                            showSorterTooltip={false}
+                            rowSelection={ config.selectable ? rowSelection : null }
+                            expandable={config.expandedRowRender && {
+                                expandedRowRender:expandedRowRender
+                            }}
+                            footer={config.redirect_on_view_all ? () => {
+                                let paramString = config.redirect_on_view_all.split('?')[1];
+                                let queryString = new URLSearchParams(paramString);
+                                let cur_page = null;
+                                let cur_view =  null;
+                                for(let pair of queryString.entries()) {
+                                    if(pair[0] == "cur_page") {
+                                        cur_page = pair[1];   
+                                    }
+                                    if(pair[0] == "cur_view") {
+                                        cur_view = pair[1];
+                                    }
+                                }
+
+                                return (
+                                    <div 
+                                        className="view-all-button"
+                                        onClick={() => {
+                                            dispatch(changePageView(cur_page, cur_view))
+                                            navigate(config.redirect_on_view_all)
+                                        }}
+                                    >   
+                                        View all
+                                    </div> 
+                                )
+
+                            }: false}
+                            scroll={{
+                                x: curColumn.length * 150,
+                            }}
+                        />
                     </div>
                 }
             />
             <Table
+                key={config.id+"_table"}
                 sticky={sticky}
                 dataSource={dataAvailable || data} 
                 columns={curColumn}
@@ -467,8 +400,7 @@ function TableComponent(props) {
                 showSorterTooltip={false}
                 rowSelection={ config.selectable ? rowSelection : null }
                 expandable={config.expandedRowRender && {
-                    expandedRowRender,
-                    defaultExpandedRowKeys: ['0'],
+                    expandedRowRender:expandedRowRender
                   }}
                 footer={config.redirect_on_view_all ? () => {
                     let paramString = config.redirect_on_view_all.split('?')[1];
@@ -476,7 +408,6 @@ function TableComponent(props) {
                     let cur_page = null;
                     let cur_view =  null;
                     for(let pair of queryString.entries()) {
-                        console.log('v', pair);
                         if(pair[0] == "cur_page") {
                             cur_page = pair[1];   
                         }
@@ -498,6 +429,9 @@ function TableComponent(props) {
                     )
 
                 }: false}
+                scroll={{
+                    x: curColumn.length * 150,
+                  }}
             />
         </div>
     )

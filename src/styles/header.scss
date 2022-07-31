@@ -64,17 +64,22 @@
         }
     }
     .change-status-wrapper {
-        // z-index: 0;
         margin-right: 15px;
         .ant-select {
             .ant-select-selector {
                 border-radius: 10px;
                 background-color: white;
                 border: 1px solid lightgray;
+              
+            }
+            &:not([class*="ant-select-disabled"]) {
+                .ant-select-selector {
+                    border-color: #aca3a3;
+                }
             }
         }
-        
     }
+
     .tab-wrapper {
         margin-bottom: 0;
         font-weight: normal;

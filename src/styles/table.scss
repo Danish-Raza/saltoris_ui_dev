@@ -54,6 +54,14 @@
                 margin: 0 !important;
             }
         }
+        .switch-column-wrapper {
+            display: flex;
+            svg[disabled] {
+                color: lightgray;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+        }
     }
     .widget-header {
         .remove-button {
