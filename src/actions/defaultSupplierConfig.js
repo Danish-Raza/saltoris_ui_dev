@@ -418,8 +418,7 @@ const data = {
                             "key":"change_status",
                             "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3}
                         }
-                    },
-                   
+                    },             
                     "selectable": true,
                     "pagination": false,
                     "type": "table",
@@ -441,7 +440,7 @@ const data = {
                                     "render_initial": true,
                                     "expandedRowRender": {
                                         "columns":  {
-                                            _order:{item: 1, item_desc: 2, quantity: 3, date: 4, unit_price: 5, tax: 6, Subtotal: 7},
+                                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
                                             "item":{
                                                 "display": "Item#",
                                                 "type":"string",
@@ -587,15 +586,24 @@ const data = {
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "version": 8,
+                                            "po_status": 9,
+                                            "view_detail": 10
                                         },
                                         "customer_id":{
                                             "display": "Customer ID",
                                             "type":"string",
                                             "width": "",
                                             "align": "left",
-                                            "sort": true
+                                            "sort": true,
+                                        },
+                                        "version":{
+                                            "display": "Version",
+                                            "type":"switch-data",
+                                            "width": 150,
+                                            "align": "left",
+                                            "data_key":"available_version",
+                                            "display_key":"version"
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
@@ -637,25 +645,25 @@ const data = {
                                             },
                                             "filters": [
                                                 {
-                                                    "text": "Invoiced",
-                                                    "value": "Invoiced"
+                                                    "text": 'Invoiced',
+                                                    "value": 'Invoiced',
                                                 },
                                                 {
-                                                    "text": "Dispatched",
-                                                    "value": "Dispatched"
+                                                    "text": 'Dispatched',
+                                                    "value": 'Dispatched',
                                                 },
                                                 {
                                                     "text": "Received",
-                                                    "value": "Received"
+                                                    "value": "Received",
                                                 }
-                                            ]
+                                            ],
                                         },
                                         "customer_name": {
                                             "display": "Customer Name",
                                             "type":"string",
                                             "width": "",
                                             "align": "left",
-                                            "sort": true
+                                            "sort": true,
                                         },
                                         "po_id": {
                                             "display": "PO Number",
@@ -667,14 +675,12 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "align": "left"
                                         },
                                         "due_date": {
                                             "display": "Delivery Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "color":"#FC5A5A",
                                             "align": "left"
                                         },
@@ -1219,9 +1225,8 @@ const data = {
                                 "selected_po_table": {
                                     "id": "selected_po_table",
                                     "expandedRowRender": {
-                                        // "selectable": true,
                                         "columns":  {
-                                            _order:{item: 1, item_desc: 2, quantity: 3, date: 4, unit_price: 5, tax: 6, Subtotal: 7},
+                                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
                                             "item":{
                                                 "display": "Item#",
                                                 "type":"string",
@@ -1242,7 +1247,8 @@ const data = {
                                             "date":{
                                                 "display": "Delivery Date",
                                                 "align": "left",
-                                                "type":"editable"
+                                                "type":"editable",
+                                                "format": "MMM Do YYYY, h:mm a"
                                             },
                                             "unit_price":{
                                                 "display": "Unit Price (₹)",
@@ -1252,13 +1258,13 @@ const data = {
                                             },
                                             "tax":{
                                                 "display": "Tax",
-                                                "type":"tax",
+                                                "type":"string",
                                                 "width": "",
                                                 "align": "left"
                                             },
                                             "Subtotal":{
                                                 "display": "Subtotal",
-                                                "type":"total",
+                                                "type":"string",
                                                 "width": "",
                                                 "align": "left"
                                             }
@@ -1267,17 +1273,6 @@ const data = {
                                     "dependent_table": true,
                                     "dependent_table_ids": ["purchase_order_table_overlay"],
                                     "type": "table",
-                                    // "change_status_config": {
-                                    //     "position":"right",
-                                    //     "dropdown":{
-                                    //         "status": "compared_against",
-                                    //         "mode": "select",
-                                    //         "id": "change_status_config_dropdown",
-                                    //         "placeholder":"Order Confirmation",
-                                    //         "allowSearch": false,
-                                    //         "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
-                                    //     }
-                                    // },
                                     "width": "100%",
                                     "sticky_top": 0,
                                     "display": "Selected Purchase Order",
@@ -1292,8 +1287,9 @@ const data = {
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "version": 8,
+                                            "po_status": 9,
+                                            "view_detail": 10
                                         },
                                         "customer_id":{
                                             "display": "Customer ID",
@@ -1301,6 +1297,14 @@ const data = {
                                             "width": "",
                                             "align": "left",
                                             "sort": true,
+                                        },
+                                        "version":{
+                                            "display": "Version",
+                                            "type":"switch-data",
+                                            "width": 150,
+                                            "align": "left",
+                                            "data_key":"available_version",
+                                            "display_key":"version"
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
@@ -1342,18 +1346,18 @@ const data = {
                                             },
                                             "filters": [
                                                 {
-                                                    "text": "Invoiced",
-                                                    "value": "Invoiced",
+                                                    "text": 'Invoiced',
+                                                    "value": 'Invoiced',
                                                 },
                                                 {
-                                                    "text": "Dispatched",
-                                                    "value": "Dispatched",
+                                                    "text": 'Dispatched',
+                                                    "value": 'Dispatched',
                                                 },
                                                 {
                                                     "text": "Received",
                                                     "value": "Received",
                                                 }
-                                            ]
+                                            ],
                                         },
                                         "customer_name": {
                                             "display": "Customer Name",
@@ -1372,14 +1376,12 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "align": "left"
                                         },
                                         "due_date": {
                                             "display": "Delivery Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "color":"#FC5A5A",
                                             "align": "left"
                                         },
@@ -1407,7 +1409,7 @@ const data = {
                                     "render_initial": true,
                                     "expandedRowRender": {
                                         "columns":  {
-                                            _order:{item: 1, item_desc: 2, quantity: 3, date: 4, unit_price: 5, tax: 6, Subtotal: 7},
+                                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
                                             "item":{
                                                 "display": "Item#",
                                                 "type":"string",
@@ -1423,13 +1425,13 @@ const data = {
                                             "quantity":{
                                                 "display": "Quantity",
                                                 "align": "left",
-                                                "type":"string"
+                                                "type":"editable"
                                             },
                                             "date":{
                                                 "display": "Delivery Date",
                                                 "align": "left",
-                                                "type":"date",
-                                                "format": "MMM Do YYYY, h:mm a" 
+                                                "type":"editable",
+                                                "format": "MMM Do YYYY, h:mm a"
                                             },
                                             "unit_price":{
                                                 "display": "Unit Price (₹)",
@@ -1453,10 +1455,22 @@ const data = {
                                     },
                                     "id": "purchase_order_table_overlay",
                                     "dependent_table": true,
-                                    "display": "Purchase Orders",
                                     "dependent_table_ids": ["purchase_order_table"],
                                     "type": "table",
                                     "width": "100%",
+                                    "change_status_config": {
+                                        "position":"right",
+                                        "dropdown":{
+                                            "status": "compared_against",
+                                            "mode": "select",
+                                            "id": "change_status_config_dropdown",
+                                            "placeholder":"Order Confirmation",
+                                            "allowSearch": false,
+                                            "key":"change_status",
+                                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3}
+                                        }
+                                    },
+                                    "display": "Purchase Orders",
                                     "api":  "abc",
                                     "download": true,
                                     "selectable": true,
@@ -1471,7 +1485,6 @@ const data = {
                                             "width":"32%",
                                             "key": "po_id",
                                             "mode":"select",
-                                            
                                             "flex": true,
                                             "required": true,
                                             "on_change": true,
@@ -1501,7 +1514,6 @@ const data = {
                                             "width":"32%",
                                             "key": "document",
                                             "mode":"select",
-                                            
                                             "flex": true,
                                             "required": false,
                                             "icon":"search",
@@ -1529,21 +1541,9 @@ const data = {
                                             "placeholder": "Search by keyword",
                                             "width":"32%",
                                             "key": "keyword",
-                                          
                                             "flex": true,
                                             "required": false,
                                             "icon":"search"
-                                        },
-                                    },
-                                    "change_status_config": {
-                                        "position":"right",
-                                        "dropdown":{
-                                            "status": "compared_against",
-                                            "mode": "select",
-                                            "id": "change_status_config_dropdown",
-                                            "placeholder":"Order Confirmation",
-                                            "allowSearch": false,
-                                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
                                         }
                                     },
                                     "columns":{
@@ -1555,8 +1555,9 @@ const data = {
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "version": 8,
+                                            "po_status": 9,
+                                            "view_detail": 10
                                         },
                                         "customer_id":{
                                             "display": "Customer ID",
@@ -1564,6 +1565,14 @@ const data = {
                                             "width": "",
                                             "align": "left",
                                             "sort": true,
+                                        },
+                                        "version":{
+                                            "display": "Version",
+                                            "type":"switch-data",
+                                            "width": 150,
+                                            "align": "left",
+                                            "data_key":"available_version",
+                                            "display_key":"version"
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
@@ -1605,12 +1614,12 @@ const data = {
                                             },
                                             "filters": [
                                                 {
-                                                    "text": "Invoiced",
-                                                    "value": "Invoiced",
+                                                    "text": 'Invoiced',
+                                                    "value": 'Invoiced',
                                                 },
                                                 {
-                                                    "text": "Dispatched",
-                                                    "value": "Dispatched",
+                                                    "text": 'Dispatched',
+                                                    "value": 'Dispatched',
                                                 },
                                                 {
                                                     "text": "Received",
@@ -1635,14 +1644,12 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "align": "left"
                                         },
                                         "due_date": {
                                             "display": "Delivery Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "color":"#FC5A5A",
                                             "align": "left"
                                         },
@@ -2583,7 +2590,7 @@ const data = {
                                     "id": "selected_po_table",
                                     "expandedRowRender": {
                                         "columns":  {
-                                            _order:{item: 1, item_desc: 2, quantity: 3, date: 4, unit_price: 5, tax: 6, Subtotal: 7},
+                                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
                                             "item":{
                                                 "display": "Item#",
                                                 "type":"string",
@@ -2604,7 +2611,8 @@ const data = {
                                             "date":{
                                                 "display": "Delivery Date",
                                                 "align": "left",
-                                                "type":"editable"
+                                                "type":"editable",
+                                                "format": "MMM Do YYYY, h:mm a"
                                             },
                                             "unit_price":{
                                                 "display": "Unit Price (₹)",
@@ -2614,13 +2622,13 @@ const data = {
                                             },
                                             "tax":{
                                                 "display": "Tax",
-                                                "type":"tax",
+                                                "type":"string",
                                                 "width": "",
                                                 "align": "left"
                                             },
                                             "Subtotal":{
                                                 "display": "Subtotal",
-                                                "type":"total",
+                                                "type":"string",
                                                 "width": "",
                                                 "align": "left"
                                             }
@@ -2631,21 +2639,9 @@ const data = {
                                     "type": "table",
                                     "width": "100%",
                                     "sticky_top": 0,
-                                    "change_status_config": {
-                                        "position":"right",
-                                        "dropdown":{
-                                            "status": "compared_against",
-                                            "mode": "select",
-                                            "id": "change_status_config_dropdown",
-                                            "placeholder":"Order Confirmation",
-                                            "allowSearch": false,
-                                            "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
-                                        }
-                                    },
                                     "display": "Selected Purchase Order",
                                     "api":  "",
                                     "pagination": false,
-                                    "download": true,
                                     "columns":{
                                         "_order":{
                                             "customer_id": 1,
@@ -2655,8 +2651,9 @@ const data = {
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "version": 8,
+                                            "po_status": 9,
+                                            "view_detail": 10
                                         },
                                         "customer_id":{
                                             "display": "Customer ID",
@@ -2664,6 +2661,14 @@ const data = {
                                             "width": "",
                                             "align": "left",
                                             "sort": true,
+                                        },
+                                        "version":{
+                                            "display": "Version",
+                                            "type":"switch-data",
+                                            "width": 150,
+                                            "align": "left",
+                                            "data_key":"available_version",
+                                            "display_key":"version"
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
@@ -2735,14 +2740,12 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "align": "left"
                                         },
                                         "due_date": {
                                             "display": "Delivery Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "color":"#FC5A5A",
                                             "align": "left"
                                         },
@@ -6245,6 +6248,7 @@ const data = {
                             "id": "change_status_config_dropdown",
                             "placeholder":"Order Confirmation",
                             "allowSearch": false,
+                            "key":"change_status",
                             "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
                         }
                     },
@@ -6265,7 +6269,7 @@ const data = {
                                     "render_initial": true,
                                     "expandedRowRender": {
                                         "columns":  {
-                                            _order:{item: 1, item_desc: 2, quantity: 3, date: 4, unit_price: 5, tax: 6, Subtotal: 7},
+                                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
                                             "item":{
                                                 "display": "Item#",
                                                 "type":"string",
@@ -6281,12 +6285,12 @@ const data = {
                                             "quantity":{
                                                 "display": "Quantity",
                                                 "align": "left",
-                                                "type":"string"
+                                                "type":"editable"
                                             },
                                             "date":{
                                                 "display": "Delivery Date",
                                                 "align": "left",
-                                                "type":"date",
+                                                "type":"editable",
                                                 "format": "MMM Do YYYY, h:mm a"
                                             },
                                             "unit_price":{
@@ -6322,6 +6326,7 @@ const data = {
                                             "id": "change_status_config_dropdown",
                                             "placeholder":"Order Confirmation",
                                             "allowSearch": false,
+                                            "key":"change_status",
                                             "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3}
                                         }
                                     },
@@ -6410,15 +6415,24 @@ const data = {
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "version": 8,
+                                            "po_status": 9,
+                                            "view_detail": 10
                                         },
                                         "customer_id":{
                                             "display": "Customer ID",
                                             "type":"string",
                                             "width": "",
                                             "align": "left",
-                                            "sort": true
+                                            "sort": true,
+                                        },
+                                        "version":{
+                                            "display": "Version",
+                                            "type":"switch-data",
+                                            "width": 150,
+                                            "align": "left",
+                                            "data_key":"available_version",
+                                            "display_key":"version"
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
@@ -6460,25 +6474,25 @@ const data = {
                                             },
                                             "filters": [
                                                 {
-                                                    "text": "Invoiced",
-                                                    "value": "Invoiced"
+                                                    "text": 'Invoiced',
+                                                    "value": 'Invoiced',
                                                 },
                                                 {
-                                                    "text": "Dispatched",
-                                                    "value": "Dispatched"
+                                                    "text": 'Dispatched',
+                                                    "value": 'Dispatched',
                                                 },
                                                 {
                                                     "text": "Received",
-                                                    "value": "Received"
+                                                    "value": "Received",
                                                 }
-                                            ]
+                                            ],
                                         },
                                         "customer_name": {
                                             "display": "Customer Name",
                                             "type":"string",
                                             "width": "",
                                             "align": "left",
-                                            "sort": true
+                                            "sort": true,
                                         },
                                         "po_id": {
                                             "display": "PO Number",
@@ -6490,14 +6504,12 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "align": "left"
                                         },
                                         "due_date": {
                                             "display": "Delivery Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "color":"#FC5A5A",
                                             "align": "left"
                                         },
@@ -7043,7 +7055,7 @@ const data = {
                                     "id": "selected_po_table",
                                     "expandedRowRender": {
                                         "columns":  {
-                                            _order:{item: 1, item_desc: 2, quantity: 3, date: 4, unit_price: 5, tax: 6, Subtotal: 7},
+                                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
                                             "item":{
                                                 "display": "Item#",
                                                 "type":"string",
@@ -7064,7 +7076,8 @@ const data = {
                                             "date":{
                                                 "display": "Delivery Date",
                                                 "align": "left",
-                                                "type":"editable"
+                                                "type":"editable",
+                                                "format": "MMM Do YYYY, h:mm a"
                                             },
                                             "unit_price":{
                                                 "display": "Unit Price (₹)",
@@ -7074,13 +7087,13 @@ const data = {
                                             },
                                             "tax":{
                                                 "display": "Tax",
-                                                "type":"tax",
+                                                "type":"string",
                                                 "width": "",
                                                 "align": "left"
                                             },
                                             "Subtotal":{
                                                 "display": "Subtotal",
-                                                "type":"total",
+                                                "type":"string",
                                                 "width": "",
                                                 "align": "left"
                                             }
@@ -7114,8 +7127,9 @@ const data = {
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "version": 8,
+                                            "po_status": 9,
+                                            "view_detail": 10
                                         },
                                         "customer_id":{
                                             "display": "Customer ID",
@@ -7123,6 +7137,14 @@ const data = {
                                             "width": "",
                                             "align": "left",
                                             "sort": true,
+                                        },
+                                        "version":{
+                                            "display": "Version",
+                                            "type":"switch-data",
+                                            "width": 150,
+                                            "align": "left",
+                                            "data_key":"available_version",
+                                            "display_key":"version"
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
@@ -7164,18 +7186,18 @@ const data = {
                                             },
                                             "filters": [
                                                 {
-                                                    "text": "Invoiced",
-                                                    "value": "Invoiced",
+                                                    "text": 'Invoiced',
+                                                    "value": 'Invoiced',
                                                 },
                                                 {
-                                                    "text": "Dispatched",
-                                                    "value": "Dispatched",
+                                                    "text": 'Dispatched',
+                                                    "value": 'Dispatched',
                                                 },
                                                 {
                                                     "text": "Received",
                                                     "value": "Received",
                                                 }
-                                            ]
+                                            ],
                                         },
                                         "customer_name": {
                                             "display": "Customer Name",
@@ -7194,14 +7216,12 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "align": "left"
                                         },
                                         "due_date": {
                                             "display": "Delivery Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "color":"#FC5A5A",
                                             "align": "left"
                                         },
@@ -7229,7 +7249,7 @@ const data = {
                                     "render_initial": true,
                                     "expandedRowRender": {
                                         "columns":  {
-                                            _order:{item: 1, item_desc: 2, quantity: 3, date: 4, unit_price: 5, tax: 6, Subtotal: 7},
+                                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
                                             "item":{
                                                 "display": "Item#",
                                                 "type":"string",
@@ -7245,13 +7265,13 @@ const data = {
                                             "quantity":{
                                                 "display": "Quantity",
                                                 "align": "left",
-                                                "type":"string"
+                                                "type":"editable"
                                             },
                                             "date":{
                                                 "display": "Delivery Date",
                                                 "align": "left",
-                                                "type":"date",
-                                                "format": "MMM Do YYYY, h:mm a" 
+                                                "type":"editable",
+                                                "format": "MMM Do YYYY, h:mm a"
                                             },
                                             "unit_price":{
                                                 "display": "Unit Price (₹)",
@@ -7365,6 +7385,7 @@ const data = {
                                             "id": "change_status_config_dropdown",
                                             "placeholder":"Order Confirmation",
                                             "allowSearch": false,
+                                            "key":"change_status",
                                             "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
                                         }
                                     },
@@ -7377,8 +7398,9 @@ const data = {
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "version": 8,
+                                            "po_status": 9,
+                                            "view_detail": 10
                                         },
                                         "customer_id":{
                                             "display": "Customer ID",
@@ -7386,6 +7408,14 @@ const data = {
                                             "width": "",
                                             "align": "left",
                                             "sort": true,
+                                        },
+                                        "version":{
+                                            "display": "Version",
+                                            "type":"switch-data",
+                                            "width": 150,
+                                            "align": "left",
+                                            "data_key":"available_version",
+                                            "display_key":"version"
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
@@ -7427,12 +7457,12 @@ const data = {
                                             },
                                             "filters": [
                                                 {
-                                                    "text": "Invoiced",
-                                                    "value": "Invoiced",
+                                                    "text": 'Invoiced',
+                                                    "value": 'Invoiced',
                                                 },
                                                 {
-                                                    "text": "Dispatched",
-                                                    "value": "Dispatched",
+                                                    "text": 'Dispatched',
+                                                    "value": 'Dispatched',
                                                 },
                                                 {
                                                     "text": "Received",
@@ -7457,14 +7487,12 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "align": "left"
                                         },
                                         "due_date": {
                                             "display": "Delivery Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "color":"#FC5A5A",
                                             "align": "left"
                                         },
@@ -8477,8 +8505,9 @@ const data = {
                                             "due_date": 5,
                                             "ship_to": 6,
                                             "order_ammount": 7,
-                                            "po_status": 8,
-                                            "view_detail": 9
+                                            "version": 8,
+                                            "po_status": 9,
+                                            "view_detail": 10
                                         },
                                         "customer_id":{
                                             "display": "Customer ID",
@@ -8486,6 +8515,14 @@ const data = {
                                             "width": "",
                                             "align": "left",
                                             "sort": true,
+                                        },
+                                        "version":{
+                                            "display": "Version",
+                                            "type":"switch-data",
+                                            "width": 150,
+                                            "align": "left",
+                                            "data_key":"available_version",
+                                            "display_key":"version"
                                         },
                                         "ship_to":{
                                             "display": " Ship To (Address)",
@@ -8557,14 +8594,12 @@ const data = {
                                             "display": "PO Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "align": "left"
                                         },
                                         "due_date": {
                                             "display": "Delivery Date",
                                             "type":"date",
                                             "format": "MMM Do YYYY, h:mm a",
-                                            "width": "",
                                             "color":"#FC5A5A",
                                             "align": "left"
                                         },
@@ -8814,8 +8849,7 @@ const data = {
                                     }
                                 },
                                 "selected_shipping_table": {
-                                    "id": "selected_shipping_table",
-                                    
+                                    "id": "selected_shipping_table", 
                                     "dependent_table": true,
                                     "dependent_table_ids": ["advance_shipping_table"],
                                     "type": "table",
@@ -8995,12 +9029,12 @@ const data = {
                             "quantity":{
                                 "display": "Quantity",
                                 "align": "left",
-                                "type":"string"
+                                "type":"editable"
                             },
                             "date":{
                                 "display": "Delivery Date",
                                 "align": "left",
-                                "type":"date",
+                                "type":"editable",
                                 "format": "MMM Do YYYY, h:mm a"
                             },
                             "unit_price":{
@@ -9027,9 +9061,7 @@ const data = {
                     "pagination": true,
                     "type": "table",
                     "width": "100%",
-                   
                     "download": true,
-                   
                     "searchConfig": {
                         "initial_disabled": false,
                         "template": "table-search-popup no-box-shadow",
@@ -9113,8 +9145,9 @@ const data = {
                             "due_date": 5,
                             "ship_to": 6,
                             "order_ammount": 7,
-                            "po_status": 8,
-                            "view_detail": 9
+                            "version": 8,
+                            "po_status": 9,
+                            "view_detail": 10
                         },
                         "customer_id":{
                             "display": "Customer ID",
@@ -9122,6 +9155,14 @@ const data = {
                             "width": "",
                             "align": "left",
                             "sort": true,
+                        },
+                        "version":{
+                            "display": "Version",
+                            "type":"switch-data",
+                            "width": 150,
+                            "align": "left",
+                            "data_key":"available_version",
+                            "display_key":"version"
                         },
                         "ship_to":{
                             "display": " Ship To (Address)",
@@ -9193,14 +9234,12 @@ const data = {
                             "display": "PO Date",
                             "type":"date",
                             "format": "MMM Do YYYY, h:mm a",
-                            "width": "",
                             "align": "left"
                         },
                         "due_date": {
                             "display": "Delivery Date",
                             "type":"date",
                             "format": "MMM Do YYYY, h:mm a",
-                            "width": "",
                             "color":"#FC5A5A",
                             "align": "left"
                         },
