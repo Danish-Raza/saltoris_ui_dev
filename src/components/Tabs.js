@@ -11,7 +11,7 @@ function Tab(props) {
     const dispatch = useDispatch()
     useEffect(() => {
         if(!props.activeTab && config.defaults){
-            setActiveTab(config.defaults)
+           // setActiveTab(config.defaults)
         } else {
             setActiveTab(props.activeTab)
         }

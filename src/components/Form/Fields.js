@@ -10,11 +10,11 @@ const { TextArea } = Input;
 const { RangePicker } = DatePicker;
 
 function FieldWrapper(props) {
-    const {validated, config} = props
+    const {validated, config , minLabelWidth} = props
     return (
         <div className='field' data-key={config.key} data-validated={validated} type={config.type} data-template={config.template} style={{display: config.flex ? "flex" : "block", width: config.width || "100%"}}>
             {(config.label || config.label_icon) &&
-                <div className='field-label'>
+                <div className='field-label' style={{...(minLabelWidth && {minWidth: minLabelWidth, maxWidth: minLabelWidth})}}>
                     {config.label_icon && <Icon type={config.label_icon} width={15} height={15}/>}
                     {config.label}
                 </div>
@@ -29,7 +29,7 @@ function Fields(props) {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [modalData, setModalData] = useState([]);
-    const { config,  onChange, onSearch, onSelect, onMultiSelect, onDateSelect, onSubmit, validated, onFocus, fileHandler, removeValueHander, onreChange, onDateRangeSelect, onSliderChange } = props;
+    const { config,  onChange, onSearch, onSelect, onMultiSelect, onDateSelect, onSubmit, validated, onFocus, fileHandler, removeValueHander, onreChange, onDateRangeSelect, onSliderChange,  minLabelWidth } = props;
     let fieldToRender=<div>Field</div>
     let inputField = useRef()
     let multiInputField = useRef()
@@ -57,7 +57,7 @@ function Fields(props) {
     switch (config.type) {
         case "text":
             fieldToRender =  (
-                <FieldWrapper config={config} validated={validated}>
+                <FieldWrapper config={config} validated={validated} minLabelWidth={minLabelWidth}>
                     <Input disabled={config.disabled} key={config.key} value={config.value} placeholder={config.placeholder} prefix={typeof config.icon == "string" ? <Icon type={config.icon} width={15} height={15} /> : config.icon } onChange={(e) => onChange(config.key, e)}/>
                 </FieldWrapper>
             )
@@ -65,7 +65,7 @@ function Fields(props) {
         case "radio":
             let sortedOrder =  config.option ? _.keys(Utils.sortOrder(config.option._order)) : []
             fieldToRender =  (
-                <FieldWrapper config={config} validated={validated}>
+                <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth}>
                     <Radio.Group disabled={config.disabled} key={config.key} value={config.value} onChange={(e) => onChange(config.key,e)}>
                         {
                             _.map(sortedOrder, order => <Radio value={order}>{config.option[order].display}</Radio> )
@@ -76,35 +76,35 @@ function Fields(props) {
             break;
         case "text-area":
             fieldToRender =  (
-                <FieldWrapper config={config} validated={validated}>
+                <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth}>
                     <TextArea rows={4} disabled={config.disabled} key={config.key} value={config.value} placeholder={config.placeholder}  maxLength={6} prefix={config.icon} onChange={(e) => onChange(config.key, e)} />
                 </FieldWrapper>
             )
             break;
         case "password":
             fieldToRender = (
-                <FieldWrapper config={config} validated={validated}>
+                <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth}>
                      <Input.Password  key={config.key} value={config.value} placeholder={config.placeholder} prefix={config.icon} onChange={(e) => onChange(config.key, e)} iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
                 </FieldWrapper>
             ) 
             break;
         case "date":
                 fieldToRender = (
-                    <FieldWrapper config={config} validated={validated}>
+                    <FieldWrapper config={config} validated={validated} minLabelWidth={minLabelWidth}>
                          <DatePicker getPopupContainer={triggerNode => triggerNode.parentNode} disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onDateSelect(config.key, value) }/>
                     </FieldWrapper>
                 )
                 break;
         case "date-range":
             fieldToRender = (
-                <FieldWrapper config={config} validated={validated}> 
+                <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth}> 
                     <RangePicker getPopupContainer={triggerNode => triggerNode.parentNode} disabled={config.disabled} key={config.key} value={config.value} onChange={(value, dateStrings) => onDateRangeSelect(config.key, value, dateStrings) } placeholder={["From","To"]}/> 
                 </FieldWrapper>
             )
             break;
         case "slider":
             fieldToRender = (
-                <FieldWrapper config={config} validated={validated}> 
+                <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth}> 
                     <Slider min={config.min} max={config.max} range disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onSliderChange(config.key, value) }/>
                 </FieldWrapper> 
             )
@@ -116,7 +116,7 @@ function Fields(props) {
             }
             let modValues = config.value ? typeof config.value == "object" && config.value.length ? config.value : [config.value] : []
             fieldToRender = (
-                <FieldWrapper config={config} validated={validated}>
+                <FieldWrapper config={config} validated={validated} minLabelWidth={minLabelWidth}>
                     <Fragment>
                         <div style={{display:"flex", justifyContent:"space-between", width:"100%"}}>
                             <div className='field-button-wrapper' style={{display:"flex", alignItems:"center", flexWrap:"wrap"}}>
@@ -211,14 +211,14 @@ function Fields(props) {
             break;
         case "dropdown":
             fieldToRender =  (
-                <FieldWrapper config={config} validated={validated}>
+                <FieldWrapper config={config} validated={validated} minLabelWidth={minLabelWidth}>
                         <DropDown value={config.value} config={config} onChange={onSelect} />
                 </FieldWrapper>
             )
             break;
         case "reaptcha":
             fieldToRender = (
-                <FieldWrapper config={config} validated={validated}>
+                <FieldWrapper config={config} validated={validated} minLabelWidth={minLabelWidth}>
                      <Reaptcha
                         sitekey="6Ld5ppsgAAAAAOLM2Om-owkeHVZz48oez-zKNCqw"
                         onVerify={(value) => onreChange(config.key, value)}
@@ -237,7 +237,7 @@ function Fields(props) {
                 )
             })
             fieldToRender = (
-                <FieldWrapper config={config} validated={validated}>
+                <FieldWrapper config={config} validated={validated} minLabelWidth={minLabelWidth}>
                         <Checkbox.Group options={checkboxOptions} onChange={(value) => onSelect(config.key, value)} />
                 </FieldWrapper>  
             )

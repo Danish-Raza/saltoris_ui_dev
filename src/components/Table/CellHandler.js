@@ -86,7 +86,7 @@ function cellHandler(config, data, helperFuntion, editableTableData={}, allowEdi
             columns.push(obj)
         } else if(columnType == "editable") {
             obj.render = (value,  r, rowIndex) => {
-                if(typeof value == "number") {
+                if(typeof value == "number" || value == null) {
                     return (
                         <InputNumber 
                             min={1} value={value}
@@ -112,7 +112,7 @@ function cellHandler(config, data, helperFuntion, editableTableData={}, allowEdi
         } else if(columnType == "tax") {
             obj.render = (value, r)  => {
                 let quant = editableTableData["quantity"] && editableTableData["quantity"][r.key] ? editableTableData["quantity"][r.key] : r.quantity
-                return <div>{(quant * r.tax)}</div>
+                return <div>{(r.quantity * r.tax)}</div>
             }
             columns.push(obj)
         } else if(columnType == "total") {

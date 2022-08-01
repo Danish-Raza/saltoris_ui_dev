@@ -3,6 +3,7 @@ import FormComponent from "./Form/FormComponent";
 import _ from "underscore";
 import Icon from "../Icon";
 import { useEffect, useState } from "react";
+import Table from "./Table/Index";
 
 function FormGroup(props) {
     const [config, setConfig] = useState(props.config);
@@ -111,25 +112,28 @@ function FormGroup(props) {
         let isDisabled = {};
         let modConfig = { ...config }
         _.map(sortOrder, order => {
-            let components = _.keys(Utils.sortOrder(config[order]._order));
-            _.map(components, rec => {
-                let r = config[order][rec]
-                if(r.type !== "button") {
-                    modConfig = {
-                        ...modConfig,
-                        [order]: {
-                            ...modConfig[order],
-                            [rec]: {
-                                ...modConfig[order][rec],
-                                value: mockData[order] ? mockData[order][rec] : null
+            if(!config[order].type || config[order].type=="form") {
+
+                let components = _.keys(Utils.sortOrder(config[order]._order));
+                _.map(components, rec => {
+                    let r = config[order][rec]
+                    if(r.type !== "button") {
+                        modConfig = {
+                            ...modConfig,
+                            [order]: {
+                                ...modConfig[order],
+                                [rec]: {
+                                    ...modConfig[order][rec],
+                                    value: mockData[order] ? mockData[order][rec] : null
+                                }
                             }
                         }
                     }
+                 })
+                isDisabled = {
+                    ...isDisabled,
+                    [order]: config[order].initial_disabled
                 }
-             })
-            isDisabled = {
-                ...isDisabled,
-                [order]: config[order].initial_disabled
             }
         })
         setConfig(modConfig)
@@ -191,13 +195,25 @@ function FormGroup(props) {
                                     }
                                 </div>
                             }
-                            {config[order] && config[order]._order && !_.isEmpty(config[order]._order) && <FormComponent
-                                config={{...config[order], title: null, on_change:true, width: "100%"}}
-                                preFilledData={mockData[order]}
-                                disabled={isDisabled[order]}
-                                id={order}
-                                onChange={changeHandler}
-                            />}
+                            {config[order] && config[order]._order && !_.isEmpty(config[order]._order) && (config[order].type == "form" || !config[order].type) && (
+                                <FormComponent
+                                    config={{...config[order], title: null, on_change:true, width: "100%"}}
+                                    preFilledData={mockData[order]}
+                                    disabled={isDisabled[order]}
+                                    id={order}
+                                    onChange={changeHandler}
+                                />
+                            )}
+                            {
+                                config[order].type == "table" && (
+                                    <Table 
+                                        key={config[order].id}
+                                        id={config[order].id || order}
+                                        config={{...config[order],title: null}}
+                                        dependentData={{}}
+                                    />
+                                )
+                            }
                         </div>
                     )
                 })

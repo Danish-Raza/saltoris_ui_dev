@@ -249,7 +249,7 @@ function TableComponent(props) {
         }
         return (
             <Table  
-                key={JSON.stringify(record.inner_table)+"_inner_key"}
+                key={JSON.stringify(record.inner_table)+config.id+"_inner_key"}
                 rowSelection={
                     (headerData && headerData[config.id] && headerData[config.id].isEditable && selectedRowKeys.includes(record.key)) || (!config.selectable || nestedSelectedRow.length)? {
                     selectedRowKeys: nestedSelectedRow,
@@ -283,6 +283,11 @@ function TableComponent(props) {
         },
         switchDataHandler,
         setEditableTableData
+    }
+
+    let _modData = data
+    if(config.redirect_on_view_all) {
+        _modData= data.slice(0,5)
     }
 
     return (
@@ -392,7 +397,7 @@ function TableComponent(props) {
             <Table
                 key={config.id+"_table"}
                 sticky={sticky}
-                dataSource={dataAvailable || data} 
+                dataSource={dataAvailable || _modData} 
                 columns={curColumn}
                 pagination={config.pagination && {
                     size:"small", total: 100, showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`
@@ -401,7 +406,7 @@ function TableComponent(props) {
                 rowSelection={ config.selectable ? rowSelection : null }
                 expandable={config.expandedRowRender && {
                     expandedRowRender:expandedRowRender
-                  }}
+                }}
                 footer={config.redirect_on_view_all ? () => {
                     let paramString = config.redirect_on_view_all.split('?')[1];
                     let queryString = new URLSearchParams(paramString);
@@ -430,7 +435,7 @@ function TableComponent(props) {
 
                 }: false}
                 scroll={{
-                    x: curColumn.length * 150,
+                    x: curColumn.length * 170,
                   }}
             />
         </div>

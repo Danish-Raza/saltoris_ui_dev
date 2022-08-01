@@ -323,6 +323,7 @@ function FormComponent(props) {
                             removeValueHander={removeValueHander}
                             onDateRangeSelect={onDateRangeSelect}
                             onSliderChange={onSliderChange}
+                            minLabelWidth={config.min_label_width}
                         />
                     )
                 })
