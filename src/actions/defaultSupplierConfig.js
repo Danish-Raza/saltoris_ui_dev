@@ -1829,7 +1829,7 @@ const data = {
                                                 "sort": true
                                             }                                    
                                         },
-                                        "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                       // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
                                     },
                                     "quantity_table": {
                                         "id": "quantity_table",
@@ -8358,7 +8358,7 @@ const data = {
                                                 "sort": true
                                             }                                    
                                         },
-                                        "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                       // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
                                     },
                                     "quantity_table": {
                                         "id": "quantity_table",
@@ -12065,7 +12065,7 @@ const data = {
                                                 "sort": true
                                             }                                    
                                         },
-                                        "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                       // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
                                     },
                                     "quantity_table": {
                                         "id": "quantity_table",

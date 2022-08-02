@@ -289,6 +289,9 @@ function TableComponent(props) {
     if(config.redirect_on_view_all) {
         _modData= data.slice(0,5)
     }
+    if(config.id=="delivery_table") {
+        _modData = [data[0]]  
+    }
 
     return (
         <div 
@@ -324,13 +327,13 @@ function TableComponent(props) {
                         data-componentDontExist={componentDontExist}
                     >
                         <Header 
-                            config={config}
+                            config={{...config, tabs:null}}
                             isEditable={isEditable} 
                             onChange={dropDownHandler}
                             componentIndex={componentIndex}
                             selectedOption={selectedOption} 
                             parentComponentData={selectedRowKeys}  
-                            tabs={props.tabs}    
+                            //tabs={props.tabs}    
                             columnSelectorComponent={
                                 <Popover placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
                                     <Button className="popover-button-wrapper">
