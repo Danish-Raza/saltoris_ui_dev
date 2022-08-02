@@ -2,50 +2,78 @@ import Utils from "../Utils";
 import FormComponent from "./Form/FormComponent";
 import _ from "underscore";
 import Icon from "../Icon";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Table from "./Table/Index";
+import Information from "./Information";
+import ReviewComponent from "./Review";
 
 function FormGroup(props) {
     const [config, setConfig] = useState(props.config);
-    const {submit, width} = config;
+    const {submit, width, review} = config;
     const [isDisabled, setIsDisabled] = useState({});
     const [formData, setFormData] = useState({});
+    const [reviewState, setReviewState] = useState(false)
     const sortOrder = _.keys(Utils.sortOrder(config._order));
+    const thisComponent = useRef()
+
+    const reviewHandler = (event) => {
+        event.preventDefault()
+        if(validateForm()) {
+            setReviewState(!reviewState)
+            if(thisComponent && thisComponent.current){
+                let overlay = document.querySelector(".overlay-content")
+                if(overlay) {
+                    overlay.scrollTop=0
+                }
+            }
+            let combinedData = {}
+            let temObj = getFormData()
+            _.map(temObj, (valObj, key) => {
+                combinedData = { ...combinedData, ...valObj}
+            })
+            if(config.pass_data_on_submit) {
+                props.onSubmit({[props.id]: combinedData})
+            }
+        }
+    }
+
 
     const validateForm = () => {
         let result = true;
         let modConfig = { ...config }
         _.map(sortOrder, wrapperOrder => {
-            let components = _.keys(Utils.sortOrder(config[wrapperOrder]._order));
-            _.map(components, rec => {
-                let r = config[wrapperOrder][rec]
-                if(r.type !== "button") {
-                    modConfig = {
-                        ...modConfig,
-                        [wrapperOrder]: {
-                            ...modConfig[wrapperOrder],
-                            [rec]: {
-                                ...modConfig[wrapperOrder][rec],
-                                validated:(r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
+            if(config[wrapperOrder].type=="form" || !config[wrapperOrder].type){
+                let components = _.keys(Utils.sortOrder(config[wrapperOrder]._order));
+                _.map(components, rec => {
+                    let r = config[wrapperOrder][rec]
+                    if(r.type !== "button") {
+                        modConfig = {
+                            ...modConfig,
+                            [wrapperOrder]: {
+                                ...modConfig[wrapperOrder],
+                                [rec]: {
+                                    ...modConfig[wrapperOrder][rec],
+                                    validated:(r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
+                                }
+                            }
+                        }
+                     if(result) {
+                        result =  (r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
+                     }
+                    } else if(r.type  ===  "button") {
+                        modConfig = {
+                            ...modConfig,
+                            [wrapperOrder]: {
+                                ...modConfig[wrapperOrder],
+                                [rec]: {
+                                    ...modConfig[wrapperOrder][rec],
+                                    validated: true
+                                }
                             }
                         }
                     }
-                 if(result) {
-                     result =  (r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
-                 }
-                } else if(r.type  ===  "button") {
-                    modConfig = {
-                        ...modConfig,
-                        [wrapperOrder]: {
-                            ...modConfig[wrapperOrder],
-                            [rec]: {
-                                ...modConfig[wrapperOrder][rec],
-                                validated: true
-                            }
-                        }
-                    }
-                }
-            })
+                })
+            }
         })
         setConfig(modConfig) 
         return result;
@@ -98,12 +126,14 @@ function FormGroup(props) {
         let data = {}
         _.map(sortOrder, order => {
             data[order]={}
-            let components = _.keys(Utils.sortOrder(_config[order]._order));
-            _.map(components, rec => {
-                if(_config[order][rec].type !== "button" && _config[order][rec].value !== undefined && _config[order][rec].value !== null && _config[order][rec].value !== ""  ) { 
-                    data[order] = { ...data[order],  [rec]: _config[order][rec].value }
-                }
-             })
+            if(_config[order].type == "form" || !_config[order].type) {
+                let components = _.keys(Utils.sortOrder(_config[order]._order));
+                _.map(components, rec => {
+                    if(_config[order][rec].type !== "button" && _config[order][rec].value !== undefined && _config[order][rec].value !== null && _config[order][rec].value !== ""  ) { 
+                        data[order] = { ...data[order],  [rec]: _config[order][rec].value }
+                    }
+                 })
+            }
         })
         return data
     }
@@ -176,50 +206,124 @@ function FormGroup(props) {
         obj[id] = !obj[id]
         setIsDisabled(obj)
     }
+    if(thisComponent && thisComponent.current){
+        thisComponent.current.scrollTo(0, 0);
+    }
 
     return (
-        <form className="form-group-wrapper"  onSubmit={submitHandler} style={{width: width || "100%" }} data-componentDontExist={props.componentDontExist}>
-            {
-                _.map(sortOrder, order => {
-                    return (
-                        <div className="form-wrapper" style={{width: config[order].width || "100%",  ...config[order].group_style && (config[order].group_style)}}>
-                            {config[order].title !== undefined &&
-                                <div className="form-wrapper-title" style={{marginBottom: config[order] && config[order]._order && _.isEmpty(config[order]._order) && 0}} >
-                                    {config[order].title}
-                                    {
-                                        config[order].initial_disabled && (
-                                            <div data-button-type="edit" onClick={() => handleIsDisabled(order)}>
-                                                <Icon type="edit" width={17} height={17}/> Edit
+        <Fragment>
+            {      
+                <div className="reivew-component-wrapper" ref={thisComponent} data-status={reviewState} >
+                    {
+                            <form className="form-group-wrapper"  onSubmit={submitHandler} style={{width: width || "100%" }} data-componentDontExist={props.componentDontExist}>
+                        {
+                            _.map(sortOrder, order => {
+                                return (
+                                    <div className="form-wrapper" style={{width: config[order].width || "100%",  ...config[order].group_style && (config[order].group_style)}}>
+                                        {config[order].title !== undefined &&  (config[order].type == "form" || !config[order].type) &&
+                                            <div className="form-wrapper-title" style={{marginBottom: config[order] && config[order]._order && _.isEmpty(config[order]._order) && 0}} >
+                                                {config[order].title}
+                                                {
+                                                    config[order].initial_disabled && (
+                                                        <div data-button-type="edit" onClick={() => handleIsDisabled(order)}>
+                                                            <Icon type="edit" width={17} height={17}/> Edit
+                                                        </div>
+                                                    )
+                                                }
                                             </div>
-                                        )
-                                    }
-                                </div>
-                            }
-                            {config[order] && config[order]._order && !_.isEmpty(config[order]._order) && (config[order].type == "form" || !config[order].type) && (
-                                <FormComponent
-                                    config={{...config[order], title: null, on_change:true, width: "100%"}}
-                                    preFilledData={mockData[order]}
-                                    disabled={isDisabled[order]}
-                                    id={order}
-                                    onChange={changeHandler}
-                                />
-                            )}
+                                        }
+                                        {config[order] && config[order]._order && !_.isEmpty(config[order]._order) && (config[order].type == "form" || !config[order].type) && (
+                                            <FormComponent
+                                                config={{...config[order], title: null, on_change:true, width: "100%"}}
+                                                preFilledData={mockData[order]}
+                                                disabled={isDisabled[order] || reviewState}
+                                                id={order}
+                                                onChange={changeHandler}
+                                                reviewState={reviewState}
+                                            />
+                                        )}
+                                    </div>
+                                )
+                            })
+                        }
+                            </form>
+                            
+                    }
+                    <div className="button-wrapper">
+                    <button button-type={"ghost"} onClick={reviewHandler}>Go Back</button>
+                    {submit && <button button-type={"primary"} onClick={(e) => {e.preventDefault(); submitHandler()}}>{submit.display}</button>}
+                </div>
+                </div>
+                
+            }
+            <form className="form-group-wrapper"  onSubmit={submitHandler} style={{width: width || "100%" , ...(reviewState && {overflow:"hidden",height: 2000})}} data-componentDontExist={props.componentDontExist} >
+    
+    {
+        _.map(sortOrder, order => {
+            return (
+                <div className="form-wrapper" style={{width: config[order].width || "100%",  ...config[order].group_style && (config[order].group_style)}}>
+                    {config[order].title !== undefined &&
+                        <div className="form-wrapper-title" style={{marginBottom: config[order] && config[order]._order && _.isEmpty(config[order]._order) && 0}} >
+                            {config[order].title}
                             {
-                                config[order].type == "table" && (
-                                    <Table 
-                                        key={config[order].id}
-                                        id={config[order].id || order}
-                                        config={{...config[order],title: null}}
-                                        dependentData={{}}
-                                    />
+                                config[order].initial_disabled && (
+                                    <div data-button-type="edit" onClick={() => handleIsDisabled(order)}>
+                                        <Icon type="edit" width={17} height={17}/> Edit
+                                    </div>
                                 )
                             }
                         </div>
-                    )
-                })
-            }
-            {submit && <button type="submit" button-type={"primary"} onClick={(e) => {e.preventDefault(); submitHandler()}}>{submit.display}</button>}
-        </form>
+                    }
+                    {config[order] && config[order]._order && !_.isEmpty(config[order]._order) && (config[order].type == "form" || !config[order].type) && (
+                        <FormComponent
+                            config={{...config[order], title: null, on_change:true, width: "100%"}}
+                            preFilledData={mockData[order]}
+                            disabled={isDisabled[order]}
+                            id={order}
+                            onChange={changeHandler}
+                            reviewState={reviewState}
+                        />
+                    )}
+                    {
+                        config[order].type == "table" && (
+                            <Table 
+                                key={config[order].id}
+                                id={config[order].id || order}
+                                config={{...config[order],title: null}}
+                                //  dependentData={{}}
+                            />
+                        )
+                    }
+                    {
+                        config[order].type == "info" && (
+                            <div>
+                                <Information 
+                                key={config[order].id}
+                                id={config[order].id || order}
+                                config={{...config[order]}}
+                                dependentData={{}}
+                            />
+                            </div>
+                        )
+                    }
+                </div>
+            )
+        })
+    }
+    {review && (
+        reviewState ? (
+            <div className="button-wrapper">
+                <button button-type={"ghost"} onClick={reviewHandler}>Go Back</button>
+                {submit && <button button-type={"primary"} onClick={(e) => {e.preventDefault(); submitHandler()}}>{submit.display}</button>}
+            </div>
+            ) : (
+                <button type="submit"  button-type={"primary"} onClick={reviewHandler}>Review</button>
+            )
+    )}
+    {!review && submit && <button type="submit" button-type={"primary"} onClick={(e) => {e.preventDefault(); submitHandler()}}>{submit.display}</button>}
+            </form>
+        </Fragment>
+       
     )
 }
 export default FormGroup

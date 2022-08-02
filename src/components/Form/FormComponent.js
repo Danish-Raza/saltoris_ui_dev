@@ -324,6 +324,7 @@ function FormComponent(props) {
                             onDateRangeSelect={onDateRangeSelect}
                             onSliderChange={onSliderChange}
                             minLabelWidth={config.min_label_width}
+                            reviewState={props.reviewState}
                         />
                     )
                 })

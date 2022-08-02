@@ -229,6 +229,27 @@
             border-radius: 10px !important;
         }
     }
+    .field[data-reviewstate="true"]{
+        margin-top: 0 !important;
+        input, .ant-picker-disabled, .ant-input-disabled {
+            background-color: white !important;
+            color: black;
+        }
+        input[class*="ant-picker-disabled"],input[class*="ant-input-disabled"] {
+            height: 30px !important;
+            border: 0 !important;
+            padding: 0 !important;
+        }
+        .ant-picker-disabled {
+            height: 30px !important;
+            border: 0 !important;
+            padding: 0 !important;
+        }
+        .field-label {
+            // min-width: 225px ;
+            // max-width: 225px ;
+        }
+    }
     
 }
 .form-component {

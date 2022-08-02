@@ -7,7 +7,7 @@ function Information(props) {
     return(
         <div className="Information-wrapper">
             {
-                _.map(sortedOrder, order => <div className="info-line" data-key={order} >{config[order].display}</div>)
+                _.map(sortedOrder, order => <div className="info-line" data-key={config[order].type == "title" ? "title" : order} >{config[order].display}</div>)
             }
 
         </div>
