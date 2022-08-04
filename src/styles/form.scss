@@ -165,6 +165,16 @@
 
         }
     }
+    .field[type="popup"] {
+        align-items: center;
+        button {
+            padding: 3px 14px;
+        }
+        .i-icon{
+            margin-right: 10px;
+
+        }
+    }
     .field[data-validated="false"] {
         >input,
          textarea, 

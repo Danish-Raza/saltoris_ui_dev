@@ -117,3 +117,13 @@
         text-decoration: underline;
     }
 }
+.matadata {
+    .matadata-row {
+        display: flex;
+        font-size: 13px;
+        .text-bold {
+            font-weight: 500;
+        }
+    }
+    margin-bottom: 20px;
+}

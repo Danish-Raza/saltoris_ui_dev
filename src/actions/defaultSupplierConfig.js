@@ -1477,7 +1477,7 @@ const data = {
                                         "title":"Shipping",
                                         "initial_disabled": false,
                                         "min_label_width":200,
-                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15},
+                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                         "Package Slip ID":{
                                             "type": "text",
                                             "placeholder": "Type here",
@@ -1610,6 +1610,24 @@ const data = {
                                             "width":"49%",
                                             "key": "Service Level",
                                             "label": "Service Level",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Incoterm Code":{
+                                            "type": "popup",
+                                            "placeholder": "Type here",
+                                            "width":"100%",
+                                            "key": "Incoterm Code",
+                                            "label": "Incoterm Code",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "e-Way Bill No":{
+                                            "type": "popup",
+                                            "placeholder": "Type here",
+                                            "width":"100%",
+                                            "key": "e-Way Bill No",
+                                            "label": "e-Way Bill No",
                                             "flex": true,
                                             "required": true
                                         }
@@ -8006,7 +8024,7 @@ const data = {
                                         "title":"Shipping",
                                         "initial_disabled": false,
                                         "min_label_width":200,
-                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15},
+                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15, "Incoterm Code": 16,  "e-Way Bill No": 17},
                                         "Package Slip ID":{
                                             "type": "text",
                                             "placeholder": "Type here",
@@ -8139,6 +8157,24 @@ const data = {
                                             "width":"49%",
                                             "key": "Service Level",
                                             "label": "Service Level",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "Incoterm Code":{
+                                            "type": "popup",
+                                            "placeholder": "Type here",
+                                            "width":"100%",
+                                            "key": "Incoterm Code",
+                                            "label": "Incoterm Code",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "e-Way Bill No":{
+                                            "type": "popup",
+                                            "placeholder": "Type here",
+                                            "width":"100%",
+                                            "key": "e-Way Bill No",
+                                            "label": "e-Way Bill No",
                                             "flex": true,
                                             "required": true
                                         }
@@ -11713,7 +11749,7 @@ const data = {
                                         "title":"Shipping",
                                         "initial_disabled": false,
                                         "min_label_width":200,
-                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15},
+                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"Incoterm Code": 16,  "e-Way Bill No": 17},
                                         "Package Slip ID":{
                                             "type": "text",
                                             "placeholder": "Type here",
@@ -11848,7 +11884,25 @@ const data = {
                                             "label": "Service Level",
                                             "flex": true,
                                             "required": true
-                                        }
+                                        },
+                                        "Incoterm Code":{
+                                            "type": "popup",
+                                            "placeholder": "Type here",
+                                            "width":"100%",
+                                            "key": "Incoterm Code",
+                                            "label": "Incoterm Code",
+                                            "flex": true,
+                                            "required": true
+                                        },
+                                        "e-Way Bill No":{
+                                            "type": "popup",
+                                            "placeholder": "Type here",
+                                            "width":"100%",
+                                            "key": "e-Way Bill No",
+                                            "label": "e-Way Bill No",
+                                            "flex": true,
+                                            "required": true
+                                        } 
                                     },
                                     "delivery_form": {
                                         "title":"Delivery | Transport Information",

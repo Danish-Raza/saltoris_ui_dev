@@ -252,6 +252,12 @@ function Icon(props) {
             return (
                 <ZoomInOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height, fontSize:16, color:"rgb(146, 146, 157)", marginLeft: 9, position:"relative", top:-1, ...styles}} />
             )
+        case "info":
+            return (
+                <div className="i-icon"  onClick={onClick?onClick:()=>{}} style={{width: width, height: height, fontSize:16, ...styles}} >
+                    <div>i</div>
+                </div>
+            )
         case "zoomOut":
             return (
                 <ZoomOutOutlined onClick={onClick?onClick:()=>{}} style={{width: width, height: height, fontSize:16, color:"rgb(146, 146, 157)", marginLeft: 9, position:"relative", top:-1, ...styles}} />

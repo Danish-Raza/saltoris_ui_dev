@@ -1,13 +1,15 @@
 import React, { Fragment, useRef, useState } from 'react';
 import { Button, Input,Checkbox, Modal,DatePicker, Radio, Slider} from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeTwoTone, ExclamationCircleOutlined } from '@ant-design/icons';
 import Icon from '../../Icon';
 import _ from "underscore"
 import Utils from '../../Utils';
 import DropDown from '../Charts/DropDown';
 import Reaptcha from 'reaptcha';
+import EwayTable from '../Table/EwayTable';
 const { TextArea } = Input;
 const { RangePicker } = DatePicker;
+const { confirm } = Modal;
 
 function FieldWrapper(props) {
     const {validated, config , minLabelWidth,  reviewState} = props
@@ -29,6 +31,7 @@ function Fields(props) {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [modalData, setModalData] = useState([]);
+    const [popupField, setPopupField] = useState({});
     const { config,  onChange, onSearch, onSelect, onMultiSelect, onDateSelect, onSubmit, validated, onFocus, fileHandler, removeValueHander, onreChange, onDateRangeSelect, onSliderChange,  minLabelWidth, reviewState } = props;
     let fieldToRender=<div>Field</div>
     let inputField = useRef()
@@ -53,6 +56,41 @@ function Fields(props) {
         })
         setModalData(list)
     }
+
+    const showPopUp = (config) => {
+        if(config.label == "e-Way Bill No") {
+            confirm({
+                title: config.label,
+                className:"field-popup",
+                icon: null,
+                maskClosable: true,
+                content: <EwayTable />,
+                okButtonProps: {
+                    disabled: true,
+                    show: false,
+                    display: false
+                },
+                // onCancel() {
+                //     console.log('Cancel');
+                // },
+                footer: false,
+                // footer:[
+                //     <Button key="submit" type="primary">
+                //       Submit
+                //     </Button>,
+                //     <Button
+                //       key="link"
+                //       href="https://google.com"
+                //       type="primary"
+                //     //   loading={loading}
+                //     //   onClick={handleOk}
+                //     >
+                //       Search on Google
+                //     </Button>,
+                //   ]
+            });
+        }
+      };
      
     switch (config.type) {
         case "text":
@@ -108,6 +146,14 @@ function Fields(props) {
                     <Slider min={config.min} max={config.max} range disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onSliderChange(config.key, value) }/>
                 </FieldWrapper> 
             )
+            break;
+        case "popup":
+                fieldToRender = (
+                    <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth} reviewState={reviewState}> 
+                       <Icon type="info" width={20} height={20}/>
+                       <button className='primary' button-type="primary" onClick={(e)=> {e.preventDefault(); showPopUp(config)}}>View</button>
+                    </FieldWrapper> 
+                )
             break;
         case "file":
             let acceptedFormat = "image/png, image/jpeg, application/pdf"

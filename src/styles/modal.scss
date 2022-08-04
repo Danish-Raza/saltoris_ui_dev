@@ -60,3 +60,29 @@
         overflow: inherit;
     }
 }
+.field-popup {
+    width: 65% !important;
+    top: 20px;
+    .ant-modal-confirm-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .ant-modal-confirm-body-wrapper {
+        width: 100%;
+        .ant-modal-confirm-btns {
+            display: none !important;
+            button[disabled] {
+                display: none !important;
+            }
+        }
+    }
+    .button-wrapper {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        button {
+            margin-left: 5px;
+        }
+    }
+
+}
