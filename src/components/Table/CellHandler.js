@@ -77,6 +77,7 @@ function cellHandler(config, data, helperFuntion, editableTableData={}, allowEdi
                             config={column.modal}
                             dependentData={rec}
                             displayText = {column.button_label}
+                            columnInfo = {column}
                         />
                     )
                 } else {

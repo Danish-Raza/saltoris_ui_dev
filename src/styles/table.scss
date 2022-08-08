@@ -123,6 +123,14 @@
         font-size: 13px;
         .text-bold {
             font-weight: 500;
+            min-width: 190px;
+        }
+        .ant-input {
+            height: 20px;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            margin-left: 13px;
         }
     }
     margin-bottom: 20px;

@@ -242,6 +242,16 @@ function FormGroup(props) {
                                                 reviewState={reviewState}
                                             />
                                         )}
+                                        {
+                                            config[order].type == "table" && config[order].id  &&  config[order].id.includes("selected") && (
+                                                <Table 
+                                                    key={config[order].id}
+                                                    id={config[order].id || order}
+                                                    config={{...config[order],title: null}}
+                                                    //  dependentData={{}}
+                                                />
+                                            )
+                                        }
                                     </div>
                                 )
                             })

@@ -1,4 +1,4 @@
-import { Table, Button } from 'antd';
+import { Table, Button,Input } from 'antd';
 import _ from "underscore";
 
 const EwayTable = () => {
@@ -77,7 +77,7 @@ const EwayTable = () => {
             <div className='matadata'>
                 {
                     _.map(metaData, (value, key) => {
-                        return <div className='matadata-row'><div className='text-bold'>{key}</div> : <div>{value}</div></div>
+                        return <div className='matadata-row'><div className='text-bold'>{key}</div> :  <Input defaultValue={value} /></div>
                     })
                 }
 

@@ -423,6 +423,52 @@ const data = {
                     "pagination": false,
                     "type": "table",
                     "width": "100%",
+                    "expandedRowRender": {
+                        "columns":  {
+                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
+                            "item":{
+                                "display": "Item#",
+                                "type":"string",
+                                "width": "",
+                                "align": "left"
+                            },
+                            "item_desc": {
+                                "display": "Item / Name / Description",
+                                "type":"string",
+                                "width": "",
+                                "align": "left"
+                            },
+                            "quantity":{
+                                "display": "Quantity",
+                                "align": "left",
+                                "type":"editable"
+                            },
+                            "date":{
+                                "display": "Delivery Date",
+                                "align": "left",
+                                "type":"editable",
+                                "format": "MMM Do YYYY, h:mm a"
+                            },
+                            "unit_price":{
+                                "display": "Unit Price (₹)",
+                                "type":"string",
+                                "width": "",
+                                "align": "left"
+                            },
+                            "tax":{
+                                "display": "Tax",
+                                "type":"tax",
+                                "width": "",
+                                "align": "left"
+                            },
+                            "Subtotal":{
+                                "display": "Subtotal",
+                                "type":"total",
+                                "width": "",
+                                "align": "left"
+                            }
+                        }
+                    },
                     "dropdown":{
                         "key": "compared_against",
                         "template": "filter",
@@ -1749,21 +1795,21 @@ const data = {
                                                 "quantity": 3
                                             },
                                             "name":{
-                                                "display": "NAME",
+                                                "display": "Name",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
                                                 "sort": true
                                             },
                                             "size":{
-                                                "display": "SIZE (BYTES)",
+                                                "display": "Size (Bytes)",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
                                                 "sort": true
                                             },
                                             "quantity":{
-                                                "display": "QUANTITY (UNIT)",
+                                                "display": "Quantity (Unit)",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
@@ -1932,6 +1978,8 @@ const data = {
                                         "selected_po_table": 2, 
                                         "advance_shipping_table": 3, 
                                         "selected_shipping_table": 4,
+                                        "form_2":4.5,
+                                        "form_3": 4.7,
                                         "form_4": 5,
                                         "form_5": 6,
                                         "invoice_detail_form": 7, 
@@ -1951,6 +1999,16 @@ const data = {
                                         "quantity_table": 21},
                                     "api": "/asd/asda?",
                                     "review": true,
+                                    "first_section": {
+                                        "type" : "info",
+                                        "_order": {
+                                            "display": 1
+                                        },
+                                        "display": {
+                                            "type":"title",
+                                            "display": "Shipping Order Details"
+                                        }
+                                    },
                                     "form_2": {
                                         "group_style": {
                                             "marginTop": 0,
@@ -1968,7 +2026,7 @@ const data = {
                                         "_order": { "product_image": 1},
                                         "product_image": {
                                             "type": "file",
-                                            "placeholder": "Upload Product Image",
+                                            "placeholder": "Upload Company Logo",
                                             "file_format": "image",
                                             "file_type":"image",
                                             "template":"box-preview",
@@ -1976,7 +2034,7 @@ const data = {
                                             "width":"100%",
                                             "key": "product_image",
                                             "flex": true,
-                                            "required": true
+                                            // "required": true
                                         }
                                     },
                                     "form_3": {
@@ -2001,11 +2059,6 @@ const data = {
                                             "width":"100%",
                                             "key": "product_title",
                                             "template":"no-border no-padding",
-                                            "default": {
-                                                "_order": {
-                                                    "Title":1
-                                                }
-                                            },
                                             "flex": true,
                                             "required": false
                                         },
@@ -3831,52 +3884,6 @@ const data = {
                             },
                         }
                     },
-                    "expandedRowRender": {
-                        "columns":  {
-                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
-                            "item":{
-                                "display": "Item#",
-                                "type":"string",
-                                "width": "",
-                                "align": "left"
-                            },
-                            "item_desc": {
-                                "display": "Item / Name / Description",
-                                "type":"string",
-                                "width": "",
-                                "align": "left"
-                            },
-                            "quantity":{
-                                "display": "Quantity",
-                                "align": "left",
-                                "type":"editable"
-                            },
-                            "date":{
-                                "display": "Delivery Date",
-                                "align": "left",
-                                "type":"editable",
-                                "format": "MMM Do YYYY, h:mm a"
-                            },
-                            "unit_price":{
-                                "display": "Unit Price (₹)",
-                                "type":"string",
-                                "width": "",
-                                "align": "left"
-                            },
-                            "tax":{
-                                "display": "Tax",
-                                "type":"tax",
-                                "width": "",
-                                "align": "left"
-                            },
-                            "Subtotal":{
-                                "display": "Subtotal",
-                                "type":"total",
-                                "width": "",
-                                "align": "left"
-                            }
-                        }
-                    },
                     "columns":{
                         "_order":{
                             "customer_id": 1,
@@ -4027,7 +4034,8 @@ const data = {
                             "on_click": "modal",
                             "modal": {},
                             "template": "button",
-                            "button_label": "View Detail"
+                            "button_label": "View Detail",
+                            "view_detail": "po_detail"
                         }
                     },
                     "display": "Purchase Orders",
@@ -6970,6 +6978,52 @@ const data = {
                             "_order": {"Confirm Entire Order":1 , "Update Line Items": 2, "Reject Entire Order": 3},
                         }
                     },
+                    "expandedRowRender": {
+                        "columns":  {
+                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
+                            "item":{
+                                "display": "Item#",
+                                "type":"string",
+                                "width": "",
+                                "align": "left"
+                            },
+                            "item_desc": {
+                                "display": "Item / Name / Description",
+                                "type":"string",
+                                "width": "",
+                                "align": "left"
+                            },
+                            "quantity":{
+                                "display": "Quantity",
+                                "align": "left",
+                                "type":"editable"
+                            },
+                            "date":{
+                                "display": "Delivery Date",
+                                "align": "left",
+                                "type":"editable",
+                                "format": "MMM Do YYYY, h:mm a"
+                            },
+                            "unit_price":{
+                                "display": "Unit Price (₹)",
+                                "type":"string",
+                                "width": "",
+                                "align": "left"
+                            },
+                            "tax":{
+                                "display": "Tax",
+                                "type":"tax",
+                                "width": "",
+                                "align": "left"
+                            },
+                            "Subtotal":{
+                                "display": "Subtotal",
+                                "type":"total",
+                                "width": "",
+                                "align": "left"
+                            }
+                        }
+                    },
                     "dropdown":{
                         "key": "compared_against",
                         "template": "filter",
@@ -8024,7 +8078,7 @@ const data = {
                                         "title":"Shipping",
                                         "initial_disabled": false,
                                         "min_label_width":200,
-                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15, "Incoterm Code": 16,  "e-Way Bill No": 17},
+                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                         "Package Slip ID":{
                                             "type": "text",
                                             "placeholder": "Type here",
@@ -8296,21 +8350,21 @@ const data = {
                                                 "quantity": 3
                                             },
                                             "name":{
-                                                "display": "NAME",
+                                                "display": "Name",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
                                                 "sort": true
                                             },
                                             "size":{
-                                                "display": "SIZE (BYTES)",
+                                                "display": "Size (Bytes)",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
                                                 "sort": true
                                             },
                                             "quantity":{
-                                                "display": "QUANTITY (UNIT)",
+                                                "display": "Quantity (Unit)",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
@@ -8479,6 +8533,8 @@ const data = {
                                         "selected_po_table": 2, 
                                         "advance_shipping_table": 3, 
                                         "selected_shipping_table": 4,
+                                        "form_2":4.5,
+                                        "form_3": 4.7,
                                         "form_4": 5,
                                         "form_5": 6,
                                         "invoice_detail_form": 7, 
@@ -8498,6 +8554,16 @@ const data = {
                                         "quantity_table": 21},
                                     "api": "/asd/asda?",
                                     "review": true,
+                                    "first_section": {
+                                        "type" : "info",
+                                        "_order": {
+                                            "display": 1
+                                        },
+                                        "display": {
+                                            "type":"title",
+                                            "display": "Shipping Order Details"
+                                        }
+                                    },
                                     "form_2": {
                                         "group_style": {
                                             "marginTop": 0,
@@ -8515,7 +8581,7 @@ const data = {
                                         "_order": { "product_image": 1},
                                         "product_image": {
                                             "type": "file",
-                                            "placeholder": "Upload Product Image",
+                                            "placeholder": "Upload Company Logo",
                                             "file_format": "image",
                                             "file_type":"image",
                                             "template":"box-preview",
@@ -8523,7 +8589,7 @@ const data = {
                                             "width":"100%",
                                             "key": "product_image",
                                             "flex": true,
-                                            "required": true
+                                            // "required": true
                                         }
                                     },
                                     "form_3": {
@@ -8548,11 +8614,6 @@ const data = {
                                             "width":"100%",
                                             "key": "product_title",
                                             "template":"no-border no-padding",
-                                            "default": {
-                                                "_order": {
-                                                    "Title":1
-                                                }
-                                            },
                                             "flex": true,
                                             "required": false
                                         },
@@ -10378,52 +10439,6 @@ const data = {
                             },
                         }
                     },
-                    "expandedRowRender": {
-                        "columns":  {
-                            "_order":{"item": 1, "item_desc": 2, "quantity": 3, "date": 4, "unit_price": 5, "tax": 6, "Subtotal": 7},
-                            "item":{
-                                "display": "Item#",
-                                "type":"string",
-                                "width": "",
-                                "align": "left"
-                            },
-                            "item_desc": {
-                                "display": "Item / Name / Description",
-                                "type":"string",
-                                "width": "",
-                                "align": "left"
-                            },
-                            "quantity":{
-                                "display": "Quantity",
-                                "align": "left",
-                                "type":"editable"
-                            },
-                            "date":{
-                                "display": "Delivery Date",
-                                "align": "left",
-                                "type":"editable",
-                                "format": "MMM Do YYYY, h:mm a"
-                            },
-                            "unit_price":{
-                                "display": "Unit Price (₹)",
-                                "type":"string",
-                                "width": "",
-                                "align": "left"
-                            },
-                            "tax":{
-                                "display": "Tax",
-                                "type":"tax",
-                                "width": "",
-                                "align": "left"
-                            },
-                            "Subtotal":{
-                                "display": "Subtotal",
-                                "type":"total",
-                                "width": "",
-                                "align": "left"
-                            }
-                        }
-                    },
                     "columns":{
                         "_order":{
                             "customer_id": 1,
@@ -10574,7 +10589,8 @@ const data = {
                             "on_click": "modal",
                             "modal": {},
                             "template": "button",
-                            "button_label": "View Detail"
+                            "button_label": "View Detail",
+                            "view_detail": "po_detail"
                         }
                     },
                     "selectable": true,
@@ -11749,7 +11765,7 @@ const data = {
                                         "title":"Shipping",
                                         "initial_disabled": false,
                                         "min_label_width":200,
-                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"Incoterm Code": 16,  "e-Way Bill No": 17},
+                                        "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                         "Package Slip ID":{
                                             "type": "text",
                                             "placeholder": "Type here",
@@ -11902,7 +11918,7 @@ const data = {
                                             "label": "e-Way Bill No",
                                             "flex": true,
                                             "required": true
-                                        } 
+                                        }
                                     },
                                     "delivery_form": {
                                         "title":"Delivery | Transport Information",
@@ -12021,21 +12037,21 @@ const data = {
                                                 "quantity": 3
                                             },
                                             "name":{
-                                                "display": "NAME",
+                                                "display": "Name",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
                                                 "sort": true
                                             },
                                             "size":{
-                                                "display": "SIZE (BYTES)",
+                                                "display": "Size (Bytes)",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
                                                 "sort": true
                                             },
                                             "quantity":{
-                                                "display": "QUANTITY (UNIT)",
+                                                "display": "Quantity (Unit)",
                                                 "type":"string",
                                                 "width": "",
                                                 "align": "left",
@@ -12204,6 +12220,8 @@ const data = {
                                         "selected_po_table": 2, 
                                         "advance_shipping_table": 3, 
                                         "selected_shipping_table": 4,
+                                        "form_2":4.5,
+                                        "form_3": 4.7,
                                         "form_4": 5,
                                         "form_5": 6,
                                         "invoice_detail_form": 7, 
@@ -12223,6 +12241,16 @@ const data = {
                                         "quantity_table": 21},
                                     "api": "/asd/asda?",
                                     "review": true,
+                                    "first_section": {
+                                        "type" : "info",
+                                        "_order": {
+                                            "display": 1
+                                        },
+                                        "display": {
+                                            "type":"title",
+                                            "display": "Shipping Order Details"
+                                        }
+                                    },
                                     "form_2": {
                                         "group_style": {
                                             "marginTop": 0,
@@ -12240,7 +12268,7 @@ const data = {
                                         "_order": { "product_image": 1},
                                         "product_image": {
                                             "type": "file",
-                                            "placeholder": "Upload Product Image",
+                                            "placeholder": "Upload Company Logo",
                                             "file_format": "image",
                                             "file_type":"image",
                                             "template":"box-preview",
@@ -12248,7 +12276,7 @@ const data = {
                                             "width":"100%",
                                             "key": "product_image",
                                             "flex": true,
-                                            "required": true
+                                            // "required": true
                                         }
                                     },
                                     "form_3": {
@@ -12273,11 +12301,6 @@ const data = {
                                             "width":"100%",
                                             "key": "product_title",
                                             "template":"no-border no-padding",
-                                            "default": {
-                                                "_order": {
-                                                    "Title":1
-                                                }
-                                            },
                                             "flex": true,
                                             "required": false
                                         },
