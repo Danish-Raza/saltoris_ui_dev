@@ -64,6 +64,16 @@ function Fields(props) {
                 className:"field-popup",
                 icon: null,
                 maskClosable: true,
+                getContainer:() => { 
+                    if(document.querySelector(".field-popup")){
+                        document.querySelector(".field-popup").parentElement.style.zIndex=1002
+                        let wrapper = document.querySelector(".field-popup").parentElement.parentElement.querySelector(".ant-modal-mask")
+                        if(wrapper){
+                            wrapper.style.zIndex=1002
+                        }
+                    }
+                    return document.body
+                },
                 content: <EwayTable />,
                 okButtonProps: {
                     disabled: true,

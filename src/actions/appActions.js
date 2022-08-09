@@ -45,6 +45,13 @@ export function login(data) {
                 account_type: "supplier",
                 config_name:"default_supplier"
             },
+            {  
+                username:"John Doe",
+                email:"supplier@mail.com",
+                user_role: "admin",
+                account_type: "supplier",
+                config_name:"default_supplier"
+            },
             {
                 username:"John Doe",
                 email:"customer@mail.com",

@@ -63,6 +63,7 @@
 .field-popup {
     width: 65% !important;
     top: 20px;
+    // z-index: 1000;
     .ant-modal-confirm-title {
         font-weight: bold;
         margin-bottom: 10px;
@@ -83,6 +84,11 @@
         button {
             margin-left: 5px;
         }
+    }
+    .track-button {
+        position: absolute;
+        top: 29px;
+        right: 29px;
     }
 }
 .po-detailed-view {
@@ -159,5 +165,18 @@
     }
     .no-padding {
         padding: 0;
+    }
+}
+.magnify-popup {
+    width: 100% !important;
+
+    .ant-modal-body {
+        height: auto !important;
+        >div{
+            margin: 0 auto  ;
+        }
+    }
+    .ant-modal-close-x {
+        display: none;
     }
 }

@@ -14,7 +14,8 @@ import { changeStatus } from "../../actions/headerAction";
 import { changeTableParams } from "../../actions/tableAction";
 
 function TableComponent(props) {
-    const { config, handleDrop, handleDrag, isEditable, componentIndex, dependentData, componentDontExist } = props;
+    const { handleDrop, handleDrag, isEditable, componentIndex, dependentData, componentDontExist, tabData } = props;
+    const [config, setConfig] = useState(props.config.table_type  ==  "tabs-dependent"  ? {...props.config[props.config.default_table], table_type:"tabs-dependent", tabs: props.config.tabs, check_condition: props.config.check_condition}  : props.config )
     const { columns, sticky }  = config;
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -101,15 +102,45 @@ function TableComponent(props) {
     },[])
 
     useEffect(() => {
-            // if(dependentData.po_id) {
-            //     let filteredData = originalData.filter(rec => dependentData.po_id.includes(rec.po_id))
-            //     if(filteredData && filteredData.length>0) {
-            //         setData(filteredData)
-            //     } else {
-            //         setData(data)
-            //     }  
-            // }
-    },[dependentData])
+        if(tabData && !_.isEmpty(tabData)){
+            let modConfig = {...config}
+            if(props.config && props.config.check_condition && props.config.table_type  ==  "tabs-dependent" && tabData) {
+                let result = Utils.returnSuccessfullObject(config.check_condition, tabData)
+                if(result) {
+                    modConfig =  { ...props.config[result.load_table], table_type: props.config.table_type, tabs: {...props.config.tabs,defaults: result.load_table}, check_condition: props.config.check_condition }
+                }
+            }
+            let defaultDropdown = modConfig.dropdown ? modConfig.dropdown.default: null;
+            let params = {}
+            if(!dataAvailable) {
+                if(defaultDropdown) {
+                    let sortedOrder = _.keys(Utils.sortOrder(defaultDropdown._order))
+                    let dropdownKey = modConfig.dropdown.key;
+                    let mode = defaultDropdown.mode;
+                    params = {
+                        [dropdownKey]: mode == "select" ? sortedOrder[0]: sortedOrder
+                    };
+                    setSelectedOption(params);
+                }
+                if(modConfig.dependent_table && modConfig.selectable && modConfig.api && tablesState) {
+                    let tableId = modConfig.dependent_table_ids[0]
+                    let activeKeysData = tablesState[tableId] ? tablesState[tableId].selectedRow : []
+                    let nestedSelectedRow = tablesState[tableId] ? tablesState[tableId].nestedSelectedRow : []
+                    dispatch(changeTableParams({config: modConfig, init: true, activeKeysData, nestedSelectedRow}))
+                } else {
+                    if(!tablesState[modConfig.id]){
+                        dispatch(changeTableParams({config: modConfig, init: true}))
+                    }
+                }
+            } else {
+                dispatch(changeTableParams({config: modConfig, init: true}))
+            }
+            const columnConfig = cellHandler(modConfig.columns, selectedOption, helperFuntion,null, true)
+            setConfig(modConfig);
+            setAllColumn(columnConfig)
+            setCurColumn(columnConfig)
+        }
+    },[tabData])
 
     const onSelectChange = (newSelectedRowKeys) => {
         dispatch(changeTableParams({config: config, newSelectedRowKeys, type:"SELECT_TABLE_ROW"}))
@@ -307,10 +338,11 @@ function TableComponent(props) {
                 parentComponentData={selectedRowKeys}
                 tabs={props.tabs}
                 confirmationStatus={confirmationStatus}
+                _id={props.config.table_type  ==  "tabs-dependent"? props.config.id : null}
                 columnSelectorComponent={
                      <Popover getPopupContainer={() => document.body}  placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
                         <Button className="popover-button-wrapper">
-                            <div className="table-column-icon"></div>
+                        <div className="table-column-icon"></div>
                         </Button>
                     </Popover>
                 }
@@ -333,7 +365,7 @@ function TableComponent(props) {
                             componentIndex={componentIndex}
                             selectedOption={selectedOption} 
                             parentComponentData={selectedRowKeys}  
-                            //tabs={props.tabs}    
+                            tabs={props.tabs}
                             columnSelectorComponent={
                                 <Popover placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">
                                     <Button className="popover-button-wrapper">

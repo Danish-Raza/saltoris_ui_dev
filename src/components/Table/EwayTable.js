@@ -1,4 +1,5 @@
 import { Table, Button,Input } from 'antd';
+import { Fragment } from 'react';
 import _ from "underscore";
 
 const EwayTable = () => {
@@ -73,23 +74,27 @@ const EwayTable = () => {
         "Transport Document Date": "",
     }
     return (
-        <div>
-            <div className='matadata'>
-                {
-                    _.map(metaData, (value, key) => {
-                        return <div className='matadata-row'><div className='text-bold'>{key}</div> :  <Input defaultValue={value} /></div>
-                    })
-                }
+        <Fragment>
+            <Button type="primary" className='track-button' >Track</Button>
+            <div>
+                <div className='matadata'>
+                    {
+                        _.map(metaData, (value, key) => {
+                            return <div className='matadata-row'><div className='text-bold'>{key}</div> :  <Input defaultValue={value} /></div>
+                        })
+                    }
 
-            </div>
-            <Table columns={columns} dataSource={data} onChange={onChange} pagination={false}/>
+                </div>
+                <Table columns={columns} dataSource={data} onChange={onChange} pagination={false}/>
 
-            <div className='button-wrapper'>
-                <Button type="primary" >Print</Button>
-                <Button key="submit" type="primary" >Detailed Document Print</Button>
-                <Button type="primary">Save PDF</Button>
+                <div className='button-wrapper'>
+                    <Button type="primary" >Print</Button>
+                    <Button key="submit" type="primary" >Detailed Document Print</Button>
+                    <Button type="primary">Save PDF</Button>
+                </div>
             </div>
-        </div>
+        </Fragment>
+       
     )
   } 
   

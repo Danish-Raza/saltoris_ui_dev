@@ -76,6 +76,19 @@ function TableModal(props) {
                 className="table-detail-modal"
                 okText="Close"
                 cancelButtonProps={{style:{"display": "none"}}}
+                getContainer={() => { 
+                    if(document.querySelector(".table-detail-modal")){
+                        let all = document.querySelectorAll(".table-detail-modal")
+                        for (let elm of all) {
+                            elm.parentElement.style.zIndex=1002
+                            let wrapper = elm.parentElement.parentElement.querySelector(".ant-modal-mask")
+                            if(wrapper){
+                                wrapper.style.zIndex=1002
+                            }
+                        }
+                    }
+                    return document.body
+                }}
             >
                 {
                     view_detail == "po_detail" && (

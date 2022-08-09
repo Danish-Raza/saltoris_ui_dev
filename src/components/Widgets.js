@@ -28,10 +28,10 @@ function Widgets(props) {
     let components = config && config._order ? _.keys(Utils.sortOrder(config._order)) : [];
 
     if( config && config._order && config.check_condition && tabData){
-        let result = Utils.returnSuccessfullObject(config.check_condition, tabData)
-        if(result && result._order){
-            components =  _.keys(Utils.sortOrder(result._order))
-        }
+        // let result = Utils.returnSuccessfullObject(config.check_condition, tabData)
+        // if(result && result._order){
+        //     components =  _.keys(Utils.sortOrder(result._order))
+        // }
     }
    
     const handleDrop = ev => {
@@ -137,7 +137,8 @@ function Widgets(props) {
                             return showComponent &&
                             <WidgetWrapper commonProps={commonProps}>
                                 <Table 
-                                    {...commonProps} 
+                                    {...commonProps}
+                                    tabData={config[component].tabs ? tabData : null} 
                                     tabs = {
                                         config[component].tabs && 
                                         <Tab {...{

@@ -32,7 +32,9 @@ function Tab(props) {
                 _.map(sortedOrder, order => {
                     let clickAction = () => dispatch(setOverlay({show: true, overlay: config[order].widgets , dependentData: dependentData}))
                     if(config[order].on_click == "change_order"){
-                        clickAction =  () => orderHandler({"tab": order})
+                        clickAction =  () => {
+                            orderHandler({"tab": order})
+                        }
                     }
                     return (
                         <div className="tab" onClick={clickAction} data-on-click={config[order].on_click} data-status={activeTab==order}>

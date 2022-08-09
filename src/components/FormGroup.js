@@ -6,6 +6,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import Table from "./Table/Index";
 import Information from "./Information";
 import ReviewComponent from "./Review";
+import Tab from "./Tabs";
 
 function FormGroup(props) {
     const [config, setConfig] = useState(props.config);
@@ -14,6 +15,7 @@ function FormGroup(props) {
     const [formData, setFormData] = useState({});
     const [reviewState, setReviewState] = useState(false)
     const sortOrder = _.keys(Utils.sortOrder(config._order));
+    const [tabData, setTabData] = useState(null)
     const thisComponent = useRef()
 
     const reviewHandler = (event) => {
@@ -210,6 +212,9 @@ function FormGroup(props) {
         thisComponent.current.scrollTo(0, 0);
     }
 
+    const orderHandler = (value) => {
+        setTabData(value)
+    }
     return (
         <Fragment>
             {      
@@ -300,6 +305,16 @@ function FormGroup(props) {
                                 key={config[order].id}
                                 id={config[order].id || order}
                                 config={{...config[order],title: null}}
+                                tabData={tabData}
+                                tabs = {
+                                    config[order].tabs && 
+                                    <Tab {...{
+                                        key: config[order].id,
+                                        id: config[order].id || order,
+                                        config: config[order].tabs,
+                                       
+                                    }} orderHandler={orderHandler}  activeTab={tabData ? tabData.tab  : null} />
+                                }
                                 //  dependentData={{}}
                             />
                         )
