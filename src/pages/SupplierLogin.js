@@ -139,6 +139,22 @@ function SupplierLogin(props={}) {
     },
     {
       type: "text",
+      placeholder:"Landline",
+      icon: <Icon type="phone" height={16} width={16}/>,
+      width:"49%",
+      key: "second_name",
+      required: true
+    },
+    {
+      type: "text",
+      placeholder:"Phone",
+      icon: <Icon type="phone" height={16} width={16}/>,
+      width:"49%",
+      key: "second_name",
+      required: true
+    },
+    {
+      type: "text",
       placeholder:"Email",
       width:"100%",
       icon: <Icon type="email" height={16} width={16}/>,
