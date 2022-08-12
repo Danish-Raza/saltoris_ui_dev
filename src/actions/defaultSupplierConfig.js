@@ -34898,6 +34898,7 @@ const data = {
                         },
                         "tax_clear_id":{
                             "type": "file",
+                            "allow_input": true,
                             "placeholder": "Upload Documents",
                             "checkbox_label":"Taxation Certificate",
                             "width":"100%",
@@ -34913,12 +34914,14 @@ const data = {
                             "checkbox_label":"PAN Registered",
                             "width":"100%",
                             "key": "pan_no",
+                            "allow_input": true,
                             "label": "PAN No.",
                             "flex": true,
                             "required": true
                         },
                         "gst_no":{
                             "type": "file",
+                            "allow_input": true,
                             "placeholder": "Upload Documents",
                             "checkbox_label":"GST Registered",
                             "width":"100%",
@@ -34929,6 +34932,7 @@ const data = {
                         },
                         "tin_no":{
                             "type": "file",
+                            "allow_input": true,
                             "placeholder": "Upload Documents",
                             "checkbox_label":"TIN Registered",
                             "width":"100%",
@@ -34957,6 +34961,7 @@ const data = {
                         },
                         "vat_no":{
                             "type": "file",
+                            "allow_input": true,
                             "placeholder": "Upload Documents",
                             "checkbox_label":"VAT Registered",
                             "width":"100%",

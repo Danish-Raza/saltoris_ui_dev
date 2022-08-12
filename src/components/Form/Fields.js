@@ -228,8 +228,6 @@ function Fields(props) {
                                         })
                                     )
                                 }
-                                    
-
                                 <div>
                                     {
                                         !config.template || (config.template && !config.template.includes("box-preview")) ? (
@@ -245,7 +243,7 @@ function Fields(props) {
                                     }
                                 </div>
                                 <div className='selected-file-name' disabled={config.disabled}> 
-                                {(!config.template || (config.template && !config.template.includes("box-preview"))) && <input className='file-input-box' placeholder={"Enter "+config.label}  disabled={config.disabled} />}
+                                {config.allow_input && <input className='file-input-box' placeholder={"Enter "+config.label}  disabled={config.disabled} />}
                                 {
                                 config.value ?
                                 _.map(modValues, (value, index) => {
