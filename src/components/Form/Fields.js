@@ -7,6 +7,7 @@ import Utils from '../../Utils';
 import DropDown from '../Charts/DropDown';
 import Reaptcha from 'reaptcha';
 import EwayTable from '../Table/EwayTable';
+import moment from 'moment';
 const { TextArea } = Input;
 const { RangePicker } = DatePicker;
 const { confirm } = Modal;
@@ -143,6 +144,27 @@ function Fields(props) {
                     </FieldWrapper>
                 )
                 break;
+        case "date_time":
+            let defaultDate = null;
+            let defaultHr = null;
+            let defaultMm = null;
+            if(config.default_current_time) {
+                defaultDate = moment(new Date())
+                defaultHr = defaultDate.format("h")
+                defaultMm = defaultDate.format("m")
+            }
+            fieldToRender = (
+                <FieldWrapper config={config} validated={validated} minLabelWidth={minLabelWidth} reviewState={reviewState}>
+                   <div className='wrapper'>
+                   <DatePicker defaultValue={defaultDate} getPopupContainer={triggerNode => triggerNode.parentNode} disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onDateSelect(config.key, value) }/>
+                    <div style={{display:"flex", alignItems:"center", position:"relative"}}>
+                        <div style={{display:"flex", alignItems:"center", position:"relative"}}><input defaultValue={defaultHr}  max={23} min={0} type={"number"} className='time-box' placeholder='hr'/><span className='hr'>hr</span></div>:
+                        <div style={{display:"flex", alignItems:"center", position:"relative"}}><input type={"number"} defaultValue={defaultMm} className='time-box' placeholder='mm'  max={59} min={0}/><span className='mm'>mm</span></div>
+                    </div>
+                   </div>
+                </FieldWrapper>
+            )
+            break;
         case "date-range":
             fieldToRender = (
                 <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth} reviewState={reviewState}> 
@@ -154,6 +176,13 @@ function Fields(props) {
             fieldToRender = (
                 <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth} reviewState={reviewState}> 
                     <Slider min={config.min} max={config.max} range disabled={config.disabled} key={config.key} value={config.value} onChange={(value) => onSliderChange(config.key, value) }/>
+                </FieldWrapper> 
+            )
+            break;
+        case "time":
+            fieldToRender = (
+                <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth} reviewState={reviewState}> 
+                   <input placeholder='hr'/>:<input placeholder='mm'/>
                 </FieldWrapper> 
             )
             break;
@@ -179,6 +208,7 @@ function Fields(props) {
                                 {config.checkbox_label && <Checkbox  disabled={config.disabled} checked={config.value ? true : false}>{config.checkbox_label}</Checkbox>}
                                 <input accept={acceptedFormat} style={{display:"none"}} type={"file"} onChange={(info) => fileHandler(config.key, inputField)} ref={inputField}  />
                                 <input accept={acceptedFormat} style={{display:"none"}} type={"file"} onChange={(info) => fileHandler(config.key, multiInputField, "multiple")} ref={multiInputField}  />
+                              
                                 {
                                     config.template && config.template.includes("box-preview") ? (
                                         config.value ?
@@ -199,6 +229,7 @@ function Fields(props) {
                                     )
                                 }
                                     
+
                                 <div>
                                     {
                                         !config.template || (config.template && !config.template.includes("box-preview")) ? (
@@ -213,7 +244,9 @@ function Fields(props) {
                                         ) : ""
                                     }
                                 </div>
-                                <div className='selected-file-name' disabled={config.disabled}> {
+                                <div className='selected-file-name' disabled={config.disabled}> 
+                                {(!config.template || (config.template && !config.template.includes("box-preview"))) && <input className='file-input-box' placeholder={"Enter "+config.label}  disabled={config.disabled} />}
+                                {
                                 config.value ?
                                 _.map(modValues, (value, index) => {
                                     let filename =  value ? (typeof value == "string" ? value.split('/').pop() : value.name ): null
@@ -230,7 +263,7 @@ function Fields(props) {
                             {
                                 config.no_view_document !== false && (
                                     <div style={{display:"flex"}}>
-                                        <button button-type="ghost"  disabled={config.disabled}  onClick={() => modalHandler(modValues)} style={{minWidth: 135}}>View Document</button>
+                                        <button button-type="ghost"  disabled={config.disabled}  onClick={(e) => {e.preventDefault();modalHandler(modValues)}} style={{minWidth: 135}}>View Document</button>
                                         {config.add_more && <Button type='primary' disabled={config.disabled} onClick={() => multiInputField.current.click()} style={{borderRadius: 8, background:config.disabled?null: "#3B6BFD", marginLeft: 10}}> <span style={{fontSize: 20, lineHeight:0, marginRight: 7}}>+</span> Add New Document</Button>}
                                     </div>
                                 )
@@ -282,8 +315,7 @@ function Fields(props) {
                     />
                 </FieldWrapper>  
             )
-            break;
-            
+            break;     
         case "checkbox":
             const checkboxOptions = [];
             let sortedOptions =  config.option ? _.keys(Utils.sortOrder(config.option._order)) : []

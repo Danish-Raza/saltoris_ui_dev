@@ -7,6 +7,7 @@ import Table from "./Table/Index";
 import Information from "./Information";
 import ReviewComponent from "./Review";
 import Tab from "./Tabs";
+import moment from "moment";
 
 function FormGroup(props) {
     const [config, setConfig] = useState(props.config);
@@ -42,6 +43,7 @@ function FormGroup(props) {
 
     const validateForm = () => {
         let result = true;
+        let data = {}
         let modConfig = { ...config }
         _.map(sortOrder, wrapperOrder => {
             if(config[wrapperOrder].type=="form" || !config[wrapperOrder].type){
@@ -58,6 +60,10 @@ function FormGroup(props) {
                                     validated:(r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
                                 }
                             }
+                        }
+                        data= {
+                            ...data,
+                            [r.key]:r.type == "date"? moment(r.value).format("YYYY-MM-DD"):r.value
                         }
                      if(result) {
                         result =  (r.required) ? r.value !== undefined && r.value !== null && r.value !== "" ? true : false : true
@@ -77,6 +83,7 @@ function FormGroup(props) {
                 })
             }
         })
+        console.log(data)
         setConfig(modConfig) 
         return result;
     }
@@ -92,6 +99,7 @@ function FormGroup(props) {
             if(config.pass_data_on_submit) {
                 props.onSubmit({[props.id]: combinedData})
             }
+            console.log("combinedData",combinedData)
         }
     }
 

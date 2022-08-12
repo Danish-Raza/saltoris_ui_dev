@@ -1688,7 +1688,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -1764,6 +1764,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -1781,7 +1825,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -1791,19 +1835,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2765,7 +2820,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -2841,6 +2896,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -2858,7 +2957,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -2868,19 +2967,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6455,7 +6565,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -6531,6 +6641,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -6548,7 +6702,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -6558,19 +6712,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -7532,7 +7697,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -7608,6 +7773,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -7625,7 +7834,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -7635,19 +7844,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -11481,7 +11701,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -11557,6 +11777,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -11574,7 +11838,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -11584,19 +11848,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12558,7 +12833,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -12634,6 +12909,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -12651,7 +12970,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -12661,19 +12980,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -18412,7 +18742,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -18488,6 +18818,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -18505,7 +18879,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -18515,19 +18889,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19489,7 +19874,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -19565,6 +19950,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -19582,7 +20011,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -19592,19 +20021,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -23178,7 +23618,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -23254,6 +23694,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -23271,7 +23755,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -23281,19 +23765,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24255,7 +24750,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -24331,6 +24826,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -24348,7 +24887,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -24358,19 +24897,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -28203,7 +28753,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -28279,6 +28829,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -28296,7 +28890,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -28306,19 +28900,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29280,7 +29885,7 @@ const data = {
                                             },
                                             "initial_disabled": false,
                                             "width":"80%",
-                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"gst_number":9 ,"pan_number": 10, "cin": 11, "product_date": 12},
+                                            "_order": { "company_name": 2,"company_address1": 3,"company_address2": 4, "country": 5 ,"state": 6, "district": 7, "pin_code": 8,"landline": 9,"mobile":10,"email":11,"fax": 12, "gst_number":13 ,"pan_number": 14, "cin": 15, "product_date": 16},
                                             "company_name": {
                                                 "type": "text",
                                                 "placeholder": "Company Name",
@@ -29356,6 +29961,50 @@ const data = {
                                                 "flex": true,
                                                 "required": false
                                             },
+                                            "landline": {
+                                                "type": "text",
+                                                "placeholder": "Landline",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "landline",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "mobile": {
+                                                "type": "text",
+                                                "placeholder": "Mobile",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "mobile",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "placeholder": "Email",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "email",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "fax": {
+                                                "type": "text",
+                                                "placeholder": "Fax",
+                                                "min_label_width": 100,
+                                                "template":"no-border no-padding",
+                                                "width":"50%",
+                                                "key": "fax",
+                                                // "label": "Address",
+                                                "flex": true,
+                                                "required": false
+                                            },
                                             "gst_number": {
                                                 "type": "text",
                                                 "placeholder": "GST Number",
@@ -29373,7 +30022,7 @@ const data = {
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
-                                                "key": "pan_number  ",
+                                                "key": "pan_number",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
@@ -29383,19 +30032,30 @@ const data = {
                                                 "placeholder": "CIN",
                                                 "min_label_width": 100,
                                                 "template":"no-border no-padding",
-                                                "width":"50%",
+                                                "width":"100%",
                                                 "key": "cin",
                                                 // "label": "Address",
                                                 "flex": true,
                                                 "required": false
                                             },
                                             "product_date":{
-                                                "type": "date",
+                                                "type": "date_time",
+                                                "default_current_time":true,
                                                 "placeholder": "Date",
                                                 "template":"no-border  no-padding",
-                                                "width":"100%", 
+                                                "width":"40%", 
                                                 "key": "product_date",
                                                 "label": "Date:",
+                                                "flex": true,
+                                                "required": false
+                                            },
+                                            "time":{
+                                                "type": "time",
+                                                // "placeholder": "Date",
+                                                "template":"no-border  no-padding",
+                                                "width":"50%", 
+                                                "key": "time",
+                                                "label": "Time:",
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -34069,7 +34729,7 @@ const data = {
                     "_order": {"form_3": 3, "form_2":2,"form_1": 1},
                     "api": "/asd/asda?",
                     "form_1":{
-                        "initial_disabled": false,
+                        "initial_disabled": true,
                         "title":"Business Insight",
                         "_order": {"Company Year (Est.)": 1, "Business Type": 2,"Number of Employees": 3,"Revenue": 4,"Exchange": 5, "Stock Symbol": 6, "HQ Location": 7, "Regional HQ Address":8, "Manufacturing Plant Location":9},
                         "Company Year (Est.)":{
@@ -34156,7 +34816,7 @@ const data = {
                     },
                     "form_2":{
                         "title":"Financial",
-                        "initial_disabled": false,
+                        "initial_disabled": true,
                         "_order": {"Supplier Legal Form": 1, "Supplier Identifier ID": 2,"Supplier Credentials": 3,"D-U-N-S® Number": 4,"Global Location Number (GLN Code)": 5},
                         "Supplier Legal Form":{
                             "type": "text",
@@ -34206,7 +34866,7 @@ const data = {
                     },
                     "form_3": {
                         "title":"Tax Information",
-                        "initial_disabled": false,
+                        "initial_disabled": true,
                         "_order": { "tax_category":1,"tax_classification":2, "tax_type": 3,  "tax_clear_id": 4,"pan_no": 5,"gst_no":5.5,"tin_no": 6, "tax_state_id": 7, "tax_reg_id": 8, "vat_no": 9},
                         "tax_category": {
                             "type": "text",
@@ -34363,7 +35023,7 @@ const data = {
                             "width":"49%",
                             "key": "Fax",
                             "label": "Fax",
-                            "label_icon":"",
+                            "label_icon":"fax",
                             "flex": true,
                             "required": true
                         },
@@ -34586,14 +35246,14 @@ const data = {
                     "api":  "",
                     "columns":{
                         "_order":{
-                            "title": 1,
+                            "titles": 1,
                             "requirement": 3,
                             "certifying_body": 2,
                             "category": 4,
                             "valid_from": 5,
                             "due_date": 6
                         },
-                        "title": {
+                        "titles": {
                             "display": "Title",
                             "type":"string",
                             "width": "",
@@ -34650,8 +35310,8 @@ const data = {
                     "form_2":{
                         "title":"Documents",
                         "initial_disabled": false,
-                        "_order": {"Title": 1, "Type": 2,"Category": 3,"Edition": 4,"Version": 5, "Date of issue": 5, "Publish Date": 6, "ISBN": 7,"In-house Publication": 8, "Impact Factor": 9,"Author": 10},
-                        "Title":{
+                        "_order": {"Titles": 1, "Type": 2,"Category": 3,"Edition": 4,"Version": 5, "Date of issue": 5, "Publish Date": 6, "ISBN": 7,"In-house Publication": 8, "Impact Factor": 9,"Author": 10},
+                        "Titles":{
                             "type": "text",
                             "placeholder": "Type here",
                             "width":"49%",
@@ -34782,7 +35442,7 @@ const data = {
                     "api":  "",
                     "columns":{
                         "_order":{
-                            "title": 1,
+                            "titles": 1,
                             "requirement": 2,
                             "category": 3,
                             "editor": 4,
@@ -34793,7 +35453,7 @@ const data = {
                             "in_house_publication": 9,
                             "name": 10,
                         },
-                        "title": {
+                        "titles": {
                             "display": "Title",
                             "type":"string",
                             "width": "",
