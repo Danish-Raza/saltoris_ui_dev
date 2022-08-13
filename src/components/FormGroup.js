@@ -42,6 +42,7 @@ function FormGroup(props) {
 
 
     const validateForm = () => {
+        return true
         let result = true;
         let data = {}
         let modConfig = { ...config }
@@ -274,6 +275,7 @@ function FormGroup(props) {
                     }
                     <div className="button-wrapper">
                     <button button-type={"ghost"} onClick={reviewHandler}>Go Back</button>
+                    {submit && <button button-type={"primary"} onClick={(e) => {e.preventDefault()}}>Download as PDF</button>}
                     {submit && <button button-type={"primary"} onClick={(e) => {e.preventDefault(); submitHandler()}}>{submit.display}</button>}
                 </div>
                 </div>

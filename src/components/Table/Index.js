@@ -245,10 +245,7 @@ function TableComponent(props) {
         display:"Set Filters"
     }
 
-    const rowSelection = {
-        selectedRowKeys,
-        onChange: onSelectChange,
-    };
+  
 
     const changeConfirmationStatus = () => {
         setConfirmationStatus(null)
@@ -317,12 +314,83 @@ function TableComponent(props) {
     }
 
     let _modData = data
+
     if(config.redirect_on_view_all) {
         _modData= data.slice(0,5)
     }
     if(config.id=="delivery_table") {
         _modData = [data[0]]  
     }
+
+    let downloadElement = null;
+    if(config.id == "purchase_order_table") {
+        downloadElement = (
+            <div className="download-popover">
+                <div className="title">Download Purchase Order</div>
+                <div className="option">PDF</div>
+                <div className="title">Download Report</div>
+                <div className="option">PDF</div>
+                <div className="option">CSV</div>
+            </div>
+        )
+    } else if(config.id == "scheduling_agreement_table") {
+        downloadElement = (
+            <div className="download-popover">
+                <div className="title">Download Scheduling Agreement</div>
+                <div className="option">PDF</div>
+                <div className="title">Download Report</div>
+                <div className="option">PDF</div>
+                <div className="option">CSV</div>
+            </div>
+        )
+    } else if(config.id == "advance_shipping_table") {
+        downloadElement = (
+            <div className="download-popover">
+                <div className="title">Download Advance Shipping Notification</div>
+                <div className="option">PDF</div>
+                <div className="title">Download Report</div>
+                <div className="option">PDF</div>
+                <div className="option">CSV</div>
+            </div>
+        )
+    }
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+        selections:[
+            {
+                key: 'odd',
+                text:  `Select All ${100} records`,
+                onSelect: changableRowKeys => {
+                    let newSelectedRowKeys = [];
+                    newSelectedRowKeys = changableRowKeys.filter((_, index) => {
+                      if (index % 2 !== 0) {
+                        return true;
+                      }
+                      return true;
+                    });
+                    dispatch(changeTableParams({config: config, newSelectedRowKeys, type:"SELECT_TABLE_ROW"}))
+                  },
+            },
+            {
+                key: 'odd',
+                text:  `Deselect All ${100} records`,
+                onSelect: changableRowKeys => {
+                    let newSelectedRowKeys = [];
+                    newSelectedRowKeys = changableRowKeys.filter((_, index) => {
+                      if (index % 2 !== 0) {
+                        return false;
+                      }
+                      return false;
+                    });
+                    dispatch(changeTableParams({config: config, newSelectedRowKeys, type:"SELECT_TABLE_ROW"}))
+                  },
+              }
+        ]
+        
+    };
+
 
     return (
         <div 
@@ -338,6 +406,7 @@ function TableComponent(props) {
                 parentComponentData={selectedRowKeys}
                 tabs={props.tabs}
                 confirmationStatus={confirmationStatus}
+                downloadElement={downloadElement}
                 _id={props.config.table_type  ==  "tabs-dependent"? props.config.id : null}
                 columnSelectorComponent={
                      <Popover getPopupContainer={() => document.body}  placement="leftTop" title={false} content={columnSelectorComponent} trigger="click">

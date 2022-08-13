@@ -530,6 +530,7 @@ const data = {
                                     "form_group":{
                                         "type":"form-group",
                                         "width":"100%",
+                                        "review": true,
                                         "_order": {
                                             "purchase_document_table_overlay": 1,
                                             "selected_po_table": 2,
@@ -986,8 +987,34 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
+                                                    },
+                                                     "asn_status":{
+                                                        "display": "Status",
+                                                        "type": "tag",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "color_mapping":{
+                                                            "Sent":"green",
+                                                            "Drafted": "blue",
+                                                            "Created":"#40a9ff"
+                                                        },
+                                                        "filters": [
+                                                            {
+                                                                "text": 'Drafted',
+                                                                "value": 'Drafted',
+                                                            },
+                                                            {
+                                                                "text": 'Sent',
+                                                                "value": 'Sent',
+                                                            },
+                                                            {
+                                                                "text": "Created",
+                                                                "value": "Created",
+                                                            }
+                                                        ],
                                                     },
                                                     "customer_id":{
                                                         "display": "Customer ID",
@@ -4062,9 +4089,35 @@ const data = {
                                                     "settlement": 7,    
                                                     "invoice_amount": 8,
                                                     "revision": 9,
+                                                    "asn_status": 11,
                                                     "version": 10,
-                                                    "view_detail": 11
+                                                    "view_detail": 12
                                                 },
+                                                 "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                 "customer_id":{
                                                     "display": "Customer ID",
                                                     "type":"string",
@@ -4698,9 +4751,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -5407,6 +5486,7 @@ const data = {
                                     "form_group":{
                                         "type":"form-group",
                                         "width":"100%",
+                                        "review": true,
                                         "_order": {
                                             "purchase_document_table_overlay": 1,
                                             "selected_po_table": 2,
@@ -5863,9 +5943,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -8939,9 +9045,35 @@ const data = {
                                                     "settlement": 7,    
                                                     "invoice_amount": 8,
                                                     "revision": 9,
+                                                    "asn_status": 11,
                                                     "version": 10,
-                                                    "view_detail": 11
+                                                    "view_detail": 12
                                                 },
+                                                 "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                 "customer_id":{
                                                     "display": "Customer ID",
                                                     "type":"string",
@@ -9575,9 +9707,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -10390,8 +10548,34 @@ const data = {
                                 "settlement": 7,    
                                 "invoice_amount": 8,
                                 "revision": 9,
+                                "asn_status": 11,
                                 "version": 10,
-                                "view_detail": 11
+                                "view_detail": 12
+                            },
+                             "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
                             },
                             "customer_id":{
                                 "display": "Customer ID",
@@ -10543,6 +10727,7 @@ const data = {
                                     "form_group":{
                                         "type":"form-group",
                                         "width":"100%",
+                                        "review": true,
                                         "_order": {
                                             "purchase_document_table_overlay": 1,
                                             "selected_po_table": 2,
@@ -10999,9 +11184,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -14075,9 +14286,35 @@ const data = {
                                                     "settlement": 7,    
                                                     "invoice_amount": 8,
                                                     "revision": 9,
+                                                    "asn_status": 11,
                                                     "version": 10,
-                                                    "view_detail": 11
+                                                    "view_detail": 12
                                                 },
+                                                 "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                 "customer_id":{
                                                     "display": "Customer ID",
                                                     "type":"string",
@@ -14711,9 +14948,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -15574,6 +15837,7 @@ const data = {
                                 "form_group":{
                                     "type":"form-group",
                                     "width":"100%",
+                                    "review": true,
                                     "_order": {"form_2": 2, "form_3": 2, "form_4": 3, "form_5": 4, "payment_1":5,"payment_2": 6, "form_8": 7, "form_9": 8, "form_10": 9},
                                     "api": "/asd/asda?",
                                     "form_2": {
@@ -17584,6 +17848,7 @@ const data = {
                                     "form_group":{
                                         "type":"form-group",
                                         "width":"100%",
+                                        "review": true,
                                         "_order": {
                                             "purchase_document_table_overlay": 1,
                                             "selected_po_table": 2,
@@ -18040,9 +18305,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -21116,9 +21407,35 @@ const data = {
                                                     "settlement": 7,    
                                                     "invoice_amount": 8,
                                                     "revision": 9,
+                                                    "asn_status": 11,
                                                     "version": 10,
-                                                    "view_detail": 11
+                                                    "view_detail": 12
                                                 },
+                                                 "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                 "customer_id":{
                                                     "display": "Customer ID",
                                                     "type":"string",
@@ -21752,9 +22069,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -22460,6 +22803,7 @@ const data = {
                                     "form_group":{
                                         "type":"form-group",
                                         "width":"100%",
+                                        "review": true,
                                         "_order": {
                                             "purchase_document_table_overlay": 1,
                                             "selected_po_table": 2,
@@ -22916,9 +23260,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -25992,9 +26362,35 @@ const data = {
                                                     "settlement": 7,    
                                                     "invoice_amount": 8,
                                                     "revision": 9,
+                                                    "asn_status": 11,
                                                     "version": 10,
-                                                    "view_detail": 11
+                                                    "view_detail": 12
                                                 },
+                                                 "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                 "customer_id":{
                                                     "display": "Customer ID",
                                                     "type":"string",
@@ -26628,9 +27024,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -27442,8 +27864,34 @@ const data = {
                                 "settlement": 7,    
                                 "invoice_amount": 8,
                                 "revision": 9,
+                                "asn_status": 11,
                                 "version": 10,
-                                "view_detail": 11
+                                "view_detail": 12
+                            },
+                             "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
                             },
                             "customer_id":{
                                 "display": "Customer ID",
@@ -27595,6 +28043,7 @@ const data = {
                                     "form_group":{
                                         "type":"form-group",
                                         "width":"100%",
+                                        "review": true,
                                         "_order": {
                                             "purchase_document_table_overlay": 1,
                                             "selected_po_table": 2,
@@ -28051,9 +28500,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -31127,9 +31602,35 @@ const data = {
                                                     "settlement": 7,    
                                                     "invoice_amount": 8,
                                                     "revision": 9,
+                                                    "asn_status": 11,
                                                     "version": 10,
-                                                    "view_detail": 11
+                                                    "view_detail": 12
                                                 },
+                                                 "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                 "customer_id":{
                                                     "display": "Customer ID",
                                                     "type":"string",
@@ -31763,9 +32264,35 @@ const data = {
                                                         "settlement": 7,    
                                                         "invoice_amount": 8,
                                                         "revision": 9,
+                                                        "asn_status": 11,
                                                         "version": 10,
-                                                        "view_detail": 11
+                                                        "view_detail": 12
                                                     },
+                                                     "asn_status":{
+                                "display": "Status",
+                                "type": "tag",
+                                "width": "",
+                                "align": "left",
+                                "color_mapping":{
+                                    "Sent":"green",
+                                    "Drafted": "blue",
+                                    "Created":"#40a9ff"
+                                },
+                                "filters": [
+                                    {
+                                        "text": 'Drafted',
+                                        "value": 'Drafted',
+                                    },
+                                    {
+                                        "text": 'Sent',
+                                        "value": 'Sent',
+                                    },
+                                    {
+                                        "text": "Created",
+                                        "value": "Created",
+                                    }
+                                ],
+                            },
                                                     "customer_id":{
                                                         "display": "Customer ID",
                                                         "type":"string",
@@ -32633,6 +33160,7 @@ const data = {
                                     "width":"100%",
                                     "_order": {"form_2": 2, "form_3": 2, "form_4": 3, "form_5": 4, "payment_1":5,"payment_2": 6, "form_8": 7, "form_9": 8, "form_10": 9},
                                     "api": "/asd/asda?",
+                                    "review": true,
                                     "form_2": {
     
                                         "group_style": {

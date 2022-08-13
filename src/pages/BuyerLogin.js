@@ -220,6 +220,7 @@ function Login(props={}) {
       <div className="tabs" >
          <div className="saltoris-logo" data-account-type={process && process.env && process.env.REACT_APP_ACCOUNT_TYPE ? process.env.REACT_APP_ACCOUNT_TYPE : false}></div>
          <div style={{display:"flex"}}>
+         <div className="tab" data-active={activeTab === "login" ? true: false} onClick={() => tabHandler("login")}>Login</div>
          </div>
       </div>
       <div className="network-background">

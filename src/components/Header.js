@@ -72,11 +72,15 @@ function Header(props) {
                     <Popover 
                         getPopupContainer={() => document.body}
                         content={
-                        <div className="download-popover">
-                                <div className="title">Download Report</div>
-                                <div className="option">PDF</div>    
-                                <div className="option">CSV</div>    
-                        </div>
+                            downloadElement ? (
+                                downloadElement
+                            ) : (
+                                <div className="download-popover">
+                                    <div className="title">Download Report</div>
+                                    <div className="option">PDF</div>
+                                    <div className="option">CSV</div>
+                                </div>
+                            )
                         }  
                         trigger="click" placement="bottomRight"
                     >
