@@ -75,6 +75,12 @@ function Icon(props) {
                     <path d="M54.1667 0H4.16667C3.0616 0 2.00179 0.438987 1.22039 1.22039C0.438987 2.00179 0 3.0616 0 4.16667V45.8333C0 46.9384 0.438987 47.9982 1.22039 48.7796C2.00179 49.561 3.0616 50 4.16667 50H54.1667C55.2717 50 56.3315 49.561 57.1129 48.7796C57.8943 47.9982 58.3333 46.9384 58.3333 45.8333V4.16667C58.3333 3.0616 57.8943 2.00179 57.1129 1.22039C56.3315 0.438987 55.2717 0 54.1667 0ZM54.1667 4.16667V29.1667H4.16667V4.16667H54.1667ZM4.16667 45.8333V33.3333H54.1667V45.8333H4.16667Z" fill="#92929D"/>
                 </svg>
         )
+        case "home":
+            return (
+                <svg className="home-icon" xmlns="http://www.w3.org/2000/svg"  onClick={onClick?onClick:()=>{}} width={width} height={height} viewBox="0 0 17 20" fill="none">
+                    <path d="M6 18.3334V10H11V18.3334M1 7.50002L8.5 1.66669L16 7.50002V16.6667C16 17.1087 15.8244 17.5326 15.5118 17.8452C15.1993 18.1578 14.7754 18.3334 14.3333 18.3334H2.66667C2.22464 18.3334 1.80072 18.1578 1.48816 17.8452C1.17559 17.5326 1 17.1087 1 16.6667V7.50002Z"  fill="transparent" stroke="grey" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            )
         case "vector":
             return (
                 <svg onClick={onClick?onClick:()=>{}} width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">

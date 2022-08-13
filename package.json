@@ -36,7 +36,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "deploy-buyer": "concurrently 'git remote set-url origin https://github.com/Danish-Raza/dixon.git' 'git add .' 'git commit -m \"deploying\"'  'git push origin master' 'REACT_APP_ACCOUNT_TYPE=BUYER PUBLIC_URL=/dixon npm run deploy'",
+    "deploy-buyer": "concurrently 'git remote set-url origin https://github.com/Danish-Raza/buyer.git' 'git add .' 'git commit -m \"deploying\"'  'git push origin master' 'REACT_APP_ACCOUNT_TYPE=BUYER PUBLIC_URL=/buyer npm run deploy'",
+    "deploy-customer": "concurrently 'git remote set-url origin https://github.com/Danish-Raza/dixon.git' 'git add .' 'git commit -m \"deploying\"'  'git push origin master' 'REACT_APP_ACCOUNT_TYPE=BUYER PUBLIC_URL=/dixon npm run deploy'",
     "deploy-supplier": "concurrently 'git remote set-url origin https://github.com/Danish-Raza/saltoris_ui_dev.git' 'git add .' 'git commit -m \"deploying\"'  'git push origin master' 'REACT_APP_ACCOUNT_TYPE=SUPPIER PUBLIC_URL=/saltoris_ui_dev npm run deploy'"
   },
   "eslintConfig": {

@@ -61,6 +61,12 @@
                 stroke: white;
             }
         }
+        .home-icon{
+            path {
+                stroke: white !important;
+
+            }
+        }
     }
 }
 .sidebar[data-status="inactive"]{

@@ -1,5 +1,6 @@
 import defaultSupplierConfig from "./defaultSupplierConfig";
 import defaultBuyerConfig from "./defaultBuyerConfig";
+import defaultCustomerConfig from "./defaultCustomerConfig";
 import WebUtils from "../WebUtils";
 export function login(data) {
     return function (dispatch, getState) {
@@ -40,24 +41,24 @@ export function login(data) {
         let userList = [
             {  
                 username:"John Doe",
-                email:"admin@mail.com",
+                email:"supplier@mail.com",
                 user_role: "admin",
                 account_type: "supplier",
                 config_name:"default_supplier"
             },
             {  
                 username:"John Doe",
-                email:"supplier@mail.com",
+                email:"buyer@mail.com",
                 user_role: "admin",
-                account_type: "supplier",
-                config_name:"default_supplier"
+                account_type: "buyer",
+                config_name:"default_buyer"
             },
             {
                 username:"John Doe",
                 email:"customer@mail.com",
                 user_role: "admin",
-                account_type: "buyer",
-                config_name:"default_buyer",
+                account_type: "customer",
+                config_name:"default_customer",
                 client_logo: "customer"
             }
         ]
@@ -88,6 +89,8 @@ export function getUserConfig(configName, curPage, curView, appliedFilters) {
             dispatch({ type: 'USER_CONFIG', data: defaultSupplierConfig, curPage, curView, appliedFilters});
         } else if(configName == "default_buyer") {
             dispatch({ type: 'USER_CONFIG', data: defaultBuyerConfig, curPage, curView, appliedFilters});
+        } else if(configName == "default_customer") {
+            dispatch({ type: 'USER_CONFIG', data: defaultCustomerConfig, curPage, curView, appliedFilters});
         }   
     }
 }
