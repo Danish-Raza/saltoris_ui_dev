@@ -41,7 +41,7 @@ function Login(props={}) {
       width:"100%",
       key: "password",
       required: true,
-      fieldFooter: <div style={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop: 15, fontSize:13 }}><a style={{color:"red"}} href={process.env.PUBLIC_URL+"/forgot-password"} >Forgot Username</a> <span style={{margin:"0 5px 0 5px"}}>or</span> <a href={process.env.PUBLIC_URL+"/forgot-password"} style={{color:"red"}}>Forgot Passowrd</a></div>
+      fieldFooter: <div style={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop: 15, fontSize:13 }}><span style={{color:"red"}} onClick={() => tabHandler("forgotPassword")}>Forgot Username</span> <span style={{margin:"0 5px 0 5px"}}>or</span> <span style={{color:"red"}} onClick={() => tabHandler("forgotPassword")}>Forgot Passowrd</span></div>
     },
     {
       type: "button",
@@ -215,6 +215,31 @@ function Login(props={}) {
   } else if(error) {
     message = <div>{errorMessage}</div>
   }
+  const forgotPasswordConfig = [
+    {
+      type: "text",
+      placeholder:"Enter Email",
+      icon: <Icon type="email" height={16} width={16}/>,
+      width:"100%",
+      key: "email",
+      required: true
+    },
+    {
+        type: "text",
+        placeholder:"Enter phone number",
+        icon: <Icon type="phone" height={16} width={16}/>,
+        width:"100%",
+        key: "phone",
+        required: true
+    },
+    {
+      type: "button",
+      onClick: "post",
+      api: "",
+      display: "Submit",
+      button_type:"primary"
+    }
+  ]
   return (
     <div className="Login-page">
       <div className="tabs" >
@@ -270,10 +295,29 @@ function Login(props={}) {
                   width={"50%"}
                 />
               )
-            }
+            }  
           </Fragment>
         )
       }
+      {
+          activeTab == "forgotPassword" && (
+            <FormComponent
+            config={forgotPasswordConfig}
+            // onSubmit={loginHandler}
+            title={["Forgot Password !"]}
+            width={"40%"}
+            message={message}
+            template={"login-form"}
+            footer = {(
+              <div className="join-network-wrapper">
+                {/* <span>Join the ELIT Network</span> 
+                <span className="seperator">|</span> 
+                <span onClick={() => tabHandler("register-1")}>Register Here</span> */}
+              </div>
+            )}
+          />
+          )
+        }
     </div>
   );
 }
