@@ -4,8 +4,8 @@ import FormComponent from "../components/Form/FormComponent";
 import { Fragment, useRef, useState } from "react";
 import Icon from "../Icon";
 
-function SupplierLogin(props={}) {
-  let {authLoading, error, errorMessage } = props.appData
+function ForgotPassword(props={}) {
+  let error = '' 
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("login")
   const recaptchaRef = useRef();
@@ -28,26 +28,25 @@ function SupplierLogin(props={}) {
   const loginFormConfig = [
     {
       type: "text",
-      placeholder:"User Name",
-      icon: <Icon type="user" height={16} width={16}/>,
+      placeholder:"Enter Email",
+      icon: <Icon type="email" height={16} width={16}/>,
       width:"100%",
       key: "email",
       required: true
     },
     {
-      type: "password",
-      placeholder:"Password",
-      icon: <Icon type="password" height={16} width={16}/>,
-      width:"100%",
-      key: "password",
-      required: true,
-      fieldFooter: <div style={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop: 15, fontSize:13 }}><a style={{color:"red"}} href={process.env.PUBLIC_URL+"/forgot-password"} >Forgot Username</a> <span style={{margin:"0 5px 0 5px"}}>or</span> <a href={process.env.PUBLIC_URL+"/forgot-password"} style={{color:"red"}}>Forgot Passowrd</a></div>
+        type: "text",
+        placeholder:"Enter phone number",
+        icon: <Icon type="phone" height={16} width={16}/>,
+        width:"100%",
+        key: "phone",
+        required: true
     },
     {
       type: "button",
       onClick: "post",
       api: "",
-      display: "Login",
+      display: "Submit",
       button_type:"primary"
     }
   ]
@@ -226,19 +225,18 @@ function SupplierLogin(props={}) {
   }
 
   let message = ""
-  if(authLoading) {
-    message = <div>Please wait</div>
-  } else if(error) {
-    message = <div>{errorMessage}</div>
-  }
+//   if(authLoading) {
+//     message = <div>Please wait</div>
+//   } else if(error) {
+//     message = <div>{errorMessage}</div>
+//   }
 
   return (
     <div className="Login-page">
       <div className="tabs">
          <div className="saltoris-logo" data-account-type={process && process.env && process.env.REACT_APP_ACCOUNT_TYPE ? process.env.REACT_APP_ACCOUNT_TYPE : false}></div>
          <div style={{display:"flex"}}>
-         <div className="tab" data-active={(activeTab === "register-1" || activeTab === "register-2")? true: false} onClick={() => tabHandler("register-1")}>Signup</div>
-         <div className="tab" data-active={activeTab === "login" ? true: false} onClick={() => tabHandler("login")}>Login</div>
+            <a className="tab" data-active={true} href={process.env.PUBLIC_URL}>Login</a>
          </div>
       </div>
       <div className="network-background">
@@ -252,15 +250,15 @@ function SupplierLogin(props={}) {
           <FormComponent
             config={loginFormConfig}
             onSubmit={loginHandler}
-            title={["Supplier Login"]}
+            title={["Forgot Password !"]}
             width={"40%"}
             message={message}
             template={"login-form"}
             footer = {(
               <div className="join-network-wrapper">
-                <span>Join the ELIT Network</span> 
+                {/* <span>Join the ELIT Network</span> 
                 <span className="seperator">|</span> 
-                <span onClick={() => tabHandler("register-1")}>Register Here</span>
+                <span onClick={() => tabHandler("register-1")}>Register Here</span> */}
               </div>
             )}
           />
@@ -303,4 +301,4 @@ function SupplierLogin(props={}) {
   );
 }
 
-export default SupplierLogin;
+export default ForgotPassword;

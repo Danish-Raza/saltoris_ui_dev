@@ -4,6 +4,7 @@ import CustomerLogin from "../pages/CustomerLogin";
 import BuyerLogin from "../pages/BuyerLogin";
 import Layout from "../views/Layout";
 import NoPage from "../pages/NoPage";
+import ForgotPassword from "../pages/ForgotPassword";
 
 export default function AppRoutes(props) {
     let loggedIn = props.appData ? props.appData.loggedIn : false
@@ -22,6 +23,7 @@ export default function AppRoutes(props) {
     return (
         <Routes>
             <Route exact path="/page-not-found" element={<NoPage />} />
+            <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route path="*" element={element}/>
          </Routes>
     );
