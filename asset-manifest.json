@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/saltoris_ui_dev/static/css/main.4bb5cd76.chunk.css",
-    "main.js": "/saltoris_ui_dev/static/js/main.54cd157b.chunk.js",
-    "main.js.map": "/saltoris_ui_dev/static/js/main.54cd157b.chunk.js.map",
-    "runtime-main.js": "/saltoris_ui_dev/static/js/runtime-main.4541ba0c.js",
-    "runtime-main.js.map": "/saltoris_ui_dev/static/js/runtime-main.4541ba0c.js.map",
+    "main.js": "/saltoris_ui_dev/static/js/main.a82aacc2.chunk.js",
+    "main.js.map": "/saltoris_ui_dev/static/js/main.a82aacc2.chunk.js.map",
+    "runtime-main.js": "/saltoris_ui_dev/static/js/runtime-main.010d53b4.js",
+    "runtime-main.js.map": "/saltoris_ui_dev/static/js/runtime-main.010d53b4.js.map",
     "static/css/2.b5f9dda7.chunk.css": "/saltoris_ui_dev/static/css/2.b5f9dda7.chunk.css",
-    "static/js/2.f4e6df03.chunk.js": "/saltoris_ui_dev/static/js/2.f4e6df03.chunk.js",
-    "static/js/2.f4e6df03.chunk.js.map": "/saltoris_ui_dev/static/js/2.f4e6df03.chunk.js.map",
-    "static/js/3.2cc18159.chunk.js": "/saltoris_ui_dev/static/js/3.2cc18159.chunk.js",
-    "static/js/3.2cc18159.chunk.js.map": "/saltoris_ui_dev/static/js/3.2cc18159.chunk.js.map",
+    "static/js/2.e8da3c13.chunk.js": "/saltoris_ui_dev/static/js/2.e8da3c13.chunk.js",
+    "static/js/2.e8da3c13.chunk.js.map": "/saltoris_ui_dev/static/js/2.e8da3c13.chunk.js.map",
+    "static/js/3.71fb52dd.chunk.js": "/saltoris_ui_dev/static/js/3.71fb52dd.chunk.js",
+    "static/js/3.71fb52dd.chunk.js.map": "/saltoris_ui_dev/static/js/3.71fb52dd.chunk.js.map",
     "index.html": "/saltoris_ui_dev/index.html",
     "static/css/2.b5f9dda7.chunk.css.map": "/saltoris_ui_dev/static/css/2.b5f9dda7.chunk.css.map",
     "static/css/main.4bb5cd76.chunk.css.map": "/saltoris_ui_dev/static/css/main.4bb5cd76.chunk.css.map",
-    "static/js/2.f4e6df03.chunk.js.LICENSE.txt": "/saltoris_ui_dev/static/js/2.f4e6df03.chunk.js.LICENSE.txt",
+    "static/js/2.e8da3c13.chunk.js.LICENSE.txt": "/saltoris_ui_dev/static/js/2.e8da3c13.chunk.js.LICENSE.txt",
     "static/media/deil-logo.d96e8767.png": "/saltoris_ui_dev/static/media/deil-logo.d96e8767.png",
     "static/media/saltoris.85ee1f2d.png": "/saltoris_ui_dev/static/media/saltoris.85ee1f2d.png",
     "static/media/main.scss": "/saltoris_ui_dev/static/media/table-column.b3164c2e.webp"
   },
   "entrypoints": [
-    "static/js/runtime-main.4541ba0c.js",
+    "static/js/runtime-main.010d53b4.js",
     "static/css/2.b5f9dda7.chunk.css",
-    "static/js/2.f4e6df03.chunk.js",
+    "static/js/2.e8da3c13.chunk.js",
     "static/css/main.4bb5cd76.chunk.css",
-    "static/js/main.54cd157b.chunk.js"
+    "static/js/main.a82aacc2.chunk.js"
   ]
 }
