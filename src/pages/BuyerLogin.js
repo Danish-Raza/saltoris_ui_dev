@@ -225,14 +225,6 @@ function Login(props={}) {
       required: true
     },
     {
-        type: "text",
-        placeholder:"Enter phone number",
-        icon: <Icon type="phone" height={16} width={16}/>,
-        width:"100%",
-        key: "phone",
-        required: true
-    },
-    {
       type: "button",
       onClick: "post",
       api: "",
