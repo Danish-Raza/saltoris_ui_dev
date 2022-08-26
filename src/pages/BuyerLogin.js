@@ -3,15 +3,52 @@ import { login } from "../actions/appActions";
 import FormComponent from "../components/Form/FormComponent";
 import { Fragment, useRef, useState } from "react";
 import Icon from "../Icon";
+import _ from "underscore";
 
 function Login(props={}) {
   let {authLoading, error, errorMessage } = props.appData
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("login")
+  const [fgMessage, setFgMessage] = useState(null)
   const recaptchaRef = useRef();
+  
 
   const loginHandler = (data) => {
     dispatch(login({...data} ))
+  }
+
+  const forgotPasswordHandler = (data) => {
+    let email = data.email
+    let userList = [
+      {  
+          username:"John Doe",
+          email:"supplier@mail.com",
+          user_role: "admin",
+          account_type: "supplier",
+          config_name:"default_supplier"
+      },
+      {  
+          username:"John Doe",
+          email:"buyer@mail.com",
+          user_role: "admin",
+          account_type: "buyer",
+          config_name:"default_buyer"
+      },
+      {
+          username:"John Doe",
+          email:"customer@mail.com",
+          user_role: "admin",
+          account_type: "customer",
+          config_name:"default_customer",
+          client_logo: "customer"
+      }
+    ]
+    let userIndex = _.findIndex(userList, r => r.email == email)
+    if(userIndex != -1) {
+      setFgMessage(<div style={{color:"green", marginTop: 10, textAlign:"center", fontSize: 16}}>Email sent successfully to {email}.</div>)
+    } else {
+      setFgMessage(<div style={{color:"red",marginTop: 10, textAlign:"center", fontSize: 16}}>{email} does not exist in our database.</div>)
+    }
   }
 
   const registerHandler = (data) => {
@@ -41,7 +78,8 @@ function Login(props={}) {
       width:"100%",
       key: "password",
       required: true,
-      fieldFooter: <div style={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop: 15, fontSize:13 }}><span style={{color:"red", cursor:"pointer"}} onClick={() => tabHandler("forgotPassword")}>Forgot Username</span> <span style={{margin:"0 5px 0 5px"}}>or</span> <span style={{color:"red", cursor:"pointer"}} onClick={() => tabHandler("forgotPassword")}>Forgot Passowrd</span></div>
+      fieldFooter: <div style={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop: 15, fontSize:13 }}>
+        <span style={{color:"red", cursor:"pointer"}} onClick={() => tabHandler("forgotPassword")}>Forgot Password</span></div>
     },
     {
       type: "button",
@@ -218,7 +256,7 @@ function Login(props={}) {
   const forgotPasswordConfig = [
     {
       type: "text",
-      placeholder:"Enter Email",
+      placeholder:"Email",
       icon: <Icon type="email" height={16} width={16}/>,
       width:"100%",
       key: "email",
@@ -295,10 +333,10 @@ function Login(props={}) {
           activeTab == "forgotPassword" && (
             <FormComponent
             config={forgotPasswordConfig}
-            // onSubmit={loginHandler}
-            title={["Forgot Password !"]}
+            onSubmit={forgotPasswordHandler}
+            title={["Enter your recovery email"]}
             width={"40%"}
-            message={message}
+            message={fgMessage}
             template={"login-form"}
             footer = {(
               <div className="join-network-wrapper">
