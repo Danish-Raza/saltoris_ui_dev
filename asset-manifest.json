@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/saltoris_ui_dev/static/css/main.00381645.chunk.css",
-    "main.js": "/saltoris_ui_dev/static/js/main.d9d0ba76.chunk.js",
-    "main.js.map": "/saltoris_ui_dev/static/js/main.d9d0ba76.chunk.js.map",
+    "main.js": "/saltoris_ui_dev/static/js/main.f454f0c3.chunk.js",
+    "main.js.map": "/saltoris_ui_dev/static/js/main.f454f0c3.chunk.js.map",
     "runtime-main.js": "/saltoris_ui_dev/static/js/runtime-main.4a04212b.js",
     "runtime-main.js.map": "/saltoris_ui_dev/static/js/runtime-main.4a04212b.js.map",
     "static/css/2.b5f9dda7.chunk.css": "/saltoris_ui_dev/static/css/2.b5f9dda7.chunk.css",
@@ -23,6 +23,6 @@
     "static/css/2.b5f9dda7.chunk.css",
     "static/js/2.efacccb5.chunk.js",
     "static/css/main.00381645.chunk.css",
-    "static/js/main.d9d0ba76.chunk.js"
+    "static/js/main.f454f0c3.chunk.js"
   ]
 }
