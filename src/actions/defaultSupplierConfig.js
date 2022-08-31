@@ -542,13 +542,8 @@ const data = {
                                             "payment_1":8,
                                             "payment_2": 9,
                                             "form_8": 10, 
-                                            "form_9": 11, 
-                                            "form_10": 12, 
-                                            "shipping_form": 13, 
-                                            "attachment_table": 14, 
-                                            "delivery_form": 15,
-                                            "delivery_table": 16,
-                                            "quantity_form": 17,
+                                            "form_9": 11,
+                                            "shipping_form": 13,
                                             "quantity_table": 18
                                         },
                                         "purchase_document_table_overlay": {
@@ -2157,7 +2152,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -2214,7 +2209,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -2318,7 +2313,7 @@ const data = {
                                             "title":"Shipping",
                                             "initial_disabled": false,
                                             "min_label_width":200,
-                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
+                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                             "Package Slip ID":{
                                                 "type": "text",
                                                 "placeholder": "Type here",
@@ -5498,13 +5493,8 @@ const data = {
                                             "payment_1":8,
                                             "payment_2": 9,
                                             "form_8": 10, 
-                                            "form_9": 11, 
-                                            "form_10": 12, 
-                                            "shipping_form": 13, 
-                                            "attachment_table": 14, 
-                                            "delivery_form": 15,
-                                            "delivery_table": 16,
-                                            "quantity_form": 17,
+                                            "form_9": 11,
+                                            "shipping_form": 13,
                                             "quantity_table": 18
                                         },
                                         "purchase_document_table_overlay": {
@@ -7113,7 +7103,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -7170,7 +7160,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -7274,7 +7264,7 @@ const data = {
                                             "title":"Shipping",
                                             "initial_disabled": false,
                                             "min_label_width":200,
-                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
+                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                             "Package Slip ID":{
                                                 "type": "text",
                                                 "placeholder": "Type here",
@@ -10739,13 +10729,8 @@ const data = {
                                             "payment_1":8,
                                             "payment_2": 9,
                                             "form_8": 10, 
-                                            "form_9": 11, 
-                                            "form_10": 12, 
+                                            "form_9": 11,
                                             "shipping_form": 13, 
-                                            "attachment_table": 14, 
-                                            "delivery_form": 15,
-                                            "delivery_table": 16,
-                                            "quantity_form": 17,
                                             "quantity_table": 18
                                         },
                                         "purchase_document_table_overlay": {
@@ -12354,7 +12339,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -12411,7 +12396,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -12515,7 +12500,7 @@ const data = {
                                             "title":"Shipping",
                                             "initial_disabled": false,
                                             "min_label_width":200,
-                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
+                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                             "Package Slip ID":{
                                                 "type": "text",
                                                 "placeholder": "Type here",
@@ -17861,12 +17846,7 @@ const data = {
                                             "payment_2": 9,
                                             "form_8": 10, 
                                             "form_9": 11, 
-                                            "form_10": 12, 
-                                            "shipping_form": 13, 
-                                            "attachment_table": 14, 
-                                            "delivery_form": 15,
-                                            "delivery_table": 16,
-                                            "quantity_form": 17,
+                                            "shipping_form": 13,
                                             "quantity_table": 18
                                         },
                                         "purchase_document_table_overlay": {
@@ -19475,7 +19455,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -19532,7 +19512,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -19636,7 +19616,7 @@ const data = {
                                             "title":"Shipping",
                                             "initial_disabled": false,
                                             "min_label_width":200,
-                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
+                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                             "Package Slip ID":{
                                                 "type": "text",
                                                 "placeholder": "Type here",
@@ -22815,13 +22795,8 @@ const data = {
                                             "payment_1":8,
                                             "payment_2": 9,
                                             "form_8": 10, 
-                                            "form_9": 11, 
-                                            "form_10": 12, 
+                                            "form_9": 11,
                                             "shipping_form": 13, 
-                                            "attachment_table": 14, 
-                                            "delivery_form": 15,
-                                            "delivery_table": 16,
-                                            "quantity_form": 17,
                                             "quantity_table": 18
                                         },
                                         "purchase_document_table_overlay": {
@@ -24430,7 +24405,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -24487,7 +24462,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -24591,7 +24566,7 @@ const data = {
                                             "title":"Shipping",
                                             "initial_disabled": false,
                                             "min_label_width":200,
-                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
+                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                             "Package Slip ID":{
                                                 "type": "text",
                                                 "placeholder": "Type here",
@@ -28055,13 +28030,8 @@ const data = {
                                             "payment_1":8,
                                             "payment_2": 9,
                                             "form_8": 10, 
-                                            "form_9": 11, 
-                                            "form_10": 12, 
-                                            "shipping_form": 13, 
-                                            "attachment_table": 14, 
-                                            "delivery_form": 15,
-                                            "delivery_table": 16,
-                                            "quantity_form": 17,
+                                            "form_9": 11,
+                                            "shipping_form": 13,
                                             "quantity_table": 18
                                         },
                                         "purchase_document_table_overlay": {
@@ -29670,7 +29640,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -29727,7 +29697,7 @@ const data = {
                                                 "background":"white"
                                             },
                                             "initial_disabled": false,
-                                            "width":"32%",
+                                            "width":"49%",
                                             "_order": { "to_name": 1,"to_address": 2, "to_contact": 3, "to_mail": 4},
                                             "to_name": {
                                                 "type": "text",
@@ -29831,7 +29801,7 @@ const data = {
                                             "title":"Shipping",
                                             "initial_disabled": false,
                                             "min_label_width":200,
-                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6,"Shipping Notice Type": 7, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
+                                            "_order": {"Package Slip ID": 1, "(shipping) Date": 2,"Invoice (#)": 3,"(delivery) Date": 4,"(delivery) Requested Date": 5,"Gross Volume": 6, "(Volume) Unit": 8,"Gross Weight": 9,"(Weight) Unit": 10,"Carrier Name": 11,"Tracking ID": 12,"(tracking) Date": 13,"Shipping Method": 14, "Service Level": 15,"e-Way Bill No": 17,"Incoterm Code": 16},
                                             "Package Slip ID":{
                                                 "type": "text",
                                                 "placeholder": "Type here",
