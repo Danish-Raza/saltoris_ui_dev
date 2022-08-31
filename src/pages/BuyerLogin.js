@@ -189,6 +189,7 @@ function Login(props={}) {
       icon: <Icon type="password" height={16} width={16}/>,
       width:"49.5%",
       key: "password",
+      validate_password: true,
       required: true,
     },
     {

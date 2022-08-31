@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState } from 'react';
-import { Button, Input,Checkbox, Modal,DatePicker, Radio, Slider} from 'antd';
+import { Button, Input,Checkbox, Modal,DatePicker, Radio, Slider,Popover} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, ExclamationCircleOutlined } from '@ant-design/icons';
 import Icon from '../../Icon';
 import _ from "underscore"
@@ -131,9 +131,64 @@ function Fields(props) {
             )
             break;
         case "password":
+            let passwordIntensity = "";
+            let content = false;
+            if(config.validate_password)  {
+                let passwordRules  =  [
+                    {
+                        checked: config.value ? config.value.length  >= 8 :  false,
+                        rule:"Password should have atleast 8 character."
+                    },
+                    {
+                        checked: config.value ? config.value.length  >= 8 && config.value.length <= 12:  false,
+                        rule:"Password should have atmost 12 character."
+                    },
+                    {
+                        checked: config.value ? config.value.match(/[A-Z]/g) && config.value.match(/[A-Z]/g)[0]:  false,
+                        rule:"Password should contain atleast one uppercase letter."
+                    },
+                    {
+                        checked: config.value ? config.value.match(/[a-z]/g) && config.value.match(/[a-z]/g)[0]:  false,
+                        rule:"Password should contain atleast one lowercase letter."
+                    },
+                    {
+                        checked: config.value ? config.value.match(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/) && config.value.match(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/)[0]:  false,
+                        rule:"Password should contain atleast one special character."
+                    },
+                    {
+                        checked: config.value ? config.value.match(/(\d+)/) && config.value.match(/(\d+)/)[0]:  false,
+                        rule:"Password should contain atleast one numeric characters."
+                    }
+                ]
+                passwordIntensity = ""
+                let counter = null
+                content = (
+                    _.map(passwordRules, r => {
+                        if(r.checked) {
+                            if(counter == null) {
+                                counter = 1
+                            } else {
+                                counter++;
+                            }
+                        }
+                        return <div><Checkbox style={{fontSize:12}} checked={r.checked}>{r.rule}</Checkbox></div>
+                    })
+                )
+                
+                if(counter != null && counter>=0 && counter<=3) {
+                    passwordIntensity = <div style={{color:"red", marginTop:7, marginLeft: 12}}>Weak</div>
+                } else if(counter != null && counter>3 && counter<6) {
+                    passwordIntensity = <div style={{color:"Orange",marginTop:7, marginLeft: 12}}>Moderate</div>
+                } else if(counter != null && counter==6) {
+                    passwordIntensity = <div style={{color:"Green",marginTop:7, marginLeft: 12}}>Strong</div>
+                }
+            }            
             fieldToRender = (
                 <FieldWrapper config={config} validated={validated}  minLabelWidth={minLabelWidth}  reviewState={reviewState}>
-                     <Input.Password  key={config.key} value={config.value} placeholder={config.placeholder} prefix={config.icon} onChange={(e) => onChange(config.key, e)} iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
+                    <Popover content={content != false ?  <div className='password-rules'>{content}</div> : false} trigger="click" placement="rightBottom">
+                        <Input.Password key={config.key} value={config.value} placeholder={config.placeholder} prefix={config.icon} onChange={(e) => onChange(config.key, e)} iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
+                        {passwordIntensity}
+                    </Popover>
                 </FieldWrapper>
             ) 
             break;

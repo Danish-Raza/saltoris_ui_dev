@@ -171,6 +171,7 @@ function SupplierLogin(props={}) {
       width:"49.5%",
       key: "password",
       required: true,
+      validate_password: true
     },
     {
       type: "password",
