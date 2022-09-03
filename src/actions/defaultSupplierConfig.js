@@ -2774,18 +2774,9 @@ const data = {
                                             "invoice_detail_form": 7, 
                                             "ammount_table": 8,
                                             "tax_detail": 9,
-                                            "form_8_title": 10,
-                                            "form_8": 11,
-                                            "form_9": 12, 
-                                            "form_10": 13,
-                                            "form_11_title": 14, 
-                                            "form_11": 15,
-                                            "form_12": 16, 
-                                            "form_13": 17,
-                                            "addition_detail": 18,
-                                            "email_detail": 19,
                                             "line_item_detail": 20,
-                                            "quantity_table": 21},
+                                            "line_item_detail_table": 21,
+                                            "quantity_table": 22},
                                         "api": "/asd/asda?",
                                         "review": true,
                                         "first_section": {
@@ -4246,6 +4237,100 @@ const data = {
                                                     "template": "button",
                                                     "button_label": "View Detail"
                                                 }
+                                            }
+                                        },
+                                        "line_item_detail_table":{
+                                            "id": "line_item_detail_table",
+                                            "type": "table",
+                                            "width": "100%",
+                                            // "title": "Order Items",
+                                            // "display": " ",
+                                            "api":  "",
+                                            "pagination": false,
+                                            "columns": {
+                                                "_order":{
+                                                    "Item Name": 1,
+                                                    "Description": 2,
+                                                    "Supplier Part": 3,
+                                                    "Quantity": 4,
+                                                    "Quantity (Unit)": 5,
+                                                    "HSN Code": 6,
+                                                    "HSN Code": 7,
+                                                    "Currency": 8,
+                                                    "Unit Price": 9,
+                                                    "Total Tax": 10,
+                                                    "Total Price": 11
+                                                },
+                                                "Item Name":{
+                                                    "display": "Item Name",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Description":{
+                                                    "display": "Description",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Supplier Part":{
+                                                    "display": "Supplier Part #",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity":{
+                                                    "display": "Quantity",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity (Unit)":{
+                                                    "display": "Quantity (Unit)",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },     
+                                                "HSN Code":{
+                                                    "display": "HSN Code",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Currency":{
+                                                    "display": "Currency",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Unit Price":{
+                                                    "display": "Unit Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Tax":{
+                                                    "display": "Total Tax",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Price":{
+                                                    "display": "Total Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                }                             
                                             }
                                         },
                                         "quantity_table": {
@@ -7725,20 +7810,105 @@ const data = {
                                             "invoice_detail_form": 7, 
                                             "ammount_table": 8,
                                             "tax_detail": 9,
-                                            "form_8_title": 10,
-                                            "form_8": 11,
-                                            "form_9": 12, 
-                                            "form_10": 13,
-                                            "form_11_title": 14, 
-                                            "form_11": 15,
-                                            "form_12": 16, 
-                                            "form_13": 17,
-                                            "addition_detail": 18,
-                                            "email_detail": 19,
                                             "line_item_detail": 20,
-                                            "quantity_table": 21},
+                                            "line_item_detail_table": 21,
+                                            "quantity_table": 22},
                                         "api": "/asd/asda?",
                                         "review": true,
+                                        "line_item_detail_table":{
+                                            "id": "line_item_detail_table",
+                                            "type": "table",
+                                            "width": "100%",
+                                            // "title": "Order Items",
+                                            // "display": " ",
+                                            "api":  "",
+                                            "pagination": false,
+                                            "columns": {
+                                                "_order":{
+                                                    "Item Name": 1,
+                                                    "Description": 2,
+                                                    "Supplier Part": 3,
+                                                    "Quantity": 4,
+                                                    "Quantity (Unit)": 5,
+                                                    "HSN Code": 6,
+                                                    "HSN Code": 7,
+                                                    "Currency": 8,
+                                                    "Unit Price": 9,
+                                                    "Total Tax": 10,
+                                                    "Total Price": 11
+                                                },
+                                                "Item Name":{
+                                                    "display": "Item Name",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Description":{
+                                                    "display": "Description",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Supplier Part":{
+                                                    "display": "Supplier Part #",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity":{
+                                                    "display": "Quantity",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity (Unit)":{
+                                                    "display": "Quantity (Unit)",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },     
+                                                "HSN Code":{
+                                                    "display": "HSN Code",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Currency":{
+                                                    "display": "Currency",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Unit Price":{
+                                                    "display": "Unit Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Tax":{
+                                                    "display": "Total Tax",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Price":{
+                                                    "display": "Total Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                }                             
+                                            }
+                                        },
                                         "first_section": {
                                             "type" : "info",
                                             "_order": {
@@ -12961,20 +13131,105 @@ const data = {
                                             "invoice_detail_form": 7, 
                                             "ammount_table": 8,
                                             "tax_detail": 9,
-                                            "form_8_title": 10,
-                                            "form_8": 11,
-                                            "form_9": 12, 
-                                            "form_10": 13,
-                                            "form_11_title": 14, 
-                                            "form_11": 15,
-                                            "form_12": 16, 
-                                            "form_13": 17,
-                                            "addition_detail": 18,
-                                            "email_detail": 19,
                                             "line_item_detail": 20,
-                                            "quantity_table": 21},
+                                            "line_item_detail_table": 22,
+                                            "quantity_table": 23},
                                         "api": "/asd/asda?",
                                         "review": true,
+                                        "line_item_detail_table":{
+                                            "id": "line_item_detail_table",
+                                            "type": "table",
+                                            "width": "100%",
+                                            // "title": "Order Items",
+                                            // "display": " ",
+                                            "api":  "",
+                                            "pagination": false,
+                                            "columns": {
+                                                "_order":{
+                                                    "Item Name": 1,
+                                                    "Description": 2,
+                                                    "Supplier Part": 3,
+                                                    "Quantity": 4,
+                                                    "Quantity (Unit)": 5,
+                                                    "HSN Code": 6,
+                                                    "HSN Code": 7,
+                                                    "Currency": 8,
+                                                    "Unit Price": 9,
+                                                    "Total Tax": 10,
+                                                    "Total Price": 11
+                                                },
+                                                "Item Name":{
+                                                    "display": "Item Name",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Description":{
+                                                    "display": "Description",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Supplier Part":{
+                                                    "display": "Supplier Part #",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity":{
+                                                    "display": "Quantity",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity (Unit)":{
+                                                    "display": "Quantity (Unit)",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },     
+                                                "HSN Code":{
+                                                    "display": "HSN Code",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Currency":{
+                                                    "display": "Currency",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Unit Price":{
+                                                    "display": "Unit Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Tax":{
+                                                    "display": "Total Tax",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Price":{
+                                                    "display": "Total Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                }                             
+                                            }
+                                        },
                                         "first_section": {
                                             "type" : "info",
                                             "_order": {
@@ -20077,19 +20332,104 @@ const data = {
                                             "invoice_detail_form": 7, 
                                             "ammount_table": 8,
                                             "tax_detail": 9,
-                                            "form_8_title": 10,
-                                            "form_8": 11,
-                                            "form_9": 12, 
-                                            "form_10": 13,
-                                            "form_11_title": 14, 
-                                            "form_11": 15,
-                                            "form_12": 16, 
-                                            "form_13": 17,
-                                            "addition_detail": 18,
-                                            "email_detail": 19,
                                             "line_item_detail": 20,
-                                            "quantity_table": 21},
+                                            "line_item_detail_table": 21,
+                                            "quantity_table": 22},
                                         "api": "/asd/asda?",
+                                        "line_item_detail_table":{
+                                            "id": "line_item_detail_table",
+                                            "type": "table",
+                                            "width": "100%",
+                                            // "title": "Order Items",
+                                            // "display": " ",
+                                            "api":  "",
+                                            "pagination": false,
+                                            "columns": {
+                                                "_order":{
+                                                    "Item Name": 1,
+                                                    "Description": 2,
+                                                    "Supplier Part": 3,
+                                                    "Quantity": 4,
+                                                    "Quantity (Unit)": 5,
+                                                    "HSN Code": 6,
+                                                    "HSN Code": 7,
+                                                    "Currency": 8,
+                                                    "Unit Price": 9,
+                                                    "Total Tax": 10,
+                                                    "Total Price": 11
+                                                },
+                                                "Item Name":{
+                                                    "display": "Item Name",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Description":{
+                                                    "display": "Description",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Supplier Part":{
+                                                    "display": "Supplier Part #",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity":{
+                                                    "display": "Quantity",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity (Unit)":{
+                                                    "display": "Quantity (Unit)",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },     
+                                                "HSN Code":{
+                                                    "display": "HSN Code",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Currency":{
+                                                    "display": "Currency",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Unit Price":{
+                                                    "display": "Unit Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Tax":{
+                                                    "display": "Total Tax",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Price":{
+                                                    "display": "Total Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                }                             
+                                            }
+                                        },
                                         "review": true,
                                         "first_section": {
                                             "type" : "info",
@@ -25027,19 +25367,104 @@ const data = {
                                             "invoice_detail_form": 7, 
                                             "ammount_table": 8,
                                             "tax_detail": 9,
-                                            "form_8_title": 10,
-                                            "form_8": 11,
-                                            "form_9": 12, 
-                                            "form_10": 13,
-                                            "form_11_title": 14, 
-                                            "form_11": 15,
-                                            "form_12": 16, 
-                                            "form_13": 17,
-                                            "addition_detail": 18,
-                                            "email_detail": 19,
                                             "line_item_detail": 20,
-                                            "quantity_table": 21},
+                                            "line_item_detail_table": 21,
+                                            "quantity_table": 22},
                                         "api": "/asd/asda?",
+                                        "line_item_detail_table":{
+                                            "id": "line_item_detail_table",
+                                            "type": "table",
+                                            "width": "100%",
+                                            // "title": "Order Items",
+                                            // "display": " ",
+                                            "api":  "",
+                                            "pagination": false,
+                                            "columns": {
+                                                "_order":{
+                                                    "Item Name": 1,
+                                                    "Description": 2,
+                                                    "Supplier Part": 3,
+                                                    "Quantity": 4,
+                                                    "Quantity (Unit)": 5,
+                                                    "HSN Code": 6,
+                                                    "HSN Code": 7,
+                                                    "Currency": 8,
+                                                    "Unit Price": 9,
+                                                    "Total Tax": 10,
+                                                    "Total Price": 11
+                                                },
+                                                "Item Name":{
+                                                    "display": "Item Name",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Description":{
+                                                    "display": "Description",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Supplier Part":{
+                                                    "display": "Supplier Part #",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity":{
+                                                    "display": "Quantity",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Quantity (Unit)":{
+                                                    "display": "Quantity (Unit)",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },     
+                                                "HSN Code":{
+                                                    "display": "HSN Code",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Currency":{
+                                                    "display": "Currency",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Unit Price":{
+                                                    "display": "Unit Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Tax":{
+                                                    "display": "Total Tax",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                },
+                                                "Total Price":{
+                                                    "display": "Total Price",
+                                                    "type":"string",
+                                                    "width": "",
+                                                    "align": "left",
+                                                    "sort": true
+                                                }                             
+                                            }
+                                        },
                                         "review": true,
                                         "first_section": {
                                             "type" : "info",
@@ -30262,18 +30687,103 @@ const data = {
                                             "invoice_detail_form": 7, 
                                             "ammount_table": 8,
                                             "tax_detail": 9,
-                                            "form_8_title": 10,
-                                            "form_8": 11,
-                                            "form_9": 12, 
-                                            "form_10": 13,
-                                            "form_11_title": 14, 
-                                            "form_11": 15,
-                                            "form_12": 16, 
-                                            "form_13": 17,
-                                            "addition_detail": 18,
-                                            "email_detail": 19,
                                             "line_item_detail": 20,
-                                            "quantity_table": 21},
+                                            "line_item_detail_table": 21,
+                                            "quantity_table": 22},
+                                            "line_item_detail_table":{
+                                                "id": "line_item_detail_table",
+                                                "type": "table",
+                                                "width": "100%",
+                                                // "title": "Order Items",
+                                                // "display": " ",
+                                                "api":  "",
+                                                "pagination": false,
+                                                "columns": {
+                                                    "_order":{
+                                                        "Item Name": 1,
+                                                        "Description": 2,
+                                                        "Supplier Part": 3,
+                                                        "Quantity": 4,
+                                                        "Quantity (Unit)": 5,
+                                                        "HSN Code": 6,
+                                                        "HSN Code": 7,
+                                                        "Currency": 8,
+                                                        "Unit Price": 9,
+                                                        "Total Tax": 10,
+                                                        "Total Price": 11
+                                                    },
+                                                    "Item Name":{
+                                                        "display": "Item Name",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },
+                                                    "Description":{
+                                                        "display": "Description",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },
+                                                    "Supplier Part":{
+                                                        "display": "Supplier Part #",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },
+                                                    "Quantity":{
+                                                        "display": "Quantity",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },
+                                                    "Quantity (Unit)":{
+                                                        "display": "Quantity (Unit)",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },     
+                                                    "HSN Code":{
+                                                        "display": "HSN Code",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },
+                                                    "Currency":{
+                                                        "display": "Currency",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },
+                                                    "Unit Price":{
+                                                        "display": "Unit Price",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },
+                                                    "Total Tax":{
+                                                        "display": "Total Tax",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    },
+                                                    "Total Price":{
+                                                        "display": "Total Price",
+                                                        "type":"string",
+                                                        "width": "",
+                                                        "align": "left",
+                                                        "sort": true
+                                                    }                             
+                                                }
+                                            },
                                         "api": "/asd/asda?",
                                         "review": true,
                                         "first_section": {
