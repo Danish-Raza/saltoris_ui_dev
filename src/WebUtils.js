@@ -36,7 +36,7 @@ const WebUtils = {
     httpOperations: function(url, data,  httpMethod = undefined, responseType = undefined) {
         setHeaderParams()
         if(httpMethod == "GET") {
-            let api = authEndPoint + url +"username=admin@mail.com"
+            let api = authEndPoint + url
             return axios.get(api,{})
             .then(success => Promise.resolve(success) , error =>  Promise.reject(error))
         } else if(httpMethod == "DELETE") {
