@@ -464,7 +464,7 @@ function TableComponent(props) {
                             expandable={config.expandedRowRender && {
                                 expandedRowRender:expandedRowRender
                             }}
-                            footer={config.redirect_on_view_all ? () => {
+                            footer={config.redirect_on_view_all && _modData &&_modData.length>0 ? () => {
                                 let paramString = config.redirect_on_view_all.split('?')[1];
                                 let queryString = new URLSearchParams(paramString);
                                 let cur_page = null;

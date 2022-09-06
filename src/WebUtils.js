@@ -1,8 +1,13 @@
 import axios from "axios"
 import { notification } from "antd"
+import $ from "jquery";
+let authEndPoint = "https://9090-103-15-255-63.in.ngrok.io"
+
 const setHeaderParams = () => {
     //let userDetails = localStorage.getItem("saltoris-userD")
-    //axios.defaults.headers["Authorization"] = "Bearer"+ " " + localStorage.getItem("saltoris-userD")
+    //axios.defaults.headers.common["Content-Type"] = "application/json"
+    // axios.defaults.headers.common["access-control-allow-origin"] = "http://localhost:3000"
+   // axios.defaults.headers.common["Authorization"] = "Bearer"+ " " + localStorage.getItem("saltoris-userD")
 }
 const WebUtils = {
     downloadFile: function(url, fileName) {
@@ -31,7 +36,8 @@ const WebUtils = {
     httpOperations: function(url, data,  httpMethod = undefined, responseType = undefined) {
         setHeaderParams()
         if(httpMethod == "GET") {
-            return axios.get(url,{params:  data})
+            let api = authEndPoint + url +"username=admin@mail.com"
+            return axios.get(api,{})
             .then(success => Promise.resolve(success) , error =>  Promise.reject(error))
         } else if(httpMethod == "DELETE") {
           return axios.delete(url,{data})
@@ -50,8 +56,9 @@ const WebUtils = {
         }
     },
     loadUserDetails: function(data,  httpMethod = undefined, responseType = undefined) {
-      setHeaderParams()
-      return axios.get(`http://54.87.33.187:8081/authenticate?username=${data.email}&password=${data.password}`)
+     // setHeaderParams()
+      //  axios.defaults.headers["common"]["Content-Type"]="application/json"
+      return axios.post(`${authEndPoint}/api/v1/user/login`,{...data})
       .then(success => Promise.resolve(success) , error =>  Promise.reject(error))
     },
 }

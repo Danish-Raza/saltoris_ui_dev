@@ -455,7 +455,7 @@ const data = {
                         "render_initial": true,
                         "id": "purchase_order_table",
                         "parent_id":"purchase_order_table",
-                        "api": "abc",
+                        "api": "/api/v1/order/list/?",
                         "change_status_config": {
                             "position":"left",
                             "dropdown":{

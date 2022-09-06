@@ -28,7 +28,7 @@ function Layout(props={}) {
           }
         }
       }
-      dispatch(getUserConfig(appData.userDetail.config_name, curPage, curView, appliedFilters))
+      dispatch(getUserConfig(appData.userDetail.config_name, curPage, curView, appliedFilters, appData.userDetail))
     },[])
 
     useEffect(() => {

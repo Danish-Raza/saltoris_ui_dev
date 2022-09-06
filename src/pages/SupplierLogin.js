@@ -4,12 +4,16 @@ import FormComponent from "../components/Form/FormComponent";
 import { Fragment, useRef, useState } from "react";
 import Icon from "../Icon";
 import _ from "underscore";
+import WebUtils from "../WebUtils";
+import { notification } from 'antd';
+
 
 function SupplierLogin(props={}) {
   let {authLoading, error, errorMessage } = props.appData
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("login")
   const [fgMessage, setFgMessage] = useState(null)
+  const [regData, setRegData] = useState({})
   const recaptchaRef = useRef();
 
   const loginHandler = (data) => {
@@ -20,11 +24,25 @@ function SupplierLogin(props={}) {
     if (recaptchaRef && recaptchaRef.current && recaptchaRef.current.reset) {
       recaptchaRef.current.reset()
     }
+    setRegData(data)
     setActiveTab("register-2")
   }
 
   const signUpHandler = (data) => {
-  
+    console.log(data)
+    let modData = {...regData, ...data}
+    delete modData.confirm_password
+    delete modData.term_condition
+    delete modData.reaptcha
+    let url = "https://9090-103-15-255-63.in.ngrok.io/api/v1/user/registration"
+    WebUtils.httpOperations(url,modData,"POST").then(suc => {
+      // console.log(suc)
+      notification["success"]({
+        message: 'Success',
+        description:
+          'Registration completed, you can now login',
+      });
+    }, error => error)
   }
 
   const loginFormConfig = [
@@ -33,7 +51,7 @@ function SupplierLogin(props={}) {
       placeholder:"User Name",
       icon: <Icon type="user" height={16} width={16}/>,
       width:"100%",
-      key: "email",
+      key: "username",
       required: true
     },
     {
@@ -60,7 +78,7 @@ function SupplierLogin(props={}) {
       type: "text",
       placeholder:"Company (legal) name",
       width:"100%",
-      key: "company_name",
+      key: "companyName",
       required: true,
       icon: <Icon type="company" height={16} width={16}/>
     },
@@ -68,7 +86,7 @@ function SupplierLogin(props={}) {
       type: "text",
       placeholder:"CIN / PAN",
       width:"100%",
-      key: "cin_pan",
+      key: "pan",
       required: true,
       icon: <Icon type="pan" height={16} width={16}/>
     },
@@ -76,14 +94,14 @@ function SupplierLogin(props={}) {
       type: "text",
       placeholder:"Address Line 1",
       width:"100%",
-      key: "address_1",
+      key: "addressLine1",
       icon: <Icon type="address" height={16} width={16}/>
     },
     {
       type: "text",
       placeholder:"Address Line 2",
       width:"100%",
-      key: "address_2",
+      key: "addressLine2",
       icon: <Icon type="address" height={16} width={16}/>
     },
     {
@@ -104,14 +122,14 @@ function SupplierLogin(props={}) {
       type: "text",
       placeholder:"Pin Code",
       width:"49.5%",
-      key: "zipcode",
+      key: "pin",
       icon: <Icon type="zipcode" height={16} width={16}/>
     },
     {
       type: "text",
       placeholder:"Country",
       width:"49%",
-      key: "Country",
+      key: "country",
       icon: <Icon type="country" height={16} width={16}/>
     },
     {
@@ -129,7 +147,7 @@ function SupplierLogin(props={}) {
       placeholder:"First Name",
       icon: <Icon type="user" height={16} width={16}/>,
       width:"49.5%",
-      key: "first_name",
+      key: "firstName",
       required: true
     },
     {
@@ -137,7 +155,7 @@ function SupplierLogin(props={}) {
       placeholder:"Second Name",
       icon: <Icon type="user" height={16} width={16}/>,
       width:"49%",
-      key: "second_name",
+      key: "lastName",
       required: true
     },
     {
@@ -145,7 +163,7 @@ function SupplierLogin(props={}) {
       placeholder:"Landline",
       icon: <Icon type="phone" height={16} width={16}/>,
       width:"49%",
-      key: "second_name",
+      key: "landline",
       required: true
     },
     {
@@ -153,7 +171,7 @@ function SupplierLogin(props={}) {
       placeholder:"Phone",
       icon: <Icon type="phone" height={16} width={16}/>,
       width:"49%",
-      key: "second_name",
+      key: "phone",
       required: true
     },
     {
@@ -186,7 +204,7 @@ function SupplierLogin(props={}) {
       placeholder:"Business Role",
       width:"100%",
       icon: <Icon type="business" height={16} width={16}/>,      
-      key: "business_role"
+      key: "businessRole"
     },
     {
       type: "checkbox",

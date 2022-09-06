@@ -616,8 +616,14 @@ export function changeTableParams(data) {
             //Set loader true,
             dispatch({ type: 'CHANGE_LOADER_STATE', loading: true})
             //Make API call
-          
-            dispatch({ ...data, type: "SET_TABLE_DATA", data: _mockData})
+            if(data.config.api && data.config.api.length>5){
+                WebUtils.httpOperations(data.config.api, {username:"admin2@mail.com"}, "GET").then((res)=>{
+                    dispatch({ ...data, type: "SET_TABLE_DATA", data: _mockData})
+                }, err =>  dispatch({ type: 'CHANGE_LOADER_STATE', loading: false, error: true}))   
+            } else {
+                dispatch({ ...data, type: "SET_TABLE_DATA", data: _mockData})
+            }
+                   
         } else {
             dispatch({ ...data})
         }
@@ -628,8 +634,14 @@ export function fetchTableDate(data) {
     return function (dispatch, getState) {
         //Set loader true
         dispatch({ type: 'CHANGE_LOADER_STATE', loading: true})
-
+        if(data.config.api && data.config.api.length>5){
+            WebUtils.httpOperations(data.config.api, data, "GET").then((res)=>{
+                dispatch({ ...data, type: "SET_TABLE_DATA", data: _mockData})
+            }, err =>  dispatch({ type: 'CHANGE_LOADER_STATE', loading: false, error: true}))
+        } else {
+            dispatch({ ...data, type: "SET_TABLE_DATA", data: _mockData})
+        }
+      
         //Make API call
-        dispatch({ ...data, type: "SET_TABLE_DATA", data: _mockData})
     }
 }
