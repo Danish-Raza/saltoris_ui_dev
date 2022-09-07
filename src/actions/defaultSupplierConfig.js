@@ -1429,7 +1429,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -1692,7 +1692,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -1727,7 +1727,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1738,7 +1738,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1749,7 +1749,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1760,7 +1760,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1771,7 +1771,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1782,7 +1782,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1793,7 +1793,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1804,7 +1804,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1815,7 +1815,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1826,7 +1826,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1837,7 +1837,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1848,7 +1848,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1859,7 +1859,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -1876,7 +1876,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -2612,7 +2612,7 @@ const data = {
                                             "id": "delivery_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "display": "Attachment",
+                        
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -2683,14 +2683,14 @@ const data = {
                                                     "sort": true
                                                 }                                    
                                             },
-                                           // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                           
                                         },
                                         "quantity_table": {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
                                             "title": "Order Items",
-                                            // "display": " ",
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -2745,7 +2745,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "submit": {
                                             "api": "",
@@ -2815,7 +2815,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -2850,7 +2850,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2861,7 +2861,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2872,7 +2872,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2883,7 +2883,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2894,7 +2894,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2905,7 +2905,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2916,7 +2916,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2927,7 +2927,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2938,7 +2938,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2949,7 +2949,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2960,7 +2960,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2971,7 +2971,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2982,7 +2982,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -2999,7 +2999,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -4243,8 +4243,8 @@ const data = {
                                             "id": "line_item_detail_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns": {
@@ -4337,8 +4337,8 @@ const data = {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -4393,7 +4393,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "purchase_document_table_overlay": {
                                             "type": "table",
@@ -5278,7 +5278,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -6465,7 +6465,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -6728,7 +6728,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -6763,7 +6763,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6774,7 +6774,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6785,7 +6785,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6796,7 +6796,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6807,7 +6807,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6818,7 +6818,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6829,7 +6829,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6840,7 +6840,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6851,7 +6851,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6862,7 +6862,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6873,7 +6873,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6884,7 +6884,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6895,7 +6895,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -6912,7 +6912,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -7648,7 +7648,7 @@ const data = {
                                             "id": "delivery_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "display": "Attachment",
+                        
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -7719,14 +7719,14 @@ const data = {
                                                     "sort": true
                                                 }                                    
                                             },
-                                           // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                           
                                         },
                                         "quantity_table": {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
                                             "title": "Order Items",
-                                            // "display": " ",
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -7781,7 +7781,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "submit": {
                                             "api": "",
@@ -7819,8 +7819,8 @@ const data = {
                                             "id": "line_item_detail_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns": {
@@ -7945,7 +7945,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -7980,7 +7980,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -7991,7 +7991,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8002,7 +8002,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8013,7 +8013,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8024,7 +8024,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8035,7 +8035,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8046,7 +8046,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8057,7 +8057,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8068,7 +8068,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8079,7 +8079,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8090,7 +8090,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8101,7 +8101,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8112,7 +8112,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -8129,7 +8129,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -9373,8 +9373,8 @@ const data = {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -9429,7 +9429,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "purchase_document_table_overlay": {
                                             "type": "table",
@@ -10314,7 +10314,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -10598,7 +10598,7 @@ const data = {
                                 "display": " SA Date (To)",
                                 "type":"date",
                                 "format": "MMM Do YYYY, h:mm a",
-                                // "color":"#FC5A5A",
+                               
                                 "align": "left"
                             },
                             "view_detail": {
@@ -11786,7 +11786,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -12049,7 +12049,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -12084,7 +12084,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12095,7 +12095,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12106,7 +12106,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12117,7 +12117,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12128,7 +12128,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12139,7 +12139,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12150,7 +12150,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12161,7 +12161,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12172,7 +12172,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12183,7 +12183,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12194,7 +12194,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12205,7 +12205,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12216,7 +12216,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -12233,7 +12233,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -12969,7 +12969,7 @@ const data = {
                                             "id": "delivery_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "display": "Attachment",
+                        
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -13040,14 +13040,14 @@ const data = {
                                                     "sort": true
                                                 }                                    
                                             },
-                                           // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                           
                                         },
                                         "quantity_table": {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
                                             "title": "Order Items",
-                                            // "display": " ",
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -13102,7 +13102,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "submit": {
                                             "api": "",
@@ -13140,8 +13140,8 @@ const data = {
                                             "id": "line_item_detail_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns": {
@@ -13266,7 +13266,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -13301,7 +13301,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13312,7 +13312,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13323,7 +13323,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13334,7 +13334,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13345,7 +13345,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13356,7 +13356,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13367,7 +13367,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13378,7 +13378,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13389,7 +13389,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13400,7 +13400,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13411,7 +13411,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13422,7 +13422,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13433,7 +13433,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -13450,7 +13450,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -14694,8 +14694,8 @@ const data = {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -14750,7 +14750,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "purchase_document_table_overlay": {
                                             "type": "table",
@@ -15635,7 +15635,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -18987,7 +18987,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -19250,7 +19250,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -19285,7 +19285,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19296,7 +19296,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19307,7 +19307,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19318,7 +19318,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19329,7 +19329,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19340,7 +19340,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19351,7 +19351,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19362,7 +19362,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19373,7 +19373,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19384,7 +19384,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19395,7 +19395,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19406,7 +19406,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19417,7 +19417,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -19434,7 +19434,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -20170,7 +20170,7 @@ const data = {
                                             "id": "delivery_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "display": "Attachment",
+                        
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -20241,14 +20241,14 @@ const data = {
                                                     "sort": true
                                                 }                                    
                                             },
-                                           // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                           
                                         },
                                         "quantity_table": {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
                                             "title": "Order Items",
-                                            // "display": " ",
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -20303,7 +20303,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "submit": {
                                             "api": "",
@@ -20340,8 +20340,8 @@ const data = {
                                             "id": "line_item_detail_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns": {
@@ -20467,7 +20467,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -20502,7 +20502,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20513,7 +20513,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20524,7 +20524,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20535,7 +20535,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20546,7 +20546,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20557,7 +20557,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20568,7 +20568,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20579,7 +20579,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20590,7 +20590,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20601,7 +20601,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20612,7 +20612,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20623,7 +20623,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20634,7 +20634,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -20651,7 +20651,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -21895,8 +21895,8 @@ const data = {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -21951,7 +21951,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "purchase_document_table_overlay": {
                                             "type": "table",
@@ -22836,7 +22836,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -24022,7 +24022,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -24285,7 +24285,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -24320,7 +24320,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24331,7 +24331,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24342,7 +24342,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24353,7 +24353,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24364,7 +24364,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24375,7 +24375,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24386,7 +24386,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24397,7 +24397,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24408,7 +24408,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24419,7 +24419,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24430,7 +24430,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24441,7 +24441,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24452,7 +24452,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -24469,7 +24469,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -25205,7 +25205,7 @@ const data = {
                                             "id": "delivery_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "display": "Attachment",
+                        
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -25276,14 +25276,14 @@ const data = {
                                                     "sort": true
                                                 }                                    
                                             },
-                                           // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                           
                                         },
                                         "quantity_table": {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
                                             "title": "Order Items",
-                                            // "display": " ",
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -25338,7 +25338,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "submit": {
                                             "api": "",
@@ -25375,8 +25375,8 @@ const data = {
                                             "id": "line_item_detail_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns": {
@@ -25502,7 +25502,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -25537,7 +25537,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25548,7 +25548,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25559,7 +25559,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25570,7 +25570,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25581,7 +25581,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25592,7 +25592,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25603,7 +25603,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25614,7 +25614,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25625,7 +25625,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25636,7 +25636,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25647,7 +25647,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25658,7 +25658,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25669,7 +25669,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -25686,7 +25686,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -26930,8 +26930,8 @@ const data = {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -26986,7 +26986,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "purchase_document_table_overlay": {
                                             "type": "table",
@@ -27871,7 +27871,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -28155,7 +28155,7 @@ const data = {
                                 "display": " SA Date (To)",
                                 "type":"date",
                                 "format": "MMM Do YYYY, h:mm a",
-                                // "color":"#FC5A5A",
+                               
                                 "align": "left"
                             },
                             "view_detail": {
@@ -29342,7 +29342,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
@@ -29605,7 +29605,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -29640,7 +29640,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29651,7 +29651,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29662,7 +29662,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29673,7 +29673,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29684,7 +29684,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29695,7 +29695,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29706,7 +29706,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29717,7 +29717,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29728,7 +29728,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29739,7 +29739,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29750,7 +29750,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29761,7 +29761,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29772,7 +29772,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -29789,7 +29789,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -30525,7 +30525,7 @@ const data = {
                                             "id": "delivery_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "display": "Attachment",
+                        
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -30596,14 +30596,14 @@ const data = {
                                                     "sort": true
                                                 }                                    
                                             },
-                                           // "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                           
                                         },
                                         "quantity_table": {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
                                             "title": "Order Items",
-                                            // "display": " ",
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -30658,7 +30658,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "submit": {
                                             "api": "",
@@ -30694,8 +30694,8 @@ const data = {
                                                 "id": "line_item_detail_table",
                                                 "type": "table",
                                                 "width": "100%",
-                                                // "title": "Order Items",
-                                                // "display": " ",
+                                                
+                                                
                                                 "api":  "",
                                                 "pagination": false,
                                                 "columns": {
@@ -30822,7 +30822,7 @@ const data = {
                                                 "width":"100%",
                                                 "key": "product_image",
                                                 "flex": true,
-                                                // "required": true
+                                                
                                             }
                                         },
                                         "form_3": {
@@ -30857,7 +30857,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address1",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30868,7 +30868,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "company_address2",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30879,7 +30879,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "country",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30890,7 +30890,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "state",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30901,7 +30901,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "district",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30912,7 +30912,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pin_code",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30923,7 +30923,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "landline",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30934,7 +30934,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "mobile",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30945,7 +30945,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "email",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30956,7 +30956,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "fax",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30967,7 +30967,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "gst_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30978,7 +30978,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"50%",
                                                 "key": "pan_number",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -30989,7 +30989,7 @@ const data = {
                                                 "template":"no-border no-padding",
                                                 "width":"100%",
                                                 "key": "cin",
-                                                // "label": "Address",
+                                                
                                                 "flex": true,
                                                 "required": false
                                             },
@@ -31006,7 +31006,7 @@ const data = {
                                             },
                                             "time":{
                                                 "type": "time",
-                                                // "placeholder": "Date",
+                                                
                                                 "template":"no-border  no-padding",
                                                 "width":"50%", 
                                                 "key": "time",
@@ -32250,8 +32250,8 @@ const data = {
                                             "id": "quantity_table",
                                             "type": "table",
                                             "width": "100%",
-                                            // "title": "Order Items",
-                                            // "display": " ",
+                                            
+                                            
                                             "api":  "",
                                             "pagination": false,
                                             "columns":{
@@ -32306,7 +32306,7 @@ const data = {
                                                     "sort": true
                                                 }                                 
                                             },
-                                          //  "redirect_on_view_all": "/?cur_page=business_analytics&cur_view=invoice",
+                                          
                                         },
                                         "purchase_document_table_overlay": {
                                             "type": "table",
@@ -33191,7 +33191,7 @@ const data = {
                                                         "display": " SA Date (To)",
                                                         "type":"date",
                                                         "format": "MMM Do YYYY, h:mm a",
-                                                        // "color":"#FC5A5A",
+                                                       
                                                         "align": "left"
                                                     },
                                                     "view_detail": {
