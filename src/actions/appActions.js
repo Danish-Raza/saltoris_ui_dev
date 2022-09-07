@@ -19,9 +19,12 @@ export function login(data) {
             } else {
                 dispatch({ type: 'LOGIN_FAILED', message: "User not found"});
             }
-        }, error => dispatch({ type: 'LOGIN_FAILED', message: "Something went wrong"}))
-        
-      
+        }, error => {
+                let message =  error.response && error.response.data ? error.response.data.message : null
+                return dispatch({ type: 'LOGIN_FAILED', message: message || "Something went wrong"})
+            }
+        )
+
         // let userList = [
         //     {  
         //         username:"John Doe",
