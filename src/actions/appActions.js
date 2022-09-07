@@ -66,16 +66,16 @@ export function getUserConfig(configName, curPage, curView, appliedFilters, user
     return function (dispatch, getState) {
         if(userDetails.account_type == "supplier") {
             let modCOnfig = {...defaultSupplierConfig}
-            modCOnfig["business_analytics"]["dashboard"] = userDetails.userSpecificConfig["dashboard"]
+           // modCOnfig["business_analytics"]["dashboard"] = userDetails.userSpecificConfig["dashboard"]
             dispatch({ type: 'USER_CONFIG', data: modCOnfig, curPage, curView, appliedFilters});
         } else if(userDetails.account_type == "buyer") {
             let modCOnfig = {...defaultBuyerConfig}
             modCOnfig["business_analytics"]["dashboard"] = userDetails.userSpecificConfig["dashboard"]
-            dispatch({ type: 'USER_CONFIG', data: userDetails.userSpecificConfig, curPage, curView, appliedFilters});
+            dispatch({ type: 'USER_CONFIG', data: modCOnfig, curPage, curView, appliedFilters});
         } else if(userDetails.account_type == "customer") {
             let modCOnfig = {...defaultCustomerConfig}
             modCOnfig["business_analytics"]["dashboard"] = userDetails.userSpecificConfig["dashboard"]
-            dispatch({ type: 'USER_CONFIG', data: userDetails.userSpecificConfig, curPage, curView, appliedFilters});
+            dispatch({ type: 'USER_CONFIG', data: modCOnfig, curPage, curView, appliedFilters});
         } 
         
         // if(configName == "default_supplier") {

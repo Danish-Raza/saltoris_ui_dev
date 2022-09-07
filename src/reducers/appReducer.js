@@ -5,8 +5,8 @@ import moment from "moment";
 let initialState = {
   appLoading: false,
   authLoading: false,
-  loggedIn: localStorage.getItem("saltoris-userD") ? true : false,
-  userDetail: localStorage.getItem("saltoris-userD") ?  JSON.parse(localStorage.getItem("saltoris-userD")) : {},
+  loggedIn: localStorage.getItem("saltoris-userD") && JSON.parse(localStorage.getItem("saltoris-userD"))["userSpecificConfig"] ? true : false,
+  userDetail: localStorage.getItem("saltoris-userD") && JSON.parse(localStorage.getItem("saltoris-userD"))["userSpecificConfig"]?  JSON.parse(localStorage.getItem("saltoris-userD")) : {},
   appParams: {appliedFilters: {}},
   tableRowData: {},
   error: false,
